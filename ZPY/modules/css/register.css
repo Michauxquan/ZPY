@@ -1,0 +1,12 @@
+.advertisement{width:960px;margin:20px auto;}
+.contentf{width: 780px;margin: 0 auto;padding-left: 180px;}
+.contentf p{line-height: 38px;font-size: 15px;}
+.contentf p input[type="text"],.contentf p input[type="password"],.contentf p input[type="email"]{width: 180px;height: 25px;padding-left: 10px;}
+.contentf p select{width: 90px;height: 25px;padding-left: 10px;}
+.contentf p span{color: #777;font-size: 12px;margin-left: 20px;}
+.contentf p.agree{color: #777;font-size: 12px;}
+.contentf p .btnregister{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 160px;margin-top: 20px;display: block;margin-bottom: 50px;}
+.contentf p.code input{width: 60px;margin-right: 10px;margin-left: -2px;}
+.contentf p.code input#txt1{background: #ccc;border:none;outline: none;text-align: center;padding-left: 0;}
+.contentf p.sex input{margin-left: 20px;}
+.red { color: red !important;}

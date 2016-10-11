@@ -1,0 +1,31 @@
+.advertisement{width: 960px;margin: 0 auto;margin-top:20px;}
+.like,.hire{margin-top: 20px!important;}
+.hire ul li{display: inline-block;width: 210px;}
+.like ul li{float: left;}
+.recharge ul li{font-size: 14px;}
+.recharge ul li label{margin-right: 13.4px;cursor: pointer;}
+.recharge ul li input[type="text"]{width: 60px;text-align: center;margin-right: 5px;}
+.recharge ul li:last-child{text-align: center;}
+.recharge ul li input[type="submit"]{width: 200px;height: 30px;background: #F22B64;color: white;text-align: center;font-size: 16px;line-height: 30px;border: none;border-radius: 3px;cursor: pointer;}
+.left p{font-size: 15px;}
+.left ul li{border-top: none!important;}
+.left div.msgs{height: 270px;}
+.left div.msgs>img{float: left;margin-right: 20px;}
+.left .msgs>div{float: left;width: 470px;}
+.left .msgs>div ul.basic-msg li{width: 230px;float: left;padding: 0;line-height: 32px;}
+.left .msgs>div ul.interact{width: 470px;padding: 0;}
+.left .msgs>div ul.interact li{display: inline-block;padding: 0;}
+.left .msgs>div p:last-child{margin-top: 5px;}
+.left .msgs>div p:last-child img{vertical-align: middle;margin-right: 10px;}
+.left .msgs>div ul.interact+p{line-height: 20px;}
+.left .msgs>div ul.interact+p a{color: red;}
+.left .msgs>div ul.interact+p a:active{color: red;}
+.left .msgs>div ul.interact li a{margin-right: 5px;}
+.left .intro{}
+.left .intro h4{width: 100%;background: #fafafa;height: 40px;line-height: 40px;color: #927273;text-indent: 15px;}
+.left .intro p{line-height: 40px;text-indent: 15px;}
+.left .intro ul{margin-left: 15px;}
+.left .intro ul li{font-size: 15px;}
+.left .intro ul li a{float: none;color: red;font-size: 15px;}
+.left .intro ul li a:visited{color: red;}
+.left .intro ul li img{vertical-align: middle;margin-right: 20px;}

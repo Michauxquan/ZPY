@@ -1,0 +1,441 @@
+﻿ 
+    <link rel="stylesheet" type="text/css" href="/modules/css/user.css">
+
+    <link rel="stylesheet" type="text/css" href="/modules/css/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="/modules/css/diyUpload.css">
+    <div class="select-section">
+        <div class="select">
+            <p>我要租：</p>
+            <select>
+                <option>租男友</option>
+                <option>租女友</option>
+            </select>
+            <p>年龄：</p>
+            <select>
+                <option>18~25</option>
+                <option>26~32</option>
+                <option>33~38</option>
+                <option>39~44</option>
+                <option>45~51</option>
+                <option>52~60</option>
+            </select>
+            <p>地区：</p>
+            <select name="province3"></select>&nbsp;<select name="city3"></select>&nbsp;<select name="area3"></select>
+            <input type="button" id="seachInfo"></input>
+        </div>
+    </div>
+    <div class="content">
+        <div class="sidebar">
+            <ul>
+                <li>用户中心</li>
+                <li>头像设置</li>
+                <li>资料修改</li>
+                <li>上传图片</li>
+                <li>发表日记</li>
+                <li>谁看过我</li>
+                <li>我的关注</li>
+                <li>获取金币</li>
+                <li>升级VIP</li>
+                <li>发布出租信息</li>
+                <li>发布求租信息</li>
+                <li>综合聘请信息</li>
+            </ul>
+        </div>
+        <div class="con">
+            <div class="release1" style="display: none;">
+                <form action="" method="" name="release1">
+                    <p>提示：请不要再信息中填写联系方式，否则审核将不能通过，直接删除。</p>
+                    <p>发布标题：<input type="text"></input></p>
+                    <p>性别要求：<select>
+                        <option>女</option>
+                        <option>男</option>
+                    </select><span>*请选择对方的性别。</span></p>
+                    <p>提供服务：<input type="checkbox">见父母亲友</input><input type="checkbox">可接受牵手</input><input type="checkbox">必要可接吻</input><input type="checkbox">必要时可拥抱</input><input type="checkbox">社交聚会</input><input type="checkbox">逛街购物</input><input type="checkbox">唱歌看电影</input><input type="checkbox">旅游陪同</input><input type="checkbox">接送服务</input><input type="checkbox">电话叫醒服务</input><input type="checkbox">聊天服务</input><input type="checkbox">其他服务协商</input></p>
+                    <p>租金要求：<input type="text" class="salary"></input><span>*请填写价格，如200元/天或者待议。</span></p>
+                    <p>内容要求：<span>*请填写出租信息，越详细越好！</span></p>
+                    <textarea></textarea>
+                    <p><input type="submit" value="确定"></input></p>
+                </form>
+            </div>
+            <div class="release2" style="display: none;">
+                <form action="" method="" name="release2">
+                    <p>提示：请不要再信息中填写联系方式，否则审核将不能通过，直接删除。</p>
+                    <p>发布标题：<input type="text"></input></p>
+                    <p>性别要求：<select>
+                        <option>女</option>
+                        <option>男</option>
+                    </select><span>*请选择对方的性别。</span></p>
+                    <p>招聘天数：<input type="text" placeholder="1"></input></p>
+                    <p>租金要求：<input type="text" class="salary"></input><span>*请填写价格，如200元/天或者待议。</span></p>
+                    <p>内容要求：<span>*请填写出租信息，越详细越好！</span></p>
+                    <textarea></textarea>
+                    <p><input type="submit" value="确定"></input></p>
+                </form>
+            </div>
+            <div class="user-msg">
+                <img src="images/head.png" alt="头像" width="120px">
+                <div class="detail">
+                    <p><span>绿萝丽</span>金币<img src="images/credit.png"><strong>1</strong>个</p>
+                    <p>访问人数<span>65</span></p>
+                    <p>我的宣言<br/><select>
+                        <option>尊重对方，互帮互助</option>
+                        <option>快乐至上，一起happy</option>
+                    </select></p>
+                </div>
+                <div class="clear"></div>
+                <div class="actions">
+                    <h4>会员动态</h4>
+                    <ul>
+                        <li>会员<span>客家豆腐花</span>向<span>蝶恋蜂狂</span>发送了<strong>20</strong>条信息<small><span>2</span>小时前</small></li>
+                        <li>会员<span>客家豆腐花</span>向<span>蝶恋蜂狂</span>发送了<strong>20</strong>条信息<small><span>2</span>小时前</small></li>
+                        <li>会员<span>客家豆腐花</span>向<span>蝶恋蜂狂</span>发送了<strong>20</strong>条信息<small><span>2</span>小时前</small></li>
+                        <li>会员<span>客家豆腐花</span>向<span>蝶恋蜂狂</span>发送了<strong>20</strong>条信息<small><span>2</span>小时前</small></li>
+                    </ul>
+                </div>
+                <div class="page">
+                    <a href=""><<</a>
+                    <a href="">上一页</a>
+                    <a href="">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a>
+                    <a href="">下一页</a>
+                    <a href="">>></a>
+                </div>
+            </div>
+            <div class="release-diary" style="display: none;">
+                <form action="" method="" name="release-diary">
+                    <h4>发表日记</h4>
+                    <p>文章标题：<input type="text"></input></p>
+                    <input type="submit" value="提交"></input>
+                </form>
+            </div>
+            <div class="get-gold" style="display: none;">
+                <form action="" method="" name="get-gold">
+                    <h4>获取金币的方式：</h4>
+                    <p>充值购买</p>
+                    <label><input type="radio" name="change"></input>100元=500金币</label>
+                    <label><input type="radio" name="change"></input>300元=1500金币+赠送500金币</label>
+                    <label><input type="radio" name="change"></input>500元=2500金币+赠送800金币</label>
+                    <p class="payway">支付方式</p>
+                    <label><input type="radio" name="payway"></input>网银在线充值</label>
+                    <label><input type="radio" name="payway"></input>支付宝支付</label>
+                    <label><input type="radio" name="payway"></input>微信支付</label>
+                    <input type="submit" value="提交"></input>
+                </form>
+            </div>
+            <div class="upload" style="display: none;">
+                <form action="" method="" name="upload">
+                    <h4>上传图片</h4>
+                    <p>*请提高安全意识，谨防受骗！不得上传色情等违法图片，以及卡通等非人物图片，为防止恶意信息，请不要在图片中显示个人联系方式。</p>
+                    <div id="box">
+                        <div id="test" ></div>
+                    </div>
+                    <p><input type="submit" value="提交"></input></p>
+                </form>
+            </div>
+            <div class="beVip" style="display: none;">
+                <form action="" method="" name="beVip">
+                    <h4>升级VIP:</h4>
+                    <p>特色服务：VIP可以查看心仪对象的QQ号，微信号，E-mail及手机号，可以快速直接租到女友或男友！</p>
+                    <h4>商品名称：<img src="images/vip.gif"><span>VIP会员</span></h4>
+                    <h4>服务类型：</h4>
+                    <p class="species">
+                        <label><input type="radio" name="species"><span>B级[90天]</span><del>原价￥600</del>特价<span>￥199</span></input></label><br/>
+                         <label><input type="radio" name="species"><span>A级[360天]</span><del>原价￥800</del>特价<span>￥299</span></input></label><br/>
+                          <label><input type="radio" name="species"><span>终身VIP[不限时]</span><del>原价￥1888</del>特价<span>￥499</span>终身VIP可终身享受推荐服务！</input></label>
+                    </p>
+                    <h4>支付方式：</h4>
+                    <p class="payway1">      
+                        <label><input type="radio" name="payway1"></input>网银在线充值</label>
+                        <label><input type="radio" name="payway1"></input>支付宝支付</label>
+                        <label><input type="radio" name="payway1"></input>微信支付</label>
+                     </p>
+                    <input type="submit" value="提交"></input>
+                </form>
+            </div>
+            <div class="whocame" style="display: none;">
+                <img src="images/head.png" alt="头像" width="120px">
+                <div class="detail">
+                    <p><span>绿萝丽</span>金币<img src="images/credit.png"><strong>1</strong>个</p>
+                    <p>访问人数<span>65</span></p>
+                    <p>我的宣言<br/><select>
+                        <option>尊重对方，互帮互助</option>
+                        <option>快乐至上，一起happy</option>
+                    </select></p>
+                </div>
+                <div class="clear"></div>
+                <div class="whocame-con">
+                    <h4>谁看过我</h4>
+                    <ul>
+                        <li><a href=""><img src="images/photo4.jpg" width="61" height="73"></a><br/><a href=""><span>小卡</span></a><br/><i>3</i>分钟前</li>
+                        <li><a href=""><img src="images/photo4.jpg" width="61" height="73"></a><br/><a href=""><span>小卡</span></a><br/><i>3</i>分钟前</li>
+                        <li><a href=""><img src="images/photo4.jpg" width="61" height="73"></a><br/><a href=""><span>小卡</span></a><br/><i>3</i>分钟前</li>
+                        <li><a href=""><img src="images/photo4.jpg" width="61" height="73"></a><br/><a href=""><span>小卡</span></a><br/><i>3</i>分钟前</li>
+                        <li><a href=""><img src="images/photo4.jpg" width="61" height="73"></a><br/><a href=""><span>小卡</span></a><br/><i>3</i>分钟前</li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div class="page1 page">
+                    <a href=""><<</a>
+                    <a href="">上一页</a>
+                    <a href="">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a>
+                    <a href="">下一页</a>
+                    <a href="">>></a>
+                </div>
+            </div>
+            <div class="myfocus" style="display: none;">
+                <img src="images/head.png" alt="头像" width="120px">
+                <div class="detail">
+                    <p><span>绿萝丽</span>金币<img src="images/credit.png"><strong>1</strong>个</p>
+                    <p>访问人数<span>65</span></p>
+                    <p>我的宣言<br/><select>
+                        <option>尊重对方，互帮互助</option>
+                        <option>快乐至上，一起happy</option>
+                    </select></p>
+                </div>
+                <div class="clear"></div>
+                <div class="myscan">
+                    <h4>我的关注</h4>
+                    <ul>
+                        <li><a href=""><img src="images/photo4.jpg" width="61" height="73"></a><br/><a href=""><span>小卡</span></a><br/><i>3</i>分钟前</li>
+                        <li><a href=""><img src="images/photo4.jpg" width="61" height="73"></a><br/><a href=""><span>小卡</span></a><br/><i>3</i>分钟前</li>
+                        <li><a href=""><img src="images/photo4.jpg" width="61" height="73"></a><br/><a href=""><span>小卡</span></a><br/><i>3</i>分钟前</li>
+                        <li><a href=""><img src="images/photo4.jpg" width="61" height="73"></a><br/><a href=""><span>小卡</span></a><br/><i>3</i>分钟前</li>
+                        <li><a href=""><img src="images/photo4.jpg" width="61" height="73"></a><br/><a href=""><span>小卡</span></a><br/><i>3</i>分钟前</li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div class="page2 page">
+                    <a href=""><<</a>
+                    <a href="">上一页</a>
+                    <a href="">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a>
+                    <a href="">下一页</a>
+                    <a href="">>></a>
+                </div>
+            </div>
+            <div class="picset" style="display: none;">
+                <img src="images/head.png" width="90px">
+                <div>
+                    <h4>当前我的头像</h4>
+                    <p>如果您还没有设置自己的头像，系统会显示为默认的头像，您需要自己上传一张新照片来作为自己的个人头像。</p>
+                </div>
+                <div class="clear"></div>
+                <h4>设置我的头像</h4>
+                <p>据不完全统计，上传照片可以让您的关注度提升8倍以上！</p>
+                <div id="demo">
+                    <div id="as"></div>
+                </div>
+                <p>提示：头像保存后，您可能需要刷新一下本页面（按F5键），才能查看最新的头像效果。</p>
+            </div>
+            <div class="weixinpay" style="display: none;">
+                <h4>获取金币方式</h4>
+                <p>支付方式：微信支付</p>
+                <p>支付金额：500元</p>
+                <p>服务名称：500元购买2500金币</p>
+                <p>会员名称：万丽君</p>
+                <p>微信账号：154544545@qq.com（直接转账）</p>
+                <p class="phonepay">手机扫二维码快捷支付</p>
+                <img src="images/erweima.png" alt="二维码">
+                <p>支付时请在备注里写上用户名，充值遇到问题请联系客服qq：1111111&nbsp;微信：fdghfh</p>
+            </div>
+            <div class="alipay" style="display: none;">
+                <h4>获取金币方式</h4>
+                <p>支付方式：支付宝支付</p>
+                <p>支付金额：500元</p>
+                <p>服务名称：500元购买2500金币</p>
+                <p>会员名称：万丽君</p>
+                <p>微信账号：154544545@qq.com（直接转账）</p>
+                <p class="phonepay">手机扫二维码快捷支付</p>
+                <img src="images/erweima.png" alt="二维码">
+                <p>支付时请在备注里写上用户名，充值遇到问题请联系客服qq：1111111&nbsp;微信：fdghfh</p>
+            </div>
+            <div class="change-msg" style="display: none;">
+                <form action="" method="" name="change-msg">
+                    <h4>基本资料</h4>
+                    <ul>
+                        <li>邮箱：165645455@qq.com</li>
+                        <li>用户名：旺财小姐</li>
+                        <li>性别：女</li>
+                        <li>职业：模特</li>
+                    </ul>
+                    <div class="clear"></div>
+                    <h4>编辑资料</h4>
+                    <ul>
+                        <li>我的身高：<select>
+                            <option>140-150</option>
+                            <option>150-160</option>
+                            <option>160-170</option>
+                            <option>170-180</option>
+                            <option>180-190</option>
+                            <option>190-200</option>
+                        </select></li>
+                        <li>婚姻状态：<select>
+                            <option>未婚</option>
+                            <option>已婚</option>
+                        </select></li>
+                        <li>我的体重：<select>
+                            <option value="40kg-50kg">40kg-50kg</option>
+                            <option value="50kg-60kg">50kg-60kg</option>
+                            <option value="60kg-70kg">60kg-70kg</option>
+                            <option value="70kg-80kg">70kg-80kg</option>
+                            <option value="80kg-90kg">80kg-90kg</option>
+                            <option value="90kg-100kg">90kg-100kg</option>
+                            <option value="100kg-110kg">100kg-110kg</option>
+                            <option value="110kg-120kg">110kg-120kg</option>
+                            <option value="120kg-130kg">120kg-130kg</option>
+                        </select></li>
+                        <li>我的个性：<select>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                        </select></li>
+                        <li>我的月薪：<select>
+                            <option value="1000-3000">1000-3000</option>
+                            <option value="3000-5000">3000-5000</option>
+                            <option value="5000-8000">5000-8000</option>
+                            <option value="8000-10000">8000-10000</option>
+                            <option value="10000-15000">10000-15000</option>
+                            <option value="15000-25000">15000-25000</option> 
+                            <option value="25000+">25000+</option>
+                        </select></li>
+                        <li>我的职业：<select id="UserJob" name="UserJob">
+                            <option value="工人">工人</option>
+                            <option value="干部">干部</option>
+                            <option value="军人">军人</option>
+                            <option value="农民">农民</option>
+                            <option value="教师">教师</option>
+                            <option value="学生">学生</option>
+                            <option value="技术">技术</option>
+                            <option value="企管">企管</option>
+                            <option value="" selected="">职员</option>
+                            <option value="党政">党政</option>
+                            <option value="机关">机关</option>
+                            <option value="法律">法律</option>
+                            <option value="环卫">环卫</option>
+                            <option value="服务">服务</option>
+                            <option value="娱乐">娱乐</option>
+                            <option value="餐饮">餐饮</option>
+                            <option value="学术">学术</option>
+                            <option value="出版">出版</option>
+                            <option value="媒体">媒体</option>
+                            <option value="文化">文化</option>
+                            <option value="电脑">电脑</option>
+                            <option value="体育">体育</option>
+                            <option value="自由">自由</option>
+                            <option value="国企">国企</option>
+                            <option value="私企">私企</option>
+                            <option value="工业">工业</option>
+                            <option value="农牧">农牧</option>
+                            <option value="渔业">渔业</option>
+                            <option value="商业">商业</option>
+                            <option value="作家">作家</option>
+                            <option value="科研">科研</option>
+                            <option value="艺术">艺术</option>
+                            <option value="公安">公安</option>
+                            <option value="邮电">邮电</option>
+                            <option value="交通">交通</option>
+                            <option value="医疗">医疗</option>
+                            <option value="金融">金融</option>
+                            <option value="证券">证券</option>
+                            <option value="广告">广告</option>
+                            <option value="主妇">主妇</option>
+                            <option value="信息">信息</option>
+                            <option value="客服">客服</option>
+                            <option value="退休">退休</option>
+                            <option value="无业">无业</option>
+                            <option value="其他">其他</option>
+                            </select></li> 
+                        <li>我的自评：<select>
+                            <option value="沉鱼落雁">沉鱼落雁</option>
+                            <option value="娇羞客人">娇羞客人</option>
+                            <option value="寂寞难耐">寂寞难耐</option>
+                            <option value="热情似火">热情似火</option>
+                            <option value="邪恶搞怪">邪恶搞怪</option>
+                            <option value="英俊潇洒">英俊潇洒</option>
+                            <option value="中二青年">中二青年</option>
+                            <option value="萎靡低沉">萎靡低沉</option>
+                            <option value="朝朝少年">朝朝少年</option>
+                            <option value="棒棒糖叔叔">棒棒糖叔叔</option>
+                        </select></li>
+                    </ul>
+                    <div class="clear"></div>
+                    <input type="button" value="确认保存"/>
+                </form>
+            </div>
+            <div class="business" style="display: none;" id="business">
+                <ul><li class="cur">聘请信息</li><li>求租信息</li><li>出租信息</li></ul>
+                <div class="clear"></div>
+                <div class="hire-msg">
+                    <p>出租人：<span>小楠楠</span></p>
+                    <p>主题：<span>小美女</span></p>
+                    <p>性别要求：<span>女</span></p>
+                    <p>租金要求：<span>800</span>元/天</p>
+                    <p>提供服务：<span>见父母亲友，可接受牵手，必要时可接吻，可拥抱，社交聚会，逛街购物，唱歌，看电影，旅游陪同。</span></p>
+                    <p>内容：<span>陪同回家过年</span></p>
+                    <p>发布日期：<span>2016-9-28&nbsp;12:51:44</span></p>
+                </div>
+                <div class="lease"  style="display: none;">
+                    <table cellpadding="1" cellspacing="0" border="1">
+                        <thead><td>地区</td><td>性别</td><td>发布人</td><td>标题</td><td>类型</td><td>时间</td></thead>
+                        <tr><td>北京</td><td>男</td><td>卡萨丁</td><td>求女友陪同见亲友一天</td><td>求租</td><td>2016-11-12</td></tr>
+                        <tr><td>北京</td><td>男</td><td>卡萨丁</td><td>求女友陪同见亲友一天</td><td>求租</td><td>2016-11-12</td></tr>
+                        <tr><td>北京</td><td>男</td><td>卡萨丁</td><td>求女友陪同见亲友一天</td><td>求租</td><td>2016-11-12</td></tr>
+                    </table>
+                    <div class="page3 page">
+                        <a href=""><<</a>
+                        <a href="">上一页</a>
+                        <a href="">1</a>
+                        <a href="">2</a>
+                        <a href="">3</a>
+                        <a href="">下一页</a>
+                        <a href="">>></a>
+                    </div>
+                </div>
+                <div class="rent"  style="display: none;">
+                    <table cellpadding="1" cellspacing="0" border="1">
+                        <thead><td>地区</td><td>性别</td><td>发布人</td><td>标题</td><td>类型</td><td>时间</td></thead>
+                        <tr><td>北京</td><td>男</td><td>卡萨丁</td><td>求女友陪同见亲友一天</td><td>求租</td><td>2016-11-12</td></tr>
+                        <tr><td>北京</td><td>男</td><td>卡萨丁</td><td>求女友陪同见亲友一天</td><td>求租</td><td>2016-11-12</td></tr>
+                        <tr><td>北京</td><td>男</td><td>卡萨丁</td><td>求女友陪同见亲友一天</td><td>求租</td><td>2016-11-12</td></tr>
+                    </table>
+                    <div class="page4 page">
+                        <a href=""><<</a>
+                        <a href="">上一页</a>
+                        <a href="">1</a>
+                        <a href="">2</a>
+                        <a href="">3</a>
+                        <a href="">下一页</a>
+                        <a href="">>></a>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+<script type="text/javascript">
+    $(function () { 
+        $('#seachInfo').bind('click', function () {
+            var item = {
+                LoginName: '123qwe',
+                LoginPWD:123,
+                Email: '79365450@qq.com',
+                Sex: 0,
+                IsMarry: 1
+            }
+            $.ajax('/Home/UserRegister', { entity: JSON.stringify(item) }, function (data) {
+                console.log(data);
+                if (data.result) {
+                    alert(1);
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,5 @@
+D:\Michaux\Proc\Proc1\ProEntity\bin\Debug\ProEntity.dll
+D:\Michaux\Proc\Proc1\ProEntity\bin\Debug\ProEntity.pdb
+D:\Michaux\Proc\Proc1\ProEntity\obj\Debug\ProEntity.dll
+D:\Michaux\Proc\Proc1\ProEntity\obj\Debug\ProEntity.pdb
+D:\Michaux\Proc\Proc1\ProEntity\obj\Debug\ProEntity.csprojResolveAssemblyReference.cache

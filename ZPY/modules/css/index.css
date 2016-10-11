@@ -1,0 +1,72 @@
+.process p{width: 340px;margin: 46px auto 46px;font-size: 36px;color: #f15481;}
+.process ul{width: 960px;margin: 0 auto;}
+.process ul li{display: inline-block;text-align: center;width: 20%;color: #f15481;}
+.process ul li:first-child{margin-left: 10%;}
+.process ul li img{width: 62px;height: 62px;transition: transform 0.5s;
+	-moz-transition: -moz-transform 0.5s; /* Firefox 4 */
+    -webkit-transition: -webkit-transform 0.5s; /* Safari and Chrome */
+    -o-transition: -o-transform 0.5s; /* Opera */}
+.process ul li img:hover{transform: rotate(360deg);
+    -moz-transform:rotate(360deg); /* Firefox 4 */
+	-webkit-transform:rotate(360deg); /* Safari and Chrome */
+	-o-transform:rotate(360deg); /* Opera */
+    }
+
+.recommend{margin-top: 50px;}
+.recommend h3,.rentGirlFr .left h3{display: inline-block;background: url(../images/bl.png);width: 226px;padding:10px 0 10px 20px;color: white;}
+.recommend>a,.rentGirlFr .left>a{float: right;line-height: 40px;color: black;}
+.recommend>a:visited,.rentGirlFr .left>a:visited{color: black;}
+.recommend>a:hover,.rentGirlFr .left>a:hover{color: #f15481;}
+.recommend ul{width: 100%;margin-top: 20px;}
+.recommend ul li{display: inline-block;width: 220px;height: 340px;border:1px solid #eaeaea;margin-left: 18px;position: relative;}
+.recommend ul li:first-child{margin-left: 0;}
+.recommend ul li a:first-child{width: 100%;height: 280px;margin-bottom: 10px;display: inline-block;}
+.recommend ul li a:not(:first-child){margin-left: 15px;float: left;}
+.recommend ul li a:not(:first-child) img:hover{width: 45px;margin-top: -2.5px;margin-left: -2.5px;}
+.recommend ul li a:nth-child(2){margin-left: 32px;}
+.recommend ul li p{text-align: center;width: 100%;position: absolute;top: 232px;padding:3px 0;left: 0;color: white;background: rgba(80,80,80,0.5);display: none;}
+
+.select-section{width: 100%;min-width: 960px;background: #fafafa;}
+.select{margin-top: 20px;padding: 30px 0;}
+.select p{display: inline-block;}
+.select p:not(:first-child){margin-left: 40px;}
+.select select{width: 110px;height: 35px;padding-left: 25px;}
+.select input{margin-left: 30px;width: 80px;height: 40px;background: url(../images/sousuo.png) #36B0F3 no-repeat 22px 5px;border: none;cursor: pointer;border-radius: 4px;}
+
+.rentGirlFr{margin-top: 20px;}
+.rentGirlFr .left{width: 700px;border-bottom: 1px solid #eaeaea;float: left;}
+.rentGirlFr .left>a{margin-right: 15px;}
+.rentGirlFr .left ul{padding: 10px 0;}
+.rentGirlFr .left ul li{border-top: 1px solid #eaeaea;padding: 10px 0;}
+.rentGirlFr .left ul li>a{float: left;margin-right: 20px;}
+.rentGirlFr .left ul li>div{line-height: 23px;margin-top: 10px;}
+.rentGirlFr .left ul li>div p.desc{line-height: 20px;margin-bottom: 15px;margin-top: 15px;max-height: 60px;overflow: hidden;}
+.rentGirlFr .left ul li>div p~a{margin-right: 7px;}
+.rentGirlFr .right{width: 220px;height: 960px;float: left;margin-left: 20px;}
+.rentGirlFr .right div.dynamic{width:220px;}
+.rentGirlFr .right div.dynamic h4{text-align: center;line-height: 16px;margin-top: 5px;}
+.rentGirlFr .right div.dynamic h4 small{font-weight: normal;line-height: 14px;}
+.rentGirlFr .right div.dynamic ul{margin-top: 10px;border-bottom: 1px solid #eaeaea;}
+.rentGirlFr .right div.dynamic ul li{border-top: 1px solid #eaeaea;font-size: 13px;padding: 7px 0;height: 35px;}
+.rentGirlFr .right div.dynamic ul li p span{margin-right: 10px;}
+.rentGirlFr .right div.dynamic ul li p{overflow: hidden;height: 34px;}
+.rentGirlFr .right div.hire{margin-top: 20px;}
+.rentGirlFr .right div.hire ul li span:not(:last-child){margin-right: 7px;}
+.rentGirlFr .right div.hire ul li span:nth-child(2){margin-left: 7px;}
+.rentGirlFr .right div.ad{margin-top: 20px;}
+
+.rentBoyFr{margin-top: 20px;}
+.rentBoyFr .right div.dynamic ul li{height: 20px;}
+.rentBoyFr .right div.photos{margin-top: 20px;}
+.rentBoyFr .right div.photos ul li{padding: 10px 0;height: 135px;}
+.rentBoyFr .right div.dynamic ul li p a{margin-right: 10px;}
+
+.page{width: 700px;text-align: center;margin-bottom: 20px;}
+.page a{margin-left: 10px;border: 1px solid #EA8010;color: black;display: inline-block;border-radius: 3px;height: 28px;line-height: 28px;}
+.page a:visited{color: black;}
+.page a:hover{color: red;}
+.page a:not(:first-child),.page a:not(:last-child){width: 60px;}
+
+.myscroll{height: 330px;overflow: hidden;margin-top: 10px;border:1px solid #eee;padding: 8px;}
+.myscroll1{height: 250px;overflow: hidden;margin-top: 10px;padding: 5px;}
+.myscroll2{height: 470px;overflow: hidden;margin-top: 10px;padding: 5px;}
