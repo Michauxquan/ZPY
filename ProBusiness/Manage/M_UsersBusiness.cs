@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.Web.ModelBinding;
+using ProBusiness.Common;
 using ProBusiness.Manage;
 using ProEntity.Manage;
 using ProDAL.Manage;
 using ProEntity;
+using ProEnum;
 
 
 namespace ProBusiness
@@ -87,7 +90,8 @@ namespace ProBusiness
                         model.Menus.Add(menu);
                     }
                 }
-            } 
+            }
+            LogBusiness.AddLoginLog(loginname, operateip,model!=null?model.UserID:"", EnumUserOperateType.Login,model!=null?model.Levelid:"");
             return model;
         }
         public static int GetM_UserCountByLoginName(string loginname)
@@ -164,6 +168,23 @@ namespace ProBusiness
 
             return "";
         }
+
+        public static bool CreateUserReport(string seeid, string seename, string keyName, string operateip, string userid = "", string username = "", string levelid="")
+        {
+
+            var bl = M_UsersDAL.BaseProvider.CreateUserReport(seeid, keyName);
+            if (!string.IsNullOrEmpty(userid))
+            {
+                LogBusiness.AddOperateLog(userid, username, levelid, seeid, seename, EnumUserOperateType.SeeUser, "",
+                    operateip);
+            }
+            return bl;
+        }
+        public static bool CreateUserFocus(string userid,  string seeid = "")
+        {
+
+            return M_UsersDAL.BaseProvider.CreateUserFocus(userid, seeid)>0; 
+        }
         /// <summary>
         /// 修改用户户信息
         /// </summary>
@@ -175,7 +196,14 @@ namespace ProBusiness
         public static  bool DeleteM_User(string userid, int status) {
             return M_UsersDAL.BaseProvider.DeleteM_User(userid, status);
         }
+
+        public static bool UpdateM_UserBase(string userid, string bHeight, string bWeight, string jobs, string bPay, int isMarry, string myContent)
+        {
+            return M_UsersDAL.BaseProvider.UpdateM_UserBase(userid, bHeight, bWeight, jobs, bPay, isMarry, myContent); 
+        }
+
         #endregion
+
     }
 
     

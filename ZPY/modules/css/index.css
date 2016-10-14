@@ -11,7 +11,7 @@
 	-webkit-transform:rotate(360deg); /* Safari and Chrome */
 	-o-transform:rotate(360deg); /* Opera */
     }
-
+.red{ color: red !important;}
 .recommend{margin-top: 50px;}
 .recommend h3,.rentGirlFr .left h3{display: inline-block;background: url(../images/bl.png);width: 226px;padding:10px 0 10px 20px;color: white;}
 .recommend>a,.rentGirlFr .left>a{float: right;line-height: 40px;color: black;}

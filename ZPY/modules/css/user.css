@@ -1,3 +1,4 @@
+
 .content{width: 960px;margin: 0 auto;}
 .content .sidebar{float: left;width: 200px;}
 .content .con{float: left;width: 720px;height: 600px;padding-left: 35px;padding-top: 20px;}
@@ -15,7 +16,7 @@
 .content .con .release1 p select,.content .con .release2 p select{width: 90px;height: 26px;padding-left: 30px;}
 .content .con .release1 p .salary,.content .con .release2 p .salary{width: 90px;height: 26px;text-align: center;}
 .content .con .release1 textarea,.content .con .release2 textarea{width: 350px;height: 150px;margin-top: 10px;margin-left: 80px;}
-.content .con .release1 p input[type="submit"],.content .con .release2 p input[type="submit"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;}
+.content .con .release1 p input[type="button"],.content .con .release2 p input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;}
 .content .con .release2 p input[placeholder="1"]{width: 90px;height: 26px;text-align: center;}
 
 .content .con .user-msg>img,.content .con .whocame>img,.content .con .myfocus>img{float: left;margin-right: 20px;vertical-align: middle;}
@@ -33,21 +34,22 @@
 .content .con .user-msg .page{font-size: 13px;margin-top: 50px;margin-left: -120px;}
 .content .con .user-msg .page a{width: 45px;border: 1px solid black;}
 
-.content .con .release-diary h4{line-height: 45px;}
-.content .con .release-diary form>p input{width: 350px;height: 28px;padding-left: 10px;}
-.content .con .release-diary form>input[type="submit"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 20px;}
-
-.content .con .get-gold form{padding-left: 20px;}
+.content .con .release-diary h4{line-height: 45px;float: left;width: 80%;}
+.content .con .release-diary p input{width: 350px;height: 28px;padding-left: 10px;}
+.content .con .release-diary input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 20px;}
+.spanbtn{width: 70px;margin-right: 15px;text-indent: 0px;cursor: pointer; line-height: 30px; text-align: center;float: right;background-color: #36B0F3; color: #fff;border-radius: 4px;}
+.spanbtn:hover{ background-color: #0FA3F5; }
+.content .con .get-gold {padding-left: 20px;}
 .content .con .get-gold h4{line-height: 45px;margin-left: -20px;}
 .content .con .get-gold p{line-height: 30px;}
 .content .con .get-gold label{display: block;margin-left: 15px;}
 .content .con .get-gold .payway{margin-top: 20px;}
 .content .con .get-gold .payway~label{display: inline-block;}
-.content .con .get-gold form>input[type="submit"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 30px;display: block;}
+.content .con .get-gold input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 30px;display: block;}
 
 #box{ margin:20px auto; width:725px;height: 400px;overflow: auto; background:#eaeaea;overflow-x:hidden;}
 .content .con .upload h4+p{color: red;font-size: 14px;text-indent: 30px;margin-top: 10px;}
-.content .con .upload form input[type="submit"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 290px;margin-top: 30px;display: block;}
+.content .con .upload input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 290px;margin-top: 30px;display: block;}
 
 .content .con .beVip h4:not(:first-child){margin-top: 30px;}
 .content .con .beVip h4:first-child+p{color: red;text-indent: 30px;font-size: 14px;margin-top: 10px;}
@@ -56,7 +58,7 @@
 .content .con .beVip .species{padding-left: 30px;}
 .content .con .beVip .species label{line-height: 30px;}
 .content .con .beVip .payway1 label{margin-left: 30px;line-height: 30px;}
-.content .con .beVip form>input[type="submit"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 30px;display: block;}
+.content .con .beVip input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 30px;display: block;}
 
 .content .con .whocame .whocame-con ul,.content .con .myfocus .myscan ul{max-height: 360px;overflow: hidden;margin-bottom: 20px;}
 .content .con .whocame .whocame-con ul li,.content .con .myfocus .myscan ul li{float: left;text-align: center;margin-right: 10px;font-size: 13px;margin-top: 10px;}
@@ -75,12 +77,17 @@
 .change-msg h4{margin: 20px 0;}
 .change-msg h4:first-child+ul li{float: left;width: 360px;}
 .change-msg div.clear+h4+ul li{float:left;width: 360px;line-height: 30px;}
-.content .con .change-msg form>input[type="submit"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 30px;display: block;}
+.content .con .change-msg input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 30px;display: block;}
 
 .business>ul{background: #ccc;height: 33px;}
 .business>ul li{float: left;margin-right: 10px;font-weight: bold;font-size: 16px;width: 90px;height: 32px;text-align: center;line-height: 32px;border-radius: 4px;cursor: pointer;}
 .business .cur{background: #36B0F3;color: white;}
-.business .hire-msg p{margin-top: 20px;text-indent: 30px;}
+.business .hiredetail p{margin-top: 20px;text-indent: 30px;}
+
+.business .hirelist table{border-collapse: collapse;text-align: center;width: 100%;margin-top: 20px;margin-bottom: 20px;border-color: #ccc;}
+.business .hirelist table th,.business .lease table tr{height: 30px;}
+.business .hirelist table tr{color: #666;font-size: 14px;}
+.business .hirelist table thead td{background: #eaeaea;color: black;font-size: 15px;}
 
 .business .lease table{border-collapse: collapse;text-align: center;width: 100%;margin-top: 20px;margin-bottom: 20px;border-color: #ccc;}
 .business .lease table th,.business .lease table tr{height: 30px;}

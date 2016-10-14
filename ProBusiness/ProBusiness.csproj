@@ -43,9 +43,12 @@
   <ItemGroup>
     <Compile Include="Common\CommonBusiness.cs" />
     <Compile Include="Common\Encrypt.cs" />
+    <Compile Include="Common\LogBusiness.cs" />
     <Compile Include="Manage\ManageSystemBusiness.cs" />
     <Compile Include="Manage\M_UsersBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserAttrs\UserNeedsBusiness.cs" />
+    <Compile Include="UserAttrs\UsersFocusBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProDAL\ProDAL.csproj">

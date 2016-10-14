@@ -47,10 +47,12 @@
             type: "POST",
             url: "UserLogin",
             data: "userName=" + $('.phone1').val() + "&pwd=" + $('.q1').val(),
-            success: function(data) {
+            success: function (data) {
+                console.log(1);
                 if (data.result) {
                     $('.nologo').addClass('hide');
                     $('.logoed').removeClass('hide');
+                    location.href = '/User/UserInfo';
                 } else {
                     $('.phone').html('用户名或密码次错误');
                 }

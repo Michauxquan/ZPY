@@ -2,4 +2,3 @@ D:\Michaux\Proc\Proc1\ProDAL\bin\Debug\ProDAL.dll
 D:\Michaux\Proc\Proc1\ProDAL\bin\Debug\ProDAL.pdb
 D:\Michaux\Proc\Proc1\ProDAL\obj\Debug\ProDAL.dll
 D:\Michaux\Proc\Proc1\ProDAL\obj\Debug\ProDAL.pdb
-D:\Michaux\Proc\Proc1\ProDAL\obj\Debug\ProDAL.csprojResolveAssemblyReference.cache

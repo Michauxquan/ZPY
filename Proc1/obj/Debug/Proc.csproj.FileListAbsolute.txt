@@ -1,4 +1,3 @@
-D:\Michaux\Proc\Proc1\Proc1\obj\Debug\Proc.csprojResolveAssemblyReference.cache
 D:\Michaux\Proc\Proc1\Proc1\bin\Proc1.dll
 D:\Michaux\Proc\Proc1\Proc1\bin\Proc1.pdb
 D:\Michaux\Proc\Proc1\Proc1\bin\EntityFramework.dll
@@ -13,6 +12,7 @@ D:\Michaux\Proc\Proc1\Proc1\bin\System.Web.Razor.dll
 D:\Michaux\Proc\Proc1\Proc1\bin\System.Web.WebPages.Deployment.dll
 D:\Michaux\Proc\Proc1\Proc1\bin\System.Web.WebPages.dll
 D:\Michaux\Proc\Proc1\Proc1\bin\System.Web.WebPages.Razor.dll
+D:\Michaux\Proc\Proc1\Proc1\bin\ProEnum.dll
 D:\Michaux\Proc\Proc1\Proc1\bin\ProDAL.dll
 D:\Michaux\Proc\Proc1\Proc1\bin\ProBusiness.pdb
 D:\Michaux\Proc\Proc1\Proc1\bin\ProEntity.pdb
@@ -23,8 +23,10 @@ D:\Michaux\Proc\Proc1\Proc1\bin\System.Web.Razor.xml
 D:\Michaux\Proc\Proc1\Proc1\bin\System.Web.WebPages.xml
 D:\Michaux\Proc\Proc1\Proc1\bin\System.Web.WebPages.Deployment.xml
 D:\Michaux\Proc\Proc1\Proc1\bin\System.Web.WebPages.Razor.xml
+D:\Michaux\Proc\Proc1\Proc1\bin\ProEnum.pdb
 D:\Michaux\Proc\Proc1\Proc1\bin\ProDAL.pdb
 D:\Michaux\Proc\Proc1\Proc1\bin\zh-Hans\EntityFramework.resources.dll
 D:\Michaux\Proc\Proc1\Proc1\bin\zh-Hans\System.Web.Providers.resources.dll
+D:\Michaux\Proc\Proc1\Proc1\obj\Debug\Proc.csprojResolveAssemblyReference.cache
 D:\Michaux\Proc\Proc1\Proc1\obj\Debug\Proc1.dll
 D:\Michaux\Proc\Proc1\Proc1\obj\Debug\Proc1.pdb

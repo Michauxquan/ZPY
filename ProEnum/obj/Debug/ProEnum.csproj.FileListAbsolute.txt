@@ -2,4 +2,3 @@ D:\Michaux\Proc\Proc1\ProEnum\bin\Debug\ProEnum.dll
 D:\Michaux\Proc\Proc1\ProEnum\bin\Debug\ProEnum.pdb
 D:\Michaux\Proc\Proc1\ProEnum\obj\Debug\ProEnum.dll
 D:\Michaux\Proc\Proc1\ProEnum\obj\Debug\ProEnum.pdb
-D:\Michaux\Proc\Proc1\ProEnum\obj\Debug\ProEnum.csprojResolveAssemblyReference.cache

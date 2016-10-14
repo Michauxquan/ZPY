@@ -40,12 +40,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\City.cs" />
+    <Compile Include="Common\LogEntity.cs" />
     <Compile Include="Common\Menu.cs" />
     <Compile Include="ExpandFillData.cs" />
     <Compile Include="Manage\M_Role.cs" />
     <Compile Include="Manage\M_RolePermission.cs" />
     <Compile Include="Manage\M_Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserAttr\UserNeeds.cs" />
+    <Compile Include="UserAttr\UsersFocus.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

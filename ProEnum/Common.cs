@@ -44,6 +44,25 @@ namespace ProEnum
         Quarter = 2,
         Month = 3,
         Week = 4,
-        Day = 5
+        Day = 5,
+        Hour=6,
+        Other=7
+    }
+    public enum EnumUserOperateType
+    {
+        [DescriptionAttribute("登录")]
+        Login = 0,
+        [DescriptionAttribute("发表日志")]
+        SendLog = 1,
+        [DescriptionAttribute("查看联系信息")]
+        SeeLink = 2,
+        [DescriptionAttribute("浏览用户")]
+        SeeUser = 3,
+        [DescriptionAttribute("其他")]
+        Other = 4,
+        [DescriptionAttribute("错误")]
+        Error = 5,
+        [DescriptionAttribute("购买")]
+        Pay = 6
     }
 }

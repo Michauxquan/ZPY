@@ -1,4 +1,3 @@
-D:\Michaux\Proc\Proc1\ZPY\obj\Debug\ZPY.csprojResolveAssemblyReference.cache
 D:\Michaux\Proc\Proc1\ZPY\bin\ZPY.dll
 D:\Michaux\Proc\Proc1\ZPY\bin\ZPY.pdb
 D:\Michaux\Proc\Proc1\ZPY\bin\EntityFramework.dll
@@ -13,6 +12,7 @@ D:\Michaux\Proc\Proc1\ZPY\bin\System.Web.Razor.dll
 D:\Michaux\Proc\Proc1\ZPY\bin\System.Web.WebPages.Deployment.dll
 D:\Michaux\Proc\Proc1\ZPY\bin\System.Web.WebPages.dll
 D:\Michaux\Proc\Proc1\ZPY\bin\System.Web.WebPages.Razor.dll
+D:\Michaux\Proc\Proc1\ZPY\bin\ProEnum.dll
 D:\Michaux\Proc\Proc1\ZPY\bin\ProDAL.dll
 D:\Michaux\Proc\Proc1\ZPY\bin\ProBusiness.pdb
 D:\Michaux\Proc\Proc1\ZPY\bin\ProEntity.pdb
@@ -23,8 +23,10 @@ D:\Michaux\Proc\Proc1\ZPY\bin\System.Web.Razor.xml
 D:\Michaux\Proc\Proc1\ZPY\bin\System.Web.WebPages.xml
 D:\Michaux\Proc\Proc1\ZPY\bin\System.Web.WebPages.Deployment.xml
 D:\Michaux\Proc\Proc1\ZPY\bin\System.Web.WebPages.Razor.xml
+D:\Michaux\Proc\Proc1\ZPY\bin\ProEnum.pdb
 D:\Michaux\Proc\Proc1\ZPY\bin\ProDAL.pdb
 D:\Michaux\Proc\Proc1\ZPY\bin\zh-Hans\EntityFramework.resources.dll
 D:\Michaux\Proc\Proc1\ZPY\bin\zh-Hans\System.Web.Providers.resources.dll
+D:\Michaux\Proc\Proc1\ZPY\obj\Debug\ZPY.csprojResolveAssemblyReference.cache
 D:\Michaux\Proc\Proc1\ZPY\obj\Debug\ZPY.dll
 D:\Michaux\Proc\Proc1\ZPY\obj\Debug\ZPY.pdb

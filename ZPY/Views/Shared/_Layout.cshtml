@@ -24,6 +24,7 @@
 <body>
    
     <script type="text/javascript" src="/Scripts/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript"src="/Scripts/DateForm.js"></script>
     <script src="/Scripts/slide.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.simplemodal.js" type="text/javascript"></script>
     <script src="/Scripts/scroll.js" type="text/javascript"></script>
@@ -31,38 +32,27 @@
     
 <header>
     <ul class="log-reg">
-        <li class="nologo"><a href="../Home/Login" style="margin-right: 10px;" title="登录">登录</a>|</li>
-        <li class="nologo"><a href="../Home/Register" style="margin-right: 10px;" title="注册">注册</a>|</li>
-        <li class="logoed hide"><a style="margin-right: 10px" href="../Home/User" title="个人中心">个人中心</a>|</li>
-        <li class="logoed hide"><a  href="../Home/Logout" style="margin-right:10px"  title="退出">退出</a>|</li>
+        
+        @if (CurrentUser != null)
+        {
+            <li class="logoed "><a style="margin-right: 10px" href="/User/UserInfo" title="个人中心">@(CurrentUser.LoginName)</a>|</li>
+            <li class="logoed "><a href="/Home/Logout" style="margin-right: 10px" title="退出">退出</a>|</li>
+        }
+        else
+        {
+            <li class="nologo"><a href="/Home/Login" style="margin-right: 10px;" title="登录">登录</a>|</li>
+            <li class="nologo"><a href="/Home/Register" style="margin-right: 10px;" title="注册">注册</a>|</li>
+        }
+        
         <li><a href="javascript::" title="在线帮助">在线帮助</a></li> 
     </ul>
-    <a href="../Home/Index"><img src="/modules/images/logo.jpg" alt="网站logo"></a>
+    <a href="/Home/Index"><img src="/modules/images/logo.jpg" alt="网站logo"></a>
     <p class="siteExp">租友网（***.com）-最真实的中国租友网站&nbsp;见父母&nbsp;参加聚会&nbsp;唱歌&nbsp;看电影</p>
-
-
-    @* <header>
-    
-        <ul id="modulesMenu" class="menu left">
-             <li  class="@(controller=="home" ? "select left" : "left")">
-                <a href="/home/index" >
-                    首页
-                </a> 
-             </li>          
-            @foreach (Menu model in ExpandClass.GetChildMenuByCode(HttpContext.Current, ExpandClass.CLIENT_TOP_CODE))
-            {                   
-                <li class="@(model.MenuCode.ToUpper()==(controllerMenu!=null?controllerMenu.PCode.ToUpper():"") ? "select left" : "left")"  data-code="@(model.MenuCode)">            
-                    <a  href="/@(model.Controller)/@(model.View)">
-                        @(model.Name)
-                    </a> 
-                </li> 
-            }
-        </ul> *@
 </header>
 <div class="navs">
     <ul>
-        <li><a href="../Home/Index" title="首页">首页</a></li>
-        <li><a href="../User/UserInfo" title="会员中心">会员中心</a></li>
+        <li><a href="/Home/Index" title="首页">首页</a></li>
+        <li><a id="usera" href="/User/UserInfo" title="会员中心">会员中心</a></li>
         <li><a href="rentBoyFr.html" title="出租男友">出租男友</a></li>
         <li><a href="rentGirlFr.html" title="出租女友">出租女友</a></li>
         <li><a href="userpic.html" title="租友相册">租友相册</a></li>
@@ -119,6 +109,10 @@
             "opacity": 50
         });
         return false;
+    });
+   
+    $('#usera').bind('click', function() {
+        
     });
 </script>
 

@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "个人中心";
+    ProEntity.Manage.M_Users user = ViewBag.model;
+}
+<link rel="stylesheet" type="text/css" href="/modules/css/userMsg.css">
+<div class="select-section"> 
+    <div class="select">
+        <p>我要租：</p>
+        <select>
+            <option>租男友</option>
+            <option>租女友</option>
+        </select>
+        <p>年龄：</p>
+        <select>
+            <option>18~25</option>
+            <option>26~32</option>
+            <option>33~38</option>
+            <option>39~44</option>
+            <option>45~51</option>
+            <option>52~60</option>
+        </select>
+        <p>地区：</p>
+        <select name="province3"></select>&nbsp;<select name="city3"></select>&nbsp;<select name="area3"></select>
+        <input type="submit" value=" "></input>
+    </div> 
+</div>
+ <div class="rentGirlFr content">
+        <div class="left con">
+            <div class="msgs">
+                <img src="images/photo3.jpg" alt="头像" width="200" height="250">
+                <div>
+                    <ul class="basic-msg">
+                        <li id="userinfoli" data-name="@(user.Name)" data-id="@(user.UserID)" data-leveid="@(user.Levelid)">用户名：@(user.Name)</li>
+                        <li>年&nbsp;&nbsp;&nbsp;&nbsp;龄：@(user.Age)岁</li>
+                        <li>性&nbsp;&nbsp;&nbsp;&nbsp;别：@(user.Sex==1?"女":"男")</li>
+                        <li>身&nbsp;&nbsp;&nbsp;&nbsp;高：@(user.BHeight)</li>
+                        <li>学&nbsp;&nbsp;&nbsp;&nbsp;历：@(user.Education)</li>
+                        <li>体&nbsp;&nbsp;&nbsp;&nbsp;重：@(user.BWeight)</li>
+                        <li>所在地：@(user.Province)</li>
+                        <li>职&nbsp;&nbsp;&nbsp;&nbsp;业：@(user.Jobs)</li>
+                        <div class="clear"></div>
+                    </ul>
+                    <ul class="interact">
+                        <li><a href=""><img src="/modules/images/da.png" alt="打招呼"></a></li>
+                        <li><a href=""><img src="/modules/images/xie.png" alt="写邮件"></a></li>
+                        <li><a href="#linkh4"><img src="/modules/images/cha.png" alt="查看联系方式"></a></li>
+                        <li><img id="focusit" src="/modules/images/gua.png" alt="关注她"></li>
+                    </ul>
+                    <p>若此会员有动机不纯、故意中伤、提供虚假资料、散布广告等恶劣行为，<a href="" data-value="@(user.UserID)">请向网站举报</a></p>
+                    <p>分享给朋友：<img src="/modules/images/03-weixin.png" alt="微信"><img src="/modules/images/web.png" alt="新浪微博"><img src="/modules/images/qq(2).png" alt="qq空间"></p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="intro">
+                <h4>自我介绍</h4>
+                <p>只做绿色租友服务，骗子和屌丝勿扰。谢谢你的配合，本小姐周末有空，只提供白天租友。</p>
+                <h4>租友说明</h4>
+                <p>提供服务：见父母亲友，社交聚会，逛街购物，唱歌，看电影，旅游陪同，接送服务，其他服务<br/>收费说明：70元/小时&nbsp;&nbsp;&nbsp;1000元/天</p>
+                <h4 id="linkh4">联系方式</h4>
+                <ul id="linkInfo" data-value="@(user.UserID)>
+                    <li><span>手机：</span><a href="">点击查看</a></li>
+                    <li><span>邮箱：</span><a href="">点击查看</a></li>
+                    <li><span>Q&nbsp;Q：</span><a href="">点击查看</a></li>
+                    <li><span>微信：</span><a href="">点击查看</a></li>
+                </ul>
+                <h4>她的评价</h4>
+                <ul>
+                    <li><img src="images/pingjia.png" width="30px">非常懂事，带他见了父母，父母很满意，很温柔，很霸气，好聚好散。</li>
+                    <li><img src="images/pingjia.png" width="30px">非常懂事，带他见了父母，父母很满意，很温柔，很霸气，好聚好散。</li>
+                    <li><img src="images/pingjia.png" width="30px">非常懂事，带他见了父母，父母很满意，很温柔，很霸气，好聚好散。</li>
+                    <li><img src="images/pingjia.png" width="30px">非常懂事，带他见了父母，父母很满意，很温柔，很霸气，好聚好散。</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+            <div class="dynamic recharge">
+                <form>
+                    <h4>支付充值<br/><small>Payment&nbsp;recharge</small></h4>
+                    <ul>
+                        <li>
+                            <label><input type="radio" name="jinbi">10金币</label>
+                            <label><input type="radio" name="jinbi">50金币</label>
+                            <label><input type="radio" name="jinbi">100金币</label>
+                        </li>
+                        <li>
+                            <span>其他金额：</span><input type="text"/>金币
+                        </li>
+                        <li>
+                            <input type="submit" value="下一步"/>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="dynamic like">
+                <h4>猜你喜欢<br/><small>Guess&nbsp;you&nbsp;like</small></h4>
+                <ul>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                    <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="dynamic hire">
+                <h4>最新需求<br/><small>latest&nbsp;demand</small></h4>
+                <ul>
+                    <li>&nbsp;&nbsp;1、租个女朋友应对父母逼婚</li>
+                    <li>&nbsp;&nbsp;2、租个女朋友应对父母逼婚</li>
+                    <li>&nbsp;&nbsp;3、租个女朋友应对父母逼婚</li>
+                    <li>&nbsp;&nbsp;4、租个女朋友应对父母逼婚</li>
+                    <li>&nbsp;&nbsp;5、租个女朋友应对父母逼婚</li>
+                    <li>&nbsp;&nbsp;6、租个女朋友应对父母逼婚</li>
+                    <li>&nbsp;&nbsp;7、租个女朋友应对父母逼婚</li>
+                    <li>&nbsp;&nbsp;8、租个女朋友应对父母逼婚</li>
+                    <li>&nbsp;&nbsp;9、租个女朋友应对父母逼婚</li>
+                    <li>&nbsp;&nbsp;10、租个女朋友应对父母逼婚</li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+<script type="text/javascript" src="/modules/scripts/userinfo/usermsg.js"></script>
