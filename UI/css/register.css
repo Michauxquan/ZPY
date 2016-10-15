@@ -1,0 +1,11 @@
+.advertisement{width:960px;margin:20px auto;}
+.content{width: 780px;margin: 0 auto;padding-left: 180px;}
+.content form p{line-height: 38px;font-size: 15px;}
+.content form p input[type="text"],.content form p input[type="password"],.content form p input[type="email"]{width: 180px;height: 25px;padding-left: 10px;}
+.content form p select{width: 90px;height: 25px;padding-left: 10px;}
+.content form p span{color: #777;font-size: 12px;margin-left: 20px;}
+.content form p.agree{color: #777;font-size: 12px;}
+.content form p input[type="submit"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 160px;margin-top: 20px;display: block;margin-bottom: 50px;}
+.content form p.code input{width: 60px;margin-right: 10px;margin-left: -2px;}
+.content form p.code input#autoRandom{background: #ccc;border:none;outline: none;text-align: center;padding-left: 0;}
+.content form p.sex input{margin-left: 20px;}

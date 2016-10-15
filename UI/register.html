@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>注册</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="description" content="不超过150个字符"/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content="index,follow"/>
+    <link rel="stylesheet" type="text/css" href="css/head-foot.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <!--[if lt IE 9]>      
+	    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+        <header>
+        <ul class="log-reg">
+            <li><a href="login.html" title="登录">登录</a></li>|
+            <li><a href="register.html" title="注册">注册</a></li>|
+            <li><a href="javascript::" title="在线帮助">在线帮助</a></li>
+        </ul>
+        <a href="index.html"><img src="images/logo.jpg" alt="网站logo"></a>
+        <p class="siteExp">租友网（***.com）-最真实的中国租友网站&nbsp;见父母&nbsp;参加聚会&nbsp;唱歌&nbsp;看电影</p>
+    </header>
+    <div class="navs">
+        <ul>
+            <li><a href="index.html" title="首页">首页</a></li>
+            <li><a href="user.html" title="会员中心">会员中心</a></li>
+            <li><a href="rentBoyFr.html" title="出租男友">出租男友</a></li>
+            <li><a href="rentGirlFr.html" title="出租女友">出租女友</a></li>
+            <li><a href="userpic.html" title="租友相册">租友相册</a></li>
+            <li><a href="" title="租友推荐">租友推荐</a></li>
+            <li><a href="javasript:void(0)" class="hires" title="聘请信息">聘请信息</a></li>
+            <li><a href="javasript:void(0)" title="出租担保" id="guarantee" class="open-basic-dialog-ok">出租担保</a></li>
+            <li></li>
+        </ul>
+    </div>
+    <div id="basic-dialog-ok" style="display: none;">
+        <!-- 普通弹出层 [[ -->  
+        <div class="box-title"><h3>出租担保说明</h3></div>  
+        <div class="box-main">
+            <div class="tips">      
+                <span class="tips-ico">
+                    <span class="ico-ok"><!-- 图标class可以为： ico-ok , ico-error , ico-info , ico-question , ico-warn , ico-wait --></span>
+                </span>      
+                <div class="tips-content">        
+                    <div class="tips-title">
+                        <p>为了给本站会员提供更安全，更便捷的出租，聘请业务，本站特推出担保服务。以下为出租担保详细。</p>
+                        <p>1.双方通过本站谈好价格，约好时间地点，谈好相关事宜。</p>
+                        <p>2.提交申请，需提交的信息：姓名，性别，年龄，现居地，原籍，电话，QQ，手持身份证照片一张，具体事由（如：租女友回家过年等）,承诺（如：租期内保证对方安全等。），租金。</p>
+                        <p>3.聘请方把租金打入本站指定账号（收取5%的担保费用,担保费用由谁来出，双方定好！）</p>
+                        <p>4.租期结束，聘请方电话确认，本站将把租金转入对方账号</p>
+                        <p>5.如中间出现纠纷，由双方协商解决。本站只提供资金担保，其它事项与本站无关。</p>
+                        <p>出租担保请联系本站唯一客服QQ，其它均为假冒，以免上当受骗！</p>
+                        <p>QQ：2422169063</p>
+                    </div>        
+                    <div class="tips-line"></div>     
+                </div>    
+            </div>
+            <div class="box-buttons"><button type="button" class="simplemodal-close">关 闭</button></div>
+        </div>  
+        <!-- 普通弹出层 ]] -->
+    </div>
+
+    <div class="advertisement"><img src="images/ad2.jpg" width="960px" height="80px" alt="广告"></div>
+    <div class="content">
+        <form action="" method="" id="register">
+            <p>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="username" class="{validate:{required:true,minlength:5,username:true}}"></input><span>由字符数字或下划线组成</span></p>
+            <p>登录密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password" size="13" id="password" class="{validate:{required:true,minlength:5,password:true}}"></input><span>长度为6-16个字符</span></p>
+            <p>确认密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password" size="13" class="{validate:{required:true,minlength:5,equalTo:'#password',password:true}}"></input><span>再次输入密码</span></p>
+            <p>登录邮箱：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email" name="email" class="{validate:{required:true,email:true}}"></input><span>输入有效邮箱地址</span></p>
+            <p class="code">验&nbsp;&nbsp;证&nbsp;&nbsp;码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="confirm" size="6" id="inputRandom" maxlength="4">
+            <input type="text" id="autoRandom" size="3" maxlength="4" readonly="readonly"></p>
+            <p class="sex">您的性别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" name="sex" name="" class="{validate:{required:true}}">男</input></label><label><input type="radio" name="sex" name="" class="{validate:{required:true}}">女</input></label><span>一旦选择不能更改</span></p>
+            <p>婚姻状况：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name="" class="{validate:{required:true}}"><option>未婚</option><option>已婚</option></select></p>
+            <p>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name="" class="{validate:{required:true}}"><option>小学</option><option>初中</option><option>高中</option><option>专科</option><option>本科</option><option>研究生</option><option>博士</option></select></p>
+            <p>身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name="" class="{validate:{required:true}}"><option>140-150</option>
+                            <option>150-160</option>
+                            <option>160-170</option>
+                            <option>170-180</option>
+                            <option>180-190</option>
+                            <option>190-200</option></select></p>
+            <p>所在地区：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name="province3" name="" class="{validate:{required:true}}"></select>&nbsp;<select name="city3" name="" class="{validate:{required:true}}"></select>&nbsp;<select name="area3" name="" class="{validate:{required:true}}"></select></p>
+            <p>手机号码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"></input></p>
+            <p>Q&nbsp;Q号码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"></input></p>
+            <p class="agree"><label><input type="checkbox" name="" class="{validate:{required:true}}">已阅读并同意注册协议和隐私</input></label></p>
+            <p><input type="submit" value="免费注册"></input></p>
+        </form>
+    </div>
+    
+
+
+    <footer>
+        <div class="foot">
+            <div class="friendLink">
+            	<p>友情链接：</p>
+                <ul>
+                    <li><a href="" title="北京租友网">北京租友网</a></li>
+                    <li><a href="" title="上海租友网">上海租友网</a></li>
+                    <li><a href="" title="广州租友网">广州租友网</a></li>
+                    <li><a href="" title="成都租友网">成都租友网</a></li>
+                    <li><a href="" title="重庆租友网">重庆租友网</a></li>
+                    <li><a href="" title="山东租友网">山东租友网</a></li>
+                    <li><a href="" title="陪玩网">陪玩网</a></li>
+                    <li><a href="" title="百度">百度</a></li>
+                    <li><a href="" title="伴玩人租友网">伴玩人租友网</a></li>
+                    <li><a href="" title="租友论坛">租友论坛</a></li>
+                    <li><a href="" title="租友网">租友网</a></li>
+                </ul>
+            </div>
+            <div class="bottomMsg">
+                <p>
+                    <a href="" title="网站介绍">网站介绍</a> -
+                    <a href="" title="联系我们">联系我们</a> -
+                    <a href="" title="免责申明">免责申明</a> -
+                    <a href="" title="交友须知">交友须知</a> -
+                    <a href="" title="隐私保护">隐私保护</a> -
+                    <a href="" title="服务条款">服务条款</a> -
+                    <a href="" title="返回首页">返回首页</a>
+                </p>
+                <p>租友网免费开放平台，同城租男友，租女友就上租友网</p>
+                <p>Powered by www.zu.com&copy;2004-2016租友网&nbsp;版权所有&nbsp;浙ICP备125454654</p>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script language="javascript" src="js/PCASClass.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="js/jquery.metadata.js"></script>
+  <!--  <script src="js/jquery.simplemodal.js" type="text/javascript"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /* 提示框 */
+            $('.open-basic-dialog-ok').click(function (e) {
+                $('#basic-dialog-ok').modal({
+                    "opacity":50
+                });
+                return false;
+            });
+
+        });
+    </script>
+    <script language="javascript" defer>
+        new PCAS("province3","city3","area3");
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            $("#register").validate({meta:"validate"});
+        })
+        window.onload=function(){
+
+                var inputRandom=document.getElementById("inputRandom");  
+                var autoRandom=document.getElementById("autoRandom");  
+
+                var username=document.getElementById("username");
+                var password=document.getElementById("password"); 
+              
+
+                function change(){  
+                    var seed = new Array('abcdefghijklmnpqrstuvwxyz','123456789');               //创建需要的数据数组  
+                    var idx,i;  
+                    var result = '';   //返回的结果变量  
+                    for (i=0; i<4; i++) //根据指定的长度  
+                    {  
+                        idx = Math.floor(Math.random()*2); //获得随机数据的整数部分-获取一个随机整数  
+                        result += seed[idx].substr(Math.floor(Math.random()*(seed[idx].length)), 1);//根据随机数获取数据中一个值  
+                    }  
+                    return result; //返回随机结果      
+                };
+
+                autoRandom.value=change();
+                
+                autoRandom.onclick=function(){
+                    autoRandom.value=change();
+                }
+
+        }
+    </script>
+</body>
+</html>

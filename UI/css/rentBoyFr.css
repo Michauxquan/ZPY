@@ -1,0 +1,12 @@
+.recommend{margin-top:20px;}
+.rentGirlFr .left{font-size: 14px;}
+.rentGirlFr .left ul li{width: 350px;float: left;}
+.rentGirlFr .left ul li>a{margin-right: 5px;}
+.rentGirlFr .left ul li>div{margin-top: 0;}
+.rentGirlFr .left ul li>div p:not(.desc){margin-bottom: 5px;}
+.rentGirlFr .left ul li>div p.desc{margin-top: 8px;margin-bottom: 8px;}
+
+.like ul li{display: inline-block;}
+.like ul li img:hover{outline:1px solid #f15481;}
+.rentGirlFr .right div.hire ul li{height: 20px;padding: 7px 0;}
+.myscroll3{height: 352px;overflow: hidden;margin-top: 15px;}
