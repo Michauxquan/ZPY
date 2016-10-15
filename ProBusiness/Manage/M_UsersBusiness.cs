@@ -198,7 +198,7 @@ a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkT
                 }
             }
             string clumstr ="a.userID,a.Avatar,a.Name,a.Age,a.LoginName,a.MyService,a.Province,a.City,a.District,a.CreateTime,a.Status,a.Sex,a.IsMarry,a.Education,"+
-                "a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.cstr,b.ImgCount,b.IsLogin,b.RecommendCount,b.SeeCount";
+                "a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.TalkTo,a.BPay,a.Account,b.ImgCount,b.IsLogin,b.RecommendCount,b.SeeCount";
             DataTable dt = CommonBusiness.GetPagerData("M_Users a left join userReport b on a.Userid=b.Userid ", clumstr, whereSql, "a.AutoID" + (string.IsNullOrEmpty(cdesc) ? "" : "," + cdesc), pageSize, pageIndex, out totalCount, out pageCount);
             List<M_Users> list = new List<M_Users>();
             M_Users model;
