@@ -6,13 +6,13 @@
 <div class="select-section"> 
     <div class="select">
         <p>我要租：</p>
-        <select>
-            <option>租男友</option>
-            <option>租女友</option>
+        <select id="seachtype">
+            <option value="">租男友</option>
+            <option value="">租女友</option>
         </select>
         <p>年龄：</p>
-        <select>
-            <option>18~25</option>
+        <select id="seachage">
+            <option>16~25</option>
             <option>26~32</option>
             <option>33~38</option>
             <option>39~44</option>
@@ -21,13 +21,14 @@
         </select>
         <p>地区：</p>
         <select name="province3"></select>&nbsp;<select name="city3"></select>&nbsp;<select name="area3"></select>
-        <input type="submit" value=" "></input>
+        <input type="button" value=""/>
+        <div class="clear"></div>
     </div> 
 </div>
  <div class="rentGirlFr content">
         <div class="left con">
             <div class="msgs">
-                <img src="images/photo3.jpg" alt="头像" width="200" height="250">
+                <img src="@(!string.IsNullOrEmpty(user.Avatar)?user.Avatar:"/modules/images/photo3.jpg")" alt="头像" width="200" height="250">
                 <div>
                     <ul class="basic-msg">
                         <li id="userinfoli" data-name="@(user.Name)" data-id="@(user.UserID)" data-leveid="@(user.Levelid)">用户名：@(user.Name)</li>
@@ -41,12 +42,12 @@
                         <div class="clear"></div>
                     </ul>
                     <ul class="interact">
-                        <li><a href=""><img src="/modules/images/da.png" alt="打招呼"></a></li>
-                        <li><a href=""><img src="/modules/images/xie.png" alt="写邮件"></a></li>
+                        <li><a href="javascript:void(0)"><img src="/modules/images/da.png" alt="打招呼"></a></li>
+                        <li><a href="javascript:void(0)"><img src="/modules/images/xie.png" alt="写邮件"></a></li>
                         <li><a href="#linkh4"><img src="/modules/images/cha.png" alt="查看联系方式"></a></li>
-                        <li><img id="focusit" src="/modules/images/gua.png" alt="关注她"></li>
+                        <li><a href="javascript:void(0)"><img id="focusit" src="/modules/images/gua.png" alt="关注她"></a></li>
                     </ul>
-                    <p>若此会员有动机不纯、故意中伤、提供虚假资料、散布广告等恶劣行为，<a href="" data-value="@(user.UserID)">请向网站举报</a></p>
+                    <p>若此会员有动机不纯、故意中伤、提供虚假资料、散布广告等恶劣行为，<a href="">请向网站举报</a></p>
                     <p>分享给朋友：<img src="/modules/images/03-weixin.png" alt="微信"><img src="/modules/images/web.png" alt="新浪微博"><img src="/modules/images/qq(2).png" alt="qq空间"></p>
                 </div>
                 <div class="clear"></div>
@@ -57,19 +58,14 @@
                 <h4>租友说明</h4>
                 <p>提供服务：见父母亲友，社交聚会，逛街购物，唱歌，看电影，旅游陪同，接送服务，其他服务<br/>收费说明：70元/小时&nbsp;&nbsp;&nbsp;1000元/天</p>
                 <h4 id="linkh4">联系方式</h4>
-                <ul id="linkInfo" data-value="@(user.UserID)>
-                    <li><span>手机：</span><a href="">点击查看</a></li>
-                    <li><span>邮箱：</span><a href="">点击查看</a></li>
-                    <li><span>Q&nbsp;Q：</span><a href="">点击查看</a></li>
-                    <li><span>微信：</span><a href="">点击查看</a></li>
+                <ul id="linkInfo" >
+                    <li><span id="userMobilePhone">手机：</span><a href="javascript:void(0)" onclick="getUserLink('MobilePhone')">点击查看</a></li>
+                    <li><span id="userEmail">邮箱：</span><a href="javascript:void(0)" onclick="getUserLink('Email')">点击查看</a></li>
+                    <li><span id="userQQ">Q&nbsp;Q：</span><a href="javascript:void(0)" onclick="getUserLink('QQ')">点击查看</a></li>
+                    <li><span id="userWX">微信：</span><a href="javascript:void(0)" onclick="getUserLink('WX')">点击查看</a></li>
                 </ul>
                 <h4>她的评价</h4>
-                <ul>
-                    <li><img src="images/pingjia.png" width="30px">非常懂事，带他见了父母，父母很满意，很温柔，很霸气，好聚好散。</li>
-                    <li><img src="images/pingjia.png" width="30px">非常懂事，带他见了父母，父母很满意，很温柔，很霸气，好聚好散。</li>
-                    <li><img src="images/pingjia.png" width="30px">非常懂事，带他见了父母，父母很满意，很温柔，很霸气，好聚好散。</li>
-                    <li><img src="images/pingjia.png" width="30px">非常懂事，带他见了父母，父母很满意，很温柔，很霸气，好聚好散。</li>
-                </ul>
+                <ul id="userrade"></ul>
             </div>
         </div>
         <div class="right">
@@ -86,7 +82,7 @@
                             <span>其他金额：</span><input type="text"/>金币
                         </li>
                         <li>
-                            <input type="submit" value="下一步"/>
+                            <input type="button" value="下一步"/>
                         </li>
                     </ul>
                 </form>
@@ -111,18 +107,7 @@
             </div>
             <div class="dynamic hire">
                 <h4>最新需求<br/><small>latest&nbsp;demand</small></h4>
-                <ul>
-                    <li>&nbsp;&nbsp;1、租个女朋友应对父母逼婚</li>
-                    <li>&nbsp;&nbsp;2、租个女朋友应对父母逼婚</li>
-                    <li>&nbsp;&nbsp;3、租个女朋友应对父母逼婚</li>
-                    <li>&nbsp;&nbsp;4、租个女朋友应对父母逼婚</li>
-                    <li>&nbsp;&nbsp;5、租个女朋友应对父母逼婚</li>
-                    <li>&nbsp;&nbsp;6、租个女朋友应对父母逼婚</li>
-                    <li>&nbsp;&nbsp;7、租个女朋友应对父母逼婚</li>
-                    <li>&nbsp;&nbsp;8、租个女朋友应对父母逼婚</li>
-                    <li>&nbsp;&nbsp;9、租个女朋友应对父母逼婚</li>
-                    <li>&nbsp;&nbsp;10、租个女朋友应对父母逼婚</li>
-                </ul>
+                <ul id="needul"> </ul>
             </div>
         </div>
         <div class="clear"></div>

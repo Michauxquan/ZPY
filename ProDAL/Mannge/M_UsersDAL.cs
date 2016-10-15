@@ -50,8 +50,7 @@ namespace ProDAL.Manage
                                    };
 
             return GetDataTable("select * from M_Users where UserID=@UserID", paras, CommandType.Text);
-        }
-
+        } 
         public bool SetAdminAccount(string userid,string loginname, string pwd)
         {
 
@@ -110,13 +109,13 @@ namespace ProDAL.Manage
                                        new SqlParameter("@Description",description),
                                        new SqlParameter("@CreateUserID",operateid),
                                        new SqlParameter("@Sex",description),
-                                       new SqlParameter("@BHeight",operateid),
-                                       new SqlParameter("@Education",description),
-                                       new SqlParameter("@IsMarry",operateid),
-                                       new SqlParameter("@Province",description),
-                                       new SqlParameter("@City",operateid),
-                                       new SqlParameter("@District",description),
-                                       new SqlParameter("@QQ",operateid),
+                                       new SqlParameter("@BHeight",BHeight),
+                                       new SqlParameter("@Education",Education),
+                                       new SqlParameter("@IsMarry",IsMarry),
+                                       new SqlParameter("@Province",Province),
+                                       new SqlParameter("@City",City),
+                                       new SqlParameter("@District",District),
+                                       new SqlParameter("@QQ",QQ),
                                        new SqlParameter("@RoleID",roleid)
                                    };
 
@@ -143,13 +142,17 @@ namespace ProDAL.Manage
 
             return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
         }
-        public bool UpdateM_UserBase(string userid, string bHeight, string bWeight, string jobs, string bPay, int isMarry, string myContent)
+        public bool UpdateM_UserBase(string userid, string bHeight, string bWeight, string jobs, string bPay, int isMarry, 
+            string myContent, string name, string talkTo,int age)
         {
-            string sql = "update M_Users set bHeight=@bHeight,bWeight=@bWeight," +
-                         "bPay=@bPay,Jobs=@Jobs ,IsMarry=@isMarry,myContent=@myContent  " +
+            string sql = "update M_Users set bHeight=@bHeight,bWeight=@bWeight,Name=@Name,TalkTo=@TalkTo," +
+                         "bPay=@bPay,Jobs=@Jobs ,IsMarry=@isMarry,myContent=@myContent,Age=@Age  " +
                          "where UserID=@UserID ";
 
             SqlParameter[] paras = {  
+                                       new SqlParameter("@Name",name), 
+                                       new SqlParameter("@Age",age), 
+                                       new SqlParameter("@TalkTo",talkTo), 
                                        new SqlParameter("@UserID",userid),
                                        new SqlParameter("@bHeight",bHeight),
                                        new SqlParameter("@bWeight",bWeight),

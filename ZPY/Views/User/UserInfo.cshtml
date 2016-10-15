@@ -35,6 +35,7 @@
             <p>地区：</p>
             <select name="province3"></select>&nbsp;<select name="city3"></select>&nbsp;<select name="area3"></select>
             <input type="button" id="seachInfo"/>
+            <div class="clear"></div>
         </div>
     </div>
     <div class="content">
@@ -119,10 +120,11 @@
             <p><span><a href="/User/UserMsg/@(CurrentUser.UserID)" style="cursor: pointer;">@(CurrentUser.LoginName)</a></span>金币<img src="/modules/images/credit.png"><strong>@(CurrentUser.Account)</strong>个
             </p>
             <p>访问人数<span>65</span></p>
-            <p>我的宣言<br/><select>
-                    <option>尊重对方，互帮互助</option>
-                    <option>快乐至上，一起happy</option>
-                </select>
+            <p>
+                <div style="float: left;">自我介绍:&nbsp;</div>
+                <div  style="float: left;">
+                    <textarea style="width: 375px; height: 100px;resize: none;" readonly="readonly" ></textarea>
+                </div>
             </p>
         </div>
         <div class="clear"></div>
@@ -215,10 +217,10 @@
             <p><span>@(CurrentUser.LoginName)</span>金币<img src="/modules/images/credit.png"><strong>@(CurrentUser.Account)</strong>个
             </p>
             <p>访问人数<span>65</span></p>
-            <p>我的宣言<br/><select>
-                    <option>尊重对方，互帮互助</option>
-                    <option>快乐至上，一起happy</option>
-                </select>
+            <p><div style="float: left;">自我介绍:&nbsp;</div>
+                <div  style="float: left;">
+                    <textarea style="width: 375px; height: 100px;resize: none;" readonly="readonly" ></textarea>
+                </div>
             </p>
         </div>
         <div class="clear"></div>
@@ -270,13 +272,16 @@
         <h4>基本资料</h4>
         <ul>
             <li>邮箱：@(CurrentUser.Email) </li>
-            <li>用户名：@(CurrentUser.Name) </li>
-            <li>性别：@(CurrentUser.Sex==1?"女":"男")</li>
+            <li>姓名：@(CurrentUser.Name)</li>
+            <li>性别：@(CurrentUser.Sex == 1 ? "女" : "男")</li>
             <li>职业：@(CurrentUser.Jobs)</li>
         </ul>
+         
         <div class="clear"></div>
         <h4>编辑资料</h4>
         <ul>
+            <li>我的姓名：<input type="text" id="userName" value="@(CurrentUser.Name)" style="width: 100px; height: 22px; line-height: 22px;"/></li>
+            <li>我的年龄：<input type="text" id="userAge" value="@(CurrentUser.Age)" style="width: 100px; height: 22px; line-height: 22px;"/></li>
             <li>我的身高：<select id="BHeight">
                 <option>140-150</option>
                 <option>150-160</option>
@@ -287,7 +292,7 @@
             </select></li>
             <li>婚姻状态：<select id="IsMarry">
                 <option value="0">未婚</option>
-                <option  value="1">已婚</option>
+                <option value="1">已婚</option>
             </select></li>
             <li>我的体重：<select id="BWeight">
                 <option value="40kg-50kg">40kg-50kg</option>
@@ -299,13 +304,7 @@
                 <option value="100kg-110kg">100kg-110kg</option>
                 <option value="110kg-120kg">110kg-120kg</option>
                 <option value="120kg-130kg">120kg-130kg</option>
-            </select></li>
- @*           <li>我的个性：<select id="MyCharacter">
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-            </select></li>*@
+            </select></li> 
             <li>我的月薪：<select id="BPay">
                 <option value="1000-3000">1000-3000</option>
                 <option value="3000-5000">3000-5000</option>
@@ -375,6 +374,11 @@
                 <option value="棒棒糖叔叔">棒棒糖叔叔</option>
             </select></li>
         </ul>
+        <div class="clear"></div>
+        <div style="float: left;">自我介绍：</div>
+                <div  style="float: left;">
+                    <textarea style="width: 375px; height: 100px;resize: none;" id="userTalkTo"  >@(CurrentUser.TalkTo)</textarea>
+                </div>
         <div class="clear"></div>
         <input type="button" onclick="saveUserInfo()" value="确认保存"/>
     </div>

@@ -31,11 +31,14 @@ namespace ProEntity
         /// </summary>
         public string UserID { get; set; }
         public string UserName { get; set; }
+        public string UserAvatar { get; set; }
+
         /// <summary>
         /// 接单用户
         /// </summary>
         public string InviteID { get; set; }
         public string InviteName { get; set; }
+        public string InviteAvatar { get; set; }
         public string Title { get; set; }
         /// <summary>
         /// 内容

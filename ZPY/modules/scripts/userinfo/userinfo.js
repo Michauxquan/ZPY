@@ -270,9 +270,11 @@ function getUserMyInfo() {
     $.post('UserMyInfo', null, function (data) {
         if (data.item!=null) {
             $('#BHeight').val(data.item.BHeight);
-            $('#BWeight').val(data.item.BWeight);
+            $('#BWeight').val(data.item.BWeight); 
             $('#Jobs').val(data.item.Jobs);
             $('#BPay').val(data.item.BPay);
+            $('#userAge').val(data.item.Age);
+            $('#userTalkTo').val(data.item.TalkTo);
             $('#IsMarry').val(data.item.IsMarry);
             $('#MyContent').val(data.item.MyContent);
         }
@@ -283,7 +285,10 @@ $.post('SaveUserInfo', {
     bHeight:$('#BHeight option:selected').val(),
     bWeight:$('#BWeight option:selected').val(),
     jobs:$('#Jobs option:selected').val(),
-    bPay:$('#BPay option:selected').val(),
+    bPay: $('#BPay option:selected').val(),
+    name: $('#userName').val(),
+    age: $('#userAge').val(),
+    talkTo: $('#userTalkTo').val(),
     isMarry:$('#IsMarry option:selected').val(),
     myContent:$('#MyContent option:selected').val()
     }, function (data) {

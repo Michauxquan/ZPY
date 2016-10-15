@@ -15,16 +15,16 @@ namespace ProBusiness
     {
         #region 查询
 
-        public static List<UserNeeds> FindNeedsList(int type, string userId, int pageSize, int pageIndex, ref int totalCount, ref int pageCount, string inviteID="",int needSex=-1, string age="",string address="")
+        public static List<UserNeeds> FindNeedsList(string type, string userId, int pageSize, int pageIndex, ref int totalCount, ref int pageCount, string inviteID="",int needSex=-1, string age="",string address="")
         {
             string sqlwhere = "  a.Status not in (6,9)";
             if (!string.IsNullOrEmpty(userId))
             {
                 sqlwhere += " and a.UserID='" + userId+"'";
             }
-            if (type > -1)
+            if (type!="-1" && !string.IsNullOrEmpty(type))
             {
-                sqlwhere += " and a.Type=" + type;
+                sqlwhere += " and a.Type in (" + type+")";
             }
             if (needSex > -1)
             {
@@ -46,7 +46,32 @@ namespace ProBusiness
 
             }
             DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a left join m_users b  on a.UserID=b.UserID ",
-                 "a.AutoID,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province", sqlwhere, "a.AutoID ", pageSize, pageIndex,
+                 "a.AutoID,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
+                out totalCount, out pageCount);
+            List<UserNeeds> list = new List<UserNeeds>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                UserNeeds model = new UserNeeds();
+                model.FillData(dr);
+                list.Add(model);
+            }
+            return list;
+        }
+
+
+        public static List<UserNeeds> FindNeedsRated(int type, string userId, int pageSize, int pageIndex, ref int totalCount, ref int pageCount)
+        {
+            string sqlwhere = "  a.Status not in (6,9)";
+            if (!string.IsNullOrEmpty(userId))
+            {
+                sqlwhere += " and a.UserID='" + userId + "'";
+            }
+            if (type > -1)
+            {
+                sqlwhere += " and a.Type in(" + type+")";
+            }
+            DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a left join m_users b  on a.UserID=b.UserID left join m_users c on a.InviteID=c.UserID ",
+                 "a.AutoID,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar ,c.Avatar as InviteAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
                 out totalCount, out pageCount);
             List<UserNeeds> list = new List<UserNeeds>();
             foreach (DataRow dr in dt.Rows)

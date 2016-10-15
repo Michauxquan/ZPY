@@ -109,7 +109,29 @@ namespace ZPY.Controllers
         public JsonResult UserRegister(string entity)
         {
             M_Users users = JsonConvert.DeserializeObject<M_Users>(entity);
-            JsonDictionary.Add("result", !string.IsNullOrEmpty(ProBusiness.M_UsersBusiness.CreateM_User(users)));
+            string lodpwd = users.LoginPWD;
+            users.Jobs = "";
+            users.OfficePhone = "";
+            users.Avatar = "";
+            users.CreateUserID = "";
+            users.IsAdmin = 0;
+            users.RoleID = "";
+            users.Description = "";
+
+            var result = !string.IsNullOrEmpty(ProBusiness.M_UsersBusiness.CreateM_User(users));
+            if (result)
+            {
+                var outresult = 0;
+                ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(users.LoginName, lodpwd,
+                    OperateIP, out outresult);
+                if (model != null)
+                {  
+                    CurrentUser = model;
+                    Session["Manager"] = model; 
+                }
+            }
+            JsonDictionary.Add("result", result);
+
             return new JsonResult
             {
                 Data = JsonDictionary,

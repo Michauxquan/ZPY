@@ -72,6 +72,7 @@ namespace ProBusiness.Common
         {
             await LogDAL.AddOperateLog(userid, username,leveid,seeid,seename, (int)type, message, operateip);
         }
+        
         #endregion
     }
 }

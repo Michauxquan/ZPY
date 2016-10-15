@@ -27,11 +27,12 @@
 .recommend ul li p{text-align: center;width: 100%;position: absolute;top: 232px;padding:3px 0;left: 0;color: white;background: rgba(80,80,80,0.5);display: none;}
 
 .select-section{width: 100%;min-width: 960px;background: #fafafa;}
-.select{margin-top: 20px;padding: 30px 0;}
+.select{padding: 30px 0;}
 .select p{display: inline-block;}
 .select p:not(:first-child){margin-left: 40px;}
 .select select{width: 110px;height: 35px;padding-left: 25px;}
-.select input{margin-left: 30px;width: 80px;height: 40px;background: url(../images/sousuo.png) #36B0F3 no-repeat 22px 5px;border: none;cursor: pointer;border-radius: 4px;}
+.select input{margin-left: 30px;width: 80px;height: 40px;background: url(../images/sousuo.png) #36B0F3 no-repeat 22px 5px;
+              border: none;cursor: pointer;border-radius: 4px;margin-top: -5px;float: right}
 
 .rentGirlFr{margin-top: 20px;}
 .rentGirlFr .left{width: 700px;border-bottom: 1px solid #eaeaea;float: left;}
@@ -47,7 +48,7 @@
 .rentGirlFr .right div.dynamic h4{text-align: center;line-height: 16px;margin-top: 5px;}
 .rentGirlFr .right div.dynamic h4 small{font-weight: normal;line-height: 14px;}
 .rentGirlFr .right div.dynamic ul{margin-top: 10px;border-bottom: 1px solid #eaeaea;}
-.rentGirlFr .right div.dynamic ul li{border-top: 1px solid #eaeaea;font-size: 13px;padding: 7px 0;height: 35px;}
+.rentGirlFr .right div.dynamic ul li{border-top: 1px solid #eaeaea;font-size: 13px;padding: 7px 0;height: 28px;line-height: 2px;}
 .rentGirlFr .right div.dynamic ul li p span{margin-right: 10px;}
 .rentGirlFr .right div.dynamic ul li p{overflow: hidden;height: 34px;}
 .rentGirlFr .right div.hire{margin-top: 20px;}

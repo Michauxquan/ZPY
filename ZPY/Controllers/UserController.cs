@@ -54,7 +54,20 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        public JsonResult GetUserRated(string type,string userid, int pageIndex, int pageSize)
+        {
+            int total = 0;
+            int pageCount = 0;
+            var list = LogBusiness.GetLogs(type, pageSize, pageIndex, ref total, ref pageCount);
+            JsonDictionary.Add("items", list);
+            JsonDictionary.Add("totalCount", total);
+            JsonDictionary.Add("pageCount", pageCount);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         public JsonResult UserMyFocus(int pageIndex, int pageSize)
         {
             int total = 0;
@@ -106,17 +119,22 @@ namespace ZPY.Controllers
             };
         }
 
-        public JsonResult SaveUserInfo(string bHeight,string bWeight,string jobs,string bPay,int isMarry,string myContent)
+        public JsonResult SaveUserInfo(string bHeight,string bWeight,string jobs,string bPay,int isMarry,
+            string myContent,string name ,string talkTo,int age)
         {
             M_Users users = CurrentUser;
             users.BHeight = bHeight;
             users.BWeight = bWeight;
             users.Jobs = jobs;
+            users.TalkTo = talkTo;
             users.BPay = bPay;
+            users.IsMarry = isMarry;
+            users.Age = age;
+            users.Name = bPay;
             users.IsMarry = isMarry;
             users.MyContent = myContent;
             var result = M_UsersBusiness.UpdateM_UserBase(CurrentUser.UserID, bHeight, bWeight, jobs, bPay, isMarry,
-                myContent);
+                myContent, name, talkTo,age);
             if (result)
             {
                 Session["Manage"] = users;
@@ -144,7 +162,7 @@ namespace ZPY.Controllers
             };
         }
 
-        public JsonResult UserDiaryList(int type, int pageIndex, int pageSize)
+        public JsonResult UserDiaryList(string type, int pageIndex, int pageSize)
         {
             int total = 0;
             int pageCount = 0;
@@ -158,11 +176,25 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public JsonResult NeedsList(int type,bool ismyself, int pageIndex, int pageSize)
+        public JsonResult NeedsList(string type,bool ismyself, int pageIndex, int pageSize)
         {
             int total = 0;
             int pageCount = 0;
             var list = UserNeedsBusiness.FindNeedsList(type, ismyself ? CurrentUser.UserID : "", pageSize, pageIndex, ref total, ref pageCount, !ismyself?CurrentUser.UserID:"");
+            JsonDictionary.Add("items", list);
+            JsonDictionary.Add("totalCount", total);
+            JsonDictionary.Add("pageCount", pageCount);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult GetNewNeeds(string type,int pageIndex, int pageSize)
+        {
+            int total = 0;
+            int pageCount = 0;
+            var list = UserNeedsBusiness.FindNeedsList(type,  "", pageSize, pageIndex, ref total, ref pageCount);
             JsonDictionary.Add("items", list);
             JsonDictionary.Add("totalCount", total);
             JsonDictionary.Add("pageCount", pageCount);
@@ -181,6 +213,55 @@ namespace ZPY.Controllers
                 Data = JsonDictionary,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
+        }
+        public JsonResult GetUserRateds(int type,string userid, int pageIndex, int pageSize)
+        {
+            int total = 0;
+            int pageCount = 0;
+            var list = UserNeedsBusiness.FindNeedsRated(type, userid, pageSize, pageIndex, ref total, ref pageCount);
+            JsonDictionary.Add("items", list);
+            JsonDictionary.Add("totalCount", total);
+            JsonDictionary.Add("pageCount", pageCount);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetUserLinkInfo(string cname, string seeid, string seename)
+        {
+            //判断是否有用户登录查看他人联系信息并扣除金额
+            string errMsg = "";
+            if (CurrentUser != null )
+            {
+                var ishasGlod = true;
+                if (CurrentUser.UserID != seeid)
+                {
+                    //判断金额是否足够
+                    if (!true)
+                    {
+                        ishasGlod = false;
+                        errMsg = "账户金币不足，不能查看";
+                    } 
+                }
+                if (ishasGlod)
+                {
+                    string result = M_UsersBusiness.GetUserPartInfo(seeid,seename, cname,CurrentUser.UserID,CurrentUser.LoginName,CurrentUser.Levelid
+                        ,OperateIP);  
+                    JsonDictionary.Add("result", result);
+                }
+            }
+            else
+            {
+                errMsg="请登录后在操作！";
+            }
+            JsonDictionary.Add("msgError", errMsg);
+           return new JsonResult
+           {
+               Data = JsonDictionary,
+               JsonRequestBehavior = JsonRequestBehavior.AllowGet
+           };
         }
     }
 }

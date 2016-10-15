@@ -129,6 +129,7 @@ namespace ProBusiness
 
         public static M_Users GetUserDetail(string userID)
         {
+            
             DataTable dt = M_UsersDAL.BaseProvider.GetUserDetail(userID);
 
             M_Users model=null;
@@ -137,9 +138,21 @@ namespace ProBusiness
                 model = new M_Users();
                 model.FillData(dt.Rows[0]);
             }
-
+            
             return model;
         }
+
+        public static string GetUserPartInfo(string seeID,string seename, string cname,string userid,string username,string leveid,string operateip )
+        {
+            object  obj=CommonBusiness.Select("M_Users", cname, " Userid='" + seeID + "'");
+            if (obj != null)
+            {
+                LogBusiness.AddOperateLog(userid, username, leveid, seeID, seename, EnumUserOperateType.SeeLink, "联系方式", operateip);
+                return obj.ToString();
+            }
+            return "";
+        }
+
         #endregion
 
         #region 改
@@ -159,8 +172,11 @@ namespace ProBusiness
         {
             string userid = Guid.NewGuid().ToString();
             musers.LoginPWD = ProBusiness.Encrypt.GetEncryptPwd(musers.LoginPWD, musers.LoginName);
-            bool bl = M_UsersDAL.BaseProvider.CreateM_User(userid, musers.LoginName, musers.LoginPWD,musers.Name,musers.IsAdmin,musers.RoleID,musers.Email,musers.MobilePhone,musers.OfficePhone,musers.Jobs,
-                musers.Avatar,musers.Description,musers.CreateUserID,musers.Sex,musers.BHeight,musers.Education,musers.IsMarry,musers.Province,musers.City,musers.District,musers.QQ);
+            bool bl = M_UsersDAL.BaseProvider.CreateM_User(userid, musers.LoginName, musers.LoginPWD, 
+                string.IsNullOrEmpty(musers.Name) ? "" : musers.Name, musers.IsAdmin, musers.RoleID, musers.Email, musers.MobilePhone,
+                musers.OfficePhone, musers.Jobs, musers.Avatar, musers.Description, musers.CreateUserID,
+                musers.Sex.Value,musers.BHeight,musers.Education,musers.IsMarry.Value,musers.Province,musers.City,
+                musers.District,musers.QQ);
             if (bl)
             {
                 return userid;
@@ -197,9 +213,10 @@ namespace ProBusiness
             return M_UsersDAL.BaseProvider.DeleteM_User(userid, status);
         }
 
-        public static bool UpdateM_UserBase(string userid, string bHeight, string bWeight, string jobs, string bPay, int isMarry, string myContent)
+        public static bool UpdateM_UserBase(string userid, string bHeight, string bWeight, string jobs, string bPay, int isMarry, 
+            string myContent,string name ,string talkTo,int age)
         {
-            return M_UsersDAL.BaseProvider.UpdateM_UserBase(userid, bHeight, bWeight, jobs, bPay, isMarry, myContent); 
+            return M_UsersDAL.BaseProvider.UpdateM_UserBase(userid, bHeight, bWeight, jobs, bPay, isMarry, myContent, name, talkTo, age); 
         }
 
         #endregion

@@ -1,12 +1,13 @@
 .advertisement{width: 960px;margin: 0 auto;margin-top:20px;}
 .like,.hire{margin-top: 20px!important;}
-.hire ul li{display: inline-block;width: 210px;}
+.hire ul li{display: inline-block;width: 210px;height: 25px !important;line-height: 25px !important;}
+.hire ul li:hover{ color: #007cc1;}
 .like ul li{float: left;}
 .recharge ul li{font-size: 14px;}
 .recharge ul li label{margin-right: 13.4px;cursor: pointer;}
 .recharge ul li input[type="text"]{width: 60px;text-align: center;margin-right: 5px;}
 .recharge ul li:last-child{text-align: center;}
-.recharge ul li input[type="submit"]{width: 200px;height: 30px;background: #F22B64;color: white;text-align: center;font-size: 16px;line-height: 30px;border: none;border-radius: 3px;cursor: pointer;}
+.recharge ul li input[type="button"]{width: 200px;height: 30px;background: #F22B64;color: white;text-align: center;font-size: 16px;line-height: 30px;border: none;border-radius: 3px;cursor: pointer;}
 .left p{font-size: 15px;}
 .left ul li{border-top: none!important;}
 .left div.msgs{height: 270px;}

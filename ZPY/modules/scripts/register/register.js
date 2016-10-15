@@ -50,7 +50,7 @@ $(function () {
         }
     });
     $('#confirm_password').blur(function () {
-        if ($('#confirm_password').val() == '' || $('#confirm_password') != null || $('#confirm_password').val() != $('#password').val()) {
+        if (($('#confirm_password').val() == '' && $('#confirm_password') != null) || $('#confirm_password').val() != $('#password').val()) {
             $('#confirm_password').next().addClass('red').html('密码输入不一致');
             contineRegister = false;
             return false;
@@ -60,15 +60,17 @@ $(function () {
         }
     }); 
     $('.btnregister').bind('click', function () { 
-        if (!$('#agree').is(':checked')) {
-            contineRegister = false;
-        }
+       
         if (typeof ($('input:radio[name="sex"]:checked').data('value')) == 'undefined') {
             contineRegister = false;
             alert('性别未选择，注册失败');
             return false;
         }
         if (contineRegister) {
+            if (!$('#agree').is(':checked')) { 
+                alert('注册协议未选中，注册失败');
+                return false;
+            }
             var item = {
                 LoginName: $('#username').val(),
                 LoginPWD: $('#password').val(),
@@ -84,8 +86,10 @@ $(function () {
                 District: $('.areaqu option:selected').val()
             }
             $.post("UserRegister",{entity: JSON.stringify(item)},function (data) {
-                    alert(data);
-                });
+                if (data.result) {
+                    window.location.href = "/User/UserInfo";
+                }
+            });
         } else {
             alert('验证未通过请检查后再提交！');
         }

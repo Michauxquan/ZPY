@@ -54,7 +54,7 @@ namespace ProEntity.Manage
         public string RoleID{ get; set; }
 
         public M_Role Role{ get; set; }
-        public int Age { get; set; }
+        public int? Age { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
@@ -99,9 +99,9 @@ namespace ProEntity.Manage
 
         public M_Users CreateUser{ get; set; }
 
-        public int Sex { get; set; }
+        public int? Sex { get; set; }
 
-        public int IsMarry { get; set; }
+        public int? IsMarry { get; set; }
 
         public string Province { get; set; }
 
