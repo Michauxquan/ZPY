@@ -25,10 +25,13 @@
 .content .con .user-msg .detail p:nth-child(2),.content .con .whocame .detail p:nth-child(2),.content .con .myfocus .detail p:nth-child(2){line-height: 35px;}
 .content .con .user-msg .detail p:last-child,.content .con .whocame .detail p:last-child,.content .con .myfocus .detail p:last-child{line-height: 22px;}
 .content .con .user-msg .detail p:last-child select,.content .con .whocame .detail p:last-child select,.content .con .myfocus .detail p:last-child select{width: 170px;height: 30px;}
+.content .con .detail a{color: #f15481;}
+.content .con .detail .seecount{ padding-left: 10px;}
 .content .con .user-msg .actions,.content .con .whocame .whocame-con,.content .con .myfocus .myscan{margin-top: 5px;}
 .content .con .user-msg .actions h4,.content .con .whocame .whocame-con h4,.content .con .myfocus .myscan h4{line-height: 35px;}
 .content .con .user-msg .actions ul{margin-left: 15px;}
 .content .con .user-msg .actions ul li span{color: #f15481;margin: 0 5px;}
+.content .con .user-msg .actions ul li a{color: #f15481;margin: 0 5px;}
 .content .con .user-msg .actions ul li small{margin-left: 50px;margin-bottom: 10px;display: inline-block;}
 
 .content .con .user-msg .page{font-size: 13px;margin-top: 50px;margin-left: -120px;}

@@ -54,9 +54,9 @@
             </div>
             <div class="intro">
                 <h4>自我介绍</h4>
-                <p>只做绿色租友服务，骗子和屌丝勿扰。谢谢你的配合，本小姐周末有空，只提供白天租友。</p>
+                <p>@(string.IsNullOrEmpty(user.TalkTo)?"暂无":user.TalkTo)</p>
                 <h4>租友说明</h4>
-                <p>提供服务：见父母亲友，社交聚会，逛街购物，唱歌，看电影，旅游陪同，接送服务，其他服务<br/>收费说明：70元/小时&nbsp;&nbsp;&nbsp;1000元/天</p>
+                <p >提供服务：@(string.IsNullOrEmpty(user.MyService)?"暂不提供服务":user.MyService) </p>
                 <h4 id="linkh4">联系方式</h4>
                 <ul id="linkInfo" >
                     <li><span id="userMobilePhone">手机：</span><a href="javascript:void(0)" onclick="getUserLink('MobilePhone')">点击查看</a></li>

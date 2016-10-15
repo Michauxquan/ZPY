@@ -89,13 +89,9 @@ namespace ProBusiness
         /// <param name="autoId"></param>
         /// <returns></returns>
         public static UserNeeds FindNeedsDetail(int autoId)
-        {
-            string sqlwhere = " a.AutoID='" + autoId + "'";
-            int totalCount = 0;
-            DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a",
-                 "a.AutoID,a.UserID,a.UserName,a.Title,a.Content,a.NeedSex,a.NeedType,a.Type,a.InviteID,a.InviteName,a.LetDays,a.ServiceConten,a.Price,a.Status", sqlwhere, "a.AutoID ", 1, 1,
-                out totalCount, out totalCount);
-            UserNeeds model = new UserNeeds();
+        { 
+            UserNeeds model=new UserNeeds();
+            DataTable dt = UserNeedsDAL.BaseProvider.GetNeedsDetail(autoId);
             foreach (DataRow dr in dt.Rows)
             { 
                 model.FillData(dr); ;

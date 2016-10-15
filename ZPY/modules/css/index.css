@@ -39,7 +39,8 @@
 .rentGirlFr .left>a{margin-right: 15px;}
 .rentGirlFr .left ul{padding: 10px 0;}
 .rentGirlFr .left ul li{border-top: 1px solid #eaeaea;padding: 10px 0;}
-.rentGirlFr .left ul li>a{float: left;margin-right: 20px;}
+.rentGirlFr .left ul li a{color: #f15481;}
+.rentGirlFr .left ul li>a{float: left;margin-right: 20px;color: #f15481;}
 .rentGirlFr .left ul li>div{line-height: 23px;margin-top: 10px;}
 .rentGirlFr .left ul li>div p.desc{line-height: 20px;margin-bottom: 15px;margin-top: 15px;max-height: 60px;overflow: hidden;}
 .rentGirlFr .left ul li>div p~a{margin-right: 7px;}

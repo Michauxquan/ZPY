@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "租朋友";
+}
+
+
+    <link rel="stylesheet" type="text/css" href="/modules/css/rentBoyFr.css">
+    <div class="container">
+        <div class="recommend">
+            <h3>租友推荐</h3>
+            <a href="" title="更多">更多>></a>
+            <ul>
+                 <li>
+                    <a href=""><img src="/modules/images/photo.jpg" width="220px" height="280px"></a>
+                    <a href=""><img src="/modules/images/dianhua.png"></a><a href=""><img src="/modules/images/weixin.png">
+                    </a><a href=""><img src="/modules/images/qq.png"></a>
+                    <p>娜娜<br/>女&nbsp;28岁&nbsp;山西</p>
+                </li>
+                <li>
+                    <a href=""><img src="/modules/images/photo.jpg" width="220px" height="280px"></a>
+                    <a href=""><img src="/modules/images/dianhua.png"></a><a href=""><img src="/modules/images/weixin.png">
+                    </a><a href=""><img src="/modules/images/qq.png"></a>
+                    <p>娜娜<br/>女&nbsp;28岁&nbsp;山西</p>
+                </li>
+                 <li>
+                    <a href=""><img src="/modules/images/photo.jpg" width="220px" height="280px"></a>
+                    <a href=""><img src="/modules/images/dianhua.png"></a><a href=""><img src="/modules/images/weixin.png">
+                    </a><a href=""><img src="/modules/images/qq.png"></a>
+                    <p>娜娜<br/>女&nbsp;28岁&nbsp;山西</p>
+                </li>
+                 <li>
+                    <a href=""><img src="/modules/images/photo.jpg" width="220px" height="280px"></a>
+                    <a href=""><img src="/modules/images/dianhua.png"></a><a href=""><img src="/modules/images/weixin.png">
+                    </a><a href=""><img src="/modules/images/qq.png"></a>
+                    <p>娜娜<br/>女&nbsp;28岁&nbsp;山西</p>
+                </li>
+            </ul>
+        </div>
+        <div class="select-section">
+            <div class="select">
+                <p>我要找：</p>
+                <select id="seachtype" data-value="@(ViewBag.Type)" class="hide">
+                    <option value="0">租男友</option>
+                    <option value="1">租女友</option>
+                </select>
+                <p>年龄：</p>
+                <select id="seachage">
+                    <option value="">不限</option>
+                    <option value="16~25">16~25</option>
+                    <option value="26~32">26~32</option>
+                    <option value="33~38">33~38</option>
+                    <option value="39~44">39~44</option>
+                    <option value="45~51">45~51</option>
+                    <option value="52~60">52~60</option>
+                </select>
+                <p>地区：</p>
+                <select class="province" name="province3"></select>&nbsp;<select class="city"  name="city3"></select>&nbsp;<select  class="district" name="area3"></select>
+                <input type="button" onclick="getUserByType(1)" value=""/>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="rentGirlFr" style="min-height: 1100px;">
+            <div class="left">
+                <h3>租@(ViewBag.Type==0?"男":"女")友</h3>
+                <ul id="rentfriendul"></ul>
+                <div id="page"></div>
+            </div>
+            <div class="right">
+                <div class="dynamic like">
+                    <h4>猜你喜欢<br/><small>Guess&nbsp;you&nbsp;like</small></h4>
+                    <ul>
+                        <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                        <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                        <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                        <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li>
+                        <li><a href=""><img src="/modules/images/photo2.jpg" width="70px" height="70px"></a></li> 
+                    </ul>
+                </div>
+                <div class="dynamic hire">
+                    <h4>最新需求<br/><small>latest&nbsp;demand</small></h4>
+                    <div class="myscroll3">
+                        <ul>
+                            <li>&nbsp;&nbsp;1、租个女朋友应对父母逼婚</li> 
+                        </ul>
+                    </div>
+                </div>
+                <div class="ad">
+                    <a href="" title="广告"><img src="/modules/images/ad.jpg" alt="广告" width="220px"></a>
+                    <a href="" title="广告"><img src="/modules/images/ad.jpg" alt="广告" width="220px"></a>
+                    <a href="" title="广告"><img src="/modules/images/ad.jpg" alt="广告" width="220px"></a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+
+    </div>
+<script src="/modules/scripts/rfriend/rfriend.js"></script>

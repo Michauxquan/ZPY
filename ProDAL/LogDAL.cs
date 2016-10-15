@@ -10,6 +10,15 @@ namespace ProDAL
 {
     public class LogDAL : BaseDAL
     {
+        public static DataTable GetUserReport(string userid)
+        {
+            SqlParameter[] paras =
+            {
+                new SqlParameter("@UserID", userid)
+            };
+
+            return GetDataTable("select * from UserReport where UserID=@UserID", paras, CommandType.Text);
+        }
 
         public static Task<bool> AddLoginLog(string loginname, int type, string operateip, string userid, string leveid="")
         {

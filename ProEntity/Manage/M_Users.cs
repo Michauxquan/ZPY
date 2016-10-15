@@ -22,7 +22,7 @@ namespace ProEntity.Manage
 	/// M_Users:实体类(属性说明自动提取数据库字段的描述信息)
 	/// </summary>
 	[Serializable]
-	public partial class M_Users
+	public partial class M_Users:UserReport
 	{
 		public M_Users()
 		{}
@@ -32,12 +32,7 @@ namespace ProEntity.Manage
 		/// <summary>
 		/// 
 		/// </summary>
-		public int AutoID{ get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [Property("Lower")] 
-        public string UserID{ get; set; }
+		public int AutoID{ get; set; } 
 		/// <summary>
 		/// 
 		/// </summary>
@@ -141,7 +136,7 @@ namespace ProEntity.Manage
         public decimal Account { get; set; }
         public decimal InAccount { get; set; }
         public decimal OutAccount { get; set; }
-
+	    public string MyService { get; set; } 
 	    /// <summary>
         /// 填充数据
         /// </summary>

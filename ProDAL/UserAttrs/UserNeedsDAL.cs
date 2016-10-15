@@ -31,6 +31,16 @@ namespace ProDAL
             return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
         }
 
+        public DataTable GetNeedsDetail(int auotid)
+        {
+            SqlParameter[] paras =
+            {
+                new SqlParameter("@AutoID", auotid)
+            };
+
+            return GetDataTable("select * from UserNeeds where AutoID=@AutoID", paras, CommandType.Text);
+        }
+
         public bool UpdateStatus(string autoid,int status,string operater )
         {
             string sql =

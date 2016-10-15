@@ -103,6 +103,7 @@
     <Compile Include="Common\UserAuthorize.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RFriendController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -248,6 +249,7 @@
     <Content Include="modules\scripts\home.js" />
     <Content Include="modules\scripts\layout.js" />
     <Content Include="modules\scripts\register\register.js" />
+    <Content Include="modules\scripts\rfriend\rfriend.js" />
     <Content Include="modules\scripts\userinfo\userinfo.js" />
     <Content Include="modules\scripts\userinfo\usermsg.js" />
     <Content Include="modules\ueedit\index.html" />
@@ -392,6 +394,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\UserMsg.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\RFriend\RentFriend.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

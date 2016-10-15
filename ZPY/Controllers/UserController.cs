@@ -39,7 +39,13 @@ namespace ZPY.Controllers
             }
             return View();
         }
-
+        /// <summary>
+        /// 会员动态
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public JsonResult UserActions(string type,int pageIndex,int pageSize)
         {
             int total = 0;
@@ -54,6 +60,14 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        /// <summary>
+        /// 会员评价
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="userid"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public JsonResult GetUserRated(string type,string userid, int pageIndex, int pageSize)
         {
             int total = 0;
@@ -68,6 +82,12 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        /// <summary>
+        /// 我的关注
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public JsonResult UserMyFocus(int pageIndex, int pageSize)
         {
             int total = 0;
@@ -82,7 +102,10 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        /// <summary>
+        /// 会员信息
+        /// </summary>
+        /// <returns></returns>
         public JsonResult UserMyInfo()
         {
             JsonDictionary.Add("item", CurrentUser); 
@@ -92,7 +115,11 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        /// <summary>
+        /// 关注会员
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public JsonResult Focususer(string id)
         {
             var result = 1;
@@ -118,9 +145,22 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        /// <summary>
+        /// 保存会员信息
+        /// </summary>
+        /// <param name="bHeight"></param>
+        /// <param name="bWeight"></param>
+        /// <param name="jobs"></param>
+        /// <param name="bPay"></param>
+        /// <param name="isMarry"></param>
+        /// <param name="myContent"></param>
+        /// <param name="name"></param>
+        /// <param name="talkTo"></param>
+        /// <param name="age"></param>
+        /// <param name="myservice"></param>
+        /// <returns></returns>
         public JsonResult SaveUserInfo(string bHeight,string bWeight,string jobs,string bPay,int isMarry,
-            string myContent,string name ,string talkTo,int age)
+            string myContent, string name, string talkTo, int age, string myservice)
         {
             M_Users users = CurrentUser;
             users.BHeight = bHeight;
@@ -129,12 +169,13 @@ namespace ZPY.Controllers
             users.TalkTo = talkTo;
             users.BPay = bPay;
             users.IsMarry = isMarry;
+            users.MyService = myservice;
             users.Age = age;
-            users.Name = bPay;
+            users.Name = name;
             users.IsMarry = isMarry;
             users.MyContent = myContent;
             var result = M_UsersBusiness.UpdateM_UserBase(CurrentUser.UserID, bHeight, bWeight, jobs, bPay, isMarry,
-                myContent, name, talkTo,age);
+                myContent, name, talkTo,age,myservice);
             if (result)
             {
                 Session["Manage"] = users;
@@ -146,7 +187,11 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        /// <summary>
+        /// 保存需求
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public JsonResult SaveNeeds(string entity)
         {
             UserNeeds needs = JsonConvert.DeserializeObject<UserNeeds>(entity);
@@ -161,7 +206,13 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        /// <summary>
+        /// 我的日记
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public JsonResult UserDiaryList(string type, int pageIndex, int pageSize)
         {
             int total = 0;
@@ -176,6 +227,14 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        /// <summary>
+        /// 租售信息
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="ismyself"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public JsonResult NeedsList(string type,bool ismyself, int pageIndex, int pageSize)
         {
             int total = 0;
@@ -190,6 +249,13 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        /// <summary>
+        /// 最新需求
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public JsonResult GetNewNeeds(string type,int pageIndex, int pageSize)
         {
             int total = 0;
@@ -204,6 +270,11 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        /// <summary>
+        /// 需求详情
+        /// </summary>
+        /// <param name="autoid"></param>
+        /// <returns></returns>
         public JsonResult NeedsDetail (int autoid)
         {
             var model = UserNeedsBusiness.FindNeedsDetail(autoid);
@@ -214,6 +285,14 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        /// <summary>
+        /// 会员评价
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="userid"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public JsonResult GetUserRateds(int type,string userid, int pageIndex, int pageSize)
         {
             int total = 0;
@@ -228,7 +307,13 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        /// <summary>
+        /// 查看联系信息
+        /// </summary>
+        /// <param name="cname"></param>
+        /// <param name="seeid"></param>
+        /// <param name="seename"></param>
+        /// <returns></returns>
         public JsonResult GetUserLinkInfo(string cname, string seeid, string seename)
         {
             //判断是否有用户登录查看他人联系信息并扣除金额
@@ -262,6 +347,21 @@ namespace ZPY.Controllers
                Data = JsonDictionary,
                JsonRequestBehavior = JsonRequestBehavior.AllowGet
            };
+        }
+
+        /// <summary>
+        /// 获取用户浏览量
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public JsonResult GetUserReport(string userid)
+        {
+            JsonDictionary.Add("item", LogBusiness.GetUserCount(userid));
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
     }
 }

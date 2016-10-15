@@ -11,7 +11,9 @@
     <title>@ViewBag.Title</title> 
     <link rel="stylesheet" type="text/css" href="/modules/css/head-foot.css">
     <link rel="stylesheet" type="text/css" href="/modules/css/index.css">
-    <link rel="stylesheet" type="text/css" href="/modules/css/slide.css"> 
+    <link rel="stylesheet" type="text/css" href="/modules/css/slide.css">
+    <link rel="stylesheet" type="text/css" href="/modules/jpaginate/css/style.css" media="screen"/>
+
     <link href="/modules/css/iconfont/iconfont.css" rel="stylesheet" />
     <link rel="shortcut icon" href="/modules/images/logo.jpg">
      <style type="text/css">
@@ -25,6 +27,7 @@
    
     <script type="text/javascript" src="/Scripts/jquery-1.11.3.min.js"></script>
     <script type="text/javascript"src="/Scripts/DateForm.js"></script>
+    <script src="/modules/jpaginate/jquery.paginate.js" type="text/javascript"></script>
     <script src="/Scripts/slide.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.simplemodal.js" type="text/javascript"></script>
     <script src="/Scripts/scroll.js" type="text/javascript"></script>
@@ -53,8 +56,8 @@
     <ul>
         <li><a href="/Home/Index" title="首页">首页</a></li>
         <li><a id="usera" href="/User/UserInfo" title="会员中心">会员中心</a></li>
-        <li><a href="rentBoyFr.html" title="出租男友">出租男友</a></li>
-        <li><a href="rentGirlFr.html" title="出租女友">出租女友</a></li>
+        <li><a href="/RFriend/RentFriend/0" title="出租男友">出租男友</a></li>
+        <li><a href="/RFriend/RentFriend/1" title="出租女友">出租女友</a></li>
         <li><a href="userpic.html" title="租友相册">租友相册</a></li>
         <li><a href="" title="租友推荐">租友推荐</a></li>
         <li><a href="javasript:void(0)" class="hires" title="聘请信息">聘请信息</a></li>
@@ -143,7 +146,7 @@
                     <a href="" title="交友须知">交友须知</a> -
                     <a href="" title="隐私保护">隐私保护</a> -
                     <a href="" title="服务条款">服务条款</a> -
-                    <a href="" title="返回首页">返回首页</a>
+                    <a href="/Home/Index" title="返回首页">返回首页</a>
                 </p>
                 <p>租友网免费开放平台，同城租男友，租女友就上租友网</p>
                 <p>Powered by www.zu.com&copy;2004-2016租友网&nbsp;版权所有&nbsp;浙ICP备125454654</p>

@@ -142,14 +142,15 @@ namespace ProDAL.Manage
 
             return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
         }
-        public bool UpdateM_UserBase(string userid, string bHeight, string bWeight, string jobs, string bPay, int isMarry, 
-            string myContent, string name, string talkTo,int age)
+        public bool UpdateM_UserBase(string userid, string bHeight, string bWeight, string jobs, string bPay, int isMarry,
+            string myContent, string name, string talkTo, int age, string myservice)
         {
-            string sql = "update M_Users set bHeight=@bHeight,bWeight=@bWeight,Name=@Name,TalkTo=@TalkTo," +
+            string sql = "update M_Users set bHeight=@bHeight,bWeight=@bWeight,Name=@Name,TalkTo=@TalkTo,MyService=@MyService," +
                          "bPay=@bPay,Jobs=@Jobs ,IsMarry=@isMarry,myContent=@myContent,Age=@Age  " +
                          "where UserID=@UserID ";
 
             SqlParameter[] paras = {  
+                                       new SqlParameter("@MyService",myservice), 
                                        new SqlParameter("@Name",name), 
                                        new SqlParameter("@Age",age), 
                                        new SqlParameter("@TalkTo",talkTo), 

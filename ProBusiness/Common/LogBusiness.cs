@@ -49,6 +49,16 @@ namespace ProBusiness.Common
             return list;
         }
 
+        public static UserReport GetUserCount(string userid)
+        {
+            UserReport userrpt=new UserReport();
+            DataTable dt = LogDAL.GetUserReport(userid);
+            foreach (DataRow dr in dt.Rows)
+            {
+                userrpt.FillData(dr); 
+            }
+            return userrpt;
+        }
         #endregion
 
         #region 添加

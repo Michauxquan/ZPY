@@ -26,7 +26,7 @@ function getUserRate() {
 
 function getUserLink(cname) {
     $.post('/User/GetUserLinkInfo', { cname: cname, seeid: $('#userinfoli').data('id'), seename: $('#userinfoli').data('name') }, function (data) {
-        if (data.msgError == "") {
+        if (data.msgError != "") {
             alert(data.msgError);
         } else {
             if (cname == "MobilePhone") {

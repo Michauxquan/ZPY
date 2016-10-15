@@ -99,28 +99,43 @@ namespace ProBusiness
             DataTable dt = new M_UsersDAL().GetM_UserByLoginName(loginname);
             return dt.Rows.Count;
         }
-        public static List<M_Users> GetUsers(string keyWords, string roleID, int pageSize, int pageIndex, ref int totalCount, ref int pageCount)
+        public static List<M_Users> GetUsers(int sex,  int pageSize, int pageIndex, ref int totalCount, ref int pageCount,string address="" ,string age="")
         {
-            string whereSql = " Status<>9";
+            string whereSql = " a.Status<>9";
 
-            if (!string.IsNullOrEmpty(keyWords))
-                whereSql += " and ( Name like '%" + keyWords + "%' or MobilePhone like '%" + keyWords + "%' or Email like '%" + keyWords + "%')";
+            if (sex > -1)
+            {
+                whereSql += " and a.Sex=" + sex;
+            }
 
+            if (!string.IsNullOrEmpty(address))
+            {
+                string[] strArr = address.Split(',');
+                for (int i = 0; i < strArr.Length; i++)
+                {
+                    whereSql += (i == 0
+                        ? " anda. province='"
+                        : i == 1 ? " and a.City='" : i == 2 ? " and a.District='" : "") + strArr[i] + "'";
+                }
+            }
 
-            if (!string.IsNullOrEmpty(roleID))
-                whereSql += " and RoleID='" + roleID + "'";
-
-            DataTable dt = CommonBusiness.GetPagerData("M_Users", "*", whereSql, "AutoID", pageSize, pageIndex, out totalCount, out pageCount);
+            if (!string.IsNullOrEmpty(age))
+            {
+                string[] strArr = age.Split('~');
+                for (int i = 0; i < strArr.Length; i++)
+                {
+                    whereSql += (i == 0? " and a.Age>=": " and a.Age<=") + strArr[i];
+                } 
+            }
+            string cstr = @"a.userID,a.Avatar,a.Name,a.LoginName,a.Age,a.MyService,a.Province,a.City,a.District,a.CreateTime,a.Status,a.Sex,a.IsMarry,a.Education,
+a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkTo";
+            DataTable dt = CommonBusiness.GetPagerData("M_Users a", cstr, whereSql, "a.AutoID", pageSize, pageIndex, out totalCount, out pageCount);
             List<M_Users> list = new List<M_Users>();
             M_Users model;
             foreach (DataRow item in dt.Rows)
             {
                 model = new M_Users();
                 model.FillData(item);
-
-                if (!string.IsNullOrEmpty(model.RoleID))
-                    model.Role = ManageSystemBusiness.GetRoleByIDCache(model.RoleID);
-
                 list.Add(model);
             }
 
@@ -152,6 +167,51 @@ namespace ProBusiness
             }
             return "";
         }
+
+
+        public static List<M_Users> GetUsersReCommen(int sex, int pageSize, int pageIndex, ref int totalCount, ref int pageCount, string address = "", string age = "",string cdesc="")
+        {
+            string whereSql = " a.Status<>9";
+
+            if (sex > -1)
+            {
+                whereSql += " and a.Sex=" + sex;
+            }
+
+            if (!string.IsNullOrEmpty(address))
+            {
+                string[] strArr = address.Split(',');
+                for (int i = 0; i < strArr.Length; i++)
+                {
+                    whereSql += (i == 0
+                        ? " and a.province='"
+                        : i == 1 ? " and a.City='" : i == 2 ? " and a.District='" : "") + strArr[i] + "'";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(age))
+            {
+                string[] strArr = age.Split('~');
+                for (int i = 0; i < strArr.Length; i++)
+                {
+                    whereSql += (i == 0 ? " and a.Age>=" : " and a.Age<=") + strArr[i];
+                }
+            }
+            string clumstr ="a.userID,a.Avatar,a.Name,a.Age,a.LoginName,a.MyService,a.Province,a.City,a.District,a.CreateTime,a.Status,a.Sex,a.IsMarry,a.Education,"+
+                "a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.cstr,b.ImgCount,b.IsLogin,b.RecommendCount,b.SeeCount";
+            DataTable dt = CommonBusiness.GetPagerData("M_Users a left join userReport b on a.Userid=b.Userid ", clumstr, whereSql, "a.AutoID" + (string.IsNullOrEmpty(cdesc) ? "" : "," + cdesc), pageSize, pageIndex, out totalCount, out pageCount);
+            List<M_Users> list = new List<M_Users>();
+            M_Users model;
+            foreach (DataRow item in dt.Rows)
+            {
+                model = new M_Users();
+                model.FillData(item);
+                list.Add(model);
+            }
+
+            return list;
+        }
+
 
         #endregion
 
@@ -214,9 +274,9 @@ namespace ProBusiness
         }
 
         public static bool UpdateM_UserBase(string userid, string bHeight, string bWeight, string jobs, string bPay, int isMarry, 
-            string myContent,string name ,string talkTo,int age)
+            string myContent,string name ,string talkTo,int age,string myservice)
         {
-            return M_UsersDAL.BaseProvider.UpdateM_UserBase(userid, bHeight, bWeight, jobs, bPay, isMarry, myContent, name, talkTo, age); 
+            return M_UsersDAL.BaseProvider.UpdateM_UserBase(userid, bHeight, bWeight, jobs, bPay, isMarry, myContent, name, talkTo, age, myservice); 
         }
 
         #endregion

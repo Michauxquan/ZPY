@@ -44,6 +44,13 @@ $(function() {
             $(this).attr('checked', 'checked');
         }
     });
+    $('.myservice').click(function () {
+        if (typeof ($(this).attr('checked')) != 'undefined') {
+            $(this).removeAttr('checked');
+        } else {
+            $(this).attr('checked', 'checked');
+        }
+    });
     $(".content .sidebar ul li").each(function () {
         var _this = $(this);
         _this.click(function () {
@@ -92,8 +99,17 @@ $(function() {
         });
     });
     /*绑定事件结束     */
-    getUserActions('1,2,3',1,10);
+    getUserActions('1,2,3', 1, 10);
+    getUserReport();
 });
+
+function getUserReport() {
+    $.post('UserActions', { userid: $('.spuserid').data('value') },function(data) {
+        if (data.item != null) {
+            $('.seecount').html(data.item.SeeCount);
+        }
+    });
+}
 
 function getUserActions(type,pageindex,pagesize) {
     $.post('UserActions', { type: type, pageIndex: pageindex, pageSize: pagesize }, function (data) {
@@ -277,18 +293,33 @@ function getUserMyInfo() {
             $('#userTalkTo').val(data.item.TalkTo);
             $('#IsMarry').val(data.item.IsMarry);
             $('#MyContent').val(data.item.MyContent);
+            if (data.item.MyService != "" && data.item.MyService != null) {
+                $('.myservice').each(function(i, v) {
+                    if (data.item.MyService.indexOf($(v).val()) > -1) {
+                        $(v).attr('checked', 'checked');
+                    }
+                });
+            }
         }
     });
 }
-function saveUserInfo() { 
+function saveUserInfo() {
+    var myservic = '';
+    $('.myservice').each(function(i, v) {
+        if ($(v).attr('checked') == 'checked') {
+            myservic += $(v).val() + ',';
+        }
+    });
+    console.log(myservic);
 $.post('SaveUserInfo', {
     bHeight:$('#BHeight option:selected').val(),
     bWeight:$('#BWeight option:selected').val(),
     jobs:$('#Jobs option:selected').val(),
     bPay: $('#BPay option:selected').val(),
-    name: $('#userName').val(),
+    name: $('#userTrueName').val(),
     age: $('#userAge').val(),
     talkTo: $('#userTalkTo').val(),
+    myservice:myservic,
     isMarry:$('#IsMarry option:selected').val(),
     myContent:$('#MyContent option:selected').val()
     }, function (data) {
