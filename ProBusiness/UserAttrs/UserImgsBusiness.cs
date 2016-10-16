@@ -17,7 +17,7 @@ namespace ProBusiness
             var result = UserImgsDAL.BaseProvider.Create(userimg.UserID, userimg.ImgUrl, userimg.Size);
             if (result)
             {
-                ProDAL.Manage.M_UsersDAL.BaseProvider.CreateUserReport(userimg.UserID, " imgCount=imgCount+1 ");
+                ProDAL.Manage.M_UsersDAL.BaseProvider.CreateUserReport(userimg.UserID, " ImgCount=ImgCount+1 ");
             }
             return result;
         }
