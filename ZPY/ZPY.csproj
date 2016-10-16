@@ -198,15 +198,24 @@
     <Content Include="modules\images\4.png" />
     <Content Include="modules\images\ad.jpg" />
     <Content Include="modules\images\ad2.jpg" />
+    <Content Include="modules\images\banner.jpg" />
+    <Content Include="modules\images\bg.png" />
     <Content Include="modules\images\bl.png" />
     <Content Include="modules\images\cai.png" />
     <Content Include="modules\images\cha.png" />
+    <Content Include="modules\images\cp_img_sc.png" />
+    <Content Include="modules\images\cp_img_tj.png" />
+    <Content Include="modules\images\cp_img_tj_a.png" />
     <Content Include="modules\images\credit.png" />
     <Content Include="modules\images\da.png" />
     <Content Include="modules\images\dianhua.png" />
     <Content Include="modules\images\erweima.png" />
+    <Content Include="modules\images\favicon.ico" />
+    <Content Include="modules\images\favicon.png" />
     <Content Include="modules\images\gua.png" />
     <Content Include="modules\images\head.png" />
+    <Content Include="modules\images\icons.png" />
+    <Content Include="modules\images\image.png" />
     <Content Include="modules\images\jj.png" />
     <Content Include="modules\images\logo.jpg" />
     <Content Include="modules\images\photo.jpg" />
@@ -215,6 +224,7 @@
     <Content Include="modules\images\photo3.jpg" />
     <Content Include="modules\images\photo4.jpg" />
     <Content Include="modules\images\pingjia.png" />
+    <Content Include="modules\images\progress.png" />
     <Content Include="modules\images\qq%282%29.png" />
     <Content Include="modules\images\qq.png" />
     <Content Include="modules\images\slide\ban_next.png" />
@@ -229,7 +239,19 @@
     <Content Include="modules\images\slide\slide3p2.png" />
     <Content Include="modules\images\slide\slide3p3.png" />
     <Content Include="modules\images\sousuo.png" />
+    <Content Include="modules\images\success.png" />
     <Content Include="modules\images\tupian.png" />
+    <Content Include="modules\images\uploader\banner.jpg" />
+    <Content Include="modules\images\uploader\bg.png" />
+    <Content Include="modules\images\uploader\cp_img_sc.png" />
+    <Content Include="modules\images\uploader\cp_img_tj.png" />
+    <Content Include="modules\images\uploader\cp_img_tj_a.png" />
+    <Content Include="modules\images\uploader\favicon.ico" />
+    <Content Include="modules\images\uploader\favicon.png" />
+    <Content Include="modules\images\uploader\icons.png" />
+    <Content Include="modules\images\uploader\image.png" />
+    <Content Include="modules\images\uploader\progress.png" />
+    <Content Include="modules\images\uploader\success.png" />
     <Content Include="modules\images\vip.gif" />
     <Content Include="modules\images\web.png" />
     <Content Include="modules\images\weixin.png" />
@@ -250,6 +272,7 @@
     <Content Include="modules\scripts\layout.js" />
     <Content Include="modules\scripts\register\register.js" />
     <Content Include="modules\scripts\rfriend\rfriend.js" />
+    <Content Include="modules\scripts\uploadcreate.js" />
     <Content Include="modules\scripts\userinfo\userinfo.js" />
     <Content Include="modules\scripts\userinfo\usermsg.js" />
     <Content Include="modules\ueedit\index.html" />
@@ -318,6 +341,11 @@
     <Content Include="modules\ueedit\ueditor.config.js" />
     <Content Include="modules\ueedit\ueditor.parse.js" />
     <Content Include="modules\ueedit\ueditor.parse.min.js" />
+    <Content Include="modules\webuploader\bootstrap.min.css" />
+    <Content Include="modules\webuploader\uploader.css" />
+    <Content Include="modules\webuploader\Uploader.swf" />
+    <Content Include="modules\webuploader\webuploader.css" />
+    <Content Include="modules\webuploader\webuploader.js" />
     <Content Include="Scripts\DateForm.js" />
     <Content Include="Scripts\diyUpload.js" />
     <Content Include="Scripts\jquery-1.11.1.js" />
@@ -344,7 +372,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Upload\" />
+    <Folder Include="Upload\UserAvatar\" />
+    <Folder Include="Upload\UserImg\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -397,6 +426,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\RFriend\RentFriend.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="modules\images\logo.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="modules\images\uploader\logo.psd" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -363,5 +363,105 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [HttpPost]
+        public JsonResult UserAvatarUpload(string id, string name, string type, string lastModifiedDate, int size, HttpPostedFileBase file)
+        {
+            string pic = "", error = "";
+            if (file != null)
+            {
+                if (ValidateImg(name))
+                {                   
+                    try
+                    {
+                        pic = SaveImg(file, name, "UserAvatar/"); 
+                        if (M_UsersBusiness.UpdateM_User(CurrentUser.UserID, pic))
+                        {  
+                            CurrentUser.Avatar=pic;
+                            Session["Manage"] = CurrentUser;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        error = ex.Message;
+                    }
+                }
+                else { error = "图片格式不正确"; }
+            }
+            else { error = "暂未获取到图片信息"; }
+            JsonDictionary.Add("msgError", error);
+            JsonDictionary.Add("imgUrl", pic);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult UserImgUpload(string id, string name, string type, string lastModifiedDate, int size, HttpPostedFileBase file)
+        {
+            string pic = "", error = "";
+            if (CurrentUser == null) { error = "请登录后在操作"; }
+            else
+            {
+                if (file != null)
+                {
+                    if (ValidateImg(name))
+                    {
+                        try
+                        {
+                            pic = SaveImg(file, name, "UserAvatar/");
+                            UserImgs imgs = new UserImgs() { GoodCount = 0, Size = size, UserID = CurrentUser.UserID, ImgUrl = pic };
+                            UserImgsBusiness.Create(imgs, OperateIP);
+                        }
+                        catch (Exception ex)
+                        {
+                            error = ex.Message;
+                        }
+                    }
+                    else { error = "图片格式不正确"; }
+                }
+                else { error = "暂未获取到图片信息"; }
+            }
+            JsonDictionary.Add("msgError", error);
+            JsonDictionary.Add("imgUrl", pic);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public bool ValidateImg(string fname)
+        {
+            if (string.IsNullOrEmpty(fname)) { return false; }
+            string fileName = fname.Substring(fname.LastIndexOf('.')+1).ToLower();
+            string[] imgType = new string[] { "gif", "jpg", "png", "bmp" };
+            int i = 0;
+            bool blean = false;
+            string message = string.Empty;
+            //判断是否为Image类型文件
+            while (i < imgType.Length)
+            {
+                if (fileName.Equals(imgType[i].ToString()))
+                {
+                    blean = true;
+                    break;
+                }
+                else if (i == (imgType.Length - 1))
+                {
+                    break;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            return blean;
+        }
+
+        public string SaveImg(HttpPostedFileBase file,string fileName,string path) {
+            string filePhysicalPath = Server.MapPath("~/Upload/" + path + fileName);
+            file.SaveAs(filePhysicalPath);
+            return "/Upload/" + path + fileName;             
+        }
     }
 }

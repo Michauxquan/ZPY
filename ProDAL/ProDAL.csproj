@@ -46,6 +46,7 @@
     <Compile Include="Mannge\M_UsersDAL.cs" />
     <Compile Include="Mannge\SystemDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserAttrs\UserImgsDAL.cs" />
     <Compile Include="UserAttrs\UserNeedsDAL.cs" />
     <Compile Include="UserAttrs\UsersFocusDAL.cs" />
   </ItemGroup>

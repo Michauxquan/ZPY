@@ -264,9 +264,9 @@ a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkT
         /// <summary>
         /// 修改用户户信息
         /// </summary>
-        public static bool UpdateM_User(string userid, string name, string roleid, string email, string mobilephone, string officephone, string jobs, string avatar, string description)
+        public static bool UpdateM_User(string userid,string avatar)
         {
-            bool bl = M_UsersDAL.BaseProvider.UpdateM_User(userid, name, roleid, email, mobilephone, officephone, jobs, avatar, description);
+            bool bl = M_UsersDAL.BaseProvider.UpdateM_User(userid, avatar); 
             return bl;
         }
         public static  bool DeleteM_User(string userid, int status) {

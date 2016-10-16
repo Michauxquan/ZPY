@@ -50,9 +50,9 @@
 .content .con .get-gold .payway~label{display: inline-block;}
 .content .con .get-gold input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 30px;display: block;}
 
-#box{ margin:20px auto; width:725px;height: 400px;overflow: auto; background:#eaeaea;overflow-x:hidden;}
+/*#box{ margin:20px auto; width:725px;height: 400px;overflow: auto; background:#eaeaea;overflow-x:hidden;}*/
 .content .con .upload h4+p{color: red;font-size: 14px;text-indent: 30px;margin-top: 10px;}
-.content .con .upload input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 290px;margin-top: 30px;display: block;}
+.content .con .upload button{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-top: 30px;display: block;}
 
 .content .con .beVip h4:not(:first-child){margin-top: 30px;}
 .content .con .beVip h4:first-child+p{color: red;text-indent: 30px;font-size: 14px;margin-top: 10px;}
@@ -66,11 +66,12 @@
 .content .con .whocame .whocame-con ul,.content .con .myfocus .myscan ul{max-height: 360px;overflow: hidden;margin-bottom: 20px;}
 .content .con .whocame .whocame-con ul li,.content .con .myfocus .myscan ul li{float: left;text-align: center;margin-right: 10px;font-size: 13px;margin-top: 10px;}
 
-#demo{ margin:20px auto; width:200px;height: 250px;overflow: auto; background:#eaeaea;overflow-x:hidden;padding-left: 20px;}
+/*#demo{ margin:20px auto; width:200px;height: 250px;overflow: auto; background:#eaeaea;overflow-x:hidden;padding-left: 20px;}*/
 .picset img{float: left;margin-right: 20px;vertical-align: top;}
 .picset img+div h4{margin-top: 20px;margin-bottom: 10px;}
 .picset>h4{margin-top: 20px;}
 .picset>p:last-child{color: red;font-size: 13px;}
+.picset button{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-top: 20px;display: block;}
 
 .weixinpay h4,.alipay h4{margin-top: 20px;margin-bottom: 20px;}
 .weixinpay p,.alipay p{margin-left: 15px;}

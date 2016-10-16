@@ -4,24 +4,7 @@ var regprice = /(^[1-9]*[1-9][0-9]*$)|(^1?\d\.\d$)|(^2[0-3]\.\d$)/;
 var regday = /^[1-9]*[1-9][0-9]*$/;
 $(function() {
     new PCAS("province3", "city3", "area3");
-    $('#test').diyUpload({
-        url: 'server/fileupload.php',
-        success: function(data) {
-            console.info(data);
-        },
-        error: function(err) {
-            console.info(err);
-        }
-    });
-    $('#as').diyUpload({
-        url: 'server/fileupload.php',
-        success: function(data) {
-            console.info(data);
-        },
-        error: function(err) {
-            console.info(err);
-        }
-    });
+    var uploader;     
     /*绑定事件 begin*/
     $('.addbtn').click(function() {
         udedit.setHeight(280);
@@ -71,6 +54,31 @@ $(function() {
                         getUserMyFocus(1);
                     }
                     break;
+                case "picset":
+                    uploader = creatUpload({
+                        id: 'as', 
+                        header:'选择头像',  
+                        sucess: function (file, response) {
+                            if (response.msgError == "") {
+                                $('.useravator').attr("src", response.imgUrl);
+                            } else {
+                                alert(response.msgError);
+                            }
+                        },
+                        UploadUrl: '/User/UserAvatarUpload',
+                        Upheader: uploader
+                    });
+                    break;
+                case "upload":
+                    uploader = creatUpload({
+                        id: 'test', 
+                        fileList: 'mulitList',
+                        filePicker: 'mulitPicker',
+                        ctlBtn: 'mulitBtn', 
+                        UploadUrl: '/User/UserImgUpload',
+                        Upheader: uploader
+                    });
+                    break;
                 case "change-msg":
                     getUserMyInfo();
                     break;
@@ -99,12 +107,13 @@ $(function() {
         });
     });
     /*绑定事件结束     */
+    getUserMyInfo();
     getUserActions('1,2,3', 1, 10);
     getUserReport();
 });
 
 function getUserReport() {
-    $.post('UserActions', { userid: $('.spuserid').data('value') },function(data) {
+    $.post('/User/GetUserReport', { userid: $('.spuserid').data('value') }, function (data) {
         if (data.item != null) {
             $('.seecount').html(data.item.SeeCount);
         }
@@ -112,7 +121,7 @@ function getUserReport() {
 }
 
 function getUserActions(type,pageindex,pagesize) {
-    $.post('UserActions', { type: type, pageIndex: pageindex, pageSize: pagesize }, function (data) {
+    $.post('/User/UserActions', { type: type, pageIndex: pageindex, pageSize: pagesize }, function (data) {
         if (data.items.length > 0) {
             var html = '';
             if (type == '2') {
@@ -284,7 +293,8 @@ function getUserDiaryDetail(autoid,classname) {
 
 function getUserMyInfo() {
     $.post('UserMyInfo', null, function (data) {
-        if (data.item!=null) {
+        if (data.item != null) { 
+            $('.useravator').attr("src", (data.item.Avatar != null && data.item.Avatar != "") ? data.item.Avatar : '/modules/images/head.png');
             $('#BHeight').val(data.item.BHeight);
             $('#BWeight').val(data.item.BWeight); 
             $('#Jobs').val(data.item.Jobs);
@@ -309,8 +319,7 @@ function saveUserInfo() {
         if ($(v).attr('checked') == 'checked') {
             myservic += $(v).val() + ',';
         }
-    });
-    console.log(myservic);
+    }); 
 $.post('SaveUserInfo', {
     bHeight:$('#BHeight option:selected').val(),
     bWeight:$('#BWeight option:selected').val(),
@@ -396,8 +405,7 @@ function saveNeedsInfo() {
     }
 }
 function savaUserNeeds(entity) {
-    $.post('SaveNeeds', { entity: JSON.stringify(entity) }, function (data) {
-        console.log(data.result);
+    $.post('SaveNeeds', { entity: JSON.stringify(entity) }, function (data) { 
         if (data.result) {
             alert('发布成功');
             if (entity.type == 0) { 

@@ -122,22 +122,13 @@ namespace ProDAL.Manage
             return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
         }
 
-        public bool UpdateM_User(string userid,string name, string roleid, string email, string mobilephone, string officephone, string jobs, string avatar, string description)
+        public bool UpdateM_User(string userid, string avatar)
         {
-            string sql = "update M_Users set Name=@Name,Email=@Email,MobilePhone=@MobilePhone," +
-                         "OfficePhone=@OfficePhone,Jobs=@Jobs ,Avatar=@Avatar ,Description=@Description ,RoleID=@RoleID " +
-                         "where UserID=@UserID ";
+            string sql = "update M_Users set Avatar=@Avatar where UserID=@UserID ";
 
             SqlParameter[] paras = {  
                                        new SqlParameter("@UserID",userid),
-                                       new SqlParameter("@Name",name),
-                                       new SqlParameter("@Email",email),
-                                       new SqlParameter("@MobilePhone",mobilephone),
-                                       new SqlParameter("@OfficePhone",officephone),
-                                       new SqlParameter("@Jobs",jobs),
-                                       new SqlParameter("@Avatar",avatar), 
-                                       new SqlParameter("@Description",description), 
-                                       new SqlParameter("@RoleID",roleid)
+                                       new SqlParameter("@Avatar",avatar)
                                    };
 
             return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
