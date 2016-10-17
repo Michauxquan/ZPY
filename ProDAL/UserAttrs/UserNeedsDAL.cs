@@ -12,14 +12,17 @@ namespace ProDAL
     {
         public static UserNeedsDAL BaseProvider = new UserNeedsDAL();
 
-        public bool CreateNeeds(string userID, string userName, int type, string title, string content, int letDays, string serviceConten, int needSex,decimal price,int needtype)
+        public bool CreateNeeds(string userID, string userName, int type, string title, string content, int letDays, string serviceConten,
+            int needSex,decimal price,int needtype,string needCity,DateTime needDate)
         {
-            string sql = @"insert into UserNeeds(UserID,UserName,Type,Status,Title,Content,LetDays,ServiceConten,CreateTime,NeedType,Price,NeedSex)" +
-                         "values(@UserID,@UserName,@Type,0,@Title,@Content,@LetDays,@ServiceConten,getdate(),@NeedType,@Price,@NeedSex)";
+            string sql = @"insert into UserNeeds(UserID,UserName,Type,Status,Title,Content,LetDays,ServiceConten,CreateTime,NeedType,Price,NeedSex,NeedDate,NeedCity)" +
+                         "values(@UserID,@UserName,@Type,0,@Title,@Content,@LetDays,@ServiceConten,getdate(),@NeedType,@Price,@NeedSex,@NeedDate,@NeedCity)";
             SqlParameter[] paras = { 
                                     new SqlParameter("@UserID",userID),
                                     new SqlParameter("@UserName",userName),
                                     new SqlParameter("@Type",type),
+                                    new SqlParameter("@NeedDate",needDate), 
+                                    new SqlParameter("@NeedCity",needCity), 
                                     new SqlParameter("@Title",title), 
                                     new SqlParameter("@Content",content),
                                     new SqlParameter("@LetDays",letDays),

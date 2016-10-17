@@ -56,6 +56,10 @@ namespace ProEntity
         /// 租赁 天数
         /// </summary>
         public int LetDays { get; set; }
+        //所需城市
+        public string NeedCity { get; set; }
+        //出发日期
+        public DateTime NeedDate { get; set; }
 
         public decimal Price { get; set; }
         public DateTime CreateTime { get; set; }

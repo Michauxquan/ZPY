@@ -102,6 +102,7 @@
     <Compile Include="Common\ExpandClass.cs" />
     <Compile Include="Common\UserAuthorize.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RFriendController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -175,6 +176,8 @@
     <Content Include="modules\css\forget.css" />
     <Content Include="modules\css\head-foot.css" />
     <Content Include="modules\css\help.css" />
+    <Content Include="modules\css\hire-detail.css" />
+    <Content Include="modules\css\hiremsg.css" />
     <Content Include="modules\css\home.css" />
     <Content Include="modules\css\iconfont\demo.css" />
     <Content Include="modules\css\iconfont\demo.html" />
@@ -269,6 +272,7 @@
     <Content Include="modules\jpaginate\jquery.paginate.js" />
     <Content Include="modules\scripts\global.js" />
     <Content Include="modules\scripts\home.js" />
+    <Content Include="modules\scripts\index.js" />
     <Content Include="modules\scripts\layout.js" />
     <Content Include="modules\scripts\register\register.js" />
     <Content Include="modules\scripts\rfriend\rfriend.js" />
@@ -432,6 +436,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="modules\images\uploader\logo.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\RFriend\UserPic.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\RFriend\HireDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\RFriend\HireMsg.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Help\Helps.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

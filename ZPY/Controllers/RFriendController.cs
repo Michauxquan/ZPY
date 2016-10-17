@@ -11,12 +11,44 @@ namespace ZPY.Controllers
     {
         //
         // GET: /RFriend/
-        public ActionResult RentFriend(int id=1)
+        public ActionResult RentFriend(int id = 1, string address = "", string agerange = "")
         {
             ViewBag.Type = id;
+            ViewBag.AgeRange = agerange;
+            var userAddress = "";
+            if (CurrentUser != null)
+            {
+               userAddress= string.IsNullOrEmpty(CurrentUser.Province)
+                        ? ""
+                        : (CurrentUser.Province + (string.IsNullOrEmpty(CurrentUser.City) ? "" : "," + CurrentUser.City)); 
+            }
+            ViewBag.UserAddress = userAddress;
+            ViewBag.Address = string.IsNullOrEmpty(address) ? userAddress : address;
             return View();
         }
 
+        public ActionResult UserPic(string id="")
+        {
+            //if (CurrentUser == null)
+            //{
+            //    Response.Write("<script>alert('暂未登陆请，登陆后再查看');location.href='/Home/Index'; </script>");
+            //    Response.End();
+            //}
+            ViewBag.UserID = id;
+            return View();
+        }
+        public ActionResult HireMsg(int sex = -1,string address="",string agerange="")
+        {
+            ViewBag.Sex = sex;
+            ViewBag.Address = address;
+            ViewBag.AgeRange = agerange;
+            return View();
+        }
+        public ActionResult HireDetail(int id)
+        {
+            ViewBag.model  = UserNeedsBusiness.FindNeedsDetail(id);
+            return View();
+        }
         public JsonResult GetUserInfoByType(int sex,int pageIndex,int pageSize,string address="",string age="")
         {
             int total = 0;
@@ -47,5 +79,34 @@ namespace ZPY.Controllers
             };
         }
 
+        public JsonResult GetUserNeedsList(int sex, int pageIndex, int pageSize, string address = "", string age = "", string cdesc = "")
+        {
+            int total = 0;
+            int pageCount = 0;
+            var list =UserNeedsBusiness.FindNeedsList("1","", pageSize, pageIndex, ref total, ref pageCount,"",sex, age,address);
+            JsonDictionary.Add("items", list);
+            JsonDictionary.Add("totalCount", total);
+            JsonDictionary.Add("pageCount", pageCount);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetImgList(string userid,int pageIndex,int pageSize,int sex=-1)
+        {
+            int total = 0;
+            int pageCount = 0;
+            var list = UserImgsBusiness.GetImgList(userid,sex, pageSize, pageIndex, ref total, ref pageCount);
+            JsonDictionary.Add("items", list);
+            JsonDictionary.Add("totalCount", total);
+            JsonDictionary.Add("pageCount", pageCount);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
     }
 }

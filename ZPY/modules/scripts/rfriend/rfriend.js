@@ -1,19 +1,24 @@
-﻿$(function () {
+﻿
+$(function () {
     new PCAS("province3", "city3", "area3");
-    getUserRecomment();
+    getUserRecomment('',1,4,$('#seachtype').data('value'));
+    getNewNeeds();
+    $('#seachInput').click(function() {
+        getUserByType(1, '', $('#seachage option:selected').val());
+    });
 });
 
-function getUserByType(pageindex) {
-    var address = "";
+function getUserByType(pageindex, address, age) { 
     if ($('.province option:selected').val() != "") {
+        address = "";
         address+=$('.province option:selected').val()+","+$('.city option:selected').val()+","+$('.district option:selected').val()
-    }
+    } 
     $.post('/RFriend/GetUserInfoByType', {
         sex: $('#seachtype').data('value'),
         pageIndex: pageindex,
         pageSize: 12,
         address: address,
-        age: $('#seachage option:selected').val()
+        age: age
     }, function (data) {
         var html = "";
         for (var i = 0; i < data.items.length; i++) {
@@ -24,42 +29,75 @@ function getUserByType(pageindex) {
                 '</div><div class="clear"></div></li>';
         }
         $('#rentfriendul').html(html);
-        $('#page').paginate({
-            count: data.pageCount,
-            start: pageindex,
-            display: 12,
-            border: false,
-            text_color: '#79B5E3',
-            background_color: 'none',
-            text_hover_color: '#2573AF',
-            background_hover_color: 'none',
-            images: false,
-            mouse: 'press',
-            onChange: function (page) {
-                getUserByType(page);
-            }
-        });
+        $('#page').html('');
+        if (data.pageCount > 0) {
+            $('#page').paginate({
+                count: data.pageCount,
+                start: pageindex,
+                display: 12,
+                border: false,
+                text_color: '#79B5E3',
+                background_color: 'none',
+                text_hover_color: '#2573AF',
+                background_hover_color: 'none',
+                images: false,
+                mouse: 'press',
+                onChange: function(page) {
+                    getUserByType(page,address,age);
+                }
+            });
+        }
     });
 }
 
-function getUserRecomment() { 
+function getUserRecomment(address,type,pagesize,sextype) { 
     $.post('/RFriend/GetUserRecommenCount', {
-        sex: $('#seachtype').data('value'),
+        sex:sextype,
         pageIndex: 1,
-        pageSize: 4,
-        address: '',
+        pageSize: pagesize,
+        address: address,
         age: '',
         cdesc: 'b.RecommendCount'
     }, function (data) {
         var html = "";
         for (var i = 0; i < data.items.length; i++) {
             var item = data.items[i];
-            html += '<li><a href="/User/UserMsg/' + item.UserID + '" title="点击查看详情"><img src="' + (item.Avatar != "" && item.Avatar != null ? item.Avatar : "/modules/images/photo1.jpg") + '" width="140px" height="180px"></a>' +
-                '<div><a href="/User/UserMsg/' + item.UserID + '">' + item.Name + '</a><br/><span>' + (item.Sex == 0 ? "帅哥" : "美女") + '</span>一枚&nbsp;<span>' + item.Age + '</span>岁&nbsp;(状态：<span>出租</span>)' +
-                '<p class="desc">' + item.MyService + '</p><p>来自：<span>' + item.Province + item.City + '</span></p><a href="/User/UserMsg/' + item.UserID + '">查看详细>></a> ' +
-                '</div><div class="clear"></div></li>';
+            if (type == 1) {
+                html += ' <li title="点击查看详情" data-value=' + item.UserID + '><a href="/User/UserMsg/' + item.UserID + '">' +
+                    '<img src="' + ((item.Avatar != "" && item.Avatar != null) ? item.Avatar : "/modules/images/photo.jpg") + '" width="220px" height="280px"></a>' +
+                    '<p>' + (item.Name != "" ? item.Name : item.LoginName) + '<br/>' + (item.Sex == 1 ? "女" : "男") + '&nbsp;' + item.Age + '岁&nbsp;' + item.Province + '</p></li>';
+            } else {
+                html += ' <li><a  href="/User/UserMsg/' + item.UserID + '"><img src="' + ((item.Avatar != "" && item.Avatar != null) ? item.Avatar : "/modules/images/photo2.jpg") + '" width="70px" height="70px"></a></li>';
+            }
         }
-        $('#rentfriendul').html(html);
-        getUserByType(1);
+        if (type == 1) {
+            $('#recommentul').html(html);
+            $(".recommend ul li a:first-child img").mouseover(function() {
+                $(this).parent().siblings("p").fadeIn(100);
+                $(this).parent().parent().css({ "outline": "1px solid #f15481", "box-shadow": "5px 5px 5px rgba(150,150,150,0.5)" });
+            }).mouseout(function() {
+                $(this).parent().siblings("p").fadeOut(100);
+                $(this).parent().parent().css({ "outline": "none", "box-shadow": "none" })
+            });
+            getUserByType(1, $('.province').data('value'), $('#seachage').data('value'));
+            getUserRecomment($('#UserCity').val(), 2, 9, $('#seachtype').data('value')==0?'1':'0');
+        } else {
+            $('#likeul').html(html);
+        }
+    });
+}
+
+
+function getNewNeeds() {
+    $.post('/User/GetNewNeeds', { type: "1,2", pageIndex: 1, pageSize: 10 }, function (data) {
+        var html = "";
+        for (var i = 0; i < data.items.length; i++) {
+            html += "<li style='cursor:pointer;' data-value='" + data.items[i].AutoID + "'>&nbsp;&nbsp;" + (i + 1) + "、" + data.items[i].Title + "</li>";
+        }
+        $('#needul').html(html);
+        $('.myscroll3').myScroll({
+            speed: 40, //数值越大，速度越慢
+            rowHeight: 38 //li的高度
+        });
     });
 }

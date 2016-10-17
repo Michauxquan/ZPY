@@ -1,19 +1,24 @@
 .recommend1{ width:900px;margin:20px auto;height:50px;margin-bottom: 10px; background: url(../images/jj.png) no-repeat;color: white;line-height: 50px;}
 
 .group{height: 30px;margin-top: 30px;width: 900px;margin: 0 auto;}
-.group .group_list1{background-color: #3093e8;width: 100px;height: 30px;line-height: 30px; color:white;text-align: center;cursor: pointer;border: none;font-size: 16px;}
-.group .group_list2{background-color: #e0e0e0;width: 100px;height: 30px;line-height: 30px; color:black;text-align: center;cursor: pointer;border: none;font-size: 16px;margin-left: 10px;}
+.group .group_list1{width: 100px;height: 30px;line-height: 30px; color:white;text-align: center;cursor: pointer;border: none;font-size: 16px;}
+.group .group_list1:hover{background-color: #3093e8;}
+.group .group_list1.hover{background-color: #3093e8;}
+
+/*.group .group_list2{background-color: #e0e0e0;width: 100px;height: 30px;line-height: 30px; color:black;text-align: center;cursor: pointer;border: none;font-size: 16px;margin-left: 10px;}*/
 .group button:hover{color:white; }
 
 .table1{width:900px;margin:0 auto;height:320px;margin-bottom: 10px; }
 .img{margin: 10px 14px 0px 0px; position: relative;width: 200px;height: 200px;display: block;}
-.img.img .button{width: 100px;text-align: center;background-color: #f22b64;color: white;height: 30px; cursor:pointer;border: none;margin-top: 30px;}
-.img a:hover{opacity: 0.7;text-decoration: none;}
+.img.img .a{width: 100px;text-align: center;background-color: #f22b64;color: white;height: 30px; 
+            cursor:pointer;border: none;padding: 5px 10px;font-size: 12px;}
+.img a:hover{opacity: 0.9;text-decoration: none;}
 .table1 .img-td{padding-left: 30px;}
 .contact{margin: 0 auto;text-align: center;width: 200px;}
 .contact1{margin-left: 6px;}
 
-.table2{width:900px;margin:0 auto;height:240px;margin-bottom: 20px;}
+.table2{width:900px;margin:0 auto;margin-bottom: 20px;}
+.table2 tr{ padding-top: 5px;height: 243px;}
 .table2 .img-td{padding-left: 26px;}
 .process p{width: 340px;margin: 46px auto 46px;font-size: 36px;color: #f15481;}
 .process ul{width: 960px;margin: 0 auto;}
@@ -23,51 +28,13 @@
 header .logo img{margin-top: 20px;}
 
 
- .page{font-size: 13px;margin-top: 150px;margin-left: -120px;width: 500px;margin: 0 auto;margin-bottom: 20px;}
+ .page{font-size: 13px;margin-top: 50px;margin-left: -120px;width: 500px;margin: 0 auto;margin-bottom: 20px;}
   .page a{width: 45px;border: 1px solid black;display: inline-block;height: 28px;text-align: center;line-height: 28px;margin-left: 10px;}
 
 .group+div{margin-bottom: 50px;}
-.tooltip2{
-    position: relative;
-    width: 200px;
+.tooltip2{position: relative;width: 200px;margin: 0 auto;z-index: 2;cursor: pointer;}
 
-    margin: 0 auto;
-    z-index: 2;
-    cursor: pointer;
-}
-
-.tooltip2 .prompt-03{
-    position: absolute;
-    z-index: 1;
-    width: 150px;
-    left: -8px;
-    top: 0px;
-    padding: 20px;
-    display: none;
-    color: #666;
-    line-height: 22px;
-
-
-}
-.tooltip2 .prompt-03{
-    position: absolute;
-    z-index: 1;
-    width: 200px;
-    left: -8px;
-    top: 0px;
-    padding: 9px 9px 0;
-    display: none;
-    cursor: auto;
-
-}
-.tooltip2 .prompt-04 .pc{
-    background: #000;
-    opacity: 0.7;
-    padding: 0;
-    color: #cc0000;
-    font-weight: bold;
-    text-align: center;
-    min-height: 0;
-
-}
+/*.tooltip2 .prompt-03{position: absolute;z-index: 1;width: 200px;left: -8px;top: 0px;padding: 20px;display: none;color: #666;line-height: 22px;}*/
+.tooltip2 .prompt-03{position: absolute;z-index: 1;width: 200px;left: -8px;top: 0px;padding: 9px 9px 0;display: none;cursor: auto;}
+.tooltip2 .prompt-04 .pc{background: #000;opacity: 0.7;padding: 0;color: #cc0000;font-weight: bold;text-align: center;min-height: 0;}
 .tooltip2 .prompt-03 h4{margin-top:5px;}

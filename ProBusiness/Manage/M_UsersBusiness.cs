@@ -92,6 +92,10 @@ namespace ProBusiness
                 }
             }
             LogBusiness.AddLoginLog(loginname, operateip,model!=null?model.UserID:"", EnumUserOperateType.Login,model!=null?model.Levelid:"");
+            if (model != null)
+            {
+                M_UsersDAL.BaseProvider.CreateUserReport(model.UserID, " IsLogin=1 ");
+            }
             return model;
         }
         public static int GetM_UserCountByLoginName(string loginname)
@@ -114,7 +118,7 @@ namespace ProBusiness
                 for (int i = 0; i < strArr.Length; i++)
                 {
                     whereSql += (i == 0
-                        ? " anda. province='"
+                        ? " and a. province='"
                         : i == 1 ? " and a.City='" : i == 2 ? " and a.District='" : "") + strArr[i] + "'";
                 }
             }

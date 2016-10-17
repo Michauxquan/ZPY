@@ -1,0 +1,9 @@
+.hire-con{width: 960px;margin: 0 auto;}
+.hire-con img{vertical-align: middle;width: 40px;margin-right: 5px;}
+.hire-con table{width: 100%;text-align: center;border-collapse: collapse;border:1px solid #ddd;margin-top: 10px;}
+.hire-con table thead{line-height: 42px;}
+.hire-con table tbody tr{font-size: 14px;line-height: 50px;}
+.hire-con table tbody tr:nth-child(2n-1){background: #efefef;padding-top: 10px;}
+.hire-con table tbody tr td a:visited{color: black;}
+.hire-con table tbody tr td a:hover{color: red;text-decoration: underline;}
+.hire-con .page{margin-left: 100px;}

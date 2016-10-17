@@ -119,7 +119,8 @@
         <p><input type="button" onclick="saveNeedsInfo()" value="确定"/></p>
     </div>
     <div class="navcontent user-msg">
-        <img class="useravator" src="" alt="头像" width="120px">
+        <span style="width:120px; height: 120px; float: left; margin-right: 20px;"><img style="border-radius: 50%;width:120px;height:120px;display:inline-block;" class="useravator" src="" alt="头像" width="120px">
+            </span>
         <div class="detail">
             <p><span class="spuserid" data-value="@(CurrentUser.UserID)"><a href="/User/UserMsg/@(CurrentUser.UserID)" style="cursor: pointer;">@(CurrentUser.LoginName)</a></span>金币<img src="/modules/images/credit.png"><strong>@(CurrentUser.Account)</strong>个
             </p>
@@ -189,7 +190,8 @@
         <input type="button"  value="提交"/>
     </div>
     <div class="navcontent whocame" style="display: none;">
-        <img class="useravator" src="" alt="头像" width="120px">
+        <span style="width:120px; height: 120px; float: left; margin-right: 20px;"><img style="border-radius: 50%;width:120px;height:120px;display:inline-block;" class="useravator" src="" alt="头像" width="120px">
+            </span>
         <div class="detail">
             <p><span><a href="/User/UserMsg/@(CurrentUser.UserID)" style="cursor: pointer;">@(CurrentUser.LoginName)</a></span>金币<img src="/modules/images/credit.png"><strong>@(CurrentUser.Account)</strong>个
             </p>
@@ -207,24 +209,28 @@
         <div id="page1"></div>
     </div>
     <div class="navcontent myfocus" style="display: none;">
-        <img class="useravator" src="" alt="头像" width="120px">
+        <span style="width:120px; height: 120px; float: left; margin-right: 20px;"><img style="border-radius: 50%;width:120px;height:120px;display:inline-block;" class="useravator" src="" alt="头像" width="120px">
+            </span>
         <div class="detail">
             <p><span><a href="/User/UserMsg/@(CurrentUser.UserID)" style="cursor: pointer;">@(CurrentUser.LoginName)</a></span>金币<img src="/modules/images/credit.png"><strong>@(CurrentUser.Account)</strong>个
             </p>
             <p>访问人数<span  class="seecount">0</span></p>
-            <p>自我介绍<br/><p style="font-size: 12px;"> &nbsp; &nbsp;@(CurrentUser.TalkTo)</p></p>
+            <p>自我介绍<br/>
+                <p style="font-size: 12px;"> &nbsp; &nbsp;@(CurrentUser.TalkTo)</p>
+            </p>
         </div>
         <div class="clear"></div>
         <div class="myscan">
             <h4>我的关注</h4>
-            <ul id="myfocusul">  </ul>
+            <ul id="myfocusul"> </ul>
             <div class="clear"></div>
         </div>
         <div id="page2">
         </div>
     </div>
     <div class="navcontent picset" style="display: none;">
-        <img class="useravator" src="" width="90px">
+       <span style="width:120px; height: 120px; float: left; margin-right: 20px;"><img style="border-radius: 50%;width:120px;height:120px;display:inline-block;" class="useravator" src="" alt="头像" width="120px">
+            </span>
         <div>
             <h4>当前我的头像</h4>
             <p>如果您还没有设置自己的头像，系统会显示为默认的头像，您需要自己上传一张新照片来作为自己的个人头像。</p>

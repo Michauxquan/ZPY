@@ -46,7 +46,7 @@ namespace ProBusiness
 
             }
             DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a left join m_users b  on a.UserID=b.UserID ",
-                 "a.AutoID,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
+                 "a.AutoID,a.NeedDate,a.NeedCity,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
                 out totalCount, out pageCount);
             List<UserNeeds> list = new List<UserNeeds>();
             foreach (DataRow dr in dt.Rows)
@@ -71,7 +71,7 @@ namespace ProBusiness
                 sqlwhere += " and a.Type in(" + type+")";
             }
             DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a left join m_users b  on a.UserID=b.UserID left join m_users c on a.InviteID=c.UserID ",
-                 "a.AutoID,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar ,c.Avatar as InviteAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
+                 "a.AutoID,a.NeedDate,a.NeedCity,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar ,c.Avatar as InviteAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
                 out totalCount, out pageCount);
             List<UserNeeds> list = new List<UserNeeds>();
             foreach (DataRow dr in dt.Rows)
@@ -105,7 +105,7 @@ namespace ProBusiness
          public static bool CreateNeeds(UserNeeds needs,string operateip)
         {
             var result= UserNeedsDAL.BaseProvider.CreateNeeds(needs.UserID, needs.UserName, needs.Type, needs.Title,
-                needs.Content, needs.LetDays, needs.ServiceConten, needs.NeedSex, needs.Price, needs.NeedType);
+                needs.Content, needs.LetDays, needs.ServiceConten, needs.NeedSex, needs.Price, needs.NeedType,needs.NeedCity,needs.NeedDate);
             if (result && needs.Type==0)
              {
                  LogBusiness.AddOperateLog(needs.UserID,needs.UserName,needs.UserLevelID,"","",EnumUserOperateType.SendLog, 

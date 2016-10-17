@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "UserPic";
+}
+<link rel="stylesheet" type="text/css" href="/modules/css/userpic.css">
+
+<div class="main1">
+        <!-- 租友相册-->
+    <div>
+    <div class="recommend1">
+        <span style="padding-left: 20px; font-size: 25px;">租友相册</span>
+    </div>
+    <div class="group">
+        <button class="group_list1 hover" data-value="-1">个人展示</button>
+        <button class="group_list1" data-value="1">美女照片</button>
+        <button class="group_list1" data-value="0">帅哥照片</button>
+        <button class="group_list1" data-value="2">上传照片</button>
+    </div> 
+    <div class="table2" style="margin-top: 5px;">
+        <table class="imgtable"> </table>
+        </div>
+        <input type="text" hidden="hidden" style="display:none;" value="@ViewBag.UserID" id="UserID"/>
+    </div>
+</div>
+<!--主体 结束 -->
+<!-- 分页-->
+<div class="imgPage"> </div>
+           
+<script type="text/javascript">
+    $(function() {
+        $('.group_list1').each(function(i, v) {
+            $(v).click(function() {
+                if (!$(v).hasClass('hover')) {
+                    $('.group_list1').removeClass('hover');
+                    $(v).addClass('hover');
+                    if ($(v).data('value') != "2") {
+                        GetuserImg(1, $(v).data('value'));
+                    }
+                }
+            });
+        });
+        GetuserImg(1, $('.group_list1.hover').data('value'));
+    });
+
+    function GetuserImg(pageIndex, sex) {
+        $.post('/RFriend/GetImgList', {
+            userid: $('#UserID').val(),
+            sex: sex,
+            pageIndex: pageIndex,
+            pageSize: 12
+        }, function(data) {
+            var html = '';
+            for (var i = 0; i < data.items.length; i++) {
+                if (i % 4 == 0) {
+                    html += (i > 0 ? "</tr>" : "") + '<tr class="img">';
+                }
+                html += '<td class="img-td"><div class="consignee tooltip2">' +
+                    '<a href="#"><img src="' + (data.items[i].Avatar != "" && data.items[i].Avatar != null ? data.items[i].Avatar : "/moudles/images/tupian.png") + '" width="200" alt="#"></a>' +
+                    '<div class="prompt-03 prompt-04" style="display: none;"><div class="pc">' +
+                    '<div style="width: 150px; height: 240px; margin: -10px auto; color: white; text-align: center">' +
+                    '<h4 style="margin: 0 auto; padding-top: 80px;"> ' + data.items[i].Name + '</h4><h4>' + data.items[i].Age + ' 岁</h4>';
+                if (sex > -1) {
+                    html += '<h4>' + data.items[i].ImgCount + '张照片</h4><br/><a class="a" data-id="'+data.items[i].UserID+'"  href="javascript:void(0)" >查看所有</a>';
+                } else {
+                    html += '<h4>' + data.items[i].ImgCount + '张照片</h4><br/><a class="a" href="/User/UserMsg/' + data.items[i].UserID + '" value=" 查看资料">查看资料</a>';
+                }
+                html += '</div></div></div></div></td>';
+            }
+           
+            console.log(html);
+            $('.imgtable').html(html);
+            if (sex > -1) { $('.img-td a').click(function() {
+                GetImgAll($(this).data('id'),-1);
+            }) }
+            $('#imgPage').paginate({
+                count: data.pageCount,
+                start: pageIndex,
+                display: 12,
+                border: false,
+                text_color: '#79B5E3',
+                background_color: 'none',
+                text_hover_color: '#2573AF',
+                background_hover_color: 'none',
+                images: false,
+                mouse: 'press',
+                onChange: function(page) {
+                    GetuserImg(page, sex);
+                }
+            });
+            $('div.tooltip2').mouseover(function() {
+                $(this).find(".prompt-03").show();
+            }).mouseout(function() {
+                $(this).find(".prompt-03").hide();
+            });
+        });
+    }
+
+    function GetImgAll(userid, value) {
+        $('.group_list1').each(function (i, v) { 
+            if ($(v).data('value')==value) {$(v).click();}
+        });
+        $('#UserID').val(userid);
+    }
+</script>

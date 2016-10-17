@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "HireDetail";
+    var model = (ProEntity.UserNeeds)ViewBag.Model;
+}
+    <link rel="stylesheet" type="text/css" href="/modules/css/hire-detail.css">
+<div class="hire-detail">
+    <h3>聘请详情<a href="" title="免费发布聘请/出租信息">免费发布聘请/出租信息</a></h3>
+    <div class="userpic">
+        <img src="@(!string.IsNullOrEmpty(model.UserAvatar)?model.UserAvatar:"/modules/images/photo.jpg")" alt="用户头像" width="220" height="280"><br/>
+        <span>@(model.UserName)</span>
+    </div>
+    <div class="hire-content">
+        <h4>@(model.Title)</h4>
+        <table border="1" cellpadding="55" cellspacing="55">
+            <tr><td>性别要求:</td><td>@(model.NeedSex==0?"男":"女")</td></tr>
+            <tr><td>聘请城市:</td><td>@(model.NeedCity)</td></tr>
+            <tr><td>聘请日期:</td><td>@(model.NeedDate.ToString("yyyy-MM-dd hh:mm:ss"))</td></tr>
+            <tr><td>聘请天数:</td><td>@(model.LetDays.ToString()+(model.NeedType == 1 ? "年" : model.Price == 2 ? "季度" : model.Price == 3 ? "月" : model.Price == 4 ? "周" : model.Price == 5 ? "天" : "小时"))</td></tr>
+            <tr><td>报酬:</td><td> @(model.NeedType == 7 ? "待议" : (
+                   model.Price + "/" + (model.NeedType == 1 ? "年" : model.Price == 2 ? "季度" : model.Price == 3 ? "月" : model.Price == 4 ? "周" : model.Price == 5 ? "天" : "小时")
+                   ))</td></tr>
+            <tr><td>发布时间:</td><td>@(model.CreateTime.ToString("yyyy-MM-dd hh:mm:ss"))</td></tr>
+            <tr><td>其他说明:</td><td>@(model.Content)</td></tr>
+        </table>
+        <a href="/User/UserMsg/@(model.UserID)" title="马上联系ta">马上联系ta>></a>
+    </div>
+    <div class="clear"></div>
+</div>

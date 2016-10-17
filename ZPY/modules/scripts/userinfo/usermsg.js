@@ -49,6 +49,10 @@ function getNewNeeds() {
             html += "<li style='cursor:pointer;' data-value='" + data.items[i].AutoID + "'>&nbsp;&nbsp;" + (i+1) + "、" + data.items[i].Title + "</li>";
         }
         $('#needul').html(html);
+        $('.myscroll3').myScroll({
+            speed: 40, //数值越大，速度越慢
+            rowHeight: 38 //li的高度
+        });
     });
 }
 

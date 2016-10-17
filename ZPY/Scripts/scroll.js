@@ -1,6 +1,6 @@
 // JavaScript Document
 (function($){
-	$.fn.myScroll = function(options){
+    $.fn.myScroll = function (options) {
 	//默认配置
 	var defaults = {
 		speed:40,  //滚动速度,值越大速度越慢

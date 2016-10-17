@@ -130,23 +130,25 @@ function getUserActions(type,pageindex,pagesize) {
                     html += '<li data-value="' + item.SeeID + '"><a href="/User/UserMsg/' + item.SeeID + '"><img src="' + (item.SeeAvatar != null && item.SeeAvatar != "" ? item.SeeAvatar : "/modules/images/photo4.jpg") + '" width="61" height="73"><br/>' +
                         '<span>' + item.SeeName + '</span><br/><i>' + getdiff(item.CreateTime, true) + '</i>前</a></li>';
                 } 
-                $('#whocameul').html(html);
-                $('#whocameul').
-                $('#page1').paginate({
-                    count: data.totalCount,
-                    start: 1,
-                    display: pagesize,
-                    border: false,
-                    text_color: '#79B5E3',
-                    background_color: 'none',
-                    text_hover_color: '#2573AF',
-                    background_hover_color: 'none',
-                    images: false,
-                    mouse: 'press',
-                    onChange: function (page) {
-                        getUserActions(type, page, pagesize);
-                    }
-                });
+                $('#whocameul').html(html); 
+                $('#page1').html('');
+                if (data.pageCount > 0) {
+                    $('#page1').paginate({
+                        count: data.totalCount,
+                        start: 1,
+                        display: pagesize,
+                        border: false,
+                        text_color: '#79B5E3',
+                        background_color: 'none',
+                        text_hover_color: '#2573AF',
+                        background_hover_color: 'none',
+                        images: false,
+                        mouse: 'press',
+                        onChange: function(page) {
+                            getUserActions(type, page, pagesize);
+                        }
+                    });
+                }
             } else {
                 for (var i = 0; i < data.items.length; i++) {
                     var item = data.items[i];
@@ -173,22 +175,25 @@ function getUserMyFocus(pageindex) {
                 html += '<li data-value="' + item.SeeID + '"><a href="/User/UserMsg/' + item.FocusID + '"><img src="' + (item.FocusAvatar != null && item.FocusAvatar != "" ? item.FocusAvatar : "/modules/images/photo4.jpg") + '" width="61" height="73"><br/>' +
                     '<span>' + item.FocusName + '</span></a></li>';
             }
-            $('#myfocusul').html(html); 
-            $('#page2').paginate({
-                count: data.totalCount,
-                start: 1,
-                display: 10,
-                border: false,
-                text_color: '#79B5E3',
-                background_color: 'none',
-                text_hover_color: '#2573AF',
-                background_hover_color: 'none',
-                images: false,
-                mouse: 'press',
-                onChange: function(page) {
-                    getUserActions(type, page, pagesize);
-                }
-            });
+            $('#myfocusul').html(html);
+            $('#page2').html('');
+            if (data.pageCount > 0) {
+                $('#page2').paginate({
+                    count: data.totalCount,
+                    start: 1,
+                    display: 10,
+                    border: false,
+                    text_color: '#79B5E3',
+                    background_color: 'none',
+                    text_hover_color: '#2573AF',
+                    background_hover_color: 'none',
+                    images: false,
+                    mouse: 'press',
+                    onChange: function(page) {
+                        getUserActions(type, page, pagesize);
+                    }
+                });
+            }
         }
     });
 }
@@ -205,21 +210,24 @@ function getUserDiary(pageindex) {
             $('#mydiary li a').click(function () {
                 getUserDiaryDetail($(this).data('value'),'adddiary');
             });
-            $('#pagediary').paginate({
-                count: data.pageCount,
-                start: 1,
-                display: 10,
-                border: false,
-                text_color: '#79B5E3',
-                background_color: 'none',
-                text_hover_color: '#2573AF',
-                background_hover_color: 'none',
-                images: false,
-                mouse: 'press',
-                onChange: function (page) {
-                    getUserDiary(page);
-                }
-            });
+            $('#pagediary').html('');
+            if (data.pageCount > 0) {
+                $('#pagediary').paginate({
+                    count: data.pageCount,
+                    start: 1,
+                    display: 10,
+                    border: false,
+                    text_color: '#79B5E3',
+                    background_color: 'none',
+                    text_hover_color: '#2573AF',
+                    background_hover_color: 'none',
+                    images: false,
+                    mouse: 'press',
+                    onChange: function(page) {
+                        getUserDiary(page);
+                    }
+                });
+            }
         }
     });
 }
@@ -237,22 +245,25 @@ function getNeedsList(pageindex, type) {
             $('#'+type+'thead').html(html);
             $('#'+type+'thead tr a').click(function() {
                 getUserDiaryDetail($(this).data('value'), type);
-            }); 
-            $('#' + type + 'page').paginate({
-                count: data.pageCount,
-                start: 1,
-                display: 10,
-                border: false,
-                text_color: '#79B5E3',
-                background_color: 'none',
-                text_hover_color: '#2573AF',
-                background_hover_color: 'none',
-                images: false,
-                mouse: 'press',
-                onChange: function (page) {
-                    getNeedsList(page, type);
-                }
-            }); 
+            });
+            $('#' + type + 'page').html('');
+            if (data.pageCount > 0) {
+                $('#' + type + 'page').paginate({
+                    count: data.pageCount,
+                    start: 1,
+                    display: 10,
+                    border: false,
+                    text_color: '#79B5E3',
+                    background_color: 'none',
+                    text_hover_color: '#2573AF',
+                    background_hover_color: 'none',
+                    images: false,
+                    mouse: 'press',
+                    onChange: function(page) {
+                        getNeedsList(page, type);
+                    }
+                });
+            }
         }
     });
 }
@@ -431,47 +442,5 @@ function savaUserNeeds(entity) {
             }
         }
     }, "json");
-}
-
-/** 
- * @param {} btime 
- * @param {} etime 
- * @param {} type  是否时间戳
- * @returns {} 
- */
-function getdiff(btime,type,etime) {  
-    btime = btime.replace("年", "/").replace("月", "/").replace("日", "");
-    if (type) { 
-        btime = parseInt(btime.replace("/Date(", '').replace(")/", ''));
-    }
-    var days = 0;
-    var edntime = new Date();
-    if (etime != null && etime!='') {
-        etime = etime.replace("年", "/").replace("月", "/").replace("日", "");
-        if (type) {
-            etime = parseInt(etime.replace("/Date(", '').replace(")/", ''));
-        }
-        edntime = new Date(etime);
-    } 
-    days = edntime.getDate() - new Date(btime).getDate(); 
-    if (days < 1) {
-        days = edntime.getHours() - new Date(btime).getHours();
-        if (days < 1) {
-            days = (edntime.getMinutes() - new Date(btime).getMinutes()) + '分钟';
-        } else {
-            days=days + '小时';
-        }
-    } else {
-        days = days + '天';
-    }
-    return days;
-}
-
-function convertdate(btime,type) {
-    btime = btime.replace("年", "/").replace("月", "/").replace("日", "");
-    if (type) {
-        btime = parseInt(btime.replace("/Date(", '').replace(")/", ''));
-    }
-    return new Date(btime).format("yyyy-MM-dd");
 }
 

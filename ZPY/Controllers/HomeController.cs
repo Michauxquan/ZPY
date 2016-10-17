@@ -57,6 +57,10 @@ namespace ZPY.Controllers
                 cook["status"] = "0";
                 Response.Cookies.Add(cook);
             }
+            if (CurrentUser!=null)
+            {
+                M_UsersBusiness.CreateUserReport(CurrentUser.UserID, CurrentUser.LoginName, " IsLogin=0 ", OperateIP);
+            }
             Session["Manager"] = null;
             return Redirect("/Home/Index");
         }

@@ -1,0 +1,16 @@
+.hire-detail{width: 960px;margin:0 auto;margin-bottom: 20px;}
+.hire-detail h3{margin-top: 10px;border-bottom: 1px solid #eee;padding-bottom: 5px;font-weight: normal;}
+.hire-detail h3 a{float: right;font-size: 14px;font-weight: normal;line-height: 30px;color: red;}
+.hire-detail h3 a:visited{color: #f62;}
+.hire-detail h3 a:hover{color: red;text-decoration: underline;}
+.hire-detail .userpic,.hire-detail .hire-content{float: left;}
+.hire-detail .userpic{text-align: center;margin-left: 40px;}
+.hire-detail .userpic img{margin-top: 15px;margin-bottom: 10px;}
+.hire-detail .hire-content{margin-left: 20px;margin-top: 20px;width: 680px;}
+.hire-detail .hire-content h4{padding-bottom: 5px;border-bottom: 1px solid #eee;width:100%;}
+.hire-detail .hire-content table{width: 100%;border-collapse: collapse;border:1px solid #eaeaea;margin-top: 10px;}
+.hire-detail .hire-content table tr{line-height: 32px;}
+.hire-detail .hire-content table tr td{padding-left: 10px;border:1px solid #eaeaea;}
+.hire-detail .hire-content table tr td:first-child{width: 100px;text-align: right;padding-right: 20px;}
+.hire-detail .hire-content>a{font-size: 14px;line-height: 30px;color: #f62;}
+.hire-detail .hire-content>a:hover{text-decoration: underline;color: red;}

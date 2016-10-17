@@ -1,8 +1,11 @@
 .advertisement{width: 960px;margin: 0 auto;margin-top:20px;}
 .like,.hire{margin-top: 20px!important;}
-.hire ul li{display: inline-block;width: 210px;height: 25px !important;line-height: 25px !important;}
+.hire ul li{display: inline-block;width: 210px;height: 23px !important;line-height: 23px !important;}
 .hire ul li:hover{ color: #007cc1;}
-.like ul li{float: left;}
+.hire .myscroll3{height: 300px;overflow: hidden;margin-top: 15px;}
+
+.like ul li{display: inline-block;}
+.like ul li img:hover{outline:1px solid #f15481;} 
 .recharge ul li{font-size: 14px;}
 .recharge ul li label{margin-right: 13.4px;cursor: pointer;}
 .recharge ul li input[type="text"]{width: 60px;text-align: center;margin-right: 5px;}
