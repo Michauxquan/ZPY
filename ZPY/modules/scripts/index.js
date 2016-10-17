@@ -63,6 +63,7 @@ ObjetJS.getUserRecomment = function () {
         });
         ObjetJS.GetNewUser();
         ObjetJS.GetUserAction();
+        ObjetJS.GetNeedList();
     });
 }
 ObjetJS.GetNewUser= function() { 
@@ -99,6 +100,22 @@ ObjetJS.GetUserAction=function (){
                     + '</span>前</small></li>';
             }
             $('#userActionUl').html(html);
+            $('.myscroll').myScroll({
+                speed: 40, //数值越大，速度越慢
+                rowHeight: 42 //li的高度
+            });
+        }
+    });
+}
+ObjetJS.GetNeedList = function () {
+    $.post('/RFriend/GetUserNeedsList', { type: "1,2", pageIndex: 1, pageSize: 10 ,sex:-1}, function (data) {
+        if (data.items.length > 0) {
+            var html = '';
+            for (var i = 0; i < data.items.length; i++) {
+                var item = data.items[i];
+                html += ' <li><span><a href="/User/UserMsg/'+item.UserID+'">' + item.UserName+ '</a></span>[' + (item.Type == 1 ? "求租" : "出租") + ']<span><a href="/RFriend/HireDetail'+item.AutoID+'">' + item.Title + '</a></span></li>'
+            }
+            $('#userNeesdul').html(html);
             $('.myscroll').myScroll({
                 speed: 40, //数值越大，速度越慢
                 rowHeight: 42 //li的高度

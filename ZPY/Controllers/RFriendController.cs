@@ -79,11 +79,11 @@ namespace ZPY.Controllers
             };
         }
 
-        public JsonResult GetUserNeedsList(int sex, int pageIndex, int pageSize, string address = "", string age = "", string cdesc = "")
+        public JsonResult GetUserNeedsList(int sex, int pageIndex, int pageSize,string type="1",string address = "", string age = "", string cdesc = "")
         {
             int total = 0;
             int pageCount = 0;
-            var list =UserNeedsBusiness.FindNeedsList("1","", pageSize, pageIndex, ref total, ref pageCount,"",sex, age,address);
+            var list = UserNeedsBusiness.FindNeedsList(type, "", pageSize, pageIndex, ref total, ref pageCount, "", sex, age, address);
             JsonDictionary.Add("items", list);
             JsonDictionary.Add("totalCount", total);
             JsonDictionary.Add("pageCount", pageCount);
