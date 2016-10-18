@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "用户注册";
+}
+<link rel="stylesheet" type="text/css" href="/modules/css/register.css">
+<link type="text/css" rel="stylesheet" href="/modules/jedate/skin/jedate.css">
+<script type="text/javascript" src="/modules/jedate/jedate.js"></script>
+<div class="advertisement"><img src="/modules/images/ad2.jpg" width="960px" height="80px" alt="广告"></div>
+<div class="contentf">
+    <p>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="username"/><span></span></p>
+    <p>登录邮箱：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email" id="email" name="email"/><span>*不能为空</span></p>
+    <p>手机号码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="mobilephone" type="text"/></p>
+    <p>Q&nbsp;Q号码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="qqCode" type="text"/><span>*不能为空</span></p>
+    <p class="sex">您的性别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" name="sex" data-value="0">男</input></label>
+        <label><input type="radio" name="sex" data-value="1">女</input></label><span>一旦选择不能更改</span></p>
+    <p>婚姻状况：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="marry"><option value="0">未婚</option><option value="1">已婚</option></select>
+    </p>
+    <p>出生日期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="userbirthday" style="line-height: 25px; padding-left: 5px;" type="text" placeholder="YYYY-MM-DD"
+                       onclick="jeDate({ dateCell: '#userbirthday', maxDate: jeDate.now(0), isClear: false, isinitVal: true, initAddVal: [7], format: 'YYYY-MM-DD' });"</p>
+    <p>所在地区：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name="province3" class="province"></select>&nbsp;
+        <select name="city3" class="city"></select>&nbsp;<select name="area3" class="areaqu"></select>
+        <span>*不能为空</span>
+    </p>
+    <p>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="education">
+            <option value="小学">小学</option>
+            <option value="初中">初中</option>
+            <option value="高中">高中</option>
+            <option value="专科">专科</option>
+            <option value="本科">本科</option>
+            <option value="研究生">研究生</option>
+            <option value="博士">博士</option>
+        </select>
+    </p>
+    <p>身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="bheight"><option>140-150</option>
+            <option value="150-160">150-160</option>
+            <option value="160-170">160-170</option>
+            <option value="170-180">170-180</option>
+            <option value="180-190">180-190</option>
+            <option value="190-200">190-200</option></select>
+    </p>
+    <p>我的体重：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="BWeight">
+            <option value="40kg-50kg">40kg-50kg</option>
+            <option value="50kg-60kg">50kg-60kg</option>
+            <option value="60kg-70kg">60kg-70kg</option>
+            <option value="70kg-80kg">70kg-80kg</option>
+            <option value="80kg-90kg">80kg-90kg</option>
+            <option value="90kg-100kg">90kg-100kg</option>
+            <option value="100kg-110kg">100kg-110kg</option>
+            <option value="110kg-120kg">110kg-120kg</option>
+            <option value="120kg-130kg">120kg-130kg</option>
+    </select></p> 
+    <p>我的月薪：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="BPay">
+        <option value="1000-3000">1000-3000</option>
+        <option value="3000-5000">3000-5000</option>
+        <option value="5000-8000">5000-8000</option>
+        <option value="8000-10000">8000-10000</option>
+        <option value="10000-15000">10000-15000</option>
+        <option value="15000-25000">15000-25000</option>
+        <option value="25000+">25000+</option>
+    </select></p>
+    <p>我的职业：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="Jobs">
+        <option value="工人">工人</option>
+        <option value="干部">干部</option>
+        <option value="军人">军人</option>
+        <option value="农民">农民</option>
+        <option value="教师">教师</option>
+        <option value="学生">学生</option>
+        <option value="技术">技术</option>
+        <option value="企管">企管</option>
+        <option value="" selected="">职员</option>
+        <option value="党政">党政</option>
+        <option value="机关">机关</option>
+        <option value="法律">法律</option>
+        <option value="环卫">环卫</option>
+        <option value="服务">服务</option>
+        <option value="娱乐">娱乐</option>
+        <option value="餐饮">餐饮</option>
+        <option value="学术">学术</option>
+        <option value="出版">出版</option>
+        <option value="媒体">媒体</option>
+        <option value="文化">文化</option>
+        <option value="电脑">电脑</option>
+        <option value="体育">体育</option>
+        <option value="自由">自由</option>
+        <option value="国企">国企</option>
+        <option value="私企">私企</option>
+        <option value="工业">工业</option>
+        <option value="农牧">农牧</option>
+        <option value="渔业">渔业</option>
+        <option value="商业">商业</option>
+        <option value="作家">作家</option>
+        <option value="科研">科研</option>
+        <option value="艺术">艺术</option>
+        <option value="公安">公安</option>
+        <option value="邮电">邮电</option>
+        <option value="交通">交通</option>
+        <option value="医疗">医疗</option>
+        <option value="金融">金融</option>
+        <option value="证券">证券</option>
+        <option value="广告">广告</option>
+        <option value="主妇">主妇</option>
+        <option value="信息">信息</option>
+        <option value="客服">客服</option>
+        <option value="退休">退休</option>
+        <option value="无业">无业</option>
+        <option value="其他">其他</option>
+    </select></p>
+    <p>我的自评：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="MyContent">
+        <option value="沉鱼落雁">沉鱼落雁</option>
+        <option value="娇羞可人">娇羞可人</option>
+        <option value="寂寞难耐">寂寞难耐</option>
+        <option value="热情似火">热情似火</option>
+        <option value="英姿酷爽">英姿酷爽</option>
+        <option value="二次元">二次元</option>
+        <option value="闷骚文艺">闷骚文艺</option>
+        <option value="邪恶搞怪">邪恶搞怪</option>
+        <option value="英俊潇洒">英俊潇洒</option>
+        <option value="淳朴憨厚">淳朴憨厚</option>
+        <option value="中二青年">中二青年</option>
+        <option value="萎靡低沉">萎靡低沉</option>
+        <option value="朝朝少年">朝朝少年</option>
+        <option value="棒棒糖叔叔">棒棒糖叔叔</option>
+    </select></p>    
+    
+    <p>
+        <div style="float: left;">自我介绍：&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div style="float: left;">
+            <textarea style="width: 375px; height: 100px; resize: none;" id="userTalkTo"></textarea>
+            <span style="color: #777; font-size: 12px; margin-left: 20px;">*不能为空</span>
+        </div>
+        <div class="clear"></div>
+    </p>
+    <p>
+        <div style="float: left;">提供服务：&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div style="float: left;"><input class="myservice" type="checkbox" value="见父母亲友">见父母亲友</input>
+            <input class="myservice" type="checkbox" value="可接受牵手">可接受牵手</input>
+            <input class="myservice" type="checkbox" value="必要可接吻">必要可接吻</input>
+            <input class="myservice" type="checkbox" value="必要时可拥抱">必要时可拥抱</input>
+            <input class="myservice" type="checkbox" value="社交聚会">社交聚会</input><br/>
+            <input class="myservice" type="checkbox" value="逛街购物">逛街购物</input>
+            <input class="myservice" type="checkbox" value="唱歌看电影">唱歌看电影</input>
+            <input class="myservice" type="checkbox" value="旅游陪同">旅游陪同</input>
+            <input class="myservice" type="checkbox" value="接送服务">接送服务</input>
+            <input class="myservice" type="checkbox" value="电话叫醒服务">电话叫醒服务</input>
+            <input class="myservice" type="checkbox" value="聊天服务">聊天服务</input><br/>
+            <input class="myservice" type="checkbox" value="其他服务协商">其他服务协商</input>
+        </div>
+        <div class="clear"></div>
+    </p> 
+    <p><input class="btnregister" type="button" value="注册基本信息"/>
+    </p>
+</div> 
+<script type="text/javascript" src="/modules/scripts/register/partregister.js"> </script>

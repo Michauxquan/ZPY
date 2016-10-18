@@ -241,12 +241,15 @@ a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkT
                 musers.OfficePhone, musers.Jobs, musers.Avatar, musers.Description, musers.CreateUserID,
                 musers.Sex.Value,musers.BHeight,musers.Education,musers.IsMarry.Value,musers.Province,musers.City,
                 musers.District,musers.QQ);
-            if (bl)
-            {
-                return userid;
-            }
+            return bl ? userid : "";
+        }
 
-            return "";
+        public static string CreateM_UserBase(string loginname, string loginpwd)
+        {
+            string userid = Guid.NewGuid().ToString();
+            string userPwd = ProBusiness.Encrypt.GetEncryptPwd(loginpwd, loginname);
+            bool bl = M_UsersDAL.BaseProvider.CreateM_UserBase(userid, loginname, userPwd);
+            return bl ? userid : "";
         }
 
         public static bool CreateUserReport(string seeid, string seename, string keyName, string operateip, string userid = "", string username = "", string levelid="")

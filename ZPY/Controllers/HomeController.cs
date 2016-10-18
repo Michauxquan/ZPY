@@ -24,14 +24,17 @@ namespace ZPY.Controllers
         {
             return View();
         }
-
+        public ActionResult Register2()
+        {
+            return View();
+        }
         public ActionResult Login()
         {
             if (CurrentUser != null)
             {
                 return Redirect("/User/UserInfo");
             }
-            HttpCookie cook = Request.Cookies["intfactory_system"];
+            HttpCookie cook = Request.Cookies["zpy"];
             if (cook != null)
             {
                 if (cook["status"] == "1")
@@ -62,11 +65,12 @@ namespace ZPY.Controllers
                 M_UsersBusiness.CreateUserReport(CurrentUser.UserID, CurrentUser.LoginName, " IsLogin=0 ", OperateIP);
             }
             Session["Manager"] = null;
+            Session["PartManage"] = null;
             return Redirect("/Home/Index");
         }
 
         /// <summary>
-        /// 管理员登录
+        /// 用户登录
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="pwd"></param>
@@ -79,18 +83,27 @@ namespace ZPY.Controllers
             ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(userName, pwd, operateip, out result);
             if (model != null)
             {
-                HttpCookie cook = new HttpCookie("zpy");
-                cook["username"] = userName;
-                cook["pwd"] = pwd;
-                if (remember == "1")
+                if (model.Status == 0)
                 {
-                    cook["status"] = remember;
+                    Session["PartManage"] = model;
+                    Response.Write("<script>alert('还没有注册完成,请继续注册');location.href='/Home/Register2'; </script>");
+                    Response.End(); 
                 }
-                cook.Expires = DateTime.Now.AddDays(7);
-                Response.Cookies.Add(cook);
-                CurrentUser = model;
-                Session["Manager"] = model;                
-                bl = true;
+                else
+                {
+                    HttpCookie cook = new HttpCookie("zpy");
+                    cook["username"] = userName;
+                    cook["pwd"] = pwd;
+                    if (remember == "1")
+                    {
+                        cook["status"] = remember;
+                    }
+                    cook.Expires = DateTime.Now.AddDays(7);
+                    Response.Cookies.Add(cook);
+                    CurrentUser = model;
+                    Session["Manager"] = model;
+                    bl = true;
+                }
             }
             JsonDictionary.Add("result", bl);
             return new JsonResult
@@ -109,8 +122,33 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public JsonResult UserRegister(string loginname,string pwd)
+        {
 
-        public JsonResult UserRegister(string entity)
+            var result = !string.IsNullOrEmpty(ProBusiness.M_UsersBusiness.CreateM_UserBase(loginname, pwd));
+            if (result)
+            {
+                var outresult = 0;
+                ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(loginname, pwd,
+                    OperateIP, out outresult);
+                if (model != null)
+                {
+                    Session["PartManage"] = model;
+                }
+                else
+                { 
+                    Response.Write("<script>location.href='/Home/Register2'; </script>");
+                    Response.End(); 
+                }
+            } 
+            JsonDictionary.Add("result", result);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            }; 
+        }
+        public JsonResult UserRegister2(string entity)
         {
             M_Users users = JsonConvert.DeserializeObject<M_Users>(entity);
             string lodpwd = users.LoginPWD;

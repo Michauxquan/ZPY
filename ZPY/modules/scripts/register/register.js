@@ -1,4 +1,4 @@
-﻿new PCAS("province3", "city3", "area3");
+﻿
 var contineRegister = false;
 $(function () {
     $("#register").validate({ meta: "validate" });

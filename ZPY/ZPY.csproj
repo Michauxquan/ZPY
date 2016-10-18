@@ -279,6 +279,7 @@
     <Content Include="modules\scripts\index.js" />
     <Content Include="modules\scripts\layout.js" />
     <Content Include="modules\scripts\register\register.js" />
+    <Content Include="modules\scripts\register\partregister.js" />
     <Content Include="modules\scripts\rfriend\recommend.js" />
     <Content Include="modules\scripts\rfriend\rfriend.js" />
     <Content Include="modules\scripts\uploadcreate.js" />
@@ -456,6 +457,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\RFriend\ReCommend.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Register2.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

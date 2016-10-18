@@ -122,6 +122,20 @@ namespace ProDAL.Manage
             return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
         }
 
+        public bool CreateM_UserBase(string userid, string loginname, string loginpwd)
+        {
+            string sql = "INSERT INTO M_Users(UserID,LoginName ,LoginPWD,Status) " +
+                        " values(@UserID,@LoginName,@LoginPWD,0)";
+
+            SqlParameter[] paras = { 
+                                       new SqlParameter("@UserID",userid),
+                                       new SqlParameter("@LoginName",loginname),
+                                       new SqlParameter("@LoginPWD",loginpwd)
+                                   };
+
+            return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
+        }
+
         public bool UpdateM_User(string userid, string avatar)
         {
             string sql = "update M_Users set Avatar=@Avatar where UserID=@UserID ";
