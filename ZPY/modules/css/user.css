@@ -1,7 +1,7 @@
 
 .content{width: 960px;margin: 0 auto;}
 .content .sidebar{float: left;width: 200px;}
-.content .con{float: left;width: 720px;height: 600px;padding-left: 35px;padding-top: 20px;}
+.content .con{float: left;width: 720px;height: 650px;padding-left: 35px;padding-top: 20px;}
 .content .sidebar ul{border:1px solid #eaeaea;border-bottom: none;}
 .content .sidebar ul li{text-align: center;height: 40px;line-height: 40px;border-bottom: 1px solid #eaeaea;}
 .content .sidebar ul li:hover{background: #36B0F3;color: white;cursor: pointer;}
@@ -91,7 +91,7 @@
 .business .hirelist table{border-collapse: collapse;text-align: center;width: 100%;margin-top: 20px;margin-bottom: 20px;border-color: #ccc;}
 .business .hirelist table th,.business .lease table tr{height: 30px;}
 .business .hirelist table tr{color: #666;font-size: 14px;}
-.business .hirelist table thead td{background: #eaeaea;color: black;font-size: 15px;}
+.business .hirelist table thead td{background: #eaeaea;color: black;font-size: 15px;line-height: 28px;height: 28px;}
 
 .business .lease table{border-collapse: collapse;text-align: center;width: 100%;margin-top: 20px;margin-bottom: 20px;border-color: #ccc;}
 .business .lease table th,.business .lease table tr{height: 30px;}

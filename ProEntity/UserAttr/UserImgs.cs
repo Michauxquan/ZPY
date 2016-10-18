@@ -11,6 +11,7 @@ namespace ProEntity
 
         public int AutoID { get; set; }
         public string UserID { get; set; }
+        public string UserName { get; set; }
         public string ImgUrl { get; set; }
         public int Size { get; set; }
         public int GoodCount { get; set; }

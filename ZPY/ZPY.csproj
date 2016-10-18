@@ -259,6 +259,9 @@
     <Content Include="modules\images\web.png" />
     <Content Include="modules\images\weixin.png" />
     <Content Include="modules\images\xie.png" />
+    <Content Include="modules\jedate\jedate.js" />
+    <Content Include="modules\jedate\jedate.min.js" />
+    <Content Include="modules\jedate\skin\jedate.css" />
     <Content Include="modules\jpaginate\about.png" />
     <Content Include="modules\jpaginate\bg.png" />
     <Content Include="modules\jpaginate\codrops_back.png" />
@@ -272,9 +275,11 @@
     <Content Include="modules\jpaginate\jquery.paginate.js" />
     <Content Include="modules\scripts\global.js" />
     <Content Include="modules\scripts\home.js" />
+    <Content Include="modules\scripts\imgbox.js" />
     <Content Include="modules\scripts\index.js" />
     <Content Include="modules\scripts\layout.js" />
     <Content Include="modules\scripts\register\register.js" />
+    <Content Include="modules\scripts\rfriend\recommend.js" />
     <Content Include="modules\scripts\rfriend\rfriend.js" />
     <Content Include="modules\scripts\uploadcreate.js" />
     <Content Include="modules\scripts\userinfo\userinfo.js" />
@@ -448,6 +453,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Help\Helps.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\RFriend\ReCommend.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

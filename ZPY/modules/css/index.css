@@ -64,7 +64,7 @@
 .rentBoyFr{margin-top: 20px;}
 .rentBoyFr .right div.dynamic ul li{height: 20px;}
 .rentBoyFr .right div.photos{margin-top: 20px;}
-.rentBoyFr .right div.photos ul li{padding: 10px 0;height: 135px;}
+.rentBoyFr .right div.photos ul li{padding: 10px 0;height: 218px;}
 .rentBoyFr .right div.dynamic ul li p a{margin-right: 10px;}
 
 .page{width: 700px;text-align: center;margin-bottom: 20px;}
@@ -76,3 +76,11 @@
 .myscroll{height: 330px;overflow: hidden;margin-top: 10px;border:1px solid #eee;padding: 8px;}
 .myscroll1{height: 220px;overflow: hidden;margin-top: 10px;padding: 5px;}
 .myscroll2{height: 470px;overflow: hidden;margin-top: 10px;padding: 5px;}
+
+
+#popup{z-index: 66; position: fixed;left: 0px;top: 0px;width: 100%;height: 100%;text-align: center;display: none;}
+#popup .bg{background-color: rgba(0,0,0,0.5);width: 100%;height: 100%;}
+@media \0screen\,screen\9 {#popup .bg{background-color:#000000;filter:Alpha(opacity=50);position:static;} #popup .bg img{position: relative;}        }
+#popup img{max-width: 100%;max-height: 100%;margin: auto;padding: auto;}
+
+ 

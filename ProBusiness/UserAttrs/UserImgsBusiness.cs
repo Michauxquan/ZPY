@@ -22,22 +22,62 @@ namespace ProBusiness
             if (sex > -1)
             {
                 whereSql += " and a.Sex=" + sex;
-            } 
-             
+            }
+            if (!string.IsNullOrEmpty(userid))
+            {
+                whereSql += " and a.UserID='" + userid + "' ";
+            }
             string clumstr = "a.userID,a.Avatar,a.Name,a.Age,a.LoginName,a.MyService,a.Province,a.City,a.District,a.CreateTime,a.Status,a.Sex,a.IsMarry,a.Education," +
                 "a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.TalkTo,a.BPay,a.Account,b.ImgCount,b.IsLogin,b.RecommendCount,b.SeeCount";
             DataTable dt = CommonBusiness.GetPagerData("M_Users a join userReport b on a.Userid=b.Userid ", clumstr, whereSql, "a.AutoID", pageSize, pageIndex, out totalCount, out pageCount);
             List<M_Users> list = new List<M_Users>();
-            M_Users model;
             foreach (DataRow item in dt.Rows)
             {
-                model = new M_Users();
+                M_Users model = new M_Users();
                 model.FillData(item);
                 list.Add(model);
             }
 
             return list;
         }
+
+        public static List<UserImgs> GetNewImg(int tops,int status)
+        {
+            DataTable dt = UserImgsDAL.BaseProvider.GetNewImg(tops, status);
+            List<UserImgs> list = new List<UserImgs>();
+            foreach (DataRow item in dt.Rows)
+            {
+                UserImgs model = new UserImgs();
+                model.FillData(item);
+                list.Add(model);
+            }
+            return list;
+        }
+        public static List<UserImgs> GetUserImgList(string userid,int status, int pageIndex, int pageSize, ref int totalCount, ref int pageCount)
+        {
+            string whereSql = " a.Status<>9 ";
+
+            if (status > -1)
+            {
+                whereSql += " and a.status=" + status;
+            }
+            if (!string.IsNullOrEmpty(userid))
+            {
+                whereSql += " and a.UserID='" + userid + "' ";
+            }
+            string clumstr = "a.*,b.Name as UserName ";
+            DataTable dt = CommonBusiness.GetPagerData("UserImgs a left join M_Users b on a.Userid=b.Userid ", clumstr, whereSql, "a.AutoID", pageSize, pageIndex, out totalCount, out pageCount);
+             
+            List<UserImgs> list = new List<UserImgs>();
+            foreach (DataRow item in dt.Rows)
+            {
+                UserImgs model = new UserImgs();
+                model.FillData(item);
+                list.Add(model);
+            }
+            return list;
+        }
+
 
         #endregion
 

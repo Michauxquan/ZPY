@@ -27,6 +27,20 @@ namespace ZPY.Controllers
             return View();
         }
 
+        public ActionResult Recommend(int id = -1)
+        {
+            ViewBag.Type = id; 
+            var userAddress = "";
+            if (CurrentUser != null)
+            {
+                userAddress = string.IsNullOrEmpty(CurrentUser.Province)
+                         ? ""
+                         : (CurrentUser.Province + (string.IsNullOrEmpty(CurrentUser.City) ? "" : "," + CurrentUser.City));
+            }
+            ViewBag.UserAddress = userAddress; 
+            return View();
+        }
+
         public ActionResult UserPic(string id="")
         {
             //if (CurrentUser == null)
@@ -37,6 +51,7 @@ namespace ZPY.Controllers
             ViewBag.UserID = id;
             return View();
         }
+
         public ActionResult HireMsg(int sex = -1,string address="",string agerange="")
         {
             ViewBag.Sex = sex;
@@ -98,10 +113,37 @@ namespace ZPY.Controllers
         {
             int total = 0;
             int pageCount = 0;
-            var list = UserImgsBusiness.GetImgList(userid,sex, pageSize, pageIndex, ref total, ref pageCount);
+            var list = UserImgsBusiness.GetImgList(userid,sex, pageIndex,pageSize, ref total, ref pageCount);
             JsonDictionary.Add("items", list);
             JsonDictionary.Add("totalCount", total);
             JsonDictionary.Add("pageCount", pageCount);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetAllImgByuserID(string userid, int status, int pageSize, int pageIndex)
+        {
+            int total = 0;
+            int pageCount = 0;
+            var list = UserImgsBusiness.GetUserImgList(userid, status, pageIndex, pageSize, ref total, ref pageCount);
+            JsonDictionary.Add("items", list);
+            JsonDictionary.Add("totalCount", total);
+            JsonDictionary.Add("pageCount", pageCount);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+            
+        }
+
+        public JsonResult GetNewImg(int tops=6, int status = 1)
+        { 
+            var list = UserImgsBusiness.GetNewImg(tops, status);
+            JsonDictionary.Add("items", list); 
             return new JsonResult
             {
                 Data = JsonDictionary,

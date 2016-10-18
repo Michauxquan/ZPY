@@ -23,5 +23,15 @@ namespace ProDAL
            return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
        }
 
+       public DataTable GetNewImg(int tops=0, int status=-1)
+       {
+           string sql = @"select "+(tops>0?"top "+tops.ToString():"")+@" *  from UserImgs Where AutoID in(
+                select MAX(AutoID) from  (
+                    select top 500  * from  UserImgs where 1=1 "+(status>-1?" and Status= "+status.ToString():"") +@" order by AutoID desc
+                ) c  Group by UserID )";
+
+           return GetDataTable(sql);
+
+       }
     }
 }

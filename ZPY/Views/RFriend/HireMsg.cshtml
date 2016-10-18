@@ -35,7 +35,7 @@
                 html += '<tr><td><a href=""><span style="width:42px;height:42px;border-radius: 21px;"><img style="border-radius: 21px;width:42px;height:42px;display:inline-block;" src="' + ((item.UserAvatar != "" && item.UserAvatar != null) ? item.UserAvatar : "/modules/images/photo.png") + '" alt="头像"></span> <span>' + item.UserName + '</span></a></td>' +
                     '<td><span>'+item.Title+'</span></td><td>'+(item.NeedSex==0?"男":"女")+'</td>' +
                     '<td>' +convertdate(item.NeedDate, true) + '</td><td>' + item.LetDays + '天</td>' +
-                    '<td>' + (item.NeedCity!=null?item.NeedCity:"") + '</td><td>' + pyaprice + '</td>' +
+                    '<td>' + (item.NeedCity!=null && item.NeedCity!=""?item.NeedCity:"中国") + '</td><td>' + pyaprice + '</td>' +
                     '<td><a href="/RFriend/HireDetail/'+item.AutoID+'" title="查看详情">查看详情</a></td></tr>';
             }
             $('#msglist').html(html);

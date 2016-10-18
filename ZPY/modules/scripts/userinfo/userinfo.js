@@ -4,6 +4,8 @@ var regprice = /(^[1-9]*[1-9][0-9]*$)|(^1?\d\.\d$)|(^2[0-3]\.\d$)/;
 var regday = /^[1-9]*[1-9][0-9]*$/;
 $(function() {
     new PCAS("province3", "city3", "area3");
+    new PCAS("needsprovice", "needscity","");
+    new PCAS("saleprovice", "salecity", "");
     var uploader;     
     /*绑定事件 begin*/
     $('.addbtn').click(function() {
@@ -106,12 +108,17 @@ $(function() {
             _this.data('frist', 'true');
         });
     });
+    $('#seacha').click(function () {
+        var ruul = "/RFriend/RentFriend?id=" + $('#seachtype option:selected').val() +
+        ($('#seachage option:selected').val() != "" ? "&agerange=" + $('#seachage option:selected').val() : "") +
+        ($('.province option:selected').val() != "" ? "&address=" + $('.province option:selected').val() + "," + $('.city option:selected').val() : "");
+        $(this).attr("href", ruul);
+    });
     /*绑定事件结束     */
     getUserMyInfo();
     getUserActions('1,2,3', 1, 10);
     getUserReport();
 });
-
 function getUserReport() {
     $.post('/User/GetUserReport', { userid: $('.spuserid').data('value') }, function (data) {
         if (data.item != null) {
@@ -134,7 +141,7 @@ function getUserActions(type,pageindex,pagesize) {
                 $('#page1').html('');
                 if (data.pageCount > 0) {
                     $('#page1').paginate({
-                        count: data.totalCount,
+                        count: data.pageCount,
                         start: 1,
                         display: pagesize,
                         border: false,
@@ -179,7 +186,7 @@ function getUserMyFocus(pageindex) {
             $('#page2').html('');
             if (data.pageCount > 0) {
                 $('#page2').paginate({
-                    count: data.totalCount,
+                    count: data.pageCount,
                     start: 1,
                     display: 10,
                     border: false,
@@ -353,7 +360,7 @@ function saveDiary() {
         $('.diarywarring').hide();
         var content = udedit.getContent();
         content = content.replace("\n", "<br>").replace(/</g, "&lt").replace(/>/g, "&gt"); 
-        var item = { title: $('#diarytitle').val(), type: 0, content: content,needsex:0,needType:0,serviceConten:'',price:0.00 }
+        var item = { title: $('#diarytitle').val(), type: 0, content: content,needsex:0,needType:0,serviceConten:'',price:0.00,needCity:'',needDate:jeDate.now(0) }
         savaUserNeeds(item);
     } else {
         $('.diarywarring').show();
@@ -374,6 +381,10 @@ function saveSaleInfo() {
         alert('金额输入不正确');
         return false;
     }
+    if ($('#saledate').val()=="") {
+        alert('出租日期输入不正确');
+        return false;
+    }
     if ($('#saletitle').val() != '' && $('#saletitle').val().length <= 20 && $('#servicecontent').val() != '' && $('#salecontent').val() != "" && $('#saleprice').val() != '') {
         var item = {
             title: $('#saletitle').val(),
@@ -382,11 +393,14 @@ function saveSaleInfo() {
             needSex: $('#salesex option:selected').val(),
             needType: $('#salePriceType option:selected').val(),
             serviceConten: servicecontent,
+            needCity:$('.saleprovice option:selected').val()==""?"":($('.saleprovice option:selected').val()+","+$('.salecity option:selected').val()),
+            needDate:$('#saledate').val(),
             price: price
         }
         savaUserNeeds(item);
     }  
 }
+/*求租信心保存*/
 function saveNeedsInfo() {
     var price = $('#needsprice').val(); 
     if (price == '' && $('#needPriceType option:selected').val()==7) {
@@ -401,6 +415,14 @@ function saveNeedsInfo() {
         alert('招聘天数输入不正确！');
         return false;
     }
+    if ($('#needsdate').val() == "") {
+        alert('求租日期输入不正确');
+        return false;
+    }
+    if (typeof ($('#needscity option:selected').val()) == 'undefined') {
+        alert('目的城市未选择！');
+        return false;
+    }
     if ($('#needtitle').val() != '' && $('#needtitle').val().length <= 20 && $('#needscontent').val() != '' ) {
         var item = {
             title: $('#needtitle').val(),
@@ -408,15 +430,18 @@ function saveNeedsInfo() {
             content: $('#needscontent').val(),
             needSex: $('#needssex option:selected').val(),
             needType: $('#needPriceType option:selected').val(),
-            serviceConten: '',
+            serviceConten:'',
+            needCity:$('.needsprovice option:selected').val()==""?"":($('.needsprovice option:selected').val()+","+$('.needscity option:selected').val()),
+            needDate:$('#needsdate').val(),
             letDays: $('#needsdays').val(),
             price: price
         }
-        savaUserNeeds(item);
+        console.log(item);
+        //savaUserNeeds(item);
     }
 }
 function savaUserNeeds(entity) {
-    $.post('SaveNeeds', { entity: JSON.stringify(entity) }, function (data) { 
+    $.post('/User/SaveNeeds', { entity: JSON.stringify(entity) }, function (data) { 
         if (data.result) {
             alert('发布成功');
             if (entity.type == 0) { 
@@ -434,10 +459,14 @@ function savaUserNeeds(entity) {
                 $('#saleprice').val('');
                 $('#saletitle').val('');
                 $('#salecontent').val('');
+                $('.saleprovice').val('');
+                $('.salecity').val('');
             } else {
                 $('#needtitle').val('');
                 $('#needsdays').val('');
                 $('#needsprice').val('');
+                $('.needsprovice').val('');
+                $('.needscity').val('');
                 $('#needscontent').val(''); 
             }
         }

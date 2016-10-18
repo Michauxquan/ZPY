@@ -2,24 +2,28 @@
     ViewBag.Title = "UserPic";
 }
 <link rel="stylesheet" type="text/css" href="/modules/css/userpic.css">
+<script src="/modules/scripts/imgbox.js"></script>
 
 <div class="main1">
-        <!-- 租友相册-->
+    <!-- 租友相册-->
     <div>
-    <div class="recommend1">
-        <span style="padding-left: 20px; font-size: 25px;">租友相册</span>
-    </div>
-    <div class="group">
-        <button class="group_list1 hover" data-value="-1">个人展示</button>
-        <button class="group_list1" data-value="1">美女照片</button>
-        <button class="group_list1" data-value="0">帅哥照片</button>
-        <button class="group_list1" data-value="2">上传照片</button>
-    </div> 
-    <div class="table2" style="margin-top: 5px;">
-        <table class="imgtable"> </table>
+        <div class="recommend1">
+            <span style="padding-left: 20px; font-size: 25px;">租友相册</span>
         </div>
-        <input type="text" hidden="hidden" style="display:none;" value="@ViewBag.UserID" id="UserID"/>
+        <div class="group">
+            <button class="group_list1 hover" data-value="-1">个人展示</button>
+            <button class="group_list1" data-value="1">美女照片</button>
+            <button class="group_list1" data-value="0">帅哥照片</button>
+            <button class="group_list1" data-value="2"><a href="/User/UserInfo#userUpload" style="color: #fff;">上传照片</a></button>
+        </div>
+        <div class="table2" style="margin-top: 5px;">
+            <table class="imgtable"> </table>
+        </div>
+        <input type="text" hidden="hidden" style="display: none;" value="@ViewBag.UserID" id="UserID"/>
     </div>
+</div>
+<div id="popup">
+    <div class="bg"><img src="" alt=""/></div>
 </div>
 <!--主体 结束 -->
 <!-- 分页-->
@@ -38,7 +42,7 @@
                 }
             });
         });
-        GetuserImg(1, $('.group_list1.hover').data('value'));
+        GetAllImgByuserID(1, $('#UserID').val());
     });
 
     function GetuserImg(pageIndex, sex) {
@@ -54,38 +58,41 @@
                     html += (i > 0 ? "</tr>" : "") + '<tr class="img">';
                 }
                 html += '<td class="img-td"><div class="consignee tooltip2">' +
-                    '<a href="#"><img src="' + (data.items[i].Avatar != "" && data.items[i].Avatar != null ? data.items[i].Avatar : "/moudles/images/tupian.png") + '" width="200" alt="#"></a>' +
+                    '<a href="javascript:void(0);"><img style="box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;width: 200px; height: 240px;border:solid 1px #DADADA;" src="' + (data.items[i].Avatar != "" && data.items[i].Avatar != null ? data.items[i].Avatar : "/moudles/images/tupian.png") + '" alt="#"></a>' +
                     '<div class="prompt-03 prompt-04" style="display: none;"><div class="pc">' +
                     '<div style="width: 150px; height: 240px; margin: -10px auto; color: white; text-align: center">' +
                     '<h4 style="margin: 0 auto; padding-top: 80px;"> ' + data.items[i].Name + '</h4><h4>' + data.items[i].Age + ' 岁</h4>';
                 if (sex > -1) {
-                    html += '<h4>' + data.items[i].ImgCount + '张照片</h4><br/><a class="a" data-id="'+data.items[i].UserID+'"  href="javascript:void(0)" >查看所有</a>';
+                    html += '<h4>' + data.items[i].ImgCount + '张照片</h4><br/><a class="a" data-id="' + data.items[i].UserID + '"  href="javascript:void(0)" >查看所有</a>';
                 } else {
                     html += '<h4>' + data.items[i].ImgCount + '张照片</h4><br/><a class="a" href="/User/UserMsg/' + data.items[i].UserID + '" value=" 查看资料">查看资料</a>';
                 }
                 html += '</div></div></div></div></td>';
-            }
-           
-            console.log(html);
+            } 
             $('.imgtable').html(html);
-            if (sex > -1) { $('.img-td a').click(function() {
-                GetImgAll($(this).data('id'),-1);
-            }) }
-            $('#imgPage').paginate({
-                count: data.pageCount,
-                start: pageIndex,
-                display: 12,
-                border: false,
-                text_color: '#79B5E3',
-                background_color: 'none',
-                text_hover_color: '#2573AF',
-                background_hover_color: 'none',
-                images: false,
-                mouse: 'press',
-                onChange: function(page) {
-                    GetuserImg(page, sex);
-                }
-            });
+            if (sex > -1) {
+                $('.img-td a').click(function() {
+                    GetAllImgByuserID(1, $(this).data('id'));
+                });
+            }
+            $('#imgPage').html('');
+            if (data.pageCount>0){
+                $('#imgPage').paginate({
+                    count: data.pageCount,
+                    start: pageIndex,
+                    display: 12,
+                    border: false,
+                    text_color: '#79B5E3',
+                    background_color: 'none',
+                    text_hover_color: '#2573AF',
+                    background_hover_color: 'none',
+                    images: false,
+                    mouse: 'press',
+                    onChange: function(page) {
+                        GetuserImg(page, sex);
+                    }
+                });
+            }
             $('div.tooltip2').mouseover(function() {
                 $(this).find(".prompt-03").show();
             }).mouseout(function() {
@@ -95,9 +102,64 @@
     }
 
     function GetImgAll(userid, value) {
-        $('.group_list1').each(function (i, v) { 
-            if ($(v).data('value')==value) {$(v).click();}
+        $('.group_list1').each(function(i, v) {
+            if ($(v).data('value') == value) {
+                $(v).click();
+            }
         });
         $('#UserID').val(userid);
+    }
+
+    function GetAllImgByuserID(pageIndex, userid) {
+        $.post('/RFriend/GetAllImgByuserID', {
+            userid: userid,
+            status: 1,
+            pageIndex: pageIndex,
+            pageSize: 12
+        }, function (data) {
+            var html = '';
+            for (var i = 0; i < data.items.length; i++) {
+                if (i % 4 == 0) {
+                    html += (i > 0 ? "</tr>" : "") + '<tr class="img">';
+                }
+                var imgurl = (data.items[i].ImgUrl != "" && data.items[i].ImgUrl != null ? data.items[i].ImgUrl : "/moudles/images/tupian.png");
+                html += '<td class="img-td" style="cursor:pointer;"><div class="consignee tooltip2">' +
+                    '<a href="' + imgurl + '" ><img class="tdimga" style="box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;border:solid 1px #DADADA;width: 200px; height: 240px;" src="' + imgurl + '" alt="#"></a>' +
+                    '<div class="prompt-03 prompt-04" style="cursor:pointer;display: none;" title="点击查看大图"><div class="pc">' +
+                    '<div style="width: 150px; height: 240px; margin: -10px auto; color: white; text-align: center">' +
+                    '<h4 style="margin: 0 auto; padding-top: 80px;"> ' + data.items[i].UserName + '</h4><br/>' +
+                    '<h4><a class="a" href="javascript:void(0);" value=" 查看大图">查看大图</a></h4><br/>';
+           
+                html += '<a class="a" href="/User/UserMsg/' + data.items[i].UserID + '" value=" 查看资料">查看资料</a><br />' +
+                     '</div></div></div></div></td>';
+            }            
+            $('.imgtable').html(html); 
+            $('.img-td').click(function () { 
+                showBigImg($(this).find(".tdimga").attr('src')); 
+            }); 
+            $('#imgPage').html('');
+            if (data.pageCount>0){
+                $('#imgPage').paginate({
+                    count: data.pageCount,
+                    start: pageIndex,
+                    display: 4,
+                    border: false,
+                    text_color: '#79B5E3',
+                    background_color: 'none',
+                    text_hover_color: '#2573AF',
+                    background_hover_color: 'none',
+                    images: false,
+                    mouse: 'press',
+                    onChange: function (page) {
+                        GetAllImgByuserID(page, userid);
+                    }
+                });
+            }
+            $('div.tooltip2').mouseover(function () {
+                $(this).find(".prompt-03").show();
+            }).mouseout(function () {
+                $(this).find(".prompt-03").hide();
+            });
+        });
     }
 </script>

@@ -46,7 +46,7 @@ namespace ProBusiness
 
             }
             DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a left join m_users b  on a.UserID=b.UserID ",
-                 "a.AutoID,a.NeedDate,a.NeedCity,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
+                 "a.AutoID,a.NeedDate,a.NeedCity,a.UserID,a.Type,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
                 out totalCount, out pageCount);
             List<UserNeeds> list = new List<UserNeeds>();
             foreach (DataRow dr in dt.Rows)
@@ -71,7 +71,7 @@ namespace ProBusiness
                 sqlwhere += " and a.Type in(" + type+")";
             }
             DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a left join m_users b  on a.UserID=b.UserID left join m_users c on a.InviteID=c.UserID ",
-                 "a.AutoID,a.NeedDate,a.NeedCity,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar ,c.Avatar as InviteAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
+                 "a.AutoID,a.NeedDate,a.NeedCity,a.Type,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar ,c.Avatar as InviteAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
                 out totalCount, out pageCount);
             List<UserNeeds> list = new List<UserNeeds>();
             foreach (DataRow dr in dt.Rows)

@@ -1,7 +1,7 @@
 .recommend1{ width:900px;margin:20px auto;height:50px;margin-bottom: 10px; background: url(../images/jj.png) no-repeat;color: white;line-height: 50px;}
 
 .group{height: 30px;margin-top: 30px;width: 900px;margin: 0 auto;}
-.group .group_list1{width: 100px;height: 30px;line-height: 30px; color:white;text-align: center;cursor: pointer;border: none;font-size: 16px;}
+.group .group_list1{background-color: #ECA2A2;width: 100px;height: 30px;line-height: 30px; color:white;text-align: center;cursor: pointer;border: none;font-size: 16px;}
 .group .group_list1:hover{background-color: #3093e8;}
 .group .group_list1.hover{background-color: #3093e8;}
 

@@ -1,6 +1,18 @@
 ﻿var ObjetJS = {}
 $(function () {
     new PCAS("province3", "city3", "area3");
+
+    $(".slideInner").slide({
+        slideContainer: $('.slideInner a'),
+        effect: 'easeOutCirc',
+        autoRunTime: 5000,
+        slideSpeed: 1000,
+        nav: true,
+        autoRun: true,
+        prevBtn: $('a.prev'),
+        nextBtn: $('a.next')
+    });
+
     $('#seacha').click(function() {
         var ruul = "/RFriend/RentFriend?id=" + $('#seachtype option:selected').val() +
         ($('#seachage option:selected').val() != "" ? "&agerange=" + $('#seachage option:selected').val() : "") +
@@ -64,6 +76,7 @@ ObjetJS.getUserRecomment = function () {
         ObjetJS.GetNewUser();
         ObjetJS.GetUserAction();
         ObjetJS.GetNeedList();
+        ObjetJS.GetNewImg();
     });
 }
 ObjetJS.GetNewUser= function() { 
@@ -99,11 +112,7 @@ ObjetJS.GetUserAction=function (){
                     + item.Remark + '<small><span>' + getdiff(item.CreateTime, true)
                     + '</span>前</small></li>';
             }
-            $('#userActionUl').html(html);
-            $('.myscroll').myScroll({
-                speed: 40, //数值越大，速度越慢
-                rowHeight: 42 //li的高度
-            });
+            $('#userActionUl').html(html); 
         }
     });
 }
@@ -119,6 +128,22 @@ ObjetJS.GetNeedList = function () {
             $('.myscroll').myScroll({
                 speed: 40, //数值越大，速度越慢
                 rowHeight: 42 //li的高度
+            });
+        }
+    });
+}
+ObjetJS.GetNewImg = function () {
+    $.post('/RFriend/GetNewImg', {}, function (data) {
+        if (data.items.length > 0) {
+            var html = '';
+            for (var i = 0; i < data.items.length; i++) {
+                var item = data.items[i];
+                html += ' <li><a style="width:216px;height:216px;"  href="/RFriend/UserPic/' + item.UserID + '"><img style="width:216px;height:216px;" src="' + item.ImgUrl + '"></a></li>';
+            }
+            $('#newImgUl').html(html);
+            $('.myscroll2').myScroll({
+                speed: 20, //数值越大，速度越慢
+                rowHeight: 236//li的高度
             });
         }
     });
