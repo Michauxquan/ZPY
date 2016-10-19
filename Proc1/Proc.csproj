@@ -863,6 +863,26 @@
     <Content Include="modules\css\iconfont\iconfont.eot" />
     <Content Include="modules\css\iconfont\iconfont.ttf" />
     <Content Include="modules\css\iconfont\iconfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProBusiness\ProBusiness.csproj">
+      <Project>{4ba7be5b-94b2-4f79-b333-c5fe5429424a}</Project>
+      <Name>ProBusiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProEntity\ProEntity.csproj">
+      <Project>{4c47b989-57a6-4602-b33b-0957c32a0930}</Project>
+      <Name>ProEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProEnum\ProEnum.csproj">
+      <Project>{b2f2671d-7f9b-4e3e-b5e1-fe8acbf1976f}</Project>
+      <Name>ProEnum</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="modules\plug\echarts\util\mapData\rawData\geoJson\an_hui_geo.json" />
     <Content Include="modules\plug\echarts\util\mapData\rawData\geoJson\ao_men_geo.json" />
     <Content Include="modules\plug\echarts\util\mapData\rawData\geoJson\bei_jing_geo.json" />
@@ -925,20 +945,6 @@
     <Content Include="modules\plug\umeditor\third-party\video-js\font\vjs.eot" />
     <Content Include="modules\plug\umeditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="modules\plug\umeditor\third-party\video-js\font\vjs.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProBusiness\ProBusiness.csproj">
-      <Project>{4ba7be5b-94b2-4f79-b333-c5fe5429424a}</Project>
-      <Name>ProBusiness</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProEntity\ProEntity.csproj">
-      <Project>{4c47b989-57a6-4602-b33b-0957c32a0930}</Project>
-      <Name>ProEntity</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

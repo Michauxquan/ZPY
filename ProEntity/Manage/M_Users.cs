@@ -125,6 +125,7 @@ namespace ProEntity.Manage
         /// 宣言
         /// </summary>
         public string TalkTo { get; set; }
+        public DateTime BirthDay { get; set; }
         /// <summary>
         /// 个性
         /// </summary>

@@ -29,25 +29,25 @@ namespace Proc.Controllers
         {
             get
             {
-                if (Session["Manager"] == null)
+                if (Session["ZPYManager"] == null)
                 {
                     return null;
                 }
                 else
                 {
-                    return (ProEntity.Manage.M_Users)Session["Manager"];
+                    return (ProEntity.Manage.M_Users)Session["ZPYManager"];
                 }
             }
-            set { Session["Manager"] = value; }
+            set { Session["ZPYManager"] = value; }
         }
         /// <summary>
         /// 是否有权限
         /// </summary>
         public  bool IsLimits(string menucode)
         {
-            if (Session["Manager"] != null)
+            if (Session["ZPYManager"] != null)
             {
-                ProEntity.Manage.M_Users model = (ProEntity.Manage.M_Users)Session["Manager"];
+                ProEntity.Manage.M_Users model = (ProEntity.Manage.M_Users)Session["ZPYManager"];
                 if (model.Menus.Where(m => m.MenuCode == menucode).Count() > 0)
                 {
                     return true;

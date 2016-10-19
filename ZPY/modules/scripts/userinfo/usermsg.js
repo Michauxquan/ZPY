@@ -21,6 +21,7 @@ function getUserRate() {
         }
         $('#userrade').html(html);
         getNewNeeds();
+        getuserlike('',6);
     });
 }
 
@@ -46,7 +47,7 @@ function getNewNeeds() {
     $.post('/User/GetNewNeeds', { type: "1,2", pageIndex: 1, pageSize: 10 }, function (data) {
         var html = "";
         for (var i = 0; i < data.items.length; i++) {
-            html += "<li style='cursor:pointer;' data-value='" + data.items[i].AutoID + "'>&nbsp;&nbsp;" + (i+1) + "、" + data.items[i].Title + "</li>";
+            html += "<li style='cursor:pointer;' data-value='" + data.items[i].AutoID + "'><a href='/RFriend/HireDetail/"+data.items[i].AutoID+"' >&nbsp;&nbsp;" + (i+1) + "、" + data.items[i].Title + "</a></li>";
         }
         $('#needul').html(html);
         $('.myscroll3').myScroll({
@@ -56,5 +57,22 @@ function getNewNeeds() {
     });
 }
 
+function getuserlike(address, pagesize) {
+      $.post('/RFriend/GetUserRecommenCount', {
+        sex:-1,
+        pageIndex: 1,
+        pageSize: pagesize,
+        address: address,
+        age: '',
+        cdesc: 'b.RecommendCount'
+    }, function (data) {
+        var html = "";
+        for (var i = 0; i < data.items.length; i++) {
+            var item = data.items[i]; 
+            html += ' <li><a  href="/User/UserMsg/' + item.UserID + '"><img src="' + ((item.Avatar != "" && item.Avatar != null) ? item.Avatar : "/modules/images/photo2.jpg") + '" width="70px" height="70px"></a></li>';
+        } 
+        $('#likeul').html(html); 
+    });
+}
 
 

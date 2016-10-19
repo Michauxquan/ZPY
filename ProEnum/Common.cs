@@ -63,6 +63,8 @@ namespace ProEnum
         [DescriptionAttribute("错误")]
         Error = 5,
         [DescriptionAttribute("购买")]
-        Pay = 6
+        Pay = 6,
+        [DescriptionAttribute("后台管理")]
+        Manage = 7,
     }
 }

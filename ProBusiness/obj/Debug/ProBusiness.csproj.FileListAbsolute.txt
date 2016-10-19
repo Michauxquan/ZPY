@@ -20,14 +20,3 @@ G:\MichauxPro\ZPY\ProBusiness\bin\Debug\ProEnum.pdb
 G:\MichauxPro\ZPY\ProBusiness\obj\Debug\ProBusiness.csprojResolveAssemblyReference.cache
 G:\MichauxPro\ZPY\ProBusiness\obj\Debug\ProBusiness.dll
 G:\MichauxPro\ZPY\ProBusiness\obj\Debug\ProBusiness.pdb
-D:\MichauxPro\ZPY\ProBusiness\bin\Debug\ProBusiness.dll
-D:\MichauxPro\ZPY\ProBusiness\bin\Debug\ProBusiness.pdb
-D:\MichauxPro\ZPY\ProBusiness\bin\Debug\ProDAL.dll
-D:\MichauxPro\ZPY\ProBusiness\bin\Debug\ProEntity.dll
-D:\MichauxPro\ZPY\ProBusiness\bin\Debug\ProEnum.dll
-D:\MichauxPro\ZPY\ProBusiness\bin\Debug\ProDAL.pdb
-D:\MichauxPro\ZPY\ProBusiness\bin\Debug\ProEntity.pdb
-D:\MichauxPro\ZPY\ProBusiness\bin\Debug\ProEnum.pdb
-D:\MichauxPro\ZPY\ProBusiness\obj\Debug\ProBusiness.csprojResolveAssemblyReference.cache
-D:\MichauxPro\ZPY\ProBusiness\obj\Debug\ProBusiness.dll
-D:\MichauxPro\ZPY\ProBusiness\obj\Debug\ProBusiness.pdb

@@ -278,6 +278,7 @@
     <Content Include="modules\scripts\imgbox.js" />
     <Content Include="modules\scripts\index.js" />
     <Content Include="modules\scripts\layout.js" />
+    <Content Include="modules\scripts\register\forget.js" />
     <Content Include="modules\scripts\register\register.js" />
     <Content Include="modules\scripts\register\partregister.js" />
     <Content Include="modules\scripts\rfriend\recommend.js" />
@@ -424,6 +425,10 @@
       <Project>{4c47b989-57a6-4602-b33b-0957c32a0930}</Project>
       <Name>ProEntity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProTools\ProTools.csproj">
+      <Project>{898a9502-a35e-4032-a90c-42708b2b9c82}</Project>
+      <Name>ProTools</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Register.cshtml" />
@@ -460,6 +465,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Register2.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Help\Forget.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

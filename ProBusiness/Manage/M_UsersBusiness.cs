@@ -60,7 +60,7 @@ namespace ProBusiness
         /// <param name="operateip"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public static M_Users GetM_UserByProUserName(string loginname, string pwd, string operateip, out int result)
+        public static M_Users GetM_UserByProUserName(string loginname, string pwd, string operateip, out int result,EnumUserOperateType type=EnumUserOperateType.Login)
         {
             pwd = ProBusiness.Encrypt.GetEncryptPwd(pwd, loginname);
             DataSet ds = new M_UsersDAL().GetM_UserByProUserName(loginname, pwd, out result);
@@ -91,9 +91,9 @@ namespace ProBusiness
                     }
                 }
             }
-            LogBusiness.AddLoginLog(loginname, operateip,model!=null?model.UserID:"", EnumUserOperateType.Login,model!=null?model.Levelid:"");
-            if (model != null)
+            if (model != null && model.Status==1)
             {
+                LogBusiness.AddLoginLog(loginname, operateip, model != null ? model.UserID : "",type, model != null ? model.Levelid : "");
                 M_UsersDAL.BaseProvider.CreateUserReport(model.UserID, " IsLogin=1 ");
             }
             return model;
@@ -276,6 +276,12 @@ a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkT
             bool bl = M_UsersDAL.BaseProvider.UpdateM_User(userid, avatar); 
             return bl;
         }
+        public static bool UpdatePwd(string loginname, string pwd)
+        {
+            pwd = ProBusiness.Encrypt.GetEncryptPwd(pwd, loginname);
+            bool bl = M_UsersDAL.BaseProvider.UpdatePwd(loginname, pwd);
+            return bl;
+        }
         public static  bool DeleteM_User(string userid, int status) {
             return M_UsersDAL.BaseProvider.DeleteM_User(userid, status);
         }
@@ -284,6 +290,17 @@ a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkT
             string myContent,string name ,string talkTo,int age,string myservice)
         {
             return M_UsersDAL.BaseProvider.UpdateM_UserBase(userid, bHeight, bWeight, jobs, bPay, isMarry, myContent, name, talkTo, age, myservice); 
+        }
+        public static bool UpdateM_UserBase(M_Users user)
+        {
+            return M_UsersDAL.BaseProvider.UpdateM_UserInfo(user.UserID, user.BHeight, user.BWeight, user.Jobs, user.BPay, user.IsMarry.Value,
+                user.MyContent, user.Name, user.TalkTo, user.Age.Value, user.MyService,user.BirthDay,user.Sex.Value,user.Education,user.QQ,user.MobilePhone,user.Email,user.Province,user.City,user.District);
+        }
+
+        public static bool CheckEmail(string loginname, string email)
+        {
+           var result= CommonBusiness.Select("M_Users", "count(1)", " LoginName='" + loginname + "' and email='" + email + "' ");
+            return Convert.ToInt32(result) > 0;
         }
 
         #endregion

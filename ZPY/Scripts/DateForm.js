@@ -1,4 +1,4 @@
-﻿ Date.prototype.format = function (format) {
+﻿Date.prototype.format = function (format) {
         /* 
         * format="yyyy-MM-dd hh:mm:ss"; 
         */

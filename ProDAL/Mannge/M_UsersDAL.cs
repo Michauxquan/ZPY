@@ -167,7 +167,36 @@ namespace ProDAL.Manage
                                        new SqlParameter("@Jobs",jobs),
                                        new SqlParameter("@myContent",myContent) 
                                    };
-
+            return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
+        }
+        public bool UpdateM_UserInfo(string userid, string bHeight, string bWeight, string jobs, string bPay, int isMarry,string myContent, string name, string talkTo,
+            int age, string myservice,DateTime birthday,int sex,string education,string qq,string mobile,string email,string province,string city ,string district)
+        {
+            string sql = "update M_Users set Status=1,bHeight=@bHeight,bWeight=@bWeight,Name=@Name,TalkTo=@TalkTo,MyService=@MyService,Sex=@Sex,Education=@Education,Province=@Province," +
+                         "bPay=@bPay,Jobs=@Jobs ,IsMarry=@isMarry,myContent=@myContent,Age=@Age,BirthDay=@BirthDay,Email=@Email,QQ=@QQ,MobilePhone=@Mobile,City=@City,District=@District " +
+                         "where UserID=@UserID ";
+            SqlParameter[] paras = {  
+                                       new SqlParameter("@MyService",myservice), 
+                                       new SqlParameter("@Name",name), 
+                                       new SqlParameter("@BirthDay",birthday), 
+                                       new SqlParameter("@Sex",sex), 
+                                       new SqlParameter("@Education",education), 
+                                       new SqlParameter("@QQ",qq), 
+                                       new SqlParameter("@Mobile",mobile), 
+                                       new SqlParameter("@Email",email), 
+                                       new SqlParameter("@Province",province), 
+                                       new SqlParameter("@City",city), 
+                                       new SqlParameter("@District",district), 
+                                       new SqlParameter("@Age",age), 
+                                       new SqlParameter("@TalkTo",talkTo), 
+                                       new SqlParameter("@UserID",userid),
+                                       new SqlParameter("@bHeight",bHeight),
+                                       new SqlParameter("@bWeight",bWeight),
+                                       new SqlParameter("@isMarry",isMarry),
+                                       new SqlParameter("@bPay",bPay),
+                                       new SqlParameter("@Jobs",jobs),
+                                       new SqlParameter("@myContent",myContent) 
+                                   };
             return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
         }
         public bool DeleteM_User(string userid, int status)
@@ -187,6 +216,16 @@ namespace ProDAL.Manage
                                    };
 
             return ExecuteNonQuery("update M_Users set LevelID=@LevelID where userID=@userID", paras, CommandType.Text) > 0;
+        }
+
+        public bool UpdatePwd(string loginname, string pwd)
+        {
+            SqlParameter[] paras = { 
+                                    new SqlParameter("@LoginName",loginname),
+                                    new SqlParameter("@LoginPwd",pwd),
+                                   };
+
+            return ExecuteNonQuery("update M_Users set LoginPwd=@LoginPwd where LoginName=@LoginName", paras, CommandType.Text) > 0;
         }
     }
 }

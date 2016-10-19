@@ -34,7 +34,7 @@ define(function (require, exports, module) {
                 if (data.result) {
                     location.href = "/Home/Index";
                 } else {
-                    alert("账户或密码不正确！")
+                    alert("账户或密码不正确！");
                 }
             });
         });

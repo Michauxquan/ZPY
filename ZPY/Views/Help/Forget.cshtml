@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "找回密码";
+}
+
+<link rel="stylesheet" type="text/css" href="/modules/css/forget.css">
+<script type="text/javascript" src="/Scripts/yzm.js"></script>
+<div class="main">
+    <!-- 图片-->
+    <div class="advertisement"><img src="/modules/images/ad2.jpg" width="960px" height="80px" alt="广告">
+    </div>
+    <!--注册 开始-->
+    <div class="login">
+        <div class="login2">
+            <div>
+                <h3 style="margin-bottom: 20px; margin-top: 20px;">邮箱找回密码</h3>
+                <p>请输入注册邮箱，我们将发送密码重置邮件</p>
+                <span id="nametip" class="red" style="font-size: 10px;"></span>
+            </div>
+            <div class="line">
+                <span>用户名：</span>
+                <span><input type="text" id="username" placeholder="登录帐号" style="height: 25px; width: 184px;"/> </span>
+            </div>
+            <div class="line">
+                <span> 邮 &nbsp;&nbsp;箱：</span>
+                <span><input type="text" id="useremail" width="200" height="40" placeholder="邮箱"style="height: 25px; width: 184px;"/></span>
+            </div>
+            <div class="line">
+                <span> 验证码：</span>
+                <span style="width: 50px;"><input type="text" id="codetext" style="width: 50px; height: 25px;"/></span>
+                <span><input type="text" id="txt1" size="6" class="button2" /></span>
+                <span style="margin-left: 10px;"><a href="javascript:;" onclick="show()">换一张</a></span>  
+            </div>
+            <div class="line">
+                <span> <input type="button" id="getNewPWD" value="提交" class="button1"/></span>
+            </div>
+        </div>
+    </div>
+    <!--注册 结束-->
+</div>
+<script type="text/javascript" src="/modules/scripts/register/forget.js"></script>
+

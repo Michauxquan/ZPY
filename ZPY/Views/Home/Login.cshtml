@@ -1,4 +1,6 @@
-﻿  
+﻿  @{
+      ViewBag.Title = "登录";
+  }
 <link rel="stylesheet" type="text/css" href="/modules/css/login.css">
  
 <!--主体 开始 -->
@@ -22,13 +24,13 @@
                 </li>
                 <li class="line">
                     <span> 验证码：</span>
-                    <span style="width: 50px;"><input type="text"name="text" style="width: 50px;height: 25px;"/></span>
-                    <span><input type="text" id="txt1" size="6" class="button2" /></span>
-                    <span style="margin-left: 10px;"><a href="javascript:;" onclick="show()">换一张</a></span>
+                    <span style="width: 50px;"><input type="text" id="codetext" style="width: 50px;height: 25px;"/></span>
+                    <span><input type="text" readonly="readonly" id="txt1" size="6" style="cursor: pointer;" class="button2" onclick="show()" /></span>
+                    <span class="red codetips" style="margin-left: 10px;font-size:12px;"></span> 
                 </li>
                 <li class="line">
                     <span> <input value="登录" class="getcodes button1"/></span>
-                    <span class=" line1"><a href="#">忘记密码</a></span>
+                    <span class=" line1"><a href="/Help/Forget">忘记密码</a></span>
                 </li>
                 <li class="line">
                     <span>没有账号？</span>&nbsp;
@@ -42,19 +44,38 @@
 <!--主体 结束 -->
 <script type="text/javascript" src="/Scripts/yzm.js"></script>
 <script type="text/javascript">
-    $('.button1').bind('click', function() {
+    $('.button1').bind('click', function () {
+        if ($('.phone1').val() == "") {
+            $('.phone').html('登陆账号不能为空');
+            return false;
+        } else { $('.phone').html(''); }
+        if ($('.q1').val()=="") {
+            $('.password').html('密码不能为空');
+            return false;
+        } else { $('.password').html(''); }
+        if ($('#codetext').val().toLowerCase() != $('#txt1').val().toLowerCase()) {
+            $('.codetips').html('验证码错误');
+            show();
+            return false;
+        } else { $('.codetips').html(''); }
+
         $.ajax({
             type: "POST",
-            url: "UserLogin",
+            url: "/Home/UserLogin",
             data: "userName=" + $('.phone1').val() + "&pwd=" + $('.q1').val(),
-            success: function (data) {
-                console.log(1);
+            success: function (data) { 
                 if (data.result) {
                     $('.nologo').addClass('hide');
                     $('.logoed').removeClass('hide');
                     location.href = '/User/UserInfo';
                 } else {
-                    $('.phone').html('用户名或密码次错误');
+                    if (data.errorMsg != "") {
+                        alert(data.errorMsg);
+                        location.href = '/Home/Register2';
+                    }
+                    else{
+                        $('.phone').html('用户名或密码次错误');
+                    }
                 }
             }
         });

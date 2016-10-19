@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProEnum;
 
 namespace Proc.Controllers
 {
@@ -48,11 +49,11 @@ namespace Proc.Controllers
 
             string operateip = string.IsNullOrEmpty(Request.Headers.Get("X-Real-IP")) ? Request.UserHostAddress : Request.Headers["X-Real-IP"];
             int result = 0;
-            ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(userName, pwd, operateip, out result);
+            ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(userName, pwd, operateip, out result,EnumUserOperateType.Manage);
             if (model != null)
             {
                 CurrentUser = model;
-                Session["Manager"] = model;                
+                Session["ZPYManager"] = model;                
                 bl = true;
             }
             JsonDictionary.Add("result", bl);

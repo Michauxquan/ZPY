@@ -54,6 +54,31 @@ namespace ZPY.Controllers
                 }
             }
             return false;
+        }
+        /// <summary>  
+        /// 功能：产生数字和字符混合的随机字符串  
+        /// </summary>  
+        /// <param name="codecount">字符串的个数</param>  
+        /// <returns></returns>  
+        public string CreateRandomCode(int codecount)
+        {
+
+            // 数字和字符混合字符串  
+            string allchar = "0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f,g,h,i,j,k,l,m,n";
+            //分割成数组  
+            string[] allchararray = allchar.Split(',');
+            string randomcode = "";
+
+            //随机数实例  
+            System.Random rand = new System.Random(unchecked((int)DateTime.Now.Ticks));
+            for (int i = 0; i < codecount; i++)
+            {
+                //获取一个随机数  
+                int t = rand.Next(allchararray.Length);
+                //合成随机字符串  
+                randomcode += allchararray[t];
+            }
+            return randomcode;
         } 
     }
 }

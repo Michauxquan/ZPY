@@ -40,7 +40,7 @@ $(function () {
         }
     });
     $('#inputRandom').blur(function () {
-        if ($('#inputRandom').val() != $('#txt1').val()) {
+        if ($('#inputRandom').val().toLowerCase() != $('#txt1').val().toLowerCase()) {
             $('#txt1').next().addClass('red').html('验证码输入有误');
             contineRegister = false;
             return false;

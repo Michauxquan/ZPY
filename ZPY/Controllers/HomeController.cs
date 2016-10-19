@@ -80,16 +80,17 @@ namespace ZPY.Controllers
             bool bl = false; 
             string operateip =OperateIP;
             int result = 0;
+            string msg = "";
             ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(userName, pwd, operateip, out result);
             if (model != null)
             {
                 if (model.Status == 0)
                 {
+                    bl = false;
                     Session["PartManage"] = model;
-                    Response.Write("<script>alert('还没有注册完成,请继续注册');location.href='/Home/Register2'; </script>");
-                    Response.End(); 
+                    msg = "还没有注册完成,请继续注册"; 
                 }
-                else
+                else if (model.Status == 1)
                 {
                     HttpCookie cook = new HttpCookie("zpy");
                     cook["username"] = userName;
@@ -104,8 +105,14 @@ namespace ZPY.Controllers
                     Session["Manager"] = model;
                     bl = true;
                 }
+                else
+                {
+                    bl = false;
+                    msg = "用户名或密码错误！"; 
+                }
             }
             JsonDictionary.Add("result", bl);
+            JsonDictionary.Add("errorMsg", msg);
             return new JsonResult
             {
                 Data = JsonDictionary,
@@ -136,9 +143,8 @@ namespace ZPY.Controllers
                     Session["PartManage"] = model;
                 }
                 else
-                { 
-                    Response.Write("<script>location.href='/Home/Register2'; </script>");
-                    Response.End(); 
+                {
+                    result = false; 
                 }
             } 
             JsonDictionary.Add("result", result);
@@ -150,22 +156,19 @@ namespace ZPY.Controllers
         }
         public JsonResult UserRegister2(string entity)
         {
-            M_Users users = JsonConvert.DeserializeObject<M_Users>(entity);
-            string lodpwd = users.LoginPWD;
-            users.Jobs = "";
+            M_Users users = JsonConvert.DeserializeObject<M_Users>(entity); 
             users.OfficePhone = "";
             users.Avatar = "";
             users.CreateUserID = "";
             users.IsAdmin = 0;
             users.RoleID = "";
             users.Description = "";
-
-            var result = !string.IsNullOrEmpty(ProBusiness.M_UsersBusiness.CreateM_User(users));
+            users.UserID = ((M_Users) Session["PartManage"]).UserID;
+            var result = ProBusiness.M_UsersBusiness.UpdateM_UserBase(users);
             if (result)
             {
                 var outresult = 0;
-                ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(users.LoginName, lodpwd,
-                    OperateIP, out outresult);
+                ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetUserDetail(((M_Users)Session["PartManage"]).UserID);
                 if (model != null)
                 {  
                     CurrentUser = model;
