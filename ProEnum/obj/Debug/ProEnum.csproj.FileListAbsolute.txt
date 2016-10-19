@@ -2,12 +2,11 @@ D:\Michaux\Proc\Proc1\ProEnum\bin\Debug\ProEnum.dll
 D:\Michaux\Proc\Proc1\ProEnum\bin\Debug\ProEnum.pdb
 D:\Michaux\Proc\Proc1\ProEnum\obj\Debug\ProEnum.dll
 D:\Michaux\Proc\Proc1\ProEnum\obj\Debug\ProEnum.pdb
-G:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.dll
-G:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.pdb
-G:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.dll
-G:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.pdb
-G:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.csprojResolveAssemblyReference.cache
 D:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.dll
 D:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.pdb
 D:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.dll
 D:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.pdb
+G:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.dll
+G:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.pdb
+G:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.dll
+G:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.pdb

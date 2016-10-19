@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Proc.Controllers
 {
+    [Proc.Common.UserAuthorize]
     public class BaseController : Controller
     { 
 

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "客户配置"; 
+    ViewBag.Title = "会员配置"; 
 }
 @section css{
     <link href="/modules/css/system/system.css" rel="stylesheet"/>  
@@ -11,14 +11,17 @@
         });
     </script>
 } 
+<div class="header-box">
+    <span class="header-title">会员等级配置</span> 
+</div>
 <div class="content-body mTop5"> 
     <div class="nav-part" id="memberList"> 
         <div  class="mTop15" >
-            <h1 class="font14 bolder500 lineHeight15">客户级别和折扣设置<span class="color999 font10">　|　 以历史积分为标准，设定不同的等级和折扣</span></h1>
-            <ul class="memberlevelul mTop15" >
+            <h1 class="font14 bolder500 lineHeight15">会员级别和充值设置<span class="color999 font10">　|　 以历史积分为标准，设定不同的等级和充值金额</span></h1>
+            <ul class="memberlevelul mTop15" style="cursor:pointer;" >
 
             </ul>
-            <a data-id="memberList" id="createMemberLevel">+ 新增客户级别和折扣</a>
+            <a data-id="memberList" style="cursor:pointer;" id="createMemberLevel">+ 新增会员级别和设置</a>
             <div class="mTop15 pTop10" style="border-Top: solid 1px #ccc;">
                 <div class="btn mLeft10"  id="saveMemberLevel">保 存</div> 
             </div>

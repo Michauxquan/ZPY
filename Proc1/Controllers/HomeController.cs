@@ -8,14 +8,14 @@ using ProEnum;
 
 namespace Proc.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController :Controller
     {
         //
         // GET: /Home/
 
         public ActionResult Index()
         {
-            if (CurrentUser == null)
+            if (Session["ZPYManager"] == null)
             {
                 return Redirect("/Home/Login");
             }
@@ -24,7 +24,7 @@ namespace Proc.Controllers
 
         public ActionResult Login()
         {
-            if (CurrentUser != null)
+            if (Session["ZPYManager"] != null)
             {
                 return Redirect("/Home/Index");
             }
@@ -33,7 +33,7 @@ namespace Proc.Controllers
 
         public ActionResult Logout()
         {
-            CurrentUser = null;
+            Session["ZPYManager"] = null;
             return Redirect("/Home/Login");
         }
 
@@ -46,13 +46,13 @@ namespace Proc.Controllers
         public JsonResult UserLogin(string userName, string pwd)
         {
             bool bl = false;
-
+            Dictionary<string, object> JsonDictionary = new Dictionary<string, object>();
             string operateip = string.IsNullOrEmpty(Request.Headers.Get("X-Real-IP")) ? Request.UserHostAddress : Request.Headers["X-Real-IP"];
             int result = 0;
             ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(userName, pwd, operateip, out result,EnumUserOperateType.Manage);
             if (model != null)
             {
-                CurrentUser = model;
+                Session["ZPYManager"] = model;
                 Session["ZPYManager"] = model;                
                 bl = true;
             }

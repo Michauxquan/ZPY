@@ -43,6 +43,8 @@
     <Compile Include="Common\LogEntity.cs" />
     <Compile Include="Common\Menu.cs" />
     <Compile Include="ExpandFillData.cs" />
+    <Compile Include="Manage\AdvertSet.cs" />
+    <Compile Include="Manage\MemberLevel.cs" />
     <Compile Include="Manage\M_Role.cs" />
     <Compile Include="Manage\M_RolePermission.cs" />
     <Compile Include="Manage\M_Users.cs" />
