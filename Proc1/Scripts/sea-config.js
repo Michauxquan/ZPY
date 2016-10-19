@@ -25,9 +25,7 @@ seajs.config({
 seajs.config({
     alias: {
         //数据验证
-        "verify": "plug/verify.js",
-        //城市地区
-        "city": "plug/city.js",
+        "verify": "plug/verify.js", 
         //搜索插件
         "search": "plug/seach_keys/seach_keys.js",
         //下拉框
@@ -35,7 +33,7 @@ seajs.config({
         //弹出层插件
         "easydialog": "plug/easydialog/easydialog.js",
         //上传
-        "upload": "plug/qiniustorage/qiniu/qiniu.js"
+        "upload": "plug/upload/upload.js"
     }
 });
 

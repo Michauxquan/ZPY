@@ -1,11 +1,13 @@
 ﻿@using ProEntity
 @using ProEntity.Manage
+@using ProTools
 <!DOCTYPE html>
    @{
-        M_Users CurrentUser = (M_Users)Session["ZPYManager"];
-        string controller =  Url.RequestContext.RouteData.Values["controller"].ToString().ToLower();
-        string action = Url.RequestContext.RouteData.Values["action"].ToString().ToLower();
-        Menu controllerMenu = ExpandClass.GetController(HttpContext.Current, controller);
+       M_Users CurrentUser = (M_Users)Session["ZPYManager"];
+       string controller = Url.RequestContext.RouteData.Values["controller"].ToString().ToLower();
+       string action = Url.RequestContext.RouteData.Values["action"].ToString().ToLower();
+       Menu controllerMenu = ExpandClass.GetController(HttpContext.Current, controller);
+       string baseurl = Common.GetKeyValue("Url");
     }
 <html>
 <head>
@@ -21,20 +23,20 @@
  
     <header>
         <div class="logo left">
-            <a href="/Home/Index"><img src="/modules/images/logo_login.png"/></a>
+            <a href="/Home/Index"><img src="@(baseurl)/modules/images/logo_login.png"/></a>
         </div>
-        <div class="left companyname long" title="Michaux管理后台">
+        <div class="left companyname long" title="租友网管理后台">
            租友网管理后台
         </div>
         <ul id="modulesMenu" class="menu left">
-             <li  class="@(controller=="home" ? "select left" : "left")">
+             <li  class="@(controller == "home" ? "select left" : "left")">
                 <a href="/home/index" >
                     首页
                 </a> 
              </li>          
             @foreach (Menu model in ExpandClass.GetChildMenuByCode(HttpContext.Current, ExpandClass.CLIENT_TOP_CODE))
             {                   
-                <li class="@(model.MenuCode.ToUpper()==(controllerMenu!=null?controllerMenu.PCode.ToUpper():"") ? "select left" : "left")"  data-code="@(model.MenuCode)">            
+                <li class="@(model.MenuCode.ToUpper() == (controllerMenu != null ? controllerMenu.PCode.ToUpper() : "") ? "select left" : "left")"  data-code="@(model.MenuCode)">            
                     <a  href="/@(model.Controller)/@(model.View)">
                         @(model.Name)
                     </a> 
@@ -43,7 +45,7 @@
         </ul>
         <div id="currentUser" class="currentuser right">
             <span>
-                <img src="@(string.IsNullOrEmpty(CurrentUser.Avatar)?"/modules/images/defaultavatar.png":CurrentUser.Avatar)" class="avatar" />
+                <img src="@(string.IsNullOrEmpty(CurrentUser.Avatar) ? baseurl + "/modules/images/defaultavatar.png" : baseurl + CurrentUser.Avatar)" class="avatar" />
             </span>
             <span class="username">
                 @(CurrentUser.Name)
@@ -58,25 +60,30 @@
     <div class="main-body">
         <nav> 
            
-            @if(controllerMenu!=null)
+            @if (controllerMenu != null)
             {
                 foreach (Menu model in ExpandClass.GetChildMenuByCode(HttpContext.Current, controllerMenu.PCode))
-                { 
-                    <div class="controller @(model.Controller.ToLower()==controller ? "select" : "")" data-code="@(model.MenuCode)">
+                {
+                    <div  class="controller-box @(model.View.ToLower() == action ? "select" : "")" data-code="@(model.MenuCode)">
                         <div class="controller-box">
                             <div class="controller-name">
-                               @(model.Name)
+                               <a  href="/@(model.Controller)/@(model.View)"> @(model.Name)</a> 
                             </div>
                         </div>
-                        <ul class="action-box @(model.Controller.ToLower()==controller ? "" : "hide")">
-                            @foreach (Menu view in ExpandClass.GetChildMenuByCode(HttpContext.Current, model.MenuCode))
-                            {
-                                <li class="action @(view.View.ToLower()==action ? "select" : "")" data-code="@(view.MenuCode)">
-                                    <a href="/@(view.Controller + "/" + view.View)" >@(view.Name)</a>
-                                </li>
-                            }
-                         </ul>
-                    </div>
+                    </div>  
+                }
+            }
+            else
+            {
+                foreach (Menu model in ExpandClass.GetChildMenuByCode(HttpContext.Current, ExpandClass.CLIENT_TOP_CODE))
+                {        
+                    <div class="controller @(model.Controller.ToLower() == controller ? "select" : "")" data-code="@(model.MenuCode)">
+                        <div class="controller-box">
+                            <div class="controller-name">
+                               <a  href="/@(model.Controller)/@(model.View)"> @(model.Name)</a> 
+                            </div>
+                        </div>
+                    </div> 
                 }
             }
           

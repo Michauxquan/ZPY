@@ -425,6 +425,10 @@
       <Project>{4c47b989-57a6-4602-b33b-0957c32a0930}</Project>
       <Name>ProEntity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProEnum\ProEnum.csproj">
+      <Project>{b2f2671d-7f9b-4e3e-b5e1-fe8acbf1976f}</Project>
+      <Name>ProEnum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProTools\ProTools.csproj">
       <Project>{898a9502-a35e-4032-a90c-42708b2b9c82}</Project>
       <Name>ProTools</Name>

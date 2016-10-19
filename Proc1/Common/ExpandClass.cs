@@ -12,11 +12,11 @@ public static class ExpandClass
     /// <summary>
     /// 顶层菜单编码
     /// </summary>
-    public const string CLIENT_TOP_CODE = "100000000";
+    public const string CLIENT_TOP_CODE = "200000000";
     /// <summary>
     /// 默认菜单编码
     /// </summary>
-    public const string CLIENT_DEFAULT_CODE = "101000000";
+    public const string CLIENT_DEFAULT_CODE = "201000000";
 
     public static string GetActiveMenu(this HtmlHelper html, string action, string param, string style)
     {
@@ -27,9 +27,9 @@ public static class ExpandClass
     /// </summary>
     public static string IsLimits(HttpContext httpContext, string menucode)
     {
-        if (httpContext.Session["Manager"] != null)
+        if (httpContext.Session["ZPYManager"] != null)
         {
-            ProEntity.Manage.M_Users model = (ProEntity.Manage.M_Users)httpContext.Session["Manager"];
+            ProEntity.Manage.M_Users model = (ProEntity.Manage.M_Users)httpContext.Session["ZPYManager"];
             if (model.Menus.Where(m => m.MenuCode == menucode).Count() > 0)
             {
                 return "";
@@ -63,9 +63,9 @@ public static class ExpandClass
     /// <returns></returns>
     public static Menu GetMenuByCode(HttpContext httpContext, string menuCode)
     {
-        if (httpContext.Session["Manager"] != null)
+        if (httpContext.Session["ZPYManager"] != null)
         {
-            return ((ProEntity.Manage.M_Users)httpContext.Session["Manager"]).Menus.Where(m => m.MenuCode == menuCode).FirstOrDefault();
+            return ((ProEntity.Manage.M_Users)httpContext.Session["ZPYManager"]).Menus.Where(m => m.MenuCode == menuCode).FirstOrDefault();
         }
         else
         {
@@ -80,9 +80,9 @@ public static class ExpandClass
     /// <returns></returns>
     public static List<Menu> GetChildMenuByCode(HttpContext httpContext, string menuCode)
     {
-        if (httpContext.Session["Manager"] != null)
+        if (httpContext.Session["ZPYManager"] != null)
         {
-            return ((ProEntity.Manage.M_Users)httpContext.Session["Manager"]).Menus.Where(m => m.PCode == menuCode && m.IsMenu == 1).OrderBy(m => m.Sort).ToList();
+            return ((ProEntity.Manage.M_Users)httpContext.Session["ZPYManager"]).Menus.Where(m => m.PCode == menuCode && m.IsMenu == 1).OrderBy(m => m.Sort).ToList();
         }
         else
         {
@@ -97,7 +97,7 @@ public static class ExpandClass
     /// <returns></returns>
     public static Menu GetController(HttpContext httpContext, string controller)
     {
-        if (httpContext.Session["Manager"] != null)
+        if (httpContext.Session["ZPYManager"] != null)
         {
             return ProBusiness.CommonBusiness.ManageMenus.Where(m => m.Controller.ToUpper() == controller.ToUpper() && m.Layer == 2 && m.IsMenu == 1).FirstOrDefault();
         }

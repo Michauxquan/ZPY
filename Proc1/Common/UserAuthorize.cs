@@ -11,7 +11,7 @@ namespace Proc.Common
     {          
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext.Session["Manager"] == null)
+            if (httpContext.Session["ZPYManager"] == null)
             {
                 httpContext.Response.StatusCode = 401;
                 return false;
@@ -35,7 +35,7 @@ namespace Proc.Common
                 //需要判断权限
                 if (menu != null && menu.IsLimit == 1)
                 {
-                    ProEntity.Manage.M_Users user = (ProEntity.Manage.M_Users)filterContext.HttpContext.Session["Manager"];
+                    ProEntity.Manage.M_Users user = (ProEntity.Manage.M_Users)filterContext.HttpContext.Session["ZPYManager"];
                     if (user.Menus.Where(m => m.MenuCode == menu.MenuCode).Count() <= 0)
                     {
                         if (filterContext.RequestContext.HttpContext.Request.IsAjaxRequest())
