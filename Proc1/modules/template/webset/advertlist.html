@@ -1,0 +1,19 @@
+﻿{%
+	for(var i=0, j=$data.length; i < j; i++){
+	var item = $data[i];
+%}
+<tr class="list-item">
+    <td class="">
+        <a href="javascript:void(0);" target="_blank">
+            <img onerror="$(this).attr('src', '/modules/images/img-noimg.png')" alt="略缩图" src="{%=item.ImgUrl%}"/>
+        </a>
+    </td>
+    <td class="tLeft">{%=item.View%}</td>
+    <td class="tLeft">{%=item.Content%}</td>
+    <td class="center">{%=item.CreateTime.toDate("yyyy-MM-dd hh:mm:ss")%}</td>
+    <td class="center">
+        <div class="btn auditimg" data-id="{%=item.AutoID%}"  data-imgtype="{%=item.ImgType%}" data-view="{%=item.View%}" data-content="{%=item.Content%}" data-src="{%=item.ImgUrl%}">修改</div> 
+        <div class="btn deleteimg" data-id="{%=item.AutoID%}">撤销</div>
+    </td>
+</tr>
+{% } %}

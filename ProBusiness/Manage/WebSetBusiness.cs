@@ -25,7 +25,7 @@ namespace ProBusiness.Manage
         }
           
         #region 查询
-        #endregion
+       
         public static List<MemberLevel> GetMemberLevel()
         {
             if (MemberLevelList.Count>0)
@@ -65,11 +65,26 @@ namespace ProBusiness.Manage
             }
             return model;
         }
+
+        public static List<AdvertSet> GetAdvertSetList(string imgType = "", string view = "")
+        {
+            List<AdvertSet> list = new List<AdvertSet>();
+            DataTable dt = WebSetDAL.BaseProvider.GetAdvertSetList(imgType, view);
+            foreach (DataRow dr in dt.Rows)
+            {
+                AdvertSet model = new AdvertSet();
+                model.FillData(dr);
+                list.Add(model);
+            } 
+            return list;
+        }
+
+        #endregion
         #region 新增
         public static string CreateMemberLevel(string levelid, string name,  decimal golds, string userid, decimal discountfee, decimal integfeemore, int status = 1, string imgurl = "", int origin = 1)
         {
             imgurl = GetUploadImgurl(imgurl);
-            string result = WebSetDAL.BaseProvider.InsertMemberLevel(levelid, name, golds,  userid, discountfee, integfeemore, origin, status, imgurl);
+            string result = WebSetDAL.BaseProvider.InsertMemberLevel(levelid, name.Trim(), golds, userid, discountfee, integfeemore, origin, status, imgurl);
             if (string.IsNullOrEmpty(result))
             {
                 MemberLevelList.Add(new MemberLevel()
@@ -77,7 +92,7 @@ namespace ProBusiness.Manage
                     Golds = golds,
                     LevelID = levelid,
                     DiscountFee = discountfee,
-                    Name = name,
+                    Name = name.Trim(),
                     ImgUrl = imgurl,
                     Origin = origin, 
                     IntegFeeMore = integfeemore,
@@ -88,6 +103,12 @@ namespace ProBusiness.Manage
             }
             return result;
         }
+
+        public static bool InsertAdvert(AdvertSet model)
+        {
+            return WebSetDAL.BaseProvider.InsertAdvert(model.CreateUseID,model.View, model.Content, model.ImgType, model.ImgUrl);
+        }
+
         #endregion
 
         #region 改
@@ -99,7 +120,7 @@ namespace ProBusiness.Manage
                 return "会员等级已被删除,操作失败";
             }
             imgurl = GetUploadImgurl(imgurl);
-            string result = WebSetDAL.BaseProvider.UpdateMemberLevel(golds, levelid, name, discountfee, integfeemore, imgurl);
+            string result = WebSetDAL.BaseProvider.UpdateMemberLevel(golds, levelid, name.Trim(), discountfee, integfeemore, imgurl);
             if (string.IsNullOrEmpty(result))
             {
                 model.Name = name;
@@ -119,6 +140,17 @@ namespace ProBusiness.Manage
                 MemberLevelList.Remove(model);
             }
             return bl;
+        }
+
+        public static bool UpdateAdvert(AdvertSet model)
+        {
+            return WebSetDAL.BaseProvider.UpdateAdvert(model.AutoID, model.View, model.Content, model.ImgType,
+                model.ImgUrl);
+        }
+
+        public static bool DeleteAdvertSet(int autoid)
+        {
+            return WebSetDAL.BaseProvider.DeleteAdvertSet(autoid);  
         }
         #endregion
         public static string GetUploadImgurl(string imgurl)

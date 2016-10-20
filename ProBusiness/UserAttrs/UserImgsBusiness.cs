@@ -78,6 +78,38 @@ namespace ProBusiness
             return list;
         }
 
+        public static List<UserImgs> GetUserImgList(string keywords, int status,string begintime,string endtime, int pageIndex, int pageSize, ref int totalCount, ref int pageCount)
+        {
+            string whereSql = " a.Status<>9 ";
+
+            if (status > -1)
+            {
+                whereSql += " and a.status=" + status;
+            }
+            if (!string.IsNullOrEmpty(begintime))
+            {
+                whereSql += " and a.CreateTime>='" + begintime + "'";
+            }
+            if (!string.IsNullOrEmpty(endtime))
+            {
+                whereSql += " and a.CreateTime<'" + endtime + "'";
+            }
+            if (!string.IsNullOrEmpty(keywords))
+            {
+                whereSql += " and b.Name like '%" + keywords + "%' ";
+            }
+            string clumstr = "a.*,b.Name as UserName ";
+            DataTable dt = CommonBusiness.GetPagerData("UserImgs a left join M_Users b on a.Userid=b.Userid ", clumstr, whereSql, "a.AutoID", pageSize, pageIndex, out totalCount, out pageCount);
+
+            List<UserImgs> list = new List<UserImgs>();
+            foreach (DataRow item in dt.Rows)
+            {
+                UserImgs model = new UserImgs();
+                model.FillData(item);
+                list.Add(model);
+            }
+            return list;
+        }
 
         #endregion
 

@@ -14,6 +14,8 @@ namespace ProEntity
         public string CreateUseID { get; set; } 
         public DateTime CreateTime { get; set; } 
         public string ImgUrl { get; set; }
+        public string Content { get; set; }
+
         /// <summary>
         /// 填充数据
         /// </summary>

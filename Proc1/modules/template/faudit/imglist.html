@@ -1,0 +1,15 @@
+﻿{%
+	for(var i=0, j=$data.length; i < j; i++){
+    var item = $data[i]; 
+%}
+<li style="padding: 0px 20px;height: 300px;">
+    <div class="product-item"  >
+        <a class="productimg" title=""  href="javascript:void(0);" data-id="{%=item.AutoID%}">
+            <img  src="{%=item.ImgUrl%}" alt=""/>
+        </a> 
+        <a class="name" style="height: 40px;"  href="javascript:void(0);" >
+            &nbsp;{%=item.UserNamee%}
+        </a> 
+    </div>
+</li>
+{% } %}

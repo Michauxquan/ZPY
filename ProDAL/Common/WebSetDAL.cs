@@ -18,7 +18,21 @@ namespace ProDAL
 
             return dt;
         }
+        public DataTable GetAdvertSetList(string imgType ,string view)
+        {
+            string sqlwhere = "";
+            if (!string.IsNullOrEmpty(imgType))
+            {
+                sqlwhere += " and imgType='" + imgType + "' ";
+            }
+            if (!string.IsNullOrEmpty(view))
+            {
+                sqlwhere += " and view='" + view + "' ";
+            }
+            DataTable dt = GetDataTable("select * from AdvertSet where 1=1 "+sqlwhere);
 
+            return dt;
+        }
         public DataTable GetMemberLevelByLevelID(string levelID)
         {
             string sqlText = "select * from MemberLevel where LevelID=@LevelID and Status=1";
@@ -58,6 +72,19 @@ namespace ProDAL
             return Convert.ToString(paras[0].Value);
         }
 
+        public bool InsertAdvert(string userid, string view, string content, string imgtype, string imgurl)
+        {
+            SqlParameter[] paras =
+            { 
+                new SqlParameter("@View", view),
+                new SqlParameter("@Content", content),
+                new SqlParameter("@ImgType", imgtype),
+                new SqlParameter("@ImgUrl", imgurl),
+                new SqlParameter("@UserID", userid)
+            };
+            return ExecuteNonQuery("Insert into  AdvertSet([View],[Content],ImgType,ImgUrl,CreateTime,CreateUserID) values (@View,@Content,@ImgType,@ImgUrl,getDate(),@UserID)", paras, CommandType.Text) > 0;
+        }
+
         #endregion
 
         #region 修改
@@ -85,8 +112,29 @@ namespace ProDAL
             paras[0].Direction = ParameterDirection.Output;
             ExecuteNonQuery("P_DeleteMemberLevel", paras, CommandType.StoredProcedure);
             return paras[0].Value.ToString();
-        } 
+        }
 
+        public bool UpdateAdvert(int autoid, string view, string content, string imgtype, string imgurl)
+        {
+            SqlParameter[] paras =
+            {
+                new SqlParameter("@AutoID", autoid),
+                new SqlParameter("@View", view),
+                new SqlParameter("@Content", content),
+                new SqlParameter("@ImgType", imgtype),
+                new SqlParameter("@ImgUrl", imgurl)
+            };
+            return ExecuteNonQuery("Update AdvertSet set [View]=@View,[Content]=@Content,ImgType=@ImgType,ImgUrl=@ImgUrl  where AutoID=@AutoID ", paras, CommandType.Text) > 0;
+        }
+
+        public bool DeleteAdvertSet(int autoid)
+        {
+            SqlParameter[] paras =
+            {
+                new SqlParameter("@AutoID", autoid)
+            };
+            return ExecuteNonQuery("Delete from AdvertSet where AutoID=@AutoID ", paras,CommandType.Text) > 0;
+        } 
         #endregion
     }
 }

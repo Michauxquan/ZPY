@@ -7,6 +7,9 @@ using Proc.Controllers;
 using ProBusiness.Manage;
 using ProEntity;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json.Schema;
+using ProTools;
+
 namespace Proc1.Controllers
 {
     public class WebSetController : BaseController
@@ -20,6 +23,7 @@ namespace Proc1.Controllers
         }
         public ActionResult Advert()
         {
+            ViewBag.Url = Common.GetKeyValue("WebUrl");
             return View();
         }
 
@@ -34,10 +38,10 @@ namespace Proc1.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public JsonResult SaveMemberLevel(string clientmemberlevel)
+        public JsonResult SaveMemberLevel(string memberlevel)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            List<MemberLevel> modelList = serializer.Deserialize<List<MemberLevel>>(clientmemberlevel);
+            List<MemberLevel> modelList = serializer.Deserialize<List<MemberLevel>>(memberlevel);
             var tempList = WebSetBusiness.GetMemberLevel();
             modelList.ForEach(x =>
             {
@@ -98,6 +102,49 @@ namespace Proc1.Controllers
             };
         }
 
+
+
+        public JsonResult GetAdvertList()
+        {
+            JsonDictionary.Add("items", WebSetBusiness.GetAdvertSetList());
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult DeleteAdvertSet(int autoid)
+        {
+            JsonDictionary.Add("result", WebSetBusiness.DeleteAdvertSet(autoid));
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult SaveAdvert(string entity)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            AdvertSet model = serializer.Deserialize<AdvertSet>(entity);
+            var result = false;
+            if (model.AutoID == -1)
+            {
+                model.CreateUseID = CurrentUser.UserID;
+                 result = WebSetBusiness.InsertAdvert(model);
+            }
+            else
+            {
+                result = WebSetBusiness.UpdateAdvert(model);
+            }
+            JsonDictionary.Add("result", result);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            }; 
+        }
 
         #endregion
 
