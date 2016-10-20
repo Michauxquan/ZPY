@@ -88,11 +88,11 @@ namespace ProBusiness
             }
             if (!string.IsNullOrEmpty(begintime))
             {
-                whereSql += " and a.CreateTime>='" + begintime + "'";
+                whereSql += " and a.CreateTime>='" + begintime + " 00:00:00'";
             }
             if (!string.IsNullOrEmpty(endtime))
             {
-                whereSql += " and a.CreateTime<'" + endtime + "'";
+                whereSql += " and a.CreateTime<'" + endtime + " 23:59:59:999'";
             }
             if (!string.IsNullOrEmpty(keywords))
             {
@@ -117,13 +117,16 @@ namespace ProBusiness
 
         public static bool Create(UserImgs userimg, string operateip)
         {
-            var result = UserImgsDAL.BaseProvider.Create(userimg.UserID, userimg.ImgUrl, userimg.Size);
-            if (result)
-            {
-                ProDAL.Manage.M_UsersDAL.BaseProvider.CreateUserReport(userimg.UserID, " ImgCount=ImgCount+1 ");
-            }
+            var result = UserImgsDAL.BaseProvider.Create(userimg.UserID, userimg.ImgUrl, userimg.Size); 
             return result;
         }
+
+        public static bool UpdateStatus(string  autoids, int status)
+        {
+            var result = UserImgsDAL.BaseProvider.UpdateStatus(autoids, status); 
+            return result;
+        }
+
         #endregion
     }
 }

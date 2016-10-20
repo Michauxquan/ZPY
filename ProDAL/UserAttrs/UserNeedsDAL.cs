@@ -47,7 +47,7 @@ namespace ProDAL
         public bool UpdateStatus(string autoid,int status,string operater )
         {
             string sql =
-                @"update   UserNeeds set  Status=@Status ,UpdateTime=getdate(),UpdateID=@UpdateID where AutoID=@AutoID";
+                @"update   UserNeeds set  Status=@Status ,UpdateTime=getdate(),UpdateID=@UpdateID where AutoID in (@AutoID)";
             SqlParameter[] paras =
             {
                 new SqlParameter("@Status", status),

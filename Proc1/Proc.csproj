@@ -713,6 +713,7 @@
     <Content Include="modules\plug\upload\upload.js" />
     <Content Include="modules\plug\verify.js" />
     <Content Include="modules\scripts\faudit\imgaudit.js" />
+    <Content Include="modules\scripts\faudit\needsaudit.js" />
     <Content Include="modules\scripts\feedback\feedback.js" />
     <Content Include="modules\scripts\global.js" />
     <Content Include="modules\scripts\home.js" />
@@ -725,6 +726,7 @@
     <Content Include="modules\scripts\webset\advert.js" />
     <Content Include="modules\scripts\webset\member.js" />
     <Content Include="modules\template\faudit\imglist.html" />
+    <Content Include="modules\template\faudit\needslist.html" />
     <Content Include="modules\template\feedback\feedback-list.html" />
     <Content Include="modules\template\report\agentactionreport-list.html" />
     <Content Include="modules\template\system\menu-list.html" />

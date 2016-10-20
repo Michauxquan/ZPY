@@ -1,5 +1,53 @@
 ﻿@{
-    ViewBag.Title = "NeedsAudit";
+    
 }
+@section css{
+    <link href="/modules/plug/daterangepicker/daterangepicker.css" rel="stylesheet" />
+}
+@section scripts{
+    <script type="text/javascript">
+        seajs.use(["scripts/faudit/needsaudit"], function (ObjectJS) {
+            ObjectJS.init();
+        });
+    </script>
+}
+<div class="header-box">
+    <span class="header-title left">信息审核</span> 
+</div>
+<div class="search-header">
+    <div class="left mRight5" id="needType"></div>
+    <div class="left mRight5" id="needStatus"></div>
+    <div class="left" title="创建时间">
+        <input type="text" id="iptCreateTime" placeholder="创建时间" class="ipt-date"  />
+    </div>
+    <div class="btn-filter right"></div>
+    <div class="right searth-module mRight20" data-text="关键字搜索..." data-width="160"> </div>
+</div>
+  
+<div class="content-body">
+    <table class="table-list">
+        <tr class="tr-header">
+            <td class="width30"></td> 
+            <td class="tLeft width150">类型</td>
+            <td class="tLeft minwidth70">标题</td>
+            <td class="tLeft minwidth70">内容</td>
+            <td class="width80">状态</td>
+            <td class="width100">创建人</td> 
+            <td class="width150">创建时间</td>
+        </tr>
+    </table>
+    <ul class="left batch-operate mTop20">
+        <li class="width100 mTop5">
+            <span class="ico-check pLeft5" id="checkAll">批量操作</span>
+        </li>
+        <li  class="width60">
+           <a href="javascript:void(0);" class="btn mulitImgUpdate" data-type="1">通过</a>
+        </li>
+        <li class="width60">
+            <a href="javascript:void(0);" class="btn mulitImgUpdate" data-type="6">驳回</a>
+        </li>
+    </ul>
+    <div id="pager" class="mTop20"></div>
+    <div class="clear"></div>
+</div>
 
-<h2>NeedsAudit</h2>

@@ -11,14 +11,15 @@
         BeginTime: "",
         EndTime: "",
         PageIndex: 1,
-        PageSize: 20
+        PageSize: 12
     };
 
     var ObjectJS = {};
 
     //初始化
-    ObjectJS.init = function () {
+    ObjectJS.init = function (url) {
         var _self = this;
+        _self.url = url;
         _self.getList();
         _self.bindEvent();
     }
@@ -26,7 +27,6 @@
     //绑定事件
     ObjectJS.bindEvent = function () {
         var _self = this;
-
         //日期插件
         $("#iptCreateTime").daterangepicker({
             showDropdowns: true,
@@ -59,17 +59,26 @@
             var _this = $(this);
             if (!_this.hasClass("ico-checked")) {
                 _this.addClass("ico-checked").removeClass("ico-check");
-                $(".table-list .check").addClass("ico-checked").removeClass("ico-check");
+                $(".productlist .check").addClass("ico-checked").removeClass("ico-check").show();
+                $(".productlist .product-item").addClass("hover");
             } else {
                 _this.addClass("ico-check").removeClass("ico-checked");
-                $(".table-list .check").addClass("ico-check").removeClass("ico-checked");
+                $(".productlist .check").addClass("ico-check").removeClass("ico-checked").hide();
+                $(".productlist .product-item").removeClass("hover");
+                $(".productlist .btn").hide();
             }
+            _this.show();
         }); 
 
         //批量转移
-        $("#batchChangeOwner").click(function () {
-            var checks = $(".table-list .ico-checked");
+        $(".mulitImgOk").click(function () {
+            var checks = $(".productlist .ico-checked");
             if (checks.length > 0) {
+                var ids = "";
+                checks.each(function (i, v) { ids += $(v).data('id') + "," });
+                _self.updateStatus($(this).data('type'), ids);
+            } else {
+                alert("未选中数据，不能批量操作");
             }
         }); 
     }
@@ -94,22 +103,43 @@
             doT.exec("template/faudit/imglist.html", function (template) {
                 var innerhtml = template(data.items);
                 innerhtml = $(innerhtml); 
+                innerhtml.find("img").each(function (i, v) { 
+                    var src = $(v).attr("src");
+                    $(v).attr("src", _self.url + src);
+                });
+                innerhtml.find(".btn").click(function() {
+                    _self.updateStatus($(this).data('type'), $(this).data('id')+',');
+                });
                 innerhtml.find(".check").click(function () {
                     var _this = $(this);
                     if (!_this.hasClass("ico-checked")) {
                         _this.addClass("ico-checked").removeClass("ico-check");
+                        _this.parent().addClass("hover");
+                        _this.parent().find('.btn').hide();
                     } else {
                         _this.addClass("ico-check").removeClass("ico-checked");
+                        _this.parent().removeClass("hover");
+                        _this.parent().find(".check").hide();
                     }
                     return false;
                 });
-
+             
                 $(".productlist").html(innerhtml);
-
+                $(".productlist li").mouseover(function () {
+                    if (!$(this).find(".check").hasClass("ico-checked")) {
+                        $(this).find(".check").show();
+                        $(this).find(".btn").show();
+                    }  
+                }).mouseout(function () {
+                    if (!$(this).find(".check").hasClass("ico-checked")) {
+                        $(this).find(".check").hide();
+                        $(this).find(".btn").hide();
+                    }
+                });
             });
         }
         else {
-            $(".productlist").after("<div class='nodata-txt' >暂无数据!</div>");
+            $(".productlist").html("<div class='nodata-txt' >暂无数据!</div>");
         }
 
         $("#pager").paginate({
@@ -134,5 +164,17 @@
         });
     } 
 
+    ObjectJS.updateStatus = function (status, ids) {
+        var _self = this;
+        Global.post("/FAudit/ImgAuditing", {
+            status: status, ids: ids
+        }, function (data) {
+            if (data.result) {
+                _self.getList();
+            } else {
+                alert('修改失败');
+            }
+        });
+    }
     module.exports = ObjectJS;
 });

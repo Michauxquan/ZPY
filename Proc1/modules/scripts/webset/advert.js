@@ -29,16 +29,16 @@ define(function (require, exports, module) {
     } 
     ObjectJS.getList = function () {
         var _self = this;
-        $("#img-items").nextAll().remove();
-        $(".table-list").html("<li><div class='data-loading' ><div></li>");
+        $(".tr-header").nextAll().remove();
+        $(".tr-header").after("<tr><td colspan='9'><div class='data-loading' ><div></td></tr>");
 
         Global.post("/WebSet/GetAdvertList", {}, function (data) {
-            $("#img-items").nextAll().remove();
+            $(".tr-header").nextAll().remove();
             if (data.items.length > 0) {
                 doT.exec("template/webset/advertlist.html", function (templateFun) {
                     var innerText = templateFun(data.items);
                     innerText = $(innerText);
-                    $("#img-items").after(innerText); 
+                    $(".tr-header").after(innerText);
                     //绑定启用插件 
                     innerText.find(".auditimg").click(function () {
                         Model.ImgType = $(this).data("imgtype");

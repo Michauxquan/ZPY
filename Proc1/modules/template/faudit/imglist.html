@@ -2,14 +2,25 @@
 	for(var i=0, j=$data.length; i < j; i++){
     var item = $data[i]; 
 %}
-<li style="padding: 0px 20px;height: 300px;">
-    <div class="product-item"  >
-        <a class="productimg" title=""  href="javascript:void(0);" data-id="{%=item.AutoID%}">
-            <img  src="{%=item.ImgUrl%}" alt=""/>
-        </a> 
-        <a class="name" style="height: 40px;"  href="javascript:void(0);" >
-            &nbsp;{%=item.UserNamee%}
-        </a> 
+<li style="padding: 0px 10px;height: 285px;" >
+    <div class="product-item">
+        <span data-id="{%=item.AutoID%}" class="ico-check check" style="display: none;position: absolute; right: 0;top: 0;"></span>
+        <a class="productimg" title="" href="javascript:void(0);" data-id="{%=item.AutoID%}" title="图片大小:{%=(item.Size/1024).toFixed(2)%}KB">
+            <img src="{%=item.ImgUrl%}" class="userimg" alt="" title="图片大小:{%=(item.Size/1024).toFixed(2)%}KB"/>
+        </a>
+        <div class="mLeft5 mTop3" title='上传时间:{%=item.CreateTime.toDate("yyyy-MM-dd hh:mm:ss")%}'>
+            <div class="left mLeft3"> 会员名称： </div>
+            <div class="left color999 mLeft5" style="height: 16px; font-weight: bold;">&nbsp;{%=item.UserName%}</div>
+            <div class="clear"></div>
+        </div>
+        <span data-id="{%=item.AutoID%}" data-type="1" class="btn" style="display: none;height: 40px;width:10px;position: absolute; right: 0px;top: 25px;">通过</span>
+        <span data-id="{%=item.AutoID%}" data-type="9" class="btn" style="display: none;height: 40px;width:10px;position: absolute; right: 0px; top: 85px;">驳回</span>
+        <div class="mLeft5 mTop3" title='上传时间:{%=item.CreateTime.toDate("yyyy-MM-dd hh:mm:ss")%}'>
+            <div class="left mLeft3"> 上传时间： </div>
+            <div class="left color999 mLeft5" style="height: 16px; ">&nbsp;{%=item.CreateTime.toDate("yyyy-MM-dd hh:mm:ss")%}</div>
+            <div class="clear"></div>
+        </div>
+        
     </div>
 </li>
 {% } %}

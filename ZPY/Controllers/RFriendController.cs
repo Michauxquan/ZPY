@@ -98,7 +98,7 @@ namespace ZPY.Controllers
         {
             int total = 0;
             int pageCount = 0;
-            var list = UserNeedsBusiness.FindNeedsList(type, "", pageSize, pageIndex, ref total, ref pageCount, "", sex, age, address);
+            var list = UserNeedsBusiness.FindNeedsList(type, "", pageSize, pageIndex, ref total, ref pageCount, "","", sex, age, address);
             JsonDictionary.Add("items", list);
             JsonDictionary.Add("totalCount", total);
             JsonDictionary.Add("pageCount", pageCount);

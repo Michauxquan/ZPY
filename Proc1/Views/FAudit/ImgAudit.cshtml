@@ -9,7 +9,7 @@
 @section scripts{
     <script type="text/javascript">
         seajs.use(["scripts/faudit/imgaudit"], function (obj) {
-            obj.init();
+            obj.init('@ViewBag.Url');
         });
     </script>
 }
@@ -25,8 +25,19 @@
 </div>
 <div class="content-body">
     <ul class="productlist">
-       
+
     </ul>
+   <ul class="left batch-operate mTop20">
+        <li class="width100 mTop5">
+            <span class="ico-check pLeft5" id="checkAll">批量操作</span>
+       </li>
+       <li  class="width60">
+           <a href="javascript:void(0);" class="btn mulitImgOk" data-type="1">通过</a>
+       </li>
+       <li class="width60">
+            <a href="javascript:void(0);" class="btn mulitImgOk" data-type="9">驳回</a>
+        </li>
+   </ul>
     <div id="pager" class="mTop20"></div>
     <div class="clear"></div>
 </div> 

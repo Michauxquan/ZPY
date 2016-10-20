@@ -10,3 +10,4 @@ D:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.dll
 D:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.pdb
 D:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.dll
 D:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.pdb
+D:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.csprojResolveAssemblyReference.cache

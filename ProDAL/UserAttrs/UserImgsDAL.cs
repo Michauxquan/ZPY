@@ -33,5 +33,15 @@ namespace ProDAL
            return GetDataTable(sql);
 
        }
+       public bool UpdateStatus(string autoids, int status)
+       { 
+           SqlParameter[] paras =
+           {
+               new SqlParameter("@AutoIDS", autoids),
+               new SqlParameter("@Status", status)
+           };
+           return ExecuteNonQuery("M_ImgUpdateStatus", paras, CommandType.StoredProcedure) > 0;
+
+       }
     }
 }

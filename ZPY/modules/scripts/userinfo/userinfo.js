@@ -240,7 +240,7 @@ function getUserDiary(pageindex) {
 }
 
 function getNeedsList(pageindex, type) { 
-    $.post('NeedsList', { type: type == "lease" ? 1 : 2, ismyself: type == "hirelist" ? false : true, pageIndex: pageindex, pageSize: 10 }, function (data) {
+    $.post('/User/NeedsList', { type: type == "lease" ? 1 : 2, ismyself: type == "hirelist" ? false : true, pageIndex: pageindex, pageSize: 10 }, function (data) {
         if (data.items.length > 0) {
             var html = '';
             for (var i = 0; i < data.items.length; i++) {

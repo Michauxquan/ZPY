@@ -1,0 +1,15 @@
+﻿{%
+	for(var i=0, j=$data.length; i < j; i++){
+	var item = $data[i];
+%}
+<tr class="list-item">
+    <td class="width30"><span data-id="{%=item.AutoID%}" data-userid="{%=item.UserID%}" class="ico-check check"></span></td>
+ 
+    <td class='tLeft width150'>{%= (item.Type==1)?"求租":(item.Type==2?"出租":"日志") %}</td>
+    <td class="tLeft">{%=item.Title%}</td>
+    <td class='tLeft'>{%= item.Content %} </td>
+    <td class="center ">{%=(item.Status==0)?"待审核":(item.Status==6?"作废":"正常")%}</td> 
+    <td class='center'>{%=item.UserName%}</td> 
+    <td class='center'>{%=item.CreateTime.toDate("yyyy-MM-dd hh:mm:ss")%}</td>
+</tr>
+{% } %}

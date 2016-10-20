@@ -15,12 +15,20 @@ namespace ProBusiness
     {
         #region 查询
 
-        public static List<UserNeeds> FindNeedsList(string type, string userId, int pageSize, int pageIndex, ref int totalCount, ref int pageCount, string inviteID="",int needSex=-1, string age="",string address="")
+        public static List<UserNeeds> FindNeedsList(string type, string userId, int pageSize, int pageIndex, ref int totalCount, ref int pageCount, string inviteID="",string status="",int needSex=-1, string age="",string address="")
         {
             string sqlwhere = "  a.Status not in (6,9)";
+            if (!string.IsNullOrEmpty(status))
+            {
+                sqlwhere += " and a.Status= in (" + status + ") ";
+            }
+            else
+            {
+                sqlwhere += " and a.Status= in (1,2,3,4,5) ";
+            }
             if (!string.IsNullOrEmpty(userId))
             {
-                sqlwhere += " and a.UserID='" + userId+"'";
+                sqlwhere += " and a.UserID='" + userId + "'";
             }
             if (type!="-1" && !string.IsNullOrEmpty(type))
             {
@@ -46,7 +54,7 @@ namespace ProBusiness
 
             }
             DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a left join m_users b  on a.UserID=b.UserID ",
-                 "a.AutoID,a.NeedDate,a.NeedCity,a.UserID,a.Type,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
+                 "a.AutoID,a.NeedDate,a.NeedCity,a.UserID,a.Type,a.Status,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
                 out totalCount, out pageCount);
             List<UserNeeds> list = new List<UserNeeds>();
             foreach (DataRow dr in dt.Rows)
@@ -58,6 +66,52 @@ namespace ProBusiness
             return list;
         }
 
+        public static List<UserNeeds> FindNeedsList(string keyWords,string type, string userId, string status ,int pageSize, int pageIndex, ref int totalCount, ref int pageCount,string begintime="",string endtime="", int needSex = -1, string age = "", string address = "")
+        {
+            string sqlwhere = "  a.Status <>9";
+            if (!string.IsNullOrEmpty(userId))
+            {
+                sqlwhere += " and a.UserID='" + userId + "'";
+            }
+            if (type != "-1" && !string.IsNullOrEmpty(type))
+            {
+                sqlwhere += " and a.Type in (" + type + ")";
+            }
+            if (!string.IsNullOrEmpty(keyWords))
+            {
+                sqlwhere += " and a.Content Kile %'" + keyWords + "' ";
+            }
+            if (needSex > -1)
+            {
+                sqlwhere += " and a.needSex=" + needSex;
+            }
+            if (!string.IsNullOrEmpty(status))
+            {
+                sqlwhere += " and a.status in(" + status + ") ";
+            }
+            if (!string.IsNullOrEmpty(address))
+            {
+                string[] strArr = address.Split(',');
+                for (int i = 0; i < strArr.Length; i++)
+                {
+                    sqlwhere += (i == 0
+                        ? " and b.province='"
+                        : i == 1 ? " and b.City='" : i == 2 ? " and b.District='" : "") + strArr[i] + "'";
+                }
+
+            }
+            DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a left join m_users b  on a.UserID=b.UserID ",
+                 "a.AutoID,a.NeedDate,a.NeedCity,a.UserID,a.Status,a.Type,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
+                out totalCount, out pageCount);
+            List<UserNeeds> list = new List<UserNeeds>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                UserNeeds model = new UserNeeds();
+                model.FillData(dr);
+                list.Add(model);
+            }
+            return list;
+        }
 
         public static List<UserNeeds> FindNeedsRated(int type, string userId, int pageSize, int pageIndex, ref int totalCount, ref int pageCount)
         {
@@ -71,7 +125,7 @@ namespace ProBusiness
                 sqlwhere += " and a.Type in(" + type+")";
             }
             DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a left join m_users b  on a.UserID=b.UserID left join m_users c on a.InviteID=c.UserID ",
-                 "a.AutoID,a.NeedDate,a.NeedCity,a.Type,a.UserID,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar ,c.Avatar as InviteAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
+                 "a.AutoID,a.NeedDate,a.NeedCity,a.Type,a.UserID,a.UserName,a.Status,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar ,c.Avatar as InviteAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
                 out totalCount, out pageCount);
             List<UserNeeds> list = new List<UserNeeds>();
             foreach (DataRow dr in dt.Rows)
@@ -113,6 +167,10 @@ namespace ProBusiness
              }
              return result;
         }
+         public static bool UpdateStatus(string ids, int status, string operater)
+         {
+             return UserNeedsDAL.BaseProvider.UpdateStatus(ids, status, operater);  
+         }
         #endregion
        
     }
