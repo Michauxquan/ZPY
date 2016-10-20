@@ -47,8 +47,8 @@ namespace ProEntity.Manage
 		public string Name{ get; set; }
 
         public string RoleID{ get; set; }
-
-        public M_Role Role{ get; set; }
+	    public int SourceType { get; set; }
+	    public M_Role Role{ get; set; }
         public int? Age { get; set; }
 		/// <summary>
 		/// 

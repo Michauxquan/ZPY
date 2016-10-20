@@ -142,10 +142,10 @@ namespace ProBusiness.Manage
             return model;
         }
 
-        public string CreateRole(string name, string parentid, string description, string operateid)
+        public string CreateRole(string name, string description, string operateid)
         {
             string roleid = Guid.NewGuid().ToString();
-            bool bl = SystemDAL.BaseProvider.CreateRole(roleid, name, parentid, description, operateid);
+            bool bl = SystemDAL.BaseProvider.CreateRole(roleid, name,  description, operateid);
             if (bl)
             {
                 //处理缓存

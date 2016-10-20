@@ -90,15 +90,15 @@ namespace ProDAL.Mannge
             return GetDataSet(sql, paras, CommandType.Text, "Role|Menus");
         }
 
-        public bool CreateRole(string roleid, string name, string parentid, string description, string operateid)
+        public bool CreateRole(string roleid, string name, string description, string operateid)
         {
-            string sql = "insert into M_Role(RoleID,Name,ParentID,Status,IsDefault,Description,CreateUserID) " +
-                        " values(@RoleID,@Name,@ParentID,1,0,@Description,@CreateUserID)";
+            string sql = "insert into M_Role(RoleID,Name,Status,IsDefault,Description,CreateUserID) " +
+                        " values(@RoleID,@Name,1,0,@Description,@CreateUserID)";
 
             SqlParameter[] paras = { 
                                        new SqlParameter("@RoleID",roleid),
                                        new SqlParameter("@Name",name),
-                                       new SqlParameter("@ParentID",parentid),
+                                       //new SqlParameter("@ParentID",parentid),
                                        new SqlParameter("@Description",description),
                                        new SqlParameter("@CreateUserID",operateid)
                                    };

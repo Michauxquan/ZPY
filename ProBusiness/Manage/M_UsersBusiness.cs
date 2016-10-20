@@ -103,7 +103,7 @@ namespace ProBusiness
             DataTable dt = new M_UsersDAL().GetM_UserByLoginName(loginname);
             return dt.Rows.Count;
         }
-        public static List<M_Users> GetUsers(int sex,  int pageSize, int pageIndex, ref int totalCount, ref int pageCount,string address="" ,string age="")
+        public static List<M_Users> GetUsers(int sex,  int pageSize, int pageIndex, ref int totalCount, ref int pageCount,string address="" ,string age="",int sourcetype=0)
         {
             string whereSql = " a.Status<>9";
 
@@ -111,7 +111,10 @@ namespace ProBusiness
             {
                 whereSql += " and a.Sex=" + sex;
             }
-
+            if (sourcetype > -1)
+            {
+                whereSql += " and a.sourcetype=" + sourcetype;
+            }
             if (!string.IsNullOrEmpty(address))
             {
                 string[] strArr = address.Split(',');
@@ -131,8 +134,8 @@ namespace ProBusiness
                     whereSql += (i == 0? " and a.Age>=": " and a.Age<=") + strArr[i];
                 } 
             }
-            string cstr = @"a.userID,a.Avatar,a.Name,a.LoginName,a.Age,a.MyService,a.Province,a.City,a.District,a.CreateTime,a.Status,a.Sex,a.IsMarry,a.Education,
-a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkTo";
+            string cstr = @"a.userID,a.Avatar,a.Name,a.LoginName,a.Age,a.MyService,a.Province,a.City,a.District,a.CreateTime,a.Status,a.Sex,a.IsMarry,a.Education,a.ROleID,
+a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkTo,a.Description";
             DataTable dt = CommonBusiness.GetPagerData("M_Users a", cstr, whereSql, "a.AutoID", pageSize, pageIndex, out totalCount, out pageCount);
             List<M_Users> list = new List<M_Users>();
             M_Users model;
@@ -140,12 +143,14 @@ a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkT
             {
                 model = new M_Users();
                 model.FillData(item);
+                if (!string.IsNullOrEmpty(model.RoleID))
+                    model.Role = ManageSystemBusiness.GetRoleByIDCache(model.RoleID);
                 list.Add(model);
             }
 
             return list;
         }
-
+         
         public static M_Users GetUserDetail(string userID)
         {
             
@@ -229,6 +234,11 @@ a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkT
 
             return M_UsersDAL.BaseProvider.SetAdminAccount(userid, loginname, pwd);
         }
+        public static bool UpdateM_User(string userid, string name, string roleid, string email, string mobilephone, string officephone, string jobs, string description)
+        {
+            bool bl = M_UsersDAL.BaseProvider.UpdateManage_User(userid, name, roleid, email, mobilephone, officephone, jobs, description);
+            return bl;
+        }
         /// <summary>
         /// 新增或修改用户信息
         /// </summary>
@@ -240,7 +250,7 @@ a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkT
                 string.IsNullOrEmpty(musers.Name) ? "" : musers.Name, musers.IsAdmin, musers.RoleID, musers.Email, musers.MobilePhone,
                 musers.OfficePhone, musers.Jobs, musers.Avatar, musers.Description, musers.CreateUserID,
                 musers.Sex.Value,musers.BHeight,musers.Education,musers.IsMarry.Value,musers.Province,musers.City,
-                musers.District,musers.QQ);
+                musers.District,musers.QQ,musers.SourceType);
             return bl ? userid : "";
         }
 

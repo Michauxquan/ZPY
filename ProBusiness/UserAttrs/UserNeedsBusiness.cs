@@ -101,7 +101,7 @@ namespace ProBusiness
 
             }
             DataTable dt = CommonBusiness.GetPagerData(" UserNeeds a left join m_users b  on a.UserID=b.UserID ",
-                 "a.AutoID,a.NeedDate,a.NeedCity,a.UserID,a.Status,a.Type,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
+                 "a.AutoID,a.NeedDate,a.NeedCity,a.UserID,a.Content,a.Status,a.Type,a.UserName,a.Title,a.LetDays,a.InviteName,a.NeedSex,a.NeedType,a.CreateTime,b.province,b.Avatar as UserAvatar", sqlwhere, "a.AutoID ", pageSize, pageIndex,
                 out totalCount, out pageCount);
             List<UserNeeds> list = new List<UserNeeds>();
             foreach (DataRow dr in dt.Rows)

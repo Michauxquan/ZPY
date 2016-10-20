@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Proc1</RootNamespace>
-    <AssemblyName>Proc1</AssemblyName>
+    <RootNamespace>Proc</RootNamespace>
+    <AssemblyName>Proc</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -105,6 +105,7 @@
     <Compile Include="Controllers\FAuditController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlugController.cs" />
+    <Compile Include="Controllers\SysSetController.cs" />
     <Compile Include="Controllers\WebSetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -150,6 +151,7 @@
     <Content Include="modules\images\ico-changehover.png" />
     <Content Include="modules\images\ico-check.png" />
     <Content Include="modules\images\ico-checked.png" />
+    <Content Include="modules\images\ico-checknotall.png" />
     <Content Include="modules\images\ico-company.png" />
     <Content Include="modules\images\ico-contact-hover.png" />
     <Content Include="modules\images\ico-contact.png" />
@@ -723,12 +725,20 @@
     <Content Include="modules\scripts\report\clientsgrowreport.js" />
     <Content Include="modules\scripts\report\clientsloginreport.js" />
     <Content Include="modules\scripts\report\clientsvitalityreport.js" />
+    <Content Include="modules\scripts\sysset\roles.js" />
+    <Content Include="modules\scripts\sysset\users.js" />
     <Content Include="modules\scripts\webset\advert.js" />
     <Content Include="modules\scripts\webset\member.js" />
     <Content Include="modules\template\faudit\imglist.html" />
     <Content Include="modules\template\faudit\needslist.html" />
     <Content Include="modules\template\feedback\feedback-list.html" />
     <Content Include="modules\template\report\agentactionreport-list.html" />
+    <Content Include="modules\template\sysset\permissions.html" />
+    <Content Include="modules\template\sysset\role-detail.html" />
+    <Content Include="modules\template\sysset\roles.html" />
+    <Content Include="modules\template\sysset\setuserrole.html" />
+    <Content Include="modules\template\sysset\user-detail.html" />
+    <Content Include="modules\template\sysset\users.html" />
     <Content Include="modules\template\system\menu-list.html" />
     <Content Include="modules\template\system\modulesproduct-list.html" />
     <Content Include="modules\template\system\permissions.html" />
@@ -866,6 +876,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\FAudit\NeedsAudit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SysSet\Users.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SysSet\Role.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SysSet\RolePermission.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

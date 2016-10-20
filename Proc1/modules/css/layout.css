@@ -15,8 +15,8 @@ header .companyname:hover { color: #fff; }
 /*一级菜单*/
 header .menu { height:50px; margin-left:0px;  }
 header .menu a{  height:50px; line-height:50px;text-align:center; width:100px; display:inline-block; font-size:14px; color:#fff; }
-header .menu .select {background-color:#87ADDA;}
-header .menu li:hover {background-color:#307FDC;}
+header .menu .select {background-color:#307FDC;}
+header .menu li:hover {background-color:#87ADDA;}
 
 
 /*登录信息*/
