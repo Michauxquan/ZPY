@@ -6,7 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using ProBusiness;
+using ProBusiness.Manage;
 using ProEntity.Manage;
+using ProTools;
 
 namespace ZPY.Controllers
 {
@@ -19,7 +21,6 @@ namespace ZPY.Controllers
         { 
             return View();
         }
-
         public ActionResult Register()
         {
             return View();
@@ -51,7 +52,6 @@ namespace ZPY.Controllers
             }
             return View();
         }
-
         public ActionResult Logout()
         { 
             HttpCookie cook = Request.Cookies["zpy"];
@@ -68,7 +68,6 @@ namespace ZPY.Controllers
             Session["PartManage"] = null;
             return Redirect("/Home/Index");
         }
-
         /// <summary>
         /// 用户登录
         /// </summary>
@@ -119,7 +118,6 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
         public JsonResult UserNameCheck(string userName)
         {
             JsonDictionary.Add("result", ProBusiness.M_UsersBusiness.GetM_UserCountByLoginName(userName)==0);
@@ -177,6 +175,18 @@ namespace ZPY.Controllers
             }
             JsonDictionary.Add("result", result);
 
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetAdvertList(string view, string imgtype)
+        {
+            var list = WebSetBusiness.GetAdvertSetList(imgtype, view.ToLower());
+            JsonDictionary.Add("BaseUrl",ProTools.Common.GetKeyValue("Url"));
+            JsonDictionary.Add("items", list);
             return new JsonResult
             {
                 Data = JsonDictionary,

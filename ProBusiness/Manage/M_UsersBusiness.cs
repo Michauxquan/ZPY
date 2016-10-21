@@ -60,10 +60,10 @@ namespace ProBusiness
         /// <param name="operateip"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public static M_Users GetM_UserByProUserName(string loginname, string pwd, string operateip, out int result,EnumUserOperateType type=EnumUserOperateType.Login)
+        public static M_Users GetM_UserByProUserName(string loginname, string pwd, string operateip, out int result,EnumUserOperateType type=EnumUserOperateType.Login,int sourceType=0)
         {
             pwd = ProBusiness.Encrypt.GetEncryptPwd(pwd, loginname);
-            DataSet ds = new M_UsersDAL().GetM_UserByProUserName(loginname, pwd, out result);
+            DataSet ds = new M_UsersDAL().GetM_UserByProUserName(loginname, pwd,sourceType, out result);
             M_Users model = null;
             if (ds.Tables.Contains("M_User") && ds.Tables["M_User"].Rows.Count > 0)
             {

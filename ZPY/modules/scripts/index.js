@@ -1,18 +1,6 @@
 ﻿var ObjetJS = {}
 $(function () {
-    new PCAS("province3", "city3", "area3");
-
-    $(".slideInner").slide({
-        slideContainer: $('.slideInner a'),
-        effect: 'easeOutCirc',
-        autoRunTime: 5000,
-        slideSpeed: 1000,
-        nav: true,
-        autoRun: true,
-        prevBtn: $('a.prev'),
-        nextBtn: $('a.next')
-    });
-
+    new PCAS("province3", "city3", "area3"); 
     $('#seacha').click(function() {
         var ruul = "/RFriend/RentFriend?id=" + $('#seachtype option:selected').val() +
         ($('#seachage option:selected').val() != "" ? "&agerange=" + $('#seachage option:selected').val() : "") +
@@ -21,6 +9,7 @@ $(function () {
     });
     ObjetJS.GetRboy(1);
     ObjetJS.getUserRecomment();
+    ObjetJS.GetAddvert();
 });
 ObjetJS.GetRboy= function(type) {
     $.post('/RFriend/GetUserInfoByType', {
@@ -122,7 +111,7 @@ ObjetJS.GetNeedList = function () {
             var html = '';
             for (var i = 0; i < data.items.length; i++) {
                 var item = data.items[i];
-                html += ' <li><span><a href="/User/UserMsg/'+item.UserID+'">' + item.UserName+ '</a></span>[' + (item.Type == 1 ? "求租" : "出租") + ']<span><a href="/RFriend/HireDetail'+item.AutoID+'">' + item.Title + '</a></span></li>'
+                html += ' <li><span><a href="/User/UserMsg/'+item.UserID+'">' + item.UserName+ '</a></span>[' + (item.Type == 1 ? "求租" : "出租") + ']<span><a href="/RFriend/HireDetail/'+item.AutoID+'">' + item.Title + '</a></span></li>'
             }
             $('#userNeesdul').html(html);
             $('.myscroll').myScroll({
@@ -146,5 +135,37 @@ ObjetJS.GetNewImg = function () {
                 rowHeight: 236//li的高度
             });
         }
+    });
+}
+
+ObjetJS.GetAddvert= function() {
+    $.post('/Home/GetAdvertList',
+        {
+            imgtype: "",
+            view: $('#pagecontroller').val() + '/' + $('#pageaction').val()
+        },function (data) { 
+            var header = "";
+            var bright = "";
+            for (var i = 0; i < data.items.length; i++) {
+                var item = data.items[i];
+                if (item.ImgType == "Header") {
+                    header += '<a href="' + (item.LinkUrl != "" ? item.LinkUrl : 'javascript:void(0);') + '" style="width: 100%; height: 100%;" >' +
+                        '<div class="moveElem img1" rel="0,easeInOutExpo" style="width:100%;height:100%;' + (header == "" ? 'left:534.5px;' : '') + '"> ' +
+                        '<img src="' + data.BaseUrl + item.ImgUrl + '" style="width:100%;height:100%;z-index:-1;"/></div></a>';
+                } else if (item.ImgType == "BottomRight") {
+                    bright = '<a href="' + (item.LinkUrl != "" ? item.LinkUrl : 'javascript:void(0);') + '" title="' + item.Content + '"><img style="width:220px;height:128px;" src="' + data.BaseUrl + item.ImgUrl + '" alt="' + item.Content + '" ></a>';
+                }
+            }
+            $('.ad').html(bright);
+            $('.slideInner').html(header).slide({
+                slideContainer: $('.slideInner a'),
+                effect: 'easeOutCirc',
+                autoRunTime: 5000,
+                slideSpeed: 1000,
+                nav: true,
+                autoRun: true,
+                prevBtn: $('a.prev'),
+                nextBtn: $('a.next')
+        });
     });
 }

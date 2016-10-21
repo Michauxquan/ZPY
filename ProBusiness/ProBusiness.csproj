@@ -44,6 +44,7 @@
     <Compile Include="Common\CommonBusiness.cs" />
     <Compile Include="Common\Encrypt.cs" />
     <Compile Include="Common\LogBusiness.cs" />
+    <Compile Include="Manage\FeedBackBusiness.cs" />
     <Compile Include="Manage\ManageSystemBusiness.cs" />
     <Compile Include="Manage\M_UsersBusiness.cs" />
     <Compile Include="Manage\WebSetBusiness.cs" />

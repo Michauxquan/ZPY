@@ -93,7 +93,17 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        /// <summary>
+        /// 获取聘请信息
+        /// </summary>
+        /// <param name="sex"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="type"></param>
+        /// <param name="address"></param>
+        /// <param name="age"></param>
+        /// <param name="cdesc"></param>
+        /// <returns></returns>
         public JsonResult GetUserNeedsList(int sex, int pageIndex, int pageSize,string type="1",string address = "", string age = "", string cdesc = "")
         {
             int total = 0;

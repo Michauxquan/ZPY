@@ -11,10 +11,11 @@ namespace ProEntity
         public int AutoID { get; set; }
         public string ImgType { get; set; }
         public string View { get; set; }
-        public string CreateUseID { get; set; } 
+        public string CreateUserID { get; set; } 
         public DateTime CreateTime { get; set; } 
         public string ImgUrl { get; set; }
         public string Content { get; set; }
+        public string LinkUrl { get; set; }
 
         /// <summary>
         /// 填充数据

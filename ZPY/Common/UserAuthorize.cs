@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Proc.Common
+namespace ZPY.Common
 {
     public class UserAuthorize : AuthorizeAttribute
     {          
@@ -23,7 +23,7 @@ namespace Proc.Common
             base.OnAuthorization(filterContext);
             if (filterContext.HttpContext.Response.StatusCode == 401)
             {
-                filterContext.Result = new RedirectResult("/Home/Index");
+                filterContext.Result = new RedirectResult("/Home/Login");
                 return;
             }
             else

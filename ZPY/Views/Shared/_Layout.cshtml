@@ -70,10 +70,7 @@
     <div class="main-content">
         @RenderBody()
     </div>
-</div>
-
-
-
+</div> 
 
 <div id="basic-dialog-ok" style="display: none;">
     <!-- 普通弹出层 [[ -->
@@ -105,7 +102,35 @@
     <!-- 普通弹出层 ]] -->
 </div>
 
-<input type="hidden" value="@controller" id="page-controller"/>
+<div id="feedback-dialog" class="feedback-dialog" style="display: none;">
+    <!-- 普通弹出层 [[ -->
+    <div class="box-title">
+        <h3 class="tLeft red">举报反馈</h3>
+    </div>
+    <div class="box-main">
+        <div class="tips">
+            <span class="tips-ico"><span class="ico-info"></span></span>      
+            <div class="tips-content">
+                <div class="tips-title">
+                    <p>标　　题：<input id="feedtitel" type="text" style="line-height: 20px;"/></p>
+                    <p>类　　型：<select id="feedtype" style="line-height: 20px; height: 20px; width: 80px;"><option value="1">举报</option><option value="1">反馈</option></select></p>
+                    <p>被举报人：<input type="text" id="tipedid" class="hide" value=""  hidden="hidden" /><input type="text"id="tipedname" readonly="readonly"  style="line-height: 20px;"/>
+                    </p>
+                    <p>描　　述：<textarea id="feedcontent" style="width: 200px; height: 100px;resize: none;"></textarea></p>  
+                </div>
+                <div class="feedtips red" style="padding-left: 30px; font-size:14px;"></div>
+            </div>
+        </div>
+        <div class="box-buttons">
+            <button type="button" class="feed-cancle" >关 闭</button>
+            <button type="button" class="feed-ok" style="background: #f22b64; color: #fff0f5;">提 交</button>
+        </div>
+    </div>
+    <!-- 普通弹出层 ]] -->
+</div>
+<input type="hidden" value="@controller" id="pagecontroller"/>
+<input type="hidden" value="@action" id="pageaction"/>
+    
 <script type="text/javascript">
     /* 提示框 */
     $('.open-basic-dialog-ok').click(function(e) {

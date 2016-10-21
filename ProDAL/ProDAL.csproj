@@ -44,6 +44,7 @@
     <Compile Include="Common\CommonDAL.cs" />
     <Compile Include="Common\WebSetDAL.cs" />
     <Compile Include="LogDAL.cs" />
+    <Compile Include="Mannge\FeedBackDAL.cs" />
     <Compile Include="Mannge\M_UsersDAL.cs" />
     <Compile Include="Mannge\SystemDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

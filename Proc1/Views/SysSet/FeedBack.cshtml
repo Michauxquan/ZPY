@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "意见反馈";
+}
+
+@section css{
+    <link href="/modules/plug/daterangepicker/daterangepicker.css" rel="stylesheet" />
+}
+@section scripts{ 
+<script type="text/javascript">
+    seajs.use(["scripts/sysset/feedback"], function (feedback) {
+        feedback.init();
+    }); 
+</script>
+}
+
+<div class="header-box">
+    <span class="header-title">意见反馈</span>
+</div>
+<div class="search-header mTop20">
+    <ul class="search-tab search-status" style="margin-left: 0px !important;">
+        <li class="hover"  data-index="-1">所有</li>
+        <li data-index="0">待解决</li>            
+        <li data-index="1">已解决</li>
+        <li data-index="2">驳回</li>
+        <li data-index="9">删除</li>
+    </ul>  
+</div>
+
+<div class="content-body">
+    <div class="search-body">
+        <div id="FeedTypes" class="left"></div> 
+        <div class="left mLeft20" title="创建时间">
+            <input type="text" id="iptCreateTime" placeholder="创建时间" class="ipt-date"  />
+        </div> 
+        <div class="right searth-module" data-text="输入关键字..." data-width="150"></div>
+        <div class="clear"></div>
+    </div>
+
+    <table class="table-list">
+        <tr class="tr-header">            
+            <td class="tLeft">标题</td>
+            <td class="tLeft">类型</td>
+            <td class="tLeft">状态</td>
+            <td class="tLeft">联系人</td>
+            <td class="tLeft">电话</td>
+            <td class="tLeft">创建时间</td>
+            <td class="tLeft" width="10%">操作</td>
+        </tr>
+    </table>
+
+     <div id="pager" class="mTop20"></div>
+</div>

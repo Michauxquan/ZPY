@@ -6,11 +6,10 @@
 <!--主体 开始 -->
 <div class="main">
     <!-- 图片-->
-    <div class="advertisement"><img src="/modules/images/ad2.jpg" width="960px" height="80px" alt="广告"></div>
+    <div class="advertisement"></div>
     <!--登录 开始-->
     <div class="login">
         <div class="login1">
-          
                 <h3>用户登录</h3>
                 <li>
                     <span>账 &nbsp;&nbsp;号：</span>
@@ -34,7 +33,7 @@
                 </li>
                 <li class="line">
                     <span>没有账号？</span>&nbsp;
-                    <span><a href="#">立即注册</a></span>
+                    <span><a href="/Home/Register">立即注册</a></span>
                 </li>
             
         </div>
@@ -44,40 +43,68 @@
 <!--主体 结束 -->
 <script type="text/javascript" src="/Scripts/yzm.js"></script>
 <script type="text/javascript">
-    $('.button1').bind('click', function () {
-        if ($('.phone1').val() == "") {
-            $('.phone').html('登陆账号不能为空');
-            return false;
-        } else { $('.phone').html(''); }
-        if ($('.q1').val()=="") {
-            $('.password').html('密码不能为空');
-            return false;
-        } else { $('.password').html(''); }
-        if ($('#codetext').val().toLowerCase() != $('#txt1').val().toLowerCase()) {
-            $('.codetips').html('验证码错误');
-            show();
-            return false;
-        } else { $('.codetips').html(''); }
 
-        $.ajax({
-            type: "POST",
-            url: "/Home/UserLogin",
-            data: "userName=" + $('.phone1').val() + "&pwd=" + $('.q1').val(),
-            success: function (data) { 
-                if (data.result) {
-                    $('.nologo').addClass('hide');
-                    $('.logoed').removeClass('hide');
-                    location.href = '/User/UserInfo';
-                } else {
-                    if (data.errorMsg != "") {
-                        alert(data.errorMsg);
-                        location.href = '/Home/Register2';
-                    }
-                    else{
-                        $('.phone').html('用户名或密码次错误');
+    $(function () {
+        GetAddvert();
+        $('.button1').bind('click', function () {
+            if ($('.phone1').val() == "") {
+                $('.phone').html('登陆账号不能为空');
+                return false;
+            } else { $('.phone').html(''); }
+            if ($('.q1').val() == "") {
+                $('.password').html('密码不能为空');
+                return false;
+            } else { $('.password').html(''); }
+            if ($('#codetext').val().toLowerCase() != $('#txt1').val().toLowerCase()) {
+                $('.codetips').html('验证码错误');
+                show();
+                return false;
+            } else { $('.codetips').html(''); }
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/UserLogin",
+                data: "userName=" + $('.phone1').val() + "&pwd=" + $('.q1').val(),
+                success: function (data) {
+                    if (data.result) {
+                        $('.nologo').addClass('hide');
+                        $('.logoed').removeClass('hide');
+                        location.href = '/User/UserInfo';
+                    } else {
+                        if (data.errorMsg != "") {
+                            alert(data.errorMsg);
+                            location.href = '/Home/Register2';
+                        }
+                        else {
+                            $('.phone').html('用户名或密码次错误');
+                        }
                     }
                 }
+            });
+        });
+        $(document).on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $(".button1").click();
             }
         });
     });
+    function GetAddvert() {
+        $.post('/Home/GetAdvertList',
+            {
+                imgtype: "",
+                view: $('#pagecontroller').val() + '/' + $('#pageaction').val()
+            }, function (data) {
+                var header = "";
+                for (var i = 0; i < data.items.length; i++) {
+                    var item = data.items[i];
+                    if (item.ImgType == "Header") {
+                        header = '<a href="' + (item.LinkUrl != "" ? item.LinkUrl : 'javascript:void(0);') + '" title="' + item.Content + '">' +
+                            '<img style="width:960px;height:80px;" src="' + data.BaseUrl + item.ImgUrl + '" alt="' + item.Content + '" >' +
+                            '</a>';
+                    }
+                }
+                $('.advertisement').html(header);
+            });
+    }
+  
 </script>

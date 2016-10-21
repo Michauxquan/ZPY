@@ -3,6 +3,7 @@ $(function () {
     new PCAS("province3", "city3", "area3");
     getUserRecomment('',1,4,$('#seachtype').data('value'));
     getNewNeeds();
+    GetAddvert();
     $('#seachInput').click(function() {
         getUserByType(1, '', $('#seachage option:selected').val());
     });
@@ -100,4 +101,19 @@ function getNewNeeds() {
             rowHeight: 38 //li的高度
         });
     });
+}
+function GetAddvert() {
+    $.post('/Home/GetAdvertList',
+        {
+            imgtype: "",
+            view: $('#pagecontroller').val() + '/' + $('#pageaction').val()
+        }, function (data) { 
+            var bright = "";
+            for (var i = 0; i < data.items.length; i++) {
+                var item = data.items[i];  if (item.ImgType == "BottomRight") {
+                    bright += '<a href="' + (item.LinkUrl != "" ? item.LinkUrl : 'javascript:void(0);') + '" title="' + item.Content + '"><img style="width:220px;height:128px;" src="' + data.BaseUrl + item.ImgUrl + '" alt="' + item.Content + '" ></a>';
+                }
+            }
+            $('.ad').html(bright); 
+        });
 }

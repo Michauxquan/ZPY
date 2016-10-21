@@ -8,7 +8,7 @@
 
     var Params = {
         type: '',
-        status: "",
+        status: "0,6",
         userID: "",
         keywords: "",
         beginTime: "",
@@ -70,13 +70,14 @@
         });
         require.async("dropdown", function () {
             var NeedsType = [
+               { name: "正常", value: "1,2,3,4,5" },
                { name: "待审核", value: "0" },
                { name: "驳回", value: "6" }
             ];
             $("#needStatus").dropdown({
                 prevText: "状态-",
                 defaultText: "全部",
-                defaultValue: "0,6",
+                defaultValue: "",
                 data: NeedsType,
                 dataValue: "value",
                 dataText: "name",

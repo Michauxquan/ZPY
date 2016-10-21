@@ -30,8 +30,8 @@ D:\Michaux\Proc\Proc1\Proc1\bin\zh-Hans\System.Web.Providers.resources.dll
 D:\Michaux\Proc\Proc1\Proc1\obj\Debug\Proc.csprojResolveAssemblyReference.cache
 D:\Michaux\Proc\Proc1\Proc1\obj\Debug\Proc1.dll
 D:\Michaux\Proc\Proc1\Proc1\obj\Debug\Proc1.pdb
-D:\MichauxPro\ZPY\Proc1\bin\Proc1.dll
-D:\MichauxPro\ZPY\Proc1\bin\Proc1.pdb
+D:\MichauxPro\ZPY\Proc1\bin\Proc.dll
+D:\MichauxPro\ZPY\Proc1\bin\Proc.pdb
 D:\MichauxPro\ZPY\Proc1\bin\EntityFramework.dll
 D:\MichauxPro\ZPY\Proc1\bin\Microsoft.Web.Infrastructure.dll
 D:\MichauxPro\ZPY\Proc1\bin\Newtonsoft.Json.dll
@@ -62,5 +62,5 @@ D:\MichauxPro\ZPY\Proc1\bin\ProDAL.pdb
 D:\MichauxPro\ZPY\Proc1\bin\zh-Hans\EntityFramework.resources.dll
 D:\MichauxPro\ZPY\Proc1\bin\zh-Hans\System.Web.Providers.resources.dll
 D:\MichauxPro\ZPY\Proc1\obj\Debug\Proc.csprojResolveAssemblyReference.cache
-D:\MichauxPro\ZPY\Proc1\obj\Debug\Proc1.dll
-D:\MichauxPro\ZPY\Proc1\obj\Debug\Proc1.pdb
+D:\MichauxPro\ZPY\Proc1\obj\Debug\Proc.dll
+D:\MichauxPro\ZPY\Proc1\obj\Debug\Proc.pdb

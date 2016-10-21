@@ -1,18 +1,15 @@
 ﻿
 
 define(function (require, exports, module) {
-
-    require("jquery");
     require("pager");
-    require("daterangepicker");
-
     var Global = require("global"),
         doT = require("dot"),
         moment = require("moment");
+    require("daterangepicker");
 
     var FeedBack = {};
    
-    Params = {
+    FeedBack.Params = {
         pageIndex: 1,
         type: -1,
         status: -1,
@@ -25,13 +22,14 @@ define(function (require, exports, module) {
     //列表初始化
     FeedBack.init = function () {
         FeedBack.bindEvent();
-        FeedBack.getList();
+        FeedBack.bindData();
     };
 
     //绑定事件
     FeedBack.bindEvent = function () {
+        var _self = this;
         //日期插件
-        $("#feedBeginTime").daterangepicker({
+        $("#iptCreateTime").daterangepicker({
             showDropdowns: true,
             empty: true,
             opens: "right",
@@ -43,20 +41,22 @@ define(function (require, exports, module) {
             }
         }, function (start, end, label) {
             Params.pageIndex = 1;
-            Params.beginDate = start ? start.format("YYYY-MM-DD") : '';
-            Params.endDate = end ? end.format("YYYY-MM-DD") : '';
-            FeedBack.getList();
+            Params.beginTime = start ? start.format("YYYY-MM-DD") : "";
+            Params.endTime = end ? end.format("YYYY-MM-DD") : "";
+            _self.bindData();
         });
+
         //关键字查询
         require.async("search", function () {
             $(".searth-module").searchKeys(function (keyWords) {
-                if (Params.keyWords != keyWords) {
-                    Params.pageIndex = 1;
-                    Params.keyWords = keyWords;
-                    FeedBack.getList();
+                if (_self.Params.keyWords != keyWords) {
+                    _self.Params.pageIndex = 1;
+                    _self.Params.keyWords = keyWords;
+                    _self.bindData();
                 }
             });
         });
+
         //下拉状态、类型查询
         require.async("dropdown", function () {
             var Types = [
@@ -82,91 +82,72 @@ define(function (require, exports, module) {
                 dataText: "Name",
                 width: "120",
                 onChange: function (data) {
-                    Params.pageIndex = 1;
-                    Params.type = parseInt(data.value); 
-                    FeedBack.getList();
+                    _self.Params.pageIndex = 1;
+                    _self.Params.type = parseInt(data.value); 
+                    _self.bindData();
                 }
-            }); 
-        });
-        $(".search-tab li").click(function () {
-            $(this).addClass("hover").siblings().removeClass("hover");
-            var index = $(this).data("index");
-            $(".content-body div[name='navContent']").hide().eq(parseInt(index)).show();
-            Params.pageIndex = 1;
-            Params.status = index==0?-1:index; 
-            FeedBack.getList();
+            });
+
+            $(".search-tab li").click(function () {
+                $(this).addClass("hover").siblings().removeClass("hover");
+                var index = $(this).data("index");
+                _self.Params.pageIndex = 1;
+                _self.Params.status = index; 
+                _self.bindData();
+            });
         }); 
-       
     };
 
     //绑定数据列表
-    FeedBack.getList = function () {
+    FeedBack.bindData = function () {
         $(".tr-header").nextAll().remove();
-        $(".tr-header").after("<tr><td colspan='7'><div class='data-loading'><div></td></tr>");
-
-        Global.post("/FeedBack/GetFeedBacks", Params, function (data) {
-            $(".tr-header").nextAll().remove();
-
-            doT.exec("template/feedback/FeedBack-list.html?3", function (templateFun) {
-                var innerText = templateFun(data.items);
+        Global.post("/SysSet/GetFeedBacks", FeedBack.Params, function (data) {
+            doT.exec("template/sysset/FeedBack-list.html?3", function (templateFun) {
+                var innerText = templateFun(data.Items);
                 innerText = $(innerText);
                 $(".tr-header").after(innerText);
             });
 
-            if (data.items.length == 0) {
-                $(".tr-header").after("<tr><td colspan='7'><div class='nodata-txt' >暂无数据!<div></td></tr>");
-            }
             $("#pager").paginate({
-                total_count: data.totalCount,
-                count: data.pageCount,
-                start: Params.pageIndex,
+                total_count: data.TotalCount,
+                count: data.PageCount,
+                start: FeedBack.Params.pageIndex,
                 display: 5,
                 border: true,
                 rotate: true,
                 images: false,
                 mouse: 'slide',
                 onChange: function (page) {
-                    Params.pageIndex = page;
-                    FeedBack.getList();
+                    FeedBack.Params.pageIndex = page;
+                    FeedBack.bindData();
                 }
             });
-
         });
     }
 
     FeedBack.detailInit = function (id) {
-        Params.id = id;
-
+        FeedBack.Params.id = id;
         FeedBack.detailBindEvent();
-
-        FeedBack.getDetail();
+        FeedBack.getFeedBackDetail();
     }
 
     FeedBack.detailBindEvent = function () {
         $("#btn-finish").click(function () {
-            if (confirm("确定解决吗?")) {
-                FeedBack.updateFeedBackStatus(2);
-            }
+            FeedBack.updateFeedBackStatus(2);
         });
-
         $("#btn-cancel").click(function () {
-            if (confirm("确定驳回吗?")) {
-                FeedBack.updateFeedBackStatus(3);
-            }
+            FeedBack.updateFeedBackStatus(3);
         });
-
         $("#btn-delete").click(function () {
-            if (confirm("确定删除吗?")) {
-                FeedBack.updateFeedBackStatus(9);
-            }
+            FeedBack.updateFeedBackStatus(9);
         });
     }
 
     //详情
-    FeedBack.getDetail = function () {
-        Global.post("/FeedBack/GetFeedBackDetail", { id: Params.id }, function (data) {
-            if (data.item) {
-                var item = data.item;
+    FeedBack.getFeedBackDetail = function () {
+        Global.post("/SysSet/GetFeedBackDetail", { id: FeedBack.Params.id }, function (data) {
+            if (data.Item) {
+                var item = data.Item;
                 $("#Title").html(item.Title);
                 var typeName = "问题";
                 if (item.Type == 2)
@@ -176,24 +157,21 @@ define(function (require, exports, module) {
                 $("#Type").html(typeName);
 
                 var statusName = "待解决";
-                if (item.Status == 2) {
+                if (item.Status == 1) {
                     statusName = "已解决";
                     $('#btn-finish').hide();
                     $('#btn-cancel').hide();
                     $('#btn-delete').hide();
-                }
-                else if (item.Status == 3) {
+                } else if (item.Status == 2) {
                     statusName = "驳回";
                     $('#btn-finish').hide();
                     $('#btn-cancel').hide();
                     $('#btn-delete').hide();
-                }
-                else if (item.Status == 9)
+                } else if (item.Status == 9) {
                     statusName = "删除";
+                }
                 $("#Status").html(statusName);
-
-                $("#ContactName").html(item.ContactName);
-                $("#MobilePhone").html(item.MobilePhone);
+                $("#TipedName").html(item.ContactName); 
                 $("#Remark").html(item.Remark);
                 $("#Content").html(item.Content);
                 $("#CreateTime").html(item.CreateTime.toDate("yyyy-MM-dd hh:mm:ss"));
@@ -203,16 +181,14 @@ define(function (require, exports, module) {
 
     //更改状态
     FeedBack.updateFeedBackStatus = function (status) {
-        Global.post("/FeedBack/UpdateFeedBackStatus", { id: Params.id, status: status,content:$('#Content').val() }, function (data) {
-            if (data.result == 1) {
+        Global.post("/SysSet/UpdateFeedBackStatus", { id: FeedBack.Params.id, status: status, content: $('#Content').val() }, function (data) {
+            if (data.Result == 1) {
                 alert("保存成功");
-                FeedBack.getDetail();
-            }
-            else {
+                FeedBack.getFeedBackDetail();
+            } else {
                 alert("保存失败");
             }
         });
     };
-
     module.exports = FeedBack;
 });

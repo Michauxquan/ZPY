@@ -106,7 +106,7 @@ namespace ProBusiness.Manage
 
         public static bool InsertAdvert(AdvertSet model)
         {
-            return WebSetDAL.BaseProvider.InsertAdvert(model.CreateUseID,model.View, model.Content, model.ImgType, model.ImgUrl);
+            return WebSetDAL.BaseProvider.InsertAdvert(model.CreateUserID,model.View.ToLower(), model.Content, model.ImgType, model.ImgUrl,model.LinkUrl);
         }
 
         #endregion
@@ -145,7 +145,7 @@ namespace ProBusiness.Manage
         public static bool UpdateAdvert(AdvertSet model)
         {
             return WebSetDAL.BaseProvider.UpdateAdvert(model.AutoID, model.View, model.Content, model.ImgType,
-                model.ImgUrl);
+                model.ImgUrl,model.LinkUrl);
         }
 
         public static bool DeleteAdvertSet(int autoid)

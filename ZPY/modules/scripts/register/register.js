@@ -2,7 +2,7 @@
 var contineRegister = false;
 $(function () {
     $("#register").validate({ meta: "validate" });
-
+    GetAddvert();
     $('#username').blur(function () {
         var reg = /^([a-zA-Z0-9_]){6,12}/;
         if (!reg.test($('#username').val())) {
@@ -94,5 +94,22 @@ $(function () {
             alert('验证未通过请检查后再提交！');
         }
     });
-
 });
+function GetAddvert() {
+    $.post('/Home/GetAdvertList',
+        {
+            imgtype: "",
+            view: $('#pagecontroller').val() + '/' + $('#pageaction').val()
+        }, function (data) {
+            var header = "";
+            for (var i = 0; i < data.items.length; i++) {
+                var item = data.items[i];
+                if (item.ImgType == "Header") {
+                    header = '<a href="' + (item.LinkUrl != "" ? item.LinkUrl : 'javascript:void(0);') + '" title="' + item.Content + '">' +
+                        '<img style="width:960px;height:80px;" src="' + data.BaseUrl + item.ImgUrl + '" alt="' + item.Content + '" >' +
+                        '</a>';
+                }
+            }
+            $('.advertisement').html(header);
+        });
+}

@@ -4,7 +4,7 @@
 .hire-detail h3 a:visited{color: #f62;}
 .hire-detail h3 a:hover{color: red;text-decoration: underline;}
 .hire-detail .userpic,.hire-detail .hire-content{float: left;}
-.hire-detail .userpic{text-align: center;margin-left: 40px;}
+.hire-detail .userpic{text-align: center;margin-left: 30px;}
 .hire-detail .userpic img{margin-top: 15px;margin-bottom: 10px;}
 .hire-detail .hire-content{margin-left: 20px;margin-top: 20px;width: 680px;}
 .hire-detail .hire-content h4{padding-bottom: 5px;border-bottom: 1px solid #eee;width:100%;}

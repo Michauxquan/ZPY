@@ -46,15 +46,15 @@ namespace ProDAL
 
         public bool UpdateStatus(string autoid,int status,string operater )
         {
-            string sql =
-                @"update   UserNeeds set  Status=@Status ,UpdateTime=getdate(),UpdateID=@UpdateID where AutoID in (@AutoID)";
+            //string sql =
+            //    @"update   UserNeeds set  Status=@Status ,UpdateTime=getdate(),UpdateID=@UpdateID where AutoID in (@AutoID)";
             SqlParameter[] paras =
             {
                 new SqlParameter("@Status", status),
                 new SqlParameter("@AutoID", autoid),
                 new SqlParameter("@UpdateID", operater)
             };
-            return ExecuteNonQuery(sql, paras, CommandType.Text) > 0;
+            return ExecuteNonQuery("P_UserNeedUpdateStatus", paras, CommandType.StoredProcedure) > 0;
         }
         public bool UpdateAcceptStatus(string autoid, int status, string operater, string inviteName)
         {

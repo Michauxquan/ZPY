@@ -2,6 +2,9 @@
 $(function() {
     $('#focusit').click(function () { focususer(); });
     getUserRate();
+    $('#feedlink').click(function () { feedshow(); });
+    $('.feed-cancle').click(function () { feedcancle(); });
+    $('.feed-ok').click(function () { feedSave(); });
 });
 
 function focususer() {
@@ -75,4 +78,40 @@ function getuserlike(address, pagesize) {
     });
 }
 
+function feedSave() {
+    if ($('#feedtitel').val() == '') {
+        $('.feedtips').html('请填写标题');
+        return false;
+    }
+    var item={
+        TipedID: $('#tipedid').val(),
+        TipedName:$('#tipedname').val(),
+        Remark:$('#feedcontent').val(),
+        Title:$('#feedtitel').val(),
+        Type: $('#feedtype option:selected').val()
+    }
+    $.post('/Help/SaveFeedBack', { entity: JSON.stringify(item) },
+    function(data) {
+        if (data.result) {
+            alert('提交成功');
+        } else {
+            alert(data.errorMsg); 
+        }
+        feedcancle();
+    }); 
+}
+
+function feedcancle() {
+    $('#feedback-dialog').hide();
+    $('.feedtips').html('');
+    $('#feedtitel').val('');
+    $('#tipedid').val('');
+    $('#tipedname').val('');
+    $('#feedcontent').val(''); 
+}
+function feedshow() {
+    $('#feedback-dialog').show(); 
+    $('#tipedid').val($('#userinfoli').data('id'));
+    $('#tipedname').val($('#userinfoli').data('name'));
+}
 

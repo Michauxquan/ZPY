@@ -49,7 +49,7 @@ namespace Proc.Controllers
             Dictionary<string, object> JsonDictionary = new Dictionary<string, object>();
             string operateip = string.IsNullOrEmpty(Request.Headers.Get("X-Real-IP")) ? Request.UserHostAddress : Request.Headers["X-Real-IP"];
             int result = 0;
-            ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(userName, pwd, operateip, out result,EnumUserOperateType.Manage);
+            ProEntity.Manage.M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(userName, pwd, operateip, out result,EnumUserOperateType.Manage,1);
             if (model != null)
             {
                 Session["ZPYManager"] = model;

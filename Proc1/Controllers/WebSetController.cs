@@ -131,7 +131,7 @@ namespace Proc1.Controllers
             var result = false;
             if (model.AutoID == -1)
             {
-                model.CreateUseID = CurrentUser.UserID;
+                model.CreateUserID = CurrentUser.UserID;
                  result = WebSetBusiness.InsertAdvert(model);
             }
             else

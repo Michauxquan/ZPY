@@ -20,13 +20,14 @@ namespace ProDAL.Manage
                                    };
             return GetDataTable("select * from M_Users where LoginName=@UserName and LoginPwd=@LoginPwd and Status=1", paras, CommandType.Text);
         }
-        public DataSet GetM_UserByProUserName(string loginname, string pwd, out int result)
+        public DataSet GetM_UserByProUserName(string loginname, string pwd, int sourceType,out int result)
         {
             result = 0;
             SqlParameter[] paras = {
                                     new SqlParameter("@Result",result),
                                     new SqlParameter("@LoginName",loginname),
-                                    new SqlParameter("@LoginPwd",pwd)
+                                    new SqlParameter("@LoginPwd",pwd),
+                                    new SqlParameter("@SourceType",sourceType)
                                    };
             paras[0].Direction = ParameterDirection.Output;
             DataSet ds = GetDataSet("M_GetM_UserToLogin", paras, CommandType.StoredProcedure, "M_User|Permission");

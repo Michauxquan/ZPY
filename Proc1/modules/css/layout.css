@@ -83,11 +83,12 @@ nav .action-box .select { width:201px; background-color:#fff;}
 /*search-tab*/
 .search-header { height:36px; overflow:auto; border-bottom:solid 1px #B5C2CA; }
 .search-header .search-tab { height:35px; margin-left:20px; float:left; }
-.search-header .search-tab li{ padding:0 10px; cursor:pointer; min-width:70px; text-align:center; margin-top:10px; margin-right:5px;height:25px; line-height:25px; color:#fff;
-                               float:left; background-color:#B5C2CA; border-radius:2px;  border-bottom-left-radius:0; border-bottom-right-radius:0; 
-                               border-left:solid 1px #B5C2CA; border-right:solid 1px #B5C2CA; border-top:solid 1px #B5C2CA;}
+.search-header .search-tab li{ padding:0 10px; cursor:pointer; min-width:70px; text-align:center; margin-top:10px; margin-right:5px;
+                               height:30px; line-height:30px; color:#fff;float:left; background-color:#4a98e7; border-radius:2px; 
+                               border-bottom-left-radius:0; border-bottom-right-radius:0; border-left:solid 1px #B5C2CA;
+                                border-right:solid 1px #B5C2CA; border-top:solid 1px #B5C2CA;}
 .search-header .search-tab li:hover{ background-color:#fff; color:#4a98e7;}
-.search-header .search-tab li.hover{ height:35px;  margin-top:0px; background-color:#fff; color:#4a98e7; line-height:35px;  }
+.search-header .search-tab li.hover{ height:38px;  margin-top:0px; background-color:#4a98e7; color:#fff; line-height:38px;  }
 
 .search-header .search-tab-status { float:right; height:25px; line-height:25px;margin-top:5px; }
 .search-header .search-tab-status li{ float:left; margin-left:5px; padding:0 15px; cursor:pointer; text-align:center; color:#666; border-radius:13px;}

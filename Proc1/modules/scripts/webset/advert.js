@@ -21,6 +21,7 @@ define(function (require, exports, module) {
             Model.ImgUrl = '';
             Model.View = '';
             Model.Content = '';
+            Model.LinkUrl = '';
             Model.AutoID = -1;
             _self.editimg();
         });
@@ -44,6 +45,7 @@ define(function (require, exports, module) {
                         Model.ImgType = $(this).data("imgtype");
                         Model.ImgUrl = $(this).data("src");
                         Model.View = $(this).data("view");
+                        Model.LinkUrl = $(this).data("linkurl");
                         Model.Content = $(this).data("content");
                         Model.AutoID = $(this).data("id");
                         _self.editimg();
@@ -82,6 +84,7 @@ define(function (require, exports, module) {
                         Model.ImgType = $("#imgtype option:selected").val();
                         Model.ImgUrl = $("#imgurl").val();
                         Model.View = $('#view').val();
+                        Model.LinkUrl = $('#linkurl').val();
                         Model.Content = $("#content").val();
                         Model.AutoID = $("#autoid").val();
                         _self.saveModel(Model);
@@ -108,6 +111,7 @@ define(function (require, exports, module) {
             $("#imgurl").val(Model.ImgUrl);
             $("#content").val(Model.Content);
             $("#imgtype").val(Model.ImgType);
+            $('#linkurl').val(Model.LinkUrl);
             $('#imgslt').attr("src", Model.ImgUrl);
             ImgsIco = Upload.createUpload({
                 element: '#ImgBtn',

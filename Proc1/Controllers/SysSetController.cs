@@ -30,6 +30,17 @@ namespace Proc.Controllers
             ViewBag.Menus = CommonBusiness.ManageMenus.Where(m => m.PCode == ExpandClass.CLIENT_TOP_CODE).ToList();
             return View();
         }
+        public ActionResult Feedback()
+        {
+            return View();
+        }
+
+        public ActionResult FeedDetail(string id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
         #region Ajax
 
         /// <summary>
@@ -212,6 +223,55 @@ namespace Proc.Controllers
             };
         }
 
+        /// <summary>
+        /// 获取举报反馈信息
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="type"></param>
+        /// <param name="status"></param>
+        /// <param name="keyWords"></param>
+        /// <param name="beginDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        public JsonResult GetFeedBacks(int pageIndex, int type, int status, string keyWords, string beginDate, string endDate)
+        {
+
+            int totalCount = 0, pageCount = 0;
+            var list = FeedBackBusiness.GetFeedBacks(keyWords, beginDate, endDate, type, status, "", PageSize, pageIndex, out totalCount, out pageCount);
+            JsonDictionary.Add("Items", list);
+            JsonDictionary.Add("TotalCount", totalCount);
+            JsonDictionary.Add("PageCount", pageCount);
+
+            return new JsonResult()
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetFeedBackDetail(string id)
+        {
+            var item = FeedBackBusiness.GetFeedBackDetail(id);
+            JsonDictionary.Add("Item", item);
+
+            return new JsonResult()
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult UpdateFeedBackStatus(string id, int status, string content)
+        {
+            bool flag = FeedBackBusiness.UpdateFeedBackStatus(id, status, content);
+            JsonDictionary.Add("Result", flag ? 1 : 0);
+
+            return new JsonResult()
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         #endregion
     }
 }

@@ -265,12 +265,13 @@
 				position: "absolute",
 				left: leftPos + "%"
 			}).attr("data-index", i + 1);
-			leftPos = leftPos + 100;
+		    leftPos = leftPos + 100;
 			if (settings.nav) {
 				navlist += "<li style='cursor: pointer'><a data-index='" + (i + 1) + "'></a></li>";
-			};
-			$.each($(this).children(), function(i) {
-				$(this).attr('offsetLeft', $(this).css('left'));
+			}; 
+			//534.5
+		    $.each($(this).children(), function (i) { 
+		        $(this).attr('offsetLeft', (parseFloat($(this).css('left')) != 534.5?(parseFloat($(this).css('left')) - 140).toFixed(1):$(this).css('left')));
 			});
 		});
 		$("<ul style='width:" + ($(settings.slideContainer).length * 12 + ($(settings.slideContainer).length - 1) * 5) + "px;margin-left:-" + ($(settings.slideContainer).length * 12 + (($(settings.slideContainer).length - 1) * 5)) / 2 + "px' class='navListBox'>" + navlist + "</ul>").appendTo(el.parent());

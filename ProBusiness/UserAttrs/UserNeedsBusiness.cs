@@ -24,7 +24,7 @@ namespace ProBusiness
             }
             else
             {
-                sqlwhere += " and a.Status= in (1,2,3,4,5) ";
+                sqlwhere += " and a.Status in (1,2,3,4,5) ";
             }
             if (!string.IsNullOrEmpty(userId))
             {
@@ -79,7 +79,7 @@ namespace ProBusiness
             }
             if (!string.IsNullOrEmpty(keyWords))
             {
-                sqlwhere += " and a.Content Kile %'" + keyWords + "' ";
+                sqlwhere += " and a.Content like '%" + keyWords + "%' ";
             }
             if (needSex > -1)
             {
