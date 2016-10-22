@@ -2,4 +2,3 @@ D:\MichauxPro\ZPY\ProTools\bin\Debug\ProTools.dll
 D:\MichauxPro\ZPY\ProTools\bin\Debug\ProTools.pdb
 D:\MichauxPro\ZPY\ProTools\obj\Debug\ProTools.dll
 D:\MichauxPro\ZPY\ProTools\obj\Debug\ProTools.pdb
-D:\MichauxPro\ZPY\ProTools\obj\Debug\ProTools.csprojResolveAssemblyReference.cache

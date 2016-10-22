@@ -45,3 +45,23 @@ footer .foot .bottomMsg p{text-align: center;line-height: 30px;}
 .feedback-dialog .box-buttons button{width: 70px;height: 28px;border: 1px solid #aaa;margin-top: 20px;outline: none;cursor: pointer;}
 .feedback-dialog .simplemodal-ok{border: 1px solid #aaa;cursor: pointer;}
 .feedback-dialog button:hover{background: #f22b64;color: #fff0f5;opacity: 0.8;}
+.feedback-dialog .btna{width: 70px;height: 28px;line-height: 18px;border: 1px solid #ddd;background: #f22b64;
+                       font-size: 12px; color: #fff;outline: none;cursor: pointer;padding: 4px 10px;}
+.feedback-dialog .btna:hover{background: #f22bb4;color: #fff0f5;opacity: 0.9;}
+.feedback-dialog:hover { border: 1px solid #f22bb4; }
+
+.reply-dialog{position:absolute;top:20%;left: 35%;min-width: 300px;height: 140px;border-radius: 3px;
+              border:1px solid #ddd;background: #fefefe;padding: 10px 10px 0px 10px;}
+.reply-dialog .box-main{min-width: 300px;min-height: 140px;}
+.reply-dialog .box-title h3{text-align: center;margin-top: 15px;margin-bottom: 5px;}
+.reply-dialog .tips-title p{text-indent: 30px;line-height: 28px;font-size: 12px;}
+.reply-dialog  textarea{width: 299px; outline: none; border: none; min-height: 100px;border-bottom: 1px solid #ddd;border-radius: 2px;text-indent: 3px;resize: none;}
+.reply-dialog .box-buttons{width: 100%;text-align: right;} 
+.reply-dialog .btna{width: 70px;height: 28px;line-height: 18px;border: 1px solid #ddd;background: #f22b64;
+                       font-size: 12px; color: #fff;outline: none;cursor: pointer;padding: 4px 10px;}
+.reply-dialog .tips-content{ overflow: auto; }
+.reply-dialog .tips-content li{ float: left;font-size: 12px;width: 148px;line-height: 22px;cursor: pointer;}
+.reply-dialog .tips-content li:hover{ color: #f22bb4;}
+.reply-dialog .btna:hover{background: #f22bb4;color: #fff0f5;opacity: 0.9;}
+.reply-dialog .tips-content li img{display: inline-block;vertical-align: middle; margin-top: -2px;}
+.reply-dialog:hover { border: 1px solid #f22bb4; }

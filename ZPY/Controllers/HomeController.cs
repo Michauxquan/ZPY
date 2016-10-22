@@ -85,9 +85,9 @@ namespace ZPY.Controllers
             {
                 if (model.Status == 0)
                 {
-                    bl = false;
+                    result = 0;
                     Session["PartManage"] = model;
-                    msg = "还没有注册完成,请继续注册"; 
+                    msg = "还没有注册完成,请继续注册";
                 }
                 else if (model.Status == 1)
                 {
@@ -102,15 +102,18 @@ namespace ZPY.Controllers
                     Response.Cookies.Add(cook);
                     CurrentUser = model;
                     Session["Manager"] = model;
-                    bl = true;
+                    result = 1;
                 }
-                else
+                else 
                 {
-                    bl = false;
-                    msg = "用户名或密码错误！"; 
+                    msg = result == 3 ? "用户已被禁闭，请联系管理员" : "用户名或密码错误！";
                 }
             }
-            JsonDictionary.Add("result", bl);
+            else
+            {
+                msg = result == 3 ? "用户已被禁闭，请联系管理员" : result == 2?"用户名不存在":"用户名或密码错误！";
+            }
+            JsonDictionary.Add("result", result);
             JsonDictionary.Add("errorMsg", msg);
             return new JsonResult
             {

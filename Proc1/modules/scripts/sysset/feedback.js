@@ -40,9 +40,9 @@ define(function (require, exports, module) {
                 '本月': [moment().startOf('month'), moment().endOf('month')]
             }
         }, function (start, end, label) {
-            Params.pageIndex = 1;
-            Params.beginTime = start ? start.format("YYYY-MM-DD") : "";
-            Params.endTime = end ? end.format("YYYY-MM-DD") : "";
+            _self.Params.pageIndex = 1;
+            _self.Params.beginTime = start ? start.format("YYYY-MM-DD") : "";
+            _self.Params.endTime = end ? end.format("YYYY-MM-DD") : "";
             _self.bindData();
         });
 
@@ -62,15 +62,11 @@ define(function (require, exports, module) {
             var Types = [
                 {
                     ID: "1",
-                    Name: "问题"
+                    Name: "举报"
                 },
                 {
                     ID: "2",
-                    Name: "建议"
-                },
-                {
-                    ID: "3",
-                    Name: "需求"
+                    Name: "反馈"
                 }
             ];
             $("#FeedTypes").dropdown({
@@ -133,10 +129,10 @@ define(function (require, exports, module) {
 
     FeedBack.detailBindEvent = function () {
         $("#btn-finish").click(function () {
-            FeedBack.updateFeedBackStatus(2);
+            FeedBack.updateFeedBackStatus(1);
         });
         $("#btn-cancel").click(function () {
-            FeedBack.updateFeedBackStatus(3);
+            FeedBack.updateFeedBackStatus(2);
         });
         $("#btn-delete").click(function () {
             FeedBack.updateFeedBackStatus(9);
@@ -149,9 +145,9 @@ define(function (require, exports, module) {
             if (data.Item) {
                 var item = data.Item;
                 $("#Title").html(item.Title);
-                var typeName = "问题";
+                var typeName = "举报";
                 if (item.Type == 2)
-                    typeName = "建议";
+                    typeName = "反馈";
                 else if (item.Type == 3)
                     typeName = "需求";
                 $("#Type").html(typeName);
@@ -171,7 +167,10 @@ define(function (require, exports, module) {
                     statusName = "删除";
                 }
                 $("#Status").html(statusName);
-                $("#TipedName").html(item.ContactName); 
+                if (item.Type == 1) {
+                    $('#tipsli').removeClass("hide");
+                } 
+                $("#TipedName").html(item.TipedName);
                 $("#Remark").html(item.Remark);
                 $("#Content").html(item.Content);
                 $("#CreateTime").html(item.CreateTime.toDate("yyyy-MM-dd hh:mm:ss"));

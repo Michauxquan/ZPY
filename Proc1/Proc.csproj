@@ -727,11 +727,11 @@
     <Content Include="modules\scripts\sysset\feedback.js" />
     <Content Include="modules\scripts\sysset\roles.js" />
     <Content Include="modules\scripts\sysset\users.js" />
+    <Content Include="modules\scripts\sysset\webusers.js" />
     <Content Include="modules\scripts\webset\advert.js" />
     <Content Include="modules\scripts\webset\member.js" />
     <Content Include="modules\template\faudit\imglist.html" />
     <Content Include="modules\template\faudit\needslist.html" />
-    <Content Include="modules\template\feedback\feedback-list.html" />
     <Content Include="modules\template\report\agentactionreport-list.html" />
     <Content Include="modules\template\sysset\feedback-list.html" />
     <Content Include="modules\template\sysset\permissions.html" />
@@ -740,14 +740,7 @@
     <Content Include="modules\template\sysset\setuserrole.html" />
     <Content Include="modules\template\sysset\user-detail.html" />
     <Content Include="modules\template\sysset\users.html" />
-    <Content Include="modules\template\system\menu-list.html" />
-    <Content Include="modules\template\system\modulesproduct-list.html" />
-    <Content Include="modules\template\system\permissions.html" />
-    <Content Include="modules\template\system\role-detail.html" />
-    <Content Include="modules\template\system\roles.html" />
-    <Content Include="modules\template\system\setuserrole.html" />
-    <Content Include="modules\template\system\user-detail.html" />
-    <Content Include="modules\template\system\users.html" />
+    <Content Include="modules\template\sysset\webusers.html" />
     <Content Include="modules\template\webset\advertlist.html" />
     <Content Include="modules\template\webset\advert-detail.html" />
     <Content Include="Scripts\jquery-1.11.1.js" />
@@ -892,6 +885,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\SysSet\FeedDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SysSet\WebUser.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

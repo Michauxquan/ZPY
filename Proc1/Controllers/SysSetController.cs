@@ -20,6 +20,12 @@ namespace Proc.Controllers
             ViewBag.Roles = ManageSystemBusiness.GetRoles();
             return View();
         }
+
+        public ActionResult WebUser()
+        {
+            return View();
+        }
+
         public ActionResult Role()
         {
             return View();
@@ -139,14 +145,14 @@ namespace Proc.Controllers
             };
         }
 
-        public JsonResult GetUsers(string keyWords, int pageIndex)
+        public JsonResult GetUsers(string keyWords, int pageIndex,int status=-1,int sourcetype=1)
         {
             int totalCount = 0, pageCount = 0;
-            var list = M_UsersBusiness.GetUsers(-1,PageSize, pageIndex, ref totalCount, ref pageCount,"","",1);
+            var list = M_UsersBusiness.GetUsers(-1, PageSize, pageIndex, ref totalCount, ref pageCount, "", "", sourcetype, status, keyWords);
 
             JsonDictionary.Add("Items", list);
-            JsonDictionary.Add("TotalCount", totalCount);
-            JsonDictionary.Add("PageCount", pageCount);
+            JsonDictionary.Add("totalCount", totalCount);
+            JsonDictionary.Add("pageCount", pageCount);
             return new JsonResult()
             {
                 Data = JsonDictionary,
@@ -222,6 +228,18 @@ namespace Proc.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public JsonResult UpdateUserStatus(string id,int status)
+        {
+
+            bool bl = M_UsersBusiness.UpdateM_UserStatus(id, status);
+            JsonDictionary.Add("status", (bl ? 1 : 0));
+            return new JsonResult()
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
 
         /// <summary>
         /// 获取举报反馈信息

@@ -66,18 +66,15 @@
                 url: "/Home/UserLogin",
                 data: "userName=" + $('.phone1').val() + "&pwd=" + $('.q1').val(),
                 success: function (data) {
-                    if (data.result) {
+                    if (data.result==1) {
                         $('.nologo').addClass('hide');
                         $('.logoed').removeClass('hide');
                         location.href = '/User/UserInfo';
-                    } else {
-                        if (data.errorMsg != "") {
-                            alert(data.errorMsg);
+                    } else { 
+                        alert(data.errorMsg);
+                        if (data.result==0){
                             location.href = '/Home/Register2';
-                        }
-                        else {
-                            $('.phone').html('用户名或密码次错误');
-                        }
+                        } 
                     }
                 }
             });

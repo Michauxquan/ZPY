@@ -71,7 +71,7 @@ nav .action-box .select { width:201px; background-color:#fff;}
 .header-box .ico-back { margin:6px 0 0 20px; }
 
 /*内容页样式*/
-.content-body{ padding:20px 0 80px; overflow:auto; background-color:#fff; border-radius:2px; min-height:130px; }
+.content-body{ padding:15px 0 80px; overflow:auto; background-color:#fff; border-radius:2px; min-height:130px; }
 .search-body { height:35px; }
 
 /*数据验证错误*/
@@ -81,7 +81,7 @@ nav .action-box .select { width:201px; background-color:#fff;}
 .search-box { margin-top:15px; }
 
 /*search-tab*/
-.search-header { height:36px; overflow:auto; border-bottom:solid 1px #B5C2CA; }
+.search-header {padding-top: 5px; height:36px; overflow:hidden; border-bottom:solid 1px #B5C2CA; }
 .search-header .search-tab { height:35px; margin-left:20px; float:left; }
 .search-header .search-tab li{ padding:0 10px; cursor:pointer; min-width:70px; text-align:center; margin-top:10px; margin-right:5px;
                                height:30px; line-height:30px; color:#fff;float:left; background-color:#4a98e7; border-radius:2px; 

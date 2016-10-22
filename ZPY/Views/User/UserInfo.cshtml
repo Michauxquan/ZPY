@@ -46,6 +46,7 @@
                 <li data-value="user-msg">用户中心</li>
                 <li data-value="picset">头像设置</li>
                 <li data-value="change-msg">资料修改</li>
+                <li data-value="userreply">我的信件</li>
                 <li data-value="upload" id="userUpload">上传图片</li>
                 <li data-value="release-diary">我的日记</li>
                 <li data-value="whocame" data-frist="false">谁看过我</li>
@@ -285,7 +286,7 @@
         <div class="clear"></div>
         <h4>编辑资料</h4>
         <ul>
-            <li>我的昵称：<input type="text" id="userTrueName" value="@(CurrentUser.Name)" readonly="@(string.IsNullOrEmpty(CurrentUser.Name)?"":"readonly")"  style="width: 100px; height: 22px; line-height: 22px;"/></li>
+            <li>我的昵称：<input type="text" id="userTrueName" disabled="disabled" value="@(CurrentUser.Name)" readonly="readonly"  style="width: 100px; height: 22px; line-height: 22px;"/></li>
             <li>我的年龄：<input type="text" id="userAge" value="@(CurrentUser.Age)" style="width: 100px; height: 22px; line-height: 22px;"/></li>
             <li>我的身高：<select id="BHeight">
                 <option>140-150</option>
@@ -403,12 +404,12 @@
     <div class="navcontent business" style="display: none;" id="business">
         <ul><li class="cur" data-value="hirelist">聘请信息</li><li data-value="lease">求租信息</li><li data-value="rent">出租信息</li></ul>
         <div class="clear"></div>
-        <div class="navbusiness hirelist" data-frist="" style="display: block;"> 
-             <table cellpadding="1" cellspacing="0" border="1">
+        <div class="navbusiness hirelist" data-frist="" style="display: block;">
+            <table cellpadding="1" cellspacing="0" border="1">
                 <thead ><td>地区</td><td>性别</td><td>发布人</td><td>标题</td><td>类型</td><td>时间</td></thead>
-                <tbody id="hirelistthead"></tbody> 
+                <tbody id="hirelistthead"></tbody>
             </table>
-            <div id="hirelistpage"></div> 
+            <div id="hirelistpage"></div>
         </div>
         <div class="navbusiness lease" data-frist="" style="display: none;">
             <table cellpadding="1" cellspacing="0" border="1">
@@ -420,11 +421,11 @@
         <div class="navbusiness  rent" data-frist="" style="display: none;">
             <table cellpadding="1" cellspacing="0" border="1">
                 <thead ><td>地区</td><td>性别</td><td>发布人</td><td>标题</td><td>类型</td><td>时间</td></thead>
-                <tbody id="rentthead"></tbody> 
+                <tbody id="rentthead"></tbody>
             </table>
             <div id="rentpage"></div>
         </div>
-        <div class="navbusiness hiredetail" data-frist="" style="display:none"> 
+        <div class="navbusiness hiredetail" data-frist="" style="display: none">
             <p>出租人：<span id="msgusername"></span></p>
             <p>主题：<span id="msgtitle"></span></p>
             <p>性别要求：<span id="msgsex"></span></p>
@@ -433,8 +434,20 @@
             <p>提供服务：<span id="msgservice"></span></p>
             <p>内容：<span id="msgcontent"></span></p>
             <p>发布日期：<span id="msgtime"></span></p>
-            <p><span class="hireback spanbtn">返回</span><div class="clear"></div></p>            
+            <p><span class="hireback spanbtn">返回</span><div class="clear"></div>
+            </p>
         </div>
+    </div>
+        <div class="navcontent userreply" style="display: none;" >
+        <ul><li class="cur" data-value="1">发出留言</li><li data-value="2">收到留言</li><li data-value="0">我的招呼</li></ul>
+        <div class="clear"></div>
+        <div class="replylist" data-frist="" style="display: block;"> 
+             <table cellpadding="1" cellspacing="0" border="1">
+                <thead ><td>发出人</td><td>内容</td><td>时间</td><td>操作</td></thead>
+                <tbody id="replylistthead"></tbody> 
+            </table>
+            <div id="replylistpage"></div> 
+        </div> 
     </div>
     <div></div>
     <div></div>

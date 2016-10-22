@@ -103,13 +103,21 @@ namespace ProBusiness
             DataTable dt = new M_UsersDAL().GetM_UserByLoginName(loginname);
             return dt.Rows.Count;
         }
-        public static List<M_Users> GetUsers(int sex,  int pageSize, int pageIndex, ref int totalCount, ref int pageCount,string address="" ,string age="",int sourcetype=0)
+        public static List<M_Users> GetUsers(int sex, int pageSize, int pageIndex, ref int totalCount, ref int pageCount, string address = "", string age = "", int sourcetype = 0, int status = -1, string keyWords="")
         {
             string whereSql = " a.Status<>9";
 
             if (sex > -1)
             {
                 whereSql += " and a.Sex=" + sex;
+            }
+            if (status > -1)
+            {
+                whereSql += " and a.Status=" + status;
+            }
+            if (!string.IsNullOrEmpty(keyWords))
+            {
+                whereSql += " and (a.Name like '%" + keyWords + "%' or a.LoginName like'%" + keyWords + "%') ";
             }
             if (sourcetype > -1)
             {
@@ -295,7 +303,10 @@ a.BHeight,a.Levelid,a.BWeight,a.MyContent,a.MyCharacter,a.BPay,a.Account,a.TalkT
         public static  bool DeleteM_User(string userid, int status) {
             return M_UsersDAL.BaseProvider.DeleteM_User(userid, status);
         }
-
+        public static bool UpdateM_UserStatus(string userid, int status)
+        {
+            return M_UsersDAL.BaseProvider.UpdateM_UserStatus(userid, status);
+        }
         public static bool UpdateM_UserBase(string userid, string bHeight, string bWeight, string jobs, string bPay, int isMarry, 
             string myContent,string name ,string talkTo,int age,string myservice)
         {

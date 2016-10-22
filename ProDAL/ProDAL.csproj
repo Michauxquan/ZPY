@@ -50,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserAttrs\UserImgsDAL.cs" />
     <Compile Include="UserAttrs\UserNeedsDAL.cs" />
+    <Compile Include="UserAttrs\UserReplyDAL.cs" />
     <Compile Include="UserAttrs\UsersFocusDAL.cs" />
   </ItemGroup>
   <ItemGroup />

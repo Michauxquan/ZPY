@@ -21,6 +21,7 @@
 .left .msgs>div ul.basic-msg li{width: 230px;float: left;padding: 0;line-height: 32px;}
 .left .msgs>div ul.interact{width: 470px;padding: 0;}
 .left .msgs>div ul.interact li{display: inline-block;padding: 0;}
+.left .msgs>div ul.interact li:hover{ opacity: 0.8;}
 .left .msgs>div p:last-child{margin-top: 5px;}
 .left .msgs>div p:last-child img{vertical-align: middle;margin-right: 10px;}
 .left .msgs>div ul.interact+p{line-height: 20px;}

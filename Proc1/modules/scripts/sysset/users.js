@@ -3,7 +3,7 @@
         doT = require("dot"),
         Verify = require("verify"), VerifyObject,
         Easydialog = require("easydialog");
-
+    require("pager");
     var Model = {},
         Rolelist = [];
 
@@ -192,6 +192,26 @@
         $(".tr-header").after("<tr><td colspan='6'><div class='data-loading'><div></td></tr>");
         Global.post("/SysSet/GetUsers", Paras, function (data) {
             _self.bindList(data.Items);
+            $("#pager").paginate({
+                total_count: data.totalCount,
+                count: data.pageCount,
+                start: Paras.pageIndex,
+                display: 5,
+                border: true,
+                border_color: '#fff',
+                text_color: '#333',
+                background_color: '#fff',
+                border_hover_color: '#ccc',
+                text_hover_color: '#000',
+                background_hover_color: '#efefef',
+                rotate: true,
+                images: false,
+                mouse: 'slide',
+                onChange: function (page) {
+                    Paras.pageIndex = page;
+                    _self.getList();
+                }
+            });
         });
     }
 

@@ -226,6 +226,15 @@ namespace ProDAL.Manage
 
             return ExecuteNonQuery("update M_Users set Status=@Status where userID=@userID", paras, CommandType.Text) > 0;
         }
+        public bool UpdateM_UserStatus(string userid, int status)
+        {
+            SqlParameter[] paras = { 
+                                    new SqlParameter("@userID",userid),
+                                    new SqlParameter("@Status",status),
+                                   };
+
+            return ExecuteNonQuery("update M_Users set Status=@Status where userID=@userID and Status not in (0,9)", paras, CommandType.Text) > 0;
+        }
         public bool Update_userLevel(string userid, string levelID)
         {
             SqlParameter[] paras = { 

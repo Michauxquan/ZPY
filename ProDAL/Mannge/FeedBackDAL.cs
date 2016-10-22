@@ -47,7 +47,7 @@ namespace ProDAL.Mannge
                                     new SqlParameter("@Status",status),
                                     new SqlParameter("@Content",content)
                                    };
-            return ExecuteNonQuery("update  FeedBack set Status=@Status,Content=isnull(Content,'')+@Content where AutoID=@AutoID", paras, CommandType.Text) > 0;
+            return ExecuteNonQuery("M_UpdateFeedBackStatus", paras, CommandType.StoredProcedure) > 0;
         }
     }
 }

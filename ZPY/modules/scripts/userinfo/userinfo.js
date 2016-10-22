@@ -56,6 +56,9 @@ $(function() {
                         getUserMyFocus(1);
                     }
                     break;
+                case "userreply":
+                    getReplyList(1, 1);
+                    break;
                 case "picset":
                     uploader = creatUpload({
                         id: 'as', 
@@ -108,6 +111,17 @@ $(function() {
             _this.data('frist', 'true');
         });
     });
+    $(".userreply>ul li").each(function () {
+        var _this = $(this);
+        _this.click(function () {
+            if (!_this.hasClass('cur')) {
+                _this.addClass("cur").siblings().removeClass("cur");
+                $('#replylistthead').html('');
+                getReplyList(1, _this.data('value'));
+            }  
+        });
+    });
+
     $('#seacha').click(function () {
         var ruul = "/RFriend/RentFriend?id=" + $('#seachtype option:selected').val() +
         ($('#seachage option:selected').val() != "" ? "&agerange=" + $('#seachage option:selected').val() : "") +
@@ -400,7 +414,7 @@ function saveSaleInfo() {
         savaUserNeeds(item);
     }  
 }
-/*求租信心保存*/
+/*求租信息保存*/
 function saveNeedsInfo() {
     var price = $('#needsprice').val(); 
     if (price == '' && $('#needPriceType option:selected').val()==7) {
@@ -473,3 +487,36 @@ function savaUserNeeds(entity) {
     }, "json");
 }
 
+
+function getReplyList(pageindex, type) {
+    $.post('/Help/ReplyList', { type:type,pageIndex: pageindex, pageSize: 10 }, function (data) {
+        if (data.items.length > 0) {
+            var html = '';
+            for (var i = 0; i < data.items.length; i++) {
+                var item = data.items[i];
+                html += '<tr><td>' + item.UserName + '</td><td>' + item.Content+ '</td><td>' + convertdate(item.CreateTime, true) + '</td>' +
+                    '<td><a data-id="' + item.ReplyID + '" style="cursor:pointer;">删除</a><a data-id="' + item.ReplyID + '" style="cursor:pointer;display:' + ($('.cur').data('value') == 2 ? "block;" : "none;") + '">回复</a></td></tr>';
+            }
+            $('#replylistthead').html(html);
+            $('#replylistthead tr a').click(function () {
+                alert(1);
+            });
+            $('#replylistpage').html(''); 
+            $('#replylistpage').paginate({
+                count: data.pageCount,
+                start: 1,
+                display: 10,
+                border: false,
+                text_color: '#79B5E3',
+                background_color: 'none',
+                text_hover_color: '#2573AF',
+                background_hover_color: 'none',
+                images: false,
+                mouse: 'press',
+                onChange: function (page) {
+                    getReplyList(page, type);
+                }
+            }); 
+        }
+    });
+}

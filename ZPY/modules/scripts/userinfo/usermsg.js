@@ -5,6 +5,34 @@ $(function() {
     $('#feedlink').click(function () { feedshow(); });
     $('.feed-cancle').click(function () { feedcancle(); });
     $('.feed-ok').click(function () { feedSave(); });
+    $('#zhdialog .tips-content li').each(function (i, v) {
+        $(v).click(function () {
+            var content = $(v).html();
+             var item= {
+                GUID: $('#userinfoli').data('id'),
+                Content: content.replace("\n", "<br>").replace(/</g, "&lt").replace(/>/g, "&gt"),
+                Type: 0
+            }
+            SaveZH(item);
+        });
+    });
+    $('.showreply').click(function() {
+        showreply($(this), $('#replydialog'));
+    });
+    $('.showzh').click(function () {
+        showreply($(this), $('#zhdialog'));
+    });
+    
+    $(document).click(function (e) { 
+        if (!$(e.target).parents().hasClass("replybtns") && !$(e.target).parents().hasClass("tips-content") && !$(e.target).parents().hasClass("showreply")
+            && !$(e.target).hasClass("box-main") && !$(e.target).parents().hasClass("box-main")) {
+            $("#replydialog").hide();
+        }
+        if (!$(e.target).parents().hasClass("tips-content") && !$(e.target).parents().hasClass("showzh")
+           && !$(e.target).hasClass("box-main") && !$(e.target).parents().hasClass("box-main")) {
+            $("#zhdialog").hide();
+        }
+    });
 });
 
 function focususer() {
@@ -115,3 +143,49 @@ function feedshow() {
     $('#tipedname').val($('#userinfoli').data('name'));
 }
 
+function showreply(_this,obj) {
+    var xy = _this.position();
+    var top = xy.top + 20;
+    $('.reply-dialog').hide(); 
+    if (obj.attr('id') == 'replydialog') {
+        $('#replycontent').val('');
+        top = top +13;
+    } 
+    obj.css({ left: xy.left, top: top });
+    obj.show();
+}
+
+function SavaReply() {
+    if ($('#replycontent').val() == '') { 
+        return false;
+    }
+    var item = {
+        GUID: $('#userinfoli').data('id'),
+        Content: $('#replycontent').val(), 
+        Type: 1
+    }
+    $.post('/Help/SaveReply', { entity: JSON.stringify(item) },
+    function (data) {
+        if (data.result) {
+            $('#replycontent').val('');
+            $('#replydialog').hide();
+            alert('提交成功');
+        } else {
+            alert(data.errorMsg);
+            location.href = '/Home/Login';
+        } 
+    });
+};
+
+function SaveZH(item) {
+    $.post('/Help/SaveReply', { entity: JSON.stringify(item) },
+function (data) {
+    if (data.result) { 
+        $('#zhdialog').hide();
+        alert('提交成功');
+    } else {
+        alert(data.errorMsg);
+        location.href = '/Home/Login';
+    } 
+});
+}

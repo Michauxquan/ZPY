@@ -83,6 +83,18 @@
 .change-msg div.clear+h4+ul li{float:left;width: 360px;line-height: 30px;}
 .content .con .change-msg input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 30px;display: block;}
 
+
+.userreply>ul{background: #ccc;height: 33px;}
+.userreply>ul li{float: left;margin-right: 10px;font-weight: bold;font-size: 16px;width: 90px;height: 32px;text-align: center;line-height: 32px;border-radius: 4px;cursor: pointer;}
+.userreply .cur{background: #36B0F3;color: white;}
+.userreply .replydetail p{margin-top: 20px;text-indent: 30px;}
+
+.userreply .replylist table{border-collapse: collapse;text-align: center;width: 100%;margin-top: 20px;margin-bottom: 20px;border-color: #ccc;}
+.userreply .replylist table th,.business .lease table tr{height: 30px;}
+.userreply .replylist table tr{color: #666;font-size: 14px;}
+.userreply .replylist table thead td{background: #eaeaea;color: black;font-size: 15px;line-height: 28px;height: 28px;}
+.userreply .replylist table thead td a{ cursor: pointer;font-size: 12px;}
+.userreply .replylist table thead td a:hover{ color: #f22b64;}
 .business>ul{background: #ccc;height: 33px;}
 .business>ul li{float: left;margin-right: 10px;font-weight: bold;font-size: 16px;width: 90px;height: 32px;text-align: center;line-height: 32px;border-radius: 4px;cursor: pointer;}
 .business .cur{background: #36B0F3;color: white;}

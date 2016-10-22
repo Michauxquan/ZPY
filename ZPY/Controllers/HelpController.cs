@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using ProBusiness;
+using ProBusiness.UserAttrs;
+using ProEntity;
 using ProEntity.Manage;
 using ProTools;
 namespace ZPY.Controllers
@@ -86,6 +88,45 @@ namespace ZPY.Controllers
             }
             JsonDictionary.Add("result",result );
             JsonDictionary.Add("errorMsg", msg);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult SaveReply(string entity)
+        {
+            var result = false;
+            string msg = "提交失败，请稍后再试！";
+            if (CurrentUser == null)
+            {
+                msg = "您尚未登录，请登录后在操作！";
+            }
+            else
+            {
+                UserReply model = JsonConvert.DeserializeObject<UserReply>(entity);
+                model.FromReplyID = string.IsNullOrEmpty(model.FromReplyID) ? "" : model.FromReplyID;
+                model.FromReplyUserID = string.IsNullOrEmpty(model.FromReplyUserID) ? "" : model.FromReplyUserID; 
+                result = UserReplyBusiness.CreateUserReply(model.GUID,model.Content,CurrentUser.UserID,model.FromReplyID,model.FromReplyUserID,model.Type);
+            }
+            JsonDictionary.Add("result", result);
+            JsonDictionary.Add("errorMsg", msg);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult ReplyList(int type,int pageIndex,int pageSize)
+        {
+            
+            int total = 0;
+            int pageCount = 0;
+            var list = UserReplyBusiness.GetUserReplys(type == 1 ? "": CurrentUser.UserID ,
+                type == 1 ?  CurrentUser.UserID:"", type == 2 ? 1 : type, pageSize, pageIndex, ref total, ref pageCount);
+            JsonDictionary.Add("items", list);
+            JsonDictionary.Add("totalCount", total);
+            JsonDictionary.Add("pageCount", pageCount);
             return new JsonResult
             {
                 Data = JsonDictionary,
