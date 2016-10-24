@@ -36,6 +36,12 @@ $(function() {
             $(this).attr('checked', 'checked');
         }
     });
+    $(document).click(function(e) {
+        if (!$(e.target).parents().hasClass("tips-content") && !$(e.target).hasClass("replycz")
+            && !$(e.target).hasClass("box-main") && !$(e.target).parents().hasClass("box-main")) {
+            $("#replydialog").fadeOut(500);
+        }
+    });
     $(".content .sidebar ul li").each(function () {
         var _this = $(this);
         _this.click(function () {
@@ -117,7 +123,9 @@ $(function() {
             if (!_this.hasClass('cur')) {
                 _this.addClass("cur").siblings().removeClass("cur");
                 $('#replylistthead').html('');
-                getReplyList(1, _this.data('value'));
+                var rtype = _this.data('value');
+                getReplyList(1, rtype);
+                $('#usertitle').html(rtype == 1 ? '收件人' : (rtype == 2 ? "寄件人" : "发送人"));
             }  
         });
     });
@@ -450,8 +458,7 @@ function saveNeedsInfo() {
             letDays: $('#needsdays').val(),
             price: price
         }
-        console.log(item);
-        //savaUserNeeds(item);
+        savaUserNeeds(item);
     }
 }
 function savaUserNeeds(entity) {
@@ -494,12 +501,27 @@ function getReplyList(pageindex, type) {
             var html = '';
             for (var i = 0; i < data.items.length; i++) {
                 var item = data.items[i];
-                html += '<tr><td>' + item.UserName + '</td><td>' + item.Content+ '</td><td>' + convertdate(item.CreateTime, true) + '</td>' +
-                    '<td><a data-id="' + item.ReplyID + '" style="cursor:pointer;">删除</a><a data-id="' + item.ReplyID + '" style="cursor:pointer;display:' + ($('.cur').data('value') == 2 ? "block;" : "none;") + '">回复</a></td></tr>';
+                html += '<tr><td><a href="/User/UserMsg/' + item.CreateUserID + '" class="rname">' + item.UserName + '</a></td><td style="width: 400px;">' + item.Content.replace(/&lt/g, '<').replace(/&gt/g, '>').replace(/<br>/g, '\n').replace(/“/g, '').replace(/”/g, '') + '</td><td>' + convertdate(item.CreateTime, true) + '</td>' +
+                    '<td style="text-align:center;"><a href="javascript:void(0);" class="replycz" data-id="' + item.ReplyID + '">[删除]</a><a href="javascript:void(0);" data-uid="' + item.CreateUserID + '" data-fromuid="' + item.GUID + '" data-id="' + item.ReplyID + '" class="replycz" style="display:' + ($('.userreply .cur').data('value') == 2 ? "block;" : "none;") + '">[回复]</a></td></tr>';
             }
             $('#replylistthead').html(html);
-            $('#replylistthead tr a').click(function () {
-                alert(1);
+            $('#replylistthead .replycz').click(function () {
+                var replyid = $(this).data('id');
+                if ($(this).html() == '[删除]') {
+                    if (confirm('确定要删除么，删除后不可恢复！')) {
+                        deleteReply(replyid, type);
+                    }
+                } else {
+                    var xy = $(this).position(); 
+                    $('#replycontent').val(''); 
+                    $('#replydialog').css({ left: xy.left-237, top: xy.top + 15 });
+                    $('#replydialog').fadeIn(500);
+                    var userid = $(this).data('uid');
+                    var fromuid = $(this).data('fromuid');
+                    $('#replysend').unbind('click').bind('click', function () {
+                        SavaReply(userid, fromuid, replyid);
+                    });
+                }
             });
             $('#replylistpage').html(''); 
             $('#replylistpage').paginate({
@@ -520,3 +542,38 @@ function getReplyList(pageindex, type) {
         }
     });
 }
+
+function deleteReply(replyid,type) {
+    $.post('/Help/DeleteReply', { replyid: replyid }, function (data) {
+        if (data.result) {
+            alert('删除成功');
+            getReplyList(1, type);
+        } else {
+            alert('操作失败，请稍后再试');
+        }
+    });
+}
+
+function SavaReply(userid, fromuid,replyid) {
+    if ($('#replycontent').val() == '') {
+        return false;
+    }
+    var item = {
+        GUID: userid,
+        Content: $('#replycontent').val(),
+        Type: 1,
+        FromReplyID: replyid,
+        FromReplyUserID: fromuid
+    }
+    $.post('/Help/SaveReply', { entity: JSON.stringify(item) },
+    function (data) {
+        if (data.result) {
+            $('#replycontent').val('');
+            $('#replydialog').hide();
+            alert('提交成功');
+        } else {
+            alert(data.errorMsg);
+            location.href = '/Home/Login';
+        }
+    });
+};

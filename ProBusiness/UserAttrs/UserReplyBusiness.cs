@@ -21,7 +21,7 @@ namespace ProBusiness.UserAttrs
         public static List<UserReply> GetUserReplys(string guid, string userid, int type, int pageSize, int pageIndex, ref int totalCount, ref int pageCount)
         {
             string tablename = "UserReply  a left join M_Users b  on a.Guid =b.UserID left join M_Users c  on a.FromReplyUserID =b.UserID ";
-            string sqlwhere = " 1=1 ";
+            string sqlwhere = " a.status<>9 ";
             if (!string.IsNullOrEmpty(guid))
             {
                 sqlwhere += " and a.guid='" + guid + "' ";

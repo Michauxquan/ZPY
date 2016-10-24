@@ -133,5 +133,15 @@ namespace ZPY.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        public JsonResult DeleteReply(string replyid)
+        {
+            JsonDictionary.Add("result", UserReplyBusiness.DeleteReply(replyid));
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
     }
 }

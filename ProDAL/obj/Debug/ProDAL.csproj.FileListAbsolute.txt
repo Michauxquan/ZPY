@@ -6,4 +6,3 @@ D:\MichauxPro\ZPY\ProDAL\bin\Debug\ProDAL.dll
 D:\MichauxPro\ZPY\ProDAL\bin\Debug\ProDAL.pdb
 D:\MichauxPro\ZPY\ProDAL\obj\Debug\ProDAL.dll
 D:\MichauxPro\ZPY\ProDAL\obj\Debug\ProDAL.pdb
-D:\MichauxPro\ZPY\ProDAL\obj\Debug\ProDAL.csprojResolveAssemblyReference.cache

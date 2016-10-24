@@ -92,9 +92,11 @@
 .userreply .replylist table{border-collapse: collapse;text-align: center;width: 100%;margin-top: 20px;margin-bottom: 20px;border-color: #ccc;}
 .userreply .replylist table th,.business .lease table tr{height: 30px;}
 .userreply .replylist table tr{color: #666;font-size: 14px;}
-.userreply .replylist table thead td{background: #eaeaea;color: black;font-size: 15px;line-height: 28px;height: 28px;}
-.userreply .replylist table thead td a{ cursor: pointer;font-size: 12px;}
-.userreply .replylist table thead td a:hover{ color: #f22b64;}
+.userreply .replylist table thead td{background: #eaeaea;color: black;font-size: 15px;line-height: 28px;height: 28px;} 
+.userreply .replylist table tbody td{ line-height: 24px;min-height: 24px;}
+.userreply .replylist table .rname{ cursor: pointer;font-size: 14px;color: #999;font-weight: bold;}
+.userreply .replylist table tbody td a{ cursor: pointer;font-size: 12px;float: left;margin-left: 10px;font-weight: bold;}
+.userreply .replylist table tbody td a:hover{ color: #f22b64;}
 .business>ul{background: #ccc;height: 33px;}
 .business>ul li{float: left;margin-right: 10px;font-weight: bold;font-size: 16px;width: 90px;height: 32px;text-align: center;line-height: 32px;border-radius: 4px;cursor: pointer;}
 .business .cur{background: #36B0F3;color: white;}
