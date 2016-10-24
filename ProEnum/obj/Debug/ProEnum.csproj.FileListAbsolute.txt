@@ -6,7 +6,3 @@ D:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.dll
 D:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.pdb
 D:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.dll
 D:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.pdb
-G:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.dll
-G:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.pdb
-G:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.dll
-G:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.pdb

@@ -167,14 +167,9 @@
 <div class="navcontent get-gold" style="display: none;">
     <h4>获取金币的方式：</h4>
     <p>充值购买</p>
-    <label><input type="radio" name="change"></input>100元=500金币</label>
-    <label><input type="radio" name="change"></input>300元=1500金币+赠送500金币</label>
-    <label><input type="radio" name="change"></input>500元=2500金币+赠送800金币</label>
-    <p class="payway">支付方式</p>
-    <label><input type="radio" name="payway"></input>网银在线充值</label>
-    <label><input type="radio" name="payway"></input>支付宝支付</label>
-    <label><input type="radio" name="payway"></input>微信支付</label>
-    <input type="button" value="提交"/>
+    <div class="useractivity"></div>
+    <div class="paydiv"></div>
+    <input type="button" id="useractivitybtn" value="提交"/>
 </div>
 <div class="navcontent upload" style="display: none;">
     <h4>上传图片</h4>
@@ -186,18 +181,9 @@
     <p>特色服务：VIP可以查看心仪对象的QQ号，微信号，E-mail及手机号，可以快速直接租到女友或男友！</p>
     <h4>商品名称：<img src="/modules/images/vip.gif"><span>VIP会员</span></h4>
     <h4>服务类型：</h4>
-    <p class="species">
-        <label><input type="radio" name="species"><span>B级[90天]</span><del>原价￥600</del>特价<span>￥199</span></input></label><br/>
-        <label><input type="radio" name="species"><span>A级[360天]</span><del>原价￥800</del>特价<span>￥299</span></input></label><br/>
-        <label><input type="radio" name="species"><span>终身VIP[不限时]</span><del>原价￥1888</del>特价<span>￥499</span>终身VIP可终身享受推荐服务！</input></label>
-    </p>
-    <h4>支付方式：</h4>
-    <p class="payway1">
-        <label><input type="radio" name="payway1" value="bankcard"/>网银在线充值</label>
-        <label><input type="radio" name="payway1" value="zhifubao"/>支付宝支付</label>
-        <label><input type="radio" name="payway1" value="weixin"/>微信支付</label>
-    </p>
-    <input type="button" value="提交"/>
+    <p class="species"> </p>
+    <div class="paydiv"></div>
+    <input type="button" id="speciesbtn" value="提交"/>
 </div>
 <div class="navcontent whocame" style="display: none;">
     <span style="width: 120px; height: 120px; float: left; margin-right: 20px;"><img style="border-radius: 50%; width: 120px; height: 120px; display: inline-block;" class="useravator" src="" alt="头像" width="120px">

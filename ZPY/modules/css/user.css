@@ -45,7 +45,7 @@
 .content .con .get-gold {padding-left: 20px;}
 .content .con .get-gold h4{line-height: 45px;margin-left: -20px;}
 .content .con .get-gold p{line-height: 30px;}
-.content .con .get-gold label{display: block;margin-left: 15px;}
+.content .con .get-gold label{display: block;margin-left: 15px;line-height: 30px;}
 .content .con .get-gold .payway{margin-top: 20px;}
 .content .con .get-gold .payway~label{display: inline-block;}
 .content .con .get-gold input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 30px;display: block;}
@@ -59,8 +59,8 @@
 .content .con .beVip h4:nth-child(3) span{color: black;font-weight: normal;}
 .content .con .beVip h4:nth-child(3) img{vertical-align: middle;margin: 0 5px;}
 .content .con .beVip .species{padding-left: 30px;}
-.content .con .beVip .species label{line-height: 30px;}
-.content .con .beVip .payway1 label{margin-left: 30px;line-height: 30px;}
+.content .con .beVip  label{line-height: 30px;}
+.content .con .beVip .paydiv label{margin-left: 30px;line-height: 30px;}
 .content .con .beVip input[type="button"]{width: 120px;height: 35px;background: #f22b64;line-height: 35px;color: white;text-align: center;border: none;border-radius: 3px;font-size: 16px;cursor: pointer;margin-left: 190px;margin-top: 30px;display: block;}
 
 .content .con .whocame .whocame-con ul,.content .con .myfocus .myscan ul{max-height: 360px;overflow: hidden;margin-bottom: 20px;}

@@ -9,7 +9,7 @@
 .like ul li{display: inline-block;}
 .like ul li img:hover{outline:1px solid #f15481;} 
 .recharge ul li{font-size: 14px;}
-.recharge ul li label{margin-right: 13.4px;cursor: pointer;}
+.recharge ul li label{margin-right: 11.4px;cursor: pointer;}
 .recharge ul li input[type="text"]{width: 60px;text-align: center;margin-right: 5px;}
 .recharge ul li:last-child{text-align: center;}
 .recharge ul li input[type="button"]{width: 200px;height: 30px;background: #F22B64;color: white;text-align: center;font-size: 16px;line-height: 30px;border: none;border-radius: 3px;cursor: pointer;}

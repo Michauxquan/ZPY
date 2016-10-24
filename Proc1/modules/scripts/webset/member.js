@@ -88,7 +88,7 @@
             var intefee = parseInt($('#memberLi' + (i - 1) + ' div:first-child').data('integfeemore')) + 300;
             $('#changeFeeMore' + (i - 1)).val($('#IntegFeeMore' + (i - 1)).val());
         } 
-        var innnerHtml = "<li id='memberLi" + i + "' class='lineHeight30'><div class='levelitem left' data-origin='" + i + "' data-imgurl='' data-golds='0.00'  data-integfeemore='" + intefee + "' data-name='' data-discountfee='1.00' data-id='' title='' >" +
+        var innnerHtml = "<li id='memberLi" + i + "' class='lineHeight30'><div class='levelitem left' data-origin='" + i + "' data-imgurl='' data-golds='0'  data-integfeemore='" + intefee + "' data-name='' data-discountfee='1.00' data-id='' title='' >" +
                       "<div class='left'><span  class='spanimg mTop5' ><span class='hide' id='SpanImg" + i + "'></span><img name='MemberImg' style='display:inline-block;' id='MemberImg" + i + "' class='memberimg'   src='/Content/menuico/custom.png' alt=''></span></div>" +
                       "<span  class='mLeft5 mRight5'>客户支付</span>" +
                       "<input id='IntegFeeMore" + i + "' name='IntegFeeMore' class='width50 mRight5' type='text' value='" + intefee + "' />" +
@@ -130,7 +130,7 @@
                 item.Type = 0;
                 list.push(item);
             }
-        });
+        }); 
         if (gonext) {
             Global.post("/WebSet/SaveMemberLevel", { memberlevel: JSON.stringify(list) }, function (data) {
                 if (data.result == "") {
@@ -162,6 +162,9 @@
         });
         $("input[name^='MemberName']").change(function () {
             ObjectJS.changeInput(3, $(this));
+        });
+        $("input[name^='Golds']").change(function () {
+            ObjectJS.changeInput(4, $(this));
         });
 
         $("img[name^='MemberImg']").unbind('click').click(function () {
@@ -218,6 +221,13 @@
         } else if (type == 3) {
             if (_this.val() != '') {
                 _this.parent().data('name', _this.val());
+            }
+        } else if (type == 4) {
+            if (!reg.test(_this.val())) {
+                alert('有效时长输入有误，请重新输入');
+                _this.val(_this.parent().data('golds'));
+            } else {
+                _this.parent().data('golds', _this.val());
             }
         }
     } 

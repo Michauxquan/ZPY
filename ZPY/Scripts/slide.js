@@ -203,7 +203,7 @@
 					var arr = $(this).attr('rel').split(',');
 					var thisDelay = arr[0] - 0;
 					var imgEffectIn = arr[1];
-					var thisImgpos = $(this).attr('offsetLeft');
+				    var thisImgpos = 534.5;// $(this).attr('offsetLeft'); 
 					$(this).imgAnimate(thisDelay, imgEffectIn, thisImgpos, moveW, settings);
 				});
 			};
@@ -269,7 +269,7 @@
 			if (settings.nav) {
 				navlist += "<li style='cursor: pointer'><a data-index='" + (i + 1) + "'></a></li>";
 			}; 
-			//534.5
+			//534.5 by Michaux  这他吗的是什么临界值？
 		    $.each($(this).children(), function (i) { 
 		        $(this).attr('offsetLeft', (parseFloat($(this).css('left')) != 534.5?(parseFloat($(this).css('left')) - 140).toFixed(1):$(this).css('left')));
 			});

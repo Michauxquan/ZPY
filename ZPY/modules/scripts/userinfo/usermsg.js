@@ -1,4 +1,5 @@
-﻿new PCAS("province3", "city3", "area3");
+﻿//new PCAS("province3", "city3", "area3");
+var reg = /^[1-9]*[1-9][0-9]*$/; 
 $(function() {
     $('#focusit').click(function () { focususer(); });
     getUserRate();
@@ -22,7 +23,39 @@ $(function() {
     $('.showzh').click(function () {
         showreply($(this), $('#zhdialog'));
     });
-    
+    $('#nextli').click(function () {
+        $('#nextli').parent().hide();
+        $('.payli').show();
+    });
+    $('input:radio[name="jinbi"]').each(function (i, v) { 
+        $(v).click(function() {
+            $('#othergold').val(''); 
+        });
+    });
+    $('#othergold').change(function () {
+        if ($(this).val() != '') {
+            $('input:radio[name="jinbi"]').each(function (i, v) {
+                $(v).removeAttr("checked");
+            });
+        }
+    });
+    $('#paybtn').click(function() {
+        var golds = $('input:radio[name="change"]:checked').val();
+        var paytype = $('input:radio[name="payway"]:checked').val();
+        if (typeof (golds) == 'undefined') { golds = $('#othergold').val(); }
+        if (!reg.test(golds)) {  alert('金额格式不正确，请重新选择或输入'); return false;  }
+        if (typeof (paytype) == 'undefined') {  alert('支付类型为选择'); return false; }
+        $.post('/Help/PayOtherMoney', { gold: golds, paytype: paytype },
+        function (data) {
+            if (data.result) {
+                $('#zhdialog').hide();
+                alert('提交成功');
+            } else {
+                alert(data.errorMsg);
+                location.href = '/Home/Login';
+            }
+        });
+    });
     $(document).click(function (e) { 
         if (!$(e.target).parents().hasClass("replybtns") && !$(e.target).parents().hasClass("tips-content") && !$(e.target).parents().hasClass("showreply")
             && !$(e.target).hasClass("box-main") && !$(e.target).parents().hasClass("box-main")) {
@@ -179,13 +212,14 @@ function SavaReply() {
 
 function SaveZH(item) {
     $.post('/Help/SaveReply', { entity: JSON.stringify(item) },
-function (data) {
-    if (data.result) { 
-        $('#zhdialog').hide();
-        alert('提交成功');
-    } else {
-        alert(data.errorMsg);
-        location.href = '/Home/Login';
-    } 
-});
+    function (data) {
+        if (data.result) { 
+            $('#zhdialog').hide();
+            alert('提交成功');
+        } else {
+            alert(data.errorMsg);
+            location.href = '/Home/Login';
+        } 
+    });
 }
+ 

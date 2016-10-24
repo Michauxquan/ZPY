@@ -76,15 +76,19 @@
                 <h4>支付充值<br/><small>Payment&nbsp;recharge</small></h4>
                 <ul>
                     <li>
-                        <label><input type="radio" name="jinbi">10金币</label>
-                        <label><input type="radio" name="jinbi">50金币</label>
-                        <label><input type="radio" name="jinbi">100金币</label>
+                        <label><input type="radio" value="10" name="jinbi">10金币</label>
+                        <label><input type="radio" value="50" name="jinbi">50金币</label>
+                        <label><input type="radio" value="100" name="jinbi">100金币</label>
                     </li>
                     <li>
-                        <span>其他金额：</span><input type="text"/>金币
+                        <span>其他金额：</span><input type="text" id="othergold"/>金币
+                    </li>
+                    <li class="payli" style="display: none;">
+                        <label><input type="radio" checked="checked" name="payway" readonly="readonly" value="zfbpay">支付宝</label>
+                        <label><input type="button" style="width: 100px;" id="paybtn" value="提 交"/></label>
                     </li>
                     <li>
-                        <input type="button" value="下一步"/>
+                        <input type="button" id="nextli" value="下一步"/>
                     </li>
                 </ul>
             </form>

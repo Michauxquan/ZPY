@@ -62,6 +62,12 @@ $(function() {
                         getUserMyFocus(1);
                     }
                     break;
+                case "get-gold":
+                    GetActivity('useractivity');
+                    break;
+                case "beVip":
+                    GetActivity('species');
+                    break
                 case "userreply":
                     getReplyList(1, 1);
                     break;
@@ -148,7 +154,7 @@ function getUserReport() {
         }
     });
 }
-
+/*获取用户动态*/
 function getUserActions(type,pageindex,pagesize) {
     $.post('/User/UserActions', { type: type, pageIndex: pageindex, pageSize: pagesize }, function (data) {
         if (data.items.length > 0) {
@@ -194,7 +200,7 @@ function getUserActions(type,pageindex,pagesize) {
         }
     }); 
 }
-
+/*获取我关注的*/
 function getUserMyFocus(pageindex) {
     $.post('UserMyFocus', { pageIndex: pageindex, pageSize: 10 }, function (data) {
         if (data.items.length > 0) {
@@ -226,7 +232,7 @@ function getUserMyFocus(pageindex) {
         }
     });
 }
-
+/*获取用户日志*/
 function getUserDiary(pageindex) {
     $.post('UserDiaryList', { type: 0, pageIndex: pageindex, pageSize: 10 }, function (data) {
         if (data.items.length > 0) {
@@ -260,7 +266,7 @@ function getUserDiary(pageindex) {
         }
     });
 }
-
+/*获取用户需求*/
 function getNeedsList(pageindex, type) { 
     $.post('/User/NeedsList', { type: type == "lease" ? 1 : 2, ismyself: type == "hirelist" ? false : true, pageIndex: pageindex, pageSize: 10 }, function (data) {
         if (data.items.length > 0) {
@@ -296,7 +302,7 @@ function getNeedsList(pageindex, type) {
         }
     });
 }
-
+/*获取用户日志详情*/
 function getUserDiaryDetail(autoid,classname) {
     $.post('NeedsDetail', {autoid:autoid}, function(data) {
         if (data != null) {
@@ -330,7 +336,7 @@ function getUserDiaryDetail(autoid,classname) {
         }
     });
 }
-
+/*获取用户信息*/
 function getUserMyInfo() {
     $.post('UserMyInfo', null, function (data) {
         if (data.item != null) { 
@@ -353,6 +359,7 @@ function getUserMyInfo() {
         }
     });
 }
+/*基本资料保存*/
 function saveUserInfo() {
     var myservic = '';
     $('.myservice').each(function(i, v) {
@@ -377,6 +384,7 @@ $.post('SaveUserInfo', {
         }
     },"json"); 
 }
+/*出租日志保存*/
 function saveDiary() {
     if ($('#diarytitle').val() != '' && udedit.hasContents() && $('#diarytitle').val().length <= 20) {
         $('.diarywarring').hide();
@@ -388,6 +396,7 @@ function saveDiary() {
         $('.diarywarring').show();
     }
 }
+/*出租信息保存*/
 function saveSaleInfo() {
     var servicecontent = '';
     $('.saleservice').each(function(i, v) {
@@ -461,6 +470,7 @@ function saveNeedsInfo() {
         savaUserNeeds(item);
     }
 }
+ 
 function savaUserNeeds(entity) {
     $.post('/User/SaveNeeds', { entity: JSON.stringify(entity) }, function (data) { 
         if (data.result) {
@@ -494,7 +504,7 @@ function savaUserNeeds(entity) {
     }, "json");
 }
 
-
+/*获取招呼*/
 function getReplyList(pageindex, type) {
     $.post('/Help/ReplyList', { type:type,pageIndex: pageindex, pageSize: 10 }, function (data) {
         if (data.items.length > 0) {
@@ -577,3 +587,44 @@ function SavaReply(userid, fromuid,replyid) {
         }
     });
 };
+
+/*获取优惠或会员等级*/
+function GetActivity(obj) {
+    $.post('/Help/GetActivity', {type:obj == 'useractivity'?1:0}, function (data) {
+        var html = "";
+        for (var i = 0; i < data.items.length; i++) {
+            var item = data.items[i];
+            var gold = item.Golds;
+            if (obj == 'useractivity') {
+                html += '<label style="cursor:pointer;"><input type="radio"  name="change" value="' + item.LevelID + '">' + item.IntegFeeMore + '元=' + item.DiscountFee + '金币' + (gold > 0 ? "+赠送" + gold + "金币" : "") + '</input></label>';
+            } else {
+                html += '<label style="cursor:pointer;"><input type="radio"  name="change" value="' + item.LevelID + '"><span>' + item.Name + '[' + (gold>0?gold+'天':'不限时') + ']</span><del> 原价￥' + item.IntegFeeMore + (item.DiscountFee > 0 ? " 特价<span class='red'>￥" + item.DiscountFee : "") + '<span>'+(gold==0?' 终身VIP可终身享受推荐服务！':'')+'</input></label><br/>';
+            }
+        }
+
+        $('.'+obj).html(html);
+        if (html != "") {
+            $('.' + obj).after('');
+            $('.paydiv').html('<p class="payway">支付方式</p><label style="cursor:pointer;"><input type="radio" name="payway" value="zfbpay"></input>支付宝支付</label>');
+            $('#'+obj+'btn').show().unbind('click').bind('click', function () {
+                var levelid=$('input:radio[name="change"]:checked').val();
+                var payway=$('input:radio[name="payway"]:checked').val();
+                if (typeof (payway) == 'undefined' || typeof (levelid) == 'undefined') {
+                    alert('商品类型或者支付类型为选择');
+                    return false;
+                } else {
+                    $.post('/Help/PayMoney', {type:obj == 'useractivity'?0:1,levelid:levelid,payway:payway}, function(data) {
+                        if (data.result) {
+                            alert('操作成功');
+                        } else {
+                            alert('操作失败');
+                        }
+                    });
+                }
+            });
+        } else {
+            $('#zfbpay').hide();
+            $('#'+obj+'tn').hide();
+        }
+    });
+}

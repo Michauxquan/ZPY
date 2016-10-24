@@ -91,6 +91,7 @@
         } 
         var innnerHtml = "<li id='memberLi" + i + "' class='lineHeight30'>" +
                       "<div class='levelitem left' data-origin='" + i + "' data-imgurl='' data-golds='0.00'  data-integfeemore='" + intefee + "' data-name='' data-discountfee='1.00' data-id='' title='' >" +
+                      "<span  class='mLeft5 mRight5' style='display:inline-block;'>客户充值</span>" +
                       "<input id='IntegFeeMore" + i + "' name='IntegFeeMore' class='width50 mRight5' type='text' value='" + intefee + "' />" +
                       "<span class='mRight5'>元，购买金币</span>" +
                       "<input name='DiscountFee' class='width50 mRight5' placeholder='赠送金币'   type='text' value='" + intefee + "' />" +
@@ -152,7 +153,8 @@
         });
         $("input[name^='Golds']").change(function () {
             ObjectJS.changeInput(3, $(this));
-        }); 
+        });
+
     }
 
     ObjectJS.changeInput = function (type, _this) {
