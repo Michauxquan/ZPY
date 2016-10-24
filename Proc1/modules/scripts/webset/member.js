@@ -19,7 +19,7 @@
             });
         }).mouseout(function() {
             $("#wareInfo").hide(); 
-        }); 
+        });
         /*积分等级保存*/
         $('#saveMemberLevel').click(function () {
             _self.saveMemberLevel();
@@ -34,7 +34,7 @@
     ObjectJS.getMemberLevelList = function () {
         $(".memberlevelul").html('');
         $(".memberlevelul").html("<h1><div class='data-loading' ><div></h1>");
-        Global.post("/WebSet/GetMemberLevel", {}, function (data) {
+        Global.post("/WebSet/GetMemberLevel", {type:0}, function (data) {
             $(".memberlevelul").html('');
             var items = data.items;
             if (items.length > 0) {
@@ -43,16 +43,30 @@
                     if (i == 0) {
                         innnerHtml += "<li id='memberLi" + i + "' class='lineHeight30'><div class='levelitem left' data-origin='" + (items[i].Origin - 1) + "' data-imgurl='" + items[i].ImgUrl + "' data-golds='" + items[i].Golds + "'  data-integfeemore='" + items[i].IntegFeeMore + "' data-name='" + items[i].Name + "' data-discountfee='" + items[i].DiscountFee + "' data-id='" + items[i].LevelID + "' >" +
                             "<div class='left'><span  class='spanimg mTop5' ><img name='MemberImg' id='MemberImg" + i + "' style='display:inline-block;' class='memberimg' title='点击替换等级图标 '  src='" + (items[i].ImgUrl != '' ? items[i].ImgUrl : '/Content/menuico/custom.png') + "' alt=''></span></div><span class='hide' id='SpanImg" + i + "'></span>" +
-                            "<span  class='mLeft5 mRight5' style='display:inline-block;'>客户充值</span><input id='IntegFeeMore" + i + "' name='IntegFeeMore'  class='width50 mRight5' type='text' value='" + items[i].IntegFeeMore + "' /><span class='mRight5'>元，购买金币</span>" +
-                            "<input id='changeFeeMore" + i + "' name='IntegFeeMore' class='width50 mRight5' type='text'  value='" + (i == items.length - 1 ? '无上限' : items[i + 1].IntegFeeMore) + "' /><span class='mRight5'>赠送</span><input name='DiscountFee' class='width50 mRight5' type='text' value='" + items[i].DiscountFee + "' />" +
-                            "<span  class='mRight5'>金币 &nbsp; | 等级名称</span><input class='width80 mRight5' type='text' name='MemberName' placeholder='请填写等级名' value='" + items[i].Name + "' /><span id='delMeber" + i + "' data-ind='" + i + "' class='" + (i == 0 ? "hide" : i == items.length - 1 ? "" : "hide") + " borderccc circle12 mLeft10'>X</span>" +
+                            "<span  class='mLeft5 mRight5' style='display:inline-block;'>客户支付</span>" +
+                            "<input id='IntegFeeMore" + i + "' name='IntegFeeMore'  class='width50 mRight5' type='text' value='" + items[i].IntegFeeMore + "' />" +
+                            "<span class='mRight5'>元，折扣价</span>" +
+                            "<input id='changeFeeMore" + i + "' title='默认为0则无折扣' name='DiscountFee' class='width50 mRight5' type='text'  value='" + items[i].DiscountFee + "' />" +
+                            "<span class='mRight5'>元，购买</span>" +
+                            "<input class='width80 mRight5' type='text' name='MemberName' placeholder='请填写等级名' value='" + items[i].Name + "' />" +
+                            "<span class='mRight5'>会员 </span>" +
+                            "<input name='Golds' class='width50 mRight5' title='默认单位为天' type='text' value='" + (i == items.length - 1 ? '无上限' : items[i].Golds) + "' />" +
+                            "<span  class='mRight5'>天</span>" +
+                            "<span id='delMeber" + i + "' data-ind='" + i + "' class='" + (i == 0 ? "hide" : i == items.length - 1 ? "" : "hide") + " borderccc circle12 mLeft10'>X</span>" +
                             "</div></li>";
                     } else {
                         innnerHtml += "<li id='memberLi" + i + "' class='lineHeight30'><div class='levelitem left' data-origin='" + (items[i].Origin - 1) + "' data-imgurl='" + items[i].ImgUrl + "' data-golds='" + items[i].Golds + "' data-integfeemore='" + items[i].IntegFeeMore + "' data-name='" + items[i].Name + "' data-discountfee='" + items[i].DiscountFee + "' data-id='" + items[i].LevelID + "' >" +
                             "<div class='left'><span  class='spanimg mTop5' ><img name='MemberImg' id='MemberImg" + i + "' style='display:inline-block;' class='memberimg' title='点击替换等级图标 '  src='" + (items[i].ImgUrl != '' ? items[i].ImgUrl : '/Content/menuico/custom.png') + "' alt=''></span></div><span class='hide' id='SpanImg" + i + "'></span>" +
-                            "<span  class='mLeft5 mRight5' style='display:inline-block;'>客户充值</span><input id='IntegFeeMore" + i + "' name='IntegFeeMore'  class='width50 mRight5' type='text' value='" + items[i].IntegFeeMore + "' /><span class='mRight5'>元，购买金币</span>" +
-                            "<input id='changeFeeMore" + i + "' name='IntegFeeMore' class='width50 mRight5' type='text'   value='" + (i == items.length - 1 ? '无上限' : items[i + 1].IntegFeeMore) + "' /><span class='mRight5'>赠送</span><input name='DiscountFee' class='width50 mRight5' type='text' value='" + items[i].DiscountFee + "' />" +
-                            "<span  class='mRight5'>金币 &nbsp; | 等级名称</span><input class='width80 mRight5' type='text' name='MemberName' placeholder='请填写等级名' value='" + items[i].Name + "' /><span id='delMeber" + i + "' data-ind='" + i + "' class='" + (i == 0 ? "hide" : i == items.length - 1 ? "" : "hide") + " borderccc circle12 mLeft10'>X</span>" +
+                            "<span  class='mLeft5 mRight5' style='display:inline-block;'>客户支付</span>" +
+                            "<input id='IntegFeeMore" + i + "' name='IntegFeeMore'  class='width50 mRight5' type='text' value='" + items[i].IntegFeeMore + "' />" +
+                            "<span class='mRight5'>元，折扣价</span>" +
+                             "<input id='changeFeeMore" + i + "' title='默认为0则无折扣' name='DiscountFee' placeholder='折扣价,默认为0则无折扣' class='width50 mRight5' type='text'  value='" + items[i].DiscountFee + "' />" +
+                             "<span class='mRight5'>元，购买</span>" +
+                             "<input class='width80 mRight5' type='text' name='MemberName' placeholder='请填写等级名' value='" + items[i].Name + "' />" +
+                             "<span class='mRight5'>会员 </span>" +
+                             "<input name='Golds' class='width50 mRight5' title='默认单位为天' type='text' value='" + (i == items.length - 1 ? '无上限' : items[i].Golds) + "' />" +
+                              "<span  class='mRight5'>天</span>" +
+                            "<span id='delMeber" + i + "' data-ind='" + i + "' class='" + (i == 0 ? "hide" : i == items.length - 1 ? "" : "hide") + " borderccc circle12 mLeft10'>X</span>" +
                             "</div></li>";
                     }
                 }
@@ -73,14 +87,19 @@
             console.log($('#memberLi' + (i - 1) + ' div:first-child').html());
             var intefee = parseInt($('#memberLi' + (i - 1) + ' div:first-child').data('integfeemore')) + 300;
             $('#changeFeeMore' + (i - 1)).val($('#IntegFeeMore' + (i - 1)).val());
-        }
-        //$('#changeFeeMore' + i).val(intefee);
-        //i = i + 1;
+        } 
         var innnerHtml = "<li id='memberLi" + i + "' class='lineHeight30'><div class='levelitem left' data-origin='" + i + "' data-imgurl='' data-golds='0.00'  data-integfeemore='" + intefee + "' data-name='' data-discountfee='1.00' data-id='' title='' >" +
                       "<div class='left'><span  class='spanimg mTop5' ><span class='hide' id='SpanImg" + i + "'></span><img name='MemberImg' style='display:inline-block;' id='MemberImg" + i + "' class='memberimg'   src='/Content/menuico/custom.png' alt=''></span></div>" +
-                      "<span  class='mLeft5 mRight5'>客户充值</span><input id='IntegFeeMore" + i + "' name='IntegFeeMore' class='width50 mRight5' type='text' value='" + intefee + "' /><span class='mRight5'>元，购买金币</span>" +
-                      "<input id='changeFeeMore" + i + "'  class='width50 mRight5' placeholder='赠送金币'   type='text' value='" + intefee + "' /><span class='mRight5'>赠送</span><input name='DiscountFee'  class='width50 mRight5' placeholder='请填写赠送金币'  type='text' value='0' />" +
-                      "<span  class='mRight5'>金币 &nbsp; | 等级名称</span><input class='width80 mRight5' name='MemberName' type='text'  placeholder='请填写等级名' value='' /><span id='delMeber" + i + "' data-ind='" + i + "' style='cursor:pointer;' class=' borderccc circle12 mLeft10'>X</span>" +
+                      "<span  class='mLeft5 mRight5'>客户支付</span>" +
+                      "<input id='IntegFeeMore" + i + "' name='IntegFeeMore' class='width50 mRight5' type='text' value='" + intefee + "' />" +
+                      "<span class='mRight5'>元，折扣价</span>" +
+                      "<input id='changeFeeMore" + i + "' name='DiscountFee' class='width50 mRight5' placeholder='折扣价,默认为0则无折扣'   type='text' value='" + intefee + "' />" +
+                      "<span class='mRight5'>元，购买</span>" +
+                      "<input class='width80 mRight5' name='MemberName' type='text'  placeholder='请填写等级名' value='' />" +
+                      "<span class='mRight5'>会员 </span>" +
+                      "<input name='Golds'  class='width50 mRight5' placeholder='请填写有效天数'  type='text' value='0' />" +
+                      "<span  class='mRight5'>天</span>" +
+                      "<span id='delMeber" + i + "' data-ind='" + i + "' style='cursor:pointer;' class=' borderccc circle12 mLeft10'>X</span>" +
                       "</div></li>";
         if ($(".memberlevelul li:last-child").length > 0) {
             $(".memberlevelul li:last-child").after(innnerHtml);
@@ -108,6 +127,7 @@
                 item.ImgUrl = $(v).data('imgurl');
                 item.Origin = parseInt($(v).data('origin')) + 1;
                 item.LevelID = $(v).data('id');
+                item.Type = 0;
                 list.push(item);
             }
         });
@@ -200,6 +220,6 @@
                 _this.parent().data('name', _this.val());
             }
         }
-    }
+    } 
     module.exports = ObjectJS;
 });

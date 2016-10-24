@@ -67,4 +67,18 @@ namespace ProEnum
         [DescriptionAttribute("后台管理")]
         Manage = 7,
     }
+    public enum EnumSettingKey
+    {
+        /// <summary>
+        /// 金币来源
+        /// </summary>
+        [DescriptionAttribute("IValue")]
+        GoldSource = 1,
+        /// <summary>
+        /// 金额金币比例
+        /// </summary>
+        [DescriptionAttribute("DValue")]
+        GoldScale = 2
+
+    }
 }

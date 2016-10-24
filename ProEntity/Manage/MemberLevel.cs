@@ -19,6 +19,8 @@ namespace ProEntity
         public int Origin { get; set; }
         public string ImgUrl { get; set; }
         public string CreateUserID { get; set; }
+        public int Type { get; set; }
+
         /// <summary>
         /// 填充数据
         /// </summary>

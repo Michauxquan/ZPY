@@ -252,7 +252,20 @@ namespace ProBusiness
             if (!Enumtype.GetType().IsEnum) throw new Exception("参数类型不正确");
             return ((DescriptionAttribute)Enumtype.GetType().GetField(Enumtype.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false)[0]).Description;
         }
+        public static object getSysSetting(EnumSettingKey key, string columnName)
+        {
+            return Select("SysSetting", columnName, " [KeyType]=" + (int)key);
+        }
 
+        /// <summary>
+        /// 设置系统参数
+        /// </summary>
+        /// <returns></returns>
+        public static bool SetSysSetting(EnumSettingKey key, object value, string userid)
+        {
+            bool bl = Update("SysSetting", GetEnumDesc<EnumSettingKey>(key), value," [KeyType]=" + (int)key); 
+            return bl;
+        }
         /// <summary>
         /// 压缩图片
         /// </summary>

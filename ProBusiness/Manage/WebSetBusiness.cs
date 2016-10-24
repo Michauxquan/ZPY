@@ -25,25 +25,33 @@ namespace ProBusiness.Manage
         }
           
         #region 查询
-       
-        public static List<MemberLevel> GetMemberLevel()
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="type">0:会员等级 1 优惠活动</param>
+       /// <returns></returns>
+        public static List<MemberLevel> GetMemberLevel(int type=0)
         {
-            if (MemberLevelList.Count>0)
-            {
-                return MemberLevelList;
-            }
-
-            List<MemberLevel> list = new List<MemberLevel>();
-            DataTable dt = WebSetDAL.BaseProvider.GetMemberLevel();
-            foreach (DataRow dr in dt.Rows)
-            {
-                MemberLevel model = new MemberLevel();
-                model.FillData(dr); 
-                list.Add(model);
-            }
-            MemberLevelList.AddRange(list);
-            return list;
-
+           if (MemberLevelList.Count == 0)
+           {
+               List<MemberLevel> list = new List<MemberLevel>();
+               DataTable dt = WebSetDAL.BaseProvider.GetMemberLevel();
+               foreach (DataRow dr in dt.Rows)
+               {
+                   MemberLevel model = new MemberLevel();
+                   model.FillData(dr);
+                   list.Add(model);
+               }
+               MemberLevelList.AddRange(list);
+           }
+           if (type > -1)
+           {
+               return MemberLevelList.Where(x => x.Type == type).ToList();
+           }
+           else
+           {
+               return MemberLevelList.ToList();
+           } 
         }
         public static MemberLevel GetMemberLevelByID(string levelid)
         {
@@ -81,10 +89,10 @@ namespace ProBusiness.Manage
 
         #endregion
         #region 新增
-        public static string CreateMemberLevel(string levelid, string name,  decimal golds, string userid, decimal discountfee, decimal integfeemore, int status = 1, string imgurl = "", int origin = 1)
+        public static string CreateMemberLevel(string levelid, string name,  decimal golds, string userid, decimal discountfee, decimal integfeemore, int status = 1, string imgurl = "", int origin = 1,int type=0)
         {
             imgurl = GetUploadImgurl(imgurl);
-            string result = WebSetDAL.BaseProvider.InsertMemberLevel(levelid, name.Trim(), golds, userid, discountfee, integfeemore, origin, status, imgurl);
+            string result = WebSetDAL.BaseProvider.InsertMemberLevel(levelid, name.Trim(), golds, userid, discountfee, integfeemore, origin, status, imgurl,type);
             if (string.IsNullOrEmpty(result))
             {
                 MemberLevelList.Add(new MemberLevel()
@@ -98,6 +106,7 @@ namespace ProBusiness.Manage
                     IntegFeeMore = integfeemore,
                     CreateUserID = userid,
                     CreateTime = DateTime.Now,
+                    Type = type,
                     Status = 0
                 });
             }
@@ -117,16 +126,18 @@ namespace ProBusiness.Manage
             var model = GetMemberLevelByID(levelid);
             if (model == null)
             {
-                return "会员等级已被删除,操作失败";
+                return "信息已被删除,操作失败";
             }
             imgurl = GetUploadImgurl(imgurl);
             string result = WebSetDAL.BaseProvider.UpdateMemberLevel(golds, levelid, name.Trim(), discountfee, integfeemore, imgurl);
             if (string.IsNullOrEmpty(result))
             {
-                model.Name = name;
-                model.DiscountFee = discountfee;
-                model.IntegFeeMore = integfeemore;
-                model.ImgUrl = imgurl;
+                var model2 = MemberLevelList.Where(x => x.LevelID == levelid).FirstOrDefault();
+                model2.Name = name;
+                model2.DiscountFee = discountfee;
+                model2.Golds = golds;
+                model2.IntegFeeMore = integfeemore;
+                model2.ImgUrl = imgurl;
             }
             return result;
         }

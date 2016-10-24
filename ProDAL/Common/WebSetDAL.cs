@@ -53,7 +53,7 @@ namespace ProDAL
         }
 
         #region 新增
-        public string InsertMemberLevel(string levelid, string name, decimal golds,  string userid, decimal discountfee, decimal integfeemore, int origin, int status = 1, string imgurl = "")
+        public string InsertMemberLevel(string levelid, string name, decimal golds,  string userid, decimal discountfee, decimal integfeemore, int origin, int status = 1, string imgurl = "",int type=0)
         {
             SqlParameter[] paras = { 
                                      new SqlParameter("@result" , SqlDbType.VarChar,300),
@@ -63,6 +63,7 @@ namespace ProDAL
                                      new SqlParameter("@DiscountFee" , discountfee),
                                      new SqlParameter("@IntegFeeMore" , integfeemore),
                                      new SqlParameter("@Status" , status),
+                                      new SqlParameter("@Type" , type),
                                      new SqlParameter("@CreateUserID" , userid),
                                       new SqlParameter("@ImgUrl",imgurl), 
                                     

@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "会员配置"; 
+}
+@section css{
+    <link href="/modules/css/system/system.css" rel="stylesheet"/>  
+}
+@section scripts{
+    <script type="text/javascript">
+        seajs.use(["scripts/webset/activity"], function (obj) {
+            obj.init();
+        });
+    </script>
+} 
+<div class="header-box">
+    <span class="header-title">会员等级配置</span> 
+</div>
+<div class="content-body">
+    <div class="nav-part" id="memberList">
+          <div class="mTop15" style="width: 100%; border-bottom: solid 1px #ccc;">
+            <h1 class="font14 bolder500 lineHeight15">金币充值规则<span class="color999 font10">　|　会员充值时，会员金币将依据本规则自动累加</span></h1>
+            <div class="mLeft10 mTop15 mBottom10">
+                <input class="width50 mRight5" type="text" value="1" readonly="readonly" id="salePrice" title="充值金额"/>
+                <span>元=</span>
+                <input class="width50 mRight5" type="text" value="@ViewBag.integerFee" data-oldvalue="@ViewBag.integerFee" id="integerFee" title="兑换金币"/>
+                <span>金币</span>
+                <i id="tipInfo" class=' circle18 mLeft10 mRight5'>?</i>
+                <div class="btn mLeft10" style="display: none;" id="saveClientRule">保 存</div>
+            </div>
+        </div>
+        <div class="mTop5">
+            <h1 class="font14 bolder500 lineHeight15">会员级别和充值设置<span class="color999 font10">　|　 以历史积分为标准，设定不同的等级和充值金额</span></h1>
+            <ul class="memberlevelul mTop15" style="cursor: pointer;">
+
+            </ul>
+            <a data-id="memberList" style="cursor: pointer;" id="createMemberLevel">+ 新增会员级别和设置</a>
+            <div class="mTop15 pTop10" style="border-Top: solid 1px #ccc;">
+                <div class="btn mLeft10" id="saveMemberLevel">保 存</div>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="dropdown-ul hide" id="wareInfo" style="width: 280px; padding: 8px;">
+    <span class="red">●小技巧：</span><br>
+    1.若设置“充值优惠”活动，充值金额满足充值规则时，享受充值优惠。<br>
+    2.若改变充值规则，原用户金币不受影响。<br> 
+</ul>

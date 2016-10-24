@@ -8,6 +8,8 @@ using ProBusiness.Manage;
 using ProEntity;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json.Schema;
+using ProBusiness;
+using ProEnum;
 using ProTools;
 
 namespace Proc1.Controllers
@@ -27,11 +29,17 @@ namespace Proc1.Controllers
             return View();
         }
 
+        public ActionResult Activity()
+        {
+            ViewBag.integerFee = CommonBusiness.getSysSetting(EnumSettingKey.GoldScale, "DValue");
+            return View();
+        }
+
         #region Ajax
 
-        public JsonResult GetMemberLevel() 
+        public JsonResult GetMemberLevel(int  type=0) 
         {
-            JsonDictionary.Add("items", WebSetBusiness.GetMemberLevel());
+            JsonDictionary.Add("items", WebSetBusiness.GetMemberLevel(type));
             return new JsonResult
             {
                 Data = JsonDictionary,
@@ -42,18 +50,18 @@ namespace Proc1.Controllers
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             List<MemberLevel> modelList = serializer.Deserialize<List<MemberLevel>>(memberlevel);
-            var tempList = WebSetBusiness.GetMemberLevel();
+            var tempList = WebSetBusiness.GetMemberLevel(modelList[0].Type);
             modelList.ForEach(x =>
             {
                 x.CreateUserID = CurrentUser.UserID; 
                 x.Status = 1;
-                var temp = tempList.Where(y => y.Origin == x.Origin).FirstOrDefault();
+                var temp = tempList.Where(y => y.Origin == x.Origin && y.Type==x.Type).FirstOrDefault();
                 if (temp != null)
                 {
                     x.LevelID = temp.LevelID;
                 }
             });
-            var delList = tempList.Where(x => !modelList.Exists(y => y.Origin == x.Origin)).OrderByDescending(x => x.Origin).ToList();
+            var delList = tempList.Where(x => !modelList.Exists(y => y.Origin == x.Origin && y.Type == x.Type)).OrderByDescending(x => x.Origin).ToList();
             var addList = modelList.Where(x => string.IsNullOrEmpty(x.LevelID)).ToList();
             var updList = modelList.Where(x => !string.IsNullOrEmpty(x.LevelID)).ToList();
             string result = "";
@@ -79,7 +87,7 @@ namespace Proc1.Controllers
                 {
                     string mes = WebSetBusiness.CreateMemberLevel(Guid.NewGuid().ToString(),
                         x.Name.Trim(), x.Golds, x.CreateUserID, x.DiscountFee,
-                        x.IntegFeeMore, x.Status, x.ImgUrl, x.Origin);
+                        x.IntegFeeMore, x.Status, x.ImgUrl, x.Origin,x.Type);
                     result += string.IsNullOrEmpty(mes) ? result : mes;
                 });
             }
@@ -139,6 +147,17 @@ namespace Proc1.Controllers
                 result = WebSetBusiness.UpdateAdvert(model);
             }
             JsonDictionary.Add("result", result);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            }; 
+        }
+
+        public JsonResult SaveGoldRule(int integerFee)
+        {
+            var result = false;
+            JsonDictionary.Add("result", CommonBusiness.SetSysSetting(EnumSettingKey.GoldScale,integerFee,CurrentUser.UserID));
             return new JsonResult
             {
                 Data = JsonDictionary,

@@ -13,7 +13,7 @@
 .child-items li .itemname{ display:inline-block; height:30px; vertical-align:middle; float:left; }
 .child-items li .operateitem{ position:absolute; right:8px; top:8px; }
 .child-items li:hover .operateitem{ display:inline-block; }
-
+.circle18{background-color: transparent;color:#2c2c2c;width: 18px;padding: 0px 5px 0px 4px; height: 16px;cursor: help;transform: scale(0.77);text-align: center;border: 1px solid #c9c9c9;border-radius: 50%;}
 .stages-box .create-action { margin-top:10px; }
 .stages-box .create-action textarea { width:240px; resize:none; line-height:25px; }
 
