@@ -131,8 +131,7 @@ namespace ZPY.Controllers
             };
         }
         public JsonResult UserRegister(string loginname,string pwd)
-        {
-
+        { 
             var result = !string.IsNullOrEmpty(ProBusiness.M_UsersBusiness.CreateM_UserBase(loginname, pwd));
             if (result)
             {
@@ -141,7 +140,7 @@ namespace ZPY.Controllers
                     OperateIP, out outresult);
                 if (model != null)
                 {
-                    Session["PartManage"] = model;
+                    Session["PartManage"] = model; 
                 }
                 else
                 {

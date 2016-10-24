@@ -6,3 +6,7 @@ D:\MichauxPro\ZPY\ProDAL\bin\Debug\ProDAL.dll
 D:\MichauxPro\ZPY\ProDAL\bin\Debug\ProDAL.pdb
 D:\MichauxPro\ZPY\ProDAL\obj\Debug\ProDAL.dll
 D:\MichauxPro\ZPY\ProDAL\obj\Debug\ProDAL.pdb
+G:\MichauxPro\ZPY\ProDAL\bin\Debug\ProDAL.dll
+G:\MichauxPro\ZPY\ProDAL\bin\Debug\ProDAL.pdb
+G:\MichauxPro\ZPY\ProDAL\obj\Debug\ProDAL.dll
+G:\MichauxPro\ZPY\ProDAL\obj\Debug\ProDAL.pdb

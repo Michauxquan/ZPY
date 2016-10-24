@@ -20,7 +20,7 @@ namespace ProBusiness
             string sqlwhere = "  a.Status not in (6,9)";
             if (!string.IsNullOrEmpty(status))
             {
-                sqlwhere += " and a.Status= in (" + status + ") ";
+                sqlwhere += " and a.Status in (" + status + ") ";
             }
             else
             {
@@ -88,6 +88,14 @@ namespace ProBusiness
             if (!string.IsNullOrEmpty(status))
             {
                 sqlwhere += " and a.status in(" + status + ") ";
+            }
+            if (!string.IsNullOrEmpty(begintime))
+            {
+                sqlwhere += " and a.CreateTime>='" + begintime + " 00:00:00'";
+            }
+            if (!string.IsNullOrEmpty(endtime))
+            {
+                sqlwhere += " and a.CreateTime<'" + endtime + " 23:59:59:999'";
             }
             if (!string.IsNullOrEmpty(address))
             {

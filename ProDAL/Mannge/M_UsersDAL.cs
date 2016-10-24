@@ -41,7 +41,7 @@ namespace ProDAL.Manage
             SqlParameter[] paras = { 
                                     new SqlParameter("@LoginName",loginname)
                                    };
-            return GetDataTable("select * from M_Users where LoginName=@LoginName and Status=1", paras, CommandType.Text);
+            return GetDataTable("select * from M_Users where LoginName=@LoginName and Status<>9", paras, CommandType.Text);
         }
         public DataTable GetUserDetail(string userID)
         {

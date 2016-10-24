@@ -6,3 +6,7 @@ D:\MichauxPro\ZPY\ProEntity\bin\Debug\ProEntity.dll
 D:\MichauxPro\ZPY\ProEntity\bin\Debug\ProEntity.pdb
 D:\MichauxPro\ZPY\ProEntity\obj\Debug\ProEntity.dll
 D:\MichauxPro\ZPY\ProEntity\obj\Debug\ProEntity.pdb
+G:\MichauxPro\ZPY\ProEntity\bin\Debug\ProEntity.dll
+G:\MichauxPro\ZPY\ProEntity\bin\Debug\ProEntity.pdb
+G:\MichauxPro\ZPY\ProEntity\obj\Debug\ProEntity.dll
+G:\MichauxPro\ZPY\ProEntity\obj\Debug\ProEntity.pdb

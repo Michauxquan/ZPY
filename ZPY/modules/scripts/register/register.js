@@ -59,35 +59,15 @@ $(function () {
             contineRegister = true;
         }
     }); 
-    $('.btnregister').bind('click', function () { 
-       
-        if (typeof ($('input:radio[name="sex"]:checked').data('value')) == 'undefined') {
-            contineRegister = false;
-            alert('性别未选择，注册失败');
-            return false;
-        }
+    $('.btnregister').bind('click', function () {  
         if (contineRegister) {
             if (!$('#agree').is(':checked')) { 
                 alert('注册协议未选中，注册失败');
                 return false;
-            }
-            var item = {
-                LoginName: $('#username').val(),
-                LoginPWD: $('#password').val(),
-                Email: $('#email').val(),
-                Sex: $('input:radio[name="sex"]:checked').data('value'),
-                IsMarry: $('#marry option:selected').val(),
-                Education: $('#education option:selected').val(),
-                BHeight: $('#bheight option:selected').val(),
-                QQ: $('#qqCode').val(),
-                MobilePhone: $('#mobilephone').val(),
-                Provine: $('.province option:selected').val(),
-                City: $('.city option:selected').val(),
-                District: $('.areaqu option:selected').val()
-            }
-            $.post("UserRegister",{entity: JSON.stringify(item)},function (data) {
+            } 
+            $.post("UserRegister", { loginname: $('#username').val(), pwd: $('#password').val() }, function (data) {
                 if (data.result) {
-                    window.location.href = "/User/UserInfo";
+                    window.location.href = "/Home/Register2";
                 }
             });
         } else {

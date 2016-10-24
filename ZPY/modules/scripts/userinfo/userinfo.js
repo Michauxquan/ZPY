@@ -441,7 +441,7 @@ function saveNeedsInfo() {
         alert('求租日期输入不正确');
         return false;
     }
-    if (typeof ($('#needscity option:selected').val()) == 'undefined') {
+    if (typeof ($('.needscity option:selected').val()) == 'undefined') {
         alert('目的城市未选择！');
         return false;
     }
