@@ -126,6 +126,17 @@ namespace ZPY.Controllers
             int pageCount = 0;
             var list = UserReplyBusiness.GetUserReplys(type == 1 ? "": CurrentUser.UserID ,
                 type == 1 ?  CurrentUser.UserID:"", type == 2 ? 1 : type, pageSize, pageIndex, ref total, ref pageCount);
+            if (type == 2)
+            {
+                list.ForEach(x=>
+                {
+                    if (x.Status == 0)
+                    {
+                        x.Content = "该信息共有" + x.Content.Length+"个字...";
+                    }
+                }
+            );
+            }
             JsonDictionary.Add("items", list);
             JsonDictionary.Add("totalCount", total);
             JsonDictionary.Add("pageCount", pageCount);
@@ -146,6 +157,29 @@ namespace ZPY.Controllers
             };
         }
 
+        public JsonResult GetReplyInfo(string replyid)
+        {
+            string errMsg = "";
+            var result = false;
+            string url = RouteData.Values["controller"] + "/" + RouteData.Values["action"];
+            if (!checkGolds(url))
+            {
+                errMsg = "账户金币不足，不能查看";
+            }
+            
+            if (string.IsNullOrEmpty(errMsg))
+            {
+                errMsg = UserReplyBusiness.GetReplyDetail(replyid).Content;
+                result = UserReplyBusiness.UpdateReplyStatus(replyid, 1);
+            }
+            JsonDictionary.Add("errorMsg", errMsg);
+            JsonDictionary.Add("result", result);
+            return new JsonResult
+            {
+                Data = JsonDictionary,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         public JsonResult GetActivity(int type=1)
         {
             JsonDictionary.Add("items", WebSetBusiness.GetMemberLevel(type));

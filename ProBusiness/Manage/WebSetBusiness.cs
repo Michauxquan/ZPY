@@ -87,6 +87,53 @@ namespace ProBusiness.Manage
             return list;
         }
 
+        public static List<ChargeSet> GetChargeSet(string keyWords, string userid,int status, int pageSize, int pageIndex, ref int totalCount, ref int pageCount, string begintime = "", string endtime = "")
+        {
+            string tablename = " ChargeSet  a left join M_Users b  on a.UserID =b.UserID ";
+            string sqlwhere = " a.status<>9 ";
+            if (!string.IsNullOrEmpty(keyWords))
+            {
+                sqlwhere += " and (b.Name like '%" + keyWords + "%' or a.Remark like '%" + keyWords + "%' or a.View like '%" + keyWords + "%')";
+            } 
+            if (status > -1)
+            {
+                sqlwhere += " and a.status=" + status;
+            } 
+            if (!string.IsNullOrEmpty(userid))
+            {
+                sqlwhere += " and a.UserID='" + userid + "' ";
+            }
+            if (!string.IsNullOrEmpty(begintime))
+            {
+                sqlwhere += " and a.CreateTime>='" + begintime + " 00:00:00'";
+            }
+            if (!string.IsNullOrEmpty(endtime))
+            {
+                sqlwhere += " and a.CreateTime<'" + endtime + " 23:59:59:999'";
+            }
+            DataTable dt = CommonBusiness.GetPagerData(tablename, "a.*,b.Name as UserName ", sqlwhere, "a.AutoID ", pageSize, pageIndex, out totalCount, out pageCount);
+            List<ChargeSet> list = new List<ChargeSet>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                ChargeSet model = new ChargeSet();
+                model.FillData(dr);
+                list.Add(model);
+            }
+            return list;
+        }
+
+        public static ChargeSet GetChargeSetDetail(string view)
+        {
+            DataTable dt = WebSetDAL.BaseProvider.GetChargeSetDetail(view.Trim());
+            ChargeSet model = null;
+            if (dt.Rows.Count == 1)
+            {
+                model = new ChargeSet();
+                model.FillData(dt.Rows[0]);
+            }
+            return model;
+        }
+
         #endregion
         #region 新增
         public static string CreateMemberLevel(string levelid, string name,  decimal golds, string userid, decimal discountfee, decimal integfeemore, int status = 1, string imgurl = "", int origin = 1,int type=0)
@@ -116,6 +163,11 @@ namespace ProBusiness.Manage
         public static bool InsertAdvert(AdvertSet model)
         {
             return WebSetDAL.BaseProvider.InsertAdvert(model.CreateUserID,model.View.ToLower(), model.Content, model.ImgType, model.ImgUrl,model.LinkUrl);
+        }
+
+        public static bool InsertChargeSet(ChargeSet model)
+        {
+            return WebSetDAL.BaseProvider.InsertChargeSet(model.UserID, model.View.ToLower(), model.Remark, model.Golds);
         }
 
         #endregion
@@ -158,7 +210,14 @@ namespace ProBusiness.Manage
             return WebSetDAL.BaseProvider.UpdateAdvert(model.AutoID, model.View, model.Content, model.ImgType,
                 model.ImgUrl,model.LinkUrl);
         }
-
+        public static bool UpdateChargeSet(ChargeSet model)
+        {
+            return WebSetDAL.BaseProvider.UpdateChargeSet(model.AutoID, model.View, model.Remark, model.Golds);
+        }
+        public static bool UpdateChargeSetStatus(int autoid,int status)
+        {
+            return CommonBusiness.Update("ChargeSet", "Status", status, " where Status<>9 and AutoID=" + autoid);
+        }
         public static bool DeleteAdvertSet(int autoid)
         {
             return WebSetDAL.BaseProvider.DeleteAdvertSet(autoid);  

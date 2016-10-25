@@ -47,8 +47,9 @@
             <li class="nologo"><a href="/Home/Login" style="margin-right: 10px;" title="登录">登录</a>|</li>
             <li class="nologo"><a href="/Home/Register" style="margin-right: 10px;" title="注册">注册</a>|</li>
         }
-        
-        <li><a href="/Help/Helps" title="在线帮助">在线帮助</a></li> 
+
+        <li><a href="/Help/Helps" title="在线帮助">在线帮助</a></li>
+        <li><a href="javasript:void(0);" title="租友网-租女友，租男友" rel="sidebar" id="#fvweb">收藏本站</a></li>
     </ul>
     <a href="/Home/Index"><img src="/modules/images/logo.jpg" alt="网站logo"></a>
     <p class="siteExp">租友网（***.com）-最真实的中国租友网站&nbsp;见父母&nbsp;参加聚会&nbsp;唱歌&nbsp;看电影</p>
@@ -138,7 +139,8 @@
             "opacity": 50
         });
         return false;
-    }); 
+    });
+    $('#fvweb').addFavorite('租友网-租女友，租男友', location.href);
 </script>
 
 @RenderSection("scripts", false)

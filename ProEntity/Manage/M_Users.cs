@@ -137,7 +137,10 @@ namespace ProEntity.Manage
         public decimal Account { get; set; }
         public decimal InAccount { get; set; }
         public decimal OutAccount { get; set; }
-	    public string MyService { get; set; } 
+	    public string MyService { get; set; }
+        public DateTime AuthorBTime { get; set; }
+        public DateTime AuthorETime { get; set; }
+        public int AuthorType { get; set; } 
 	    /// <summary>
         /// 填充数据
         /// </summary>

@@ -76,7 +76,20 @@ namespace ProDAL.Manage
             var result = Convert.ToInt32(paras[0].Value);
             return result > 0;
         }
-
+        public bool UpdateUserAccount(string userid, decimal golds,int  type,string remark)
+        {
+            SqlParameter[] paras = { 
+                                    new SqlParameter("@Result",SqlDbType.Int),
+                                    new SqlParameter("@UserID",userid),
+                                    new SqlParameter("@Type",type),
+                                    new SqlParameter("@Golds",golds),
+                                    new SqlParameter("@Remark",remark)
+                                   };
+            paras[0].Direction = ParameterDirection.Output;
+            ExecuteNonQuery("M_UserAccountChange", paras, CommandType.StoredProcedure);
+            var result = Convert.ToInt32(paras[0].Value);
+            return result > 0;
+        }
         public int CreateUserFocus(string userid, string seeid)
         {
             SqlParameter[] paras = { 

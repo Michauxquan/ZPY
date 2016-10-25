@@ -316,6 +316,8 @@ namespace ZPY.Controllers
         /// <returns></returns>
         public JsonResult GetUserLinkInfo(string cname, string seeid, string seename)
         {
+            var url = RouteData.Values["controller"] + "/" + RouteData.Values["action"];
+
             //判断是否有用户登录查看他人联系信息并扣除金额
             string errMsg = "";
             if (CurrentUser != null )
@@ -324,7 +326,8 @@ namespace ZPY.Controllers
                 if (CurrentUser.UserID != seeid)
                 {
                     //判断金额是否足够
-                    if (!true)
+
+                    if (!checkGolds(url))
                     {
                         ishasGlod = false;
                         errMsg = "账户金币不足，不能查看";

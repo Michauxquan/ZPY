@@ -45,6 +45,10 @@ namespace ZPY.Controllers
                     M_Users model = ProBusiness.M_UsersBusiness.GetM_UserByProUserName(cook["username"], cook["pwd"], operateip, out result);
                     if (model != null)
                     {
+                        if (DateTime.Now.CompareTo(model.AuthorETime)<1)
+                        {
+                            model.AuthorType = 0;
+                        }
                         Session["Manager"] = model;
                         return Redirect("/User/UserInfo");
                     }

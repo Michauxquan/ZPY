@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProBusiness;
+using ProBusiness.Manage;
 
 namespace ZPY.Controllers
 {
     public class BaseController : Controller
-    { 
-
+    {
         protected int PageSize = 20;
 
         protected Dictionary<string, object> JsonDictionary = new Dictionary<string, object>();
@@ -78,6 +79,25 @@ namespace ZPY.Controllers
                 randomcode += allchararray[t];
             }
             return randomcode;
-        } 
+        }
+
+        public bool checkGolds(string route)
+        {
+            if (CurrentUser.AuthorType == 1)
+            {
+                return true;
+            }
+            var model=WebSetBusiness.GetChargeSetDetail(route.ToLower());
+            if (model == null)
+            {
+                return true;
+            } 
+            if (model.Golds == 0 || model.Status == 0)
+            {
+                return true;
+            }
+            return  CommonBusiness.UpdateUserAccount(model.Golds, CurrentUser.UserID, 1,
+                string.IsNullOrEmpty(model.Remark) ? "查看信息扣除" : model.Remark); ;
+        }
     }
 }

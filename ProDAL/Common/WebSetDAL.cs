@@ -51,7 +51,14 @@ namespace ProDAL
 
             return GetDataTable(sqlText, paras, CommandType.Text);
         }
+        public DataTable GetChargeSetDetail(string view)
+        {
+            SqlParameter[] paras = { 
+                                    new SqlParameter("@View",view)
+                                   };
 
+            return GetDataTable("select * from ChargeSet where [View]=@View and Status=1", paras, CommandType.Text);
+        }
         #region 新增
         public string InsertMemberLevel(string levelid, string name, decimal golds,  string userid, decimal discountfee, decimal integfeemore, int origin, int status = 1, string imgurl = "",int type=0)
         {
@@ -86,7 +93,17 @@ namespace ProDAL
             };
             return ExecuteNonQuery("Insert into  AdvertSet([View],[Content],ImgType,ImgUrl,CreateTime,CreateUserID,LinkUrl) values (@View,@Content,@ImgType,@ImgUrl,getDate(),@UserID,@LinkUrl)", paras, CommandType.Text) > 0;
         }
-
+        public bool InsertChargeSet(string userid, string view, string remark, decimal golds)
+        {
+            SqlParameter[] paras =
+            { 
+                new SqlParameter("@View", view),
+                new SqlParameter("@Remark", remark),
+                new SqlParameter("@Golds", golds), 
+                new SqlParameter("@UserID", userid)
+            };
+            return ExecuteNonQuery("Insert into  ChargeSet([View],[Remark],Golds,Status,CreateTime,UserID) values (@View,@Remark,@Golds,1,getDate(),@UserID)", paras, CommandType.Text) > 0;
+        }
         #endregion
 
         #region 修改
@@ -129,7 +146,18 @@ namespace ProDAL
             };
             return ExecuteNonQuery("Update AdvertSet set [View]=@View,[Content]=@Content,ImgType=@ImgType,ImgUrl=@ImgUrl,LinkUrl=@LinkUrl  where AutoID=@AutoID ", paras, CommandType.Text) > 0;
         }
-
+        public bool UpdateChargeSet(int autoid, string view, string remark, decimal golds)
+        {
+            SqlParameter[] paras =
+            {
+                new SqlParameter("@AutoID", autoid),
+                new SqlParameter("@View", view),
+                new SqlParameter("@Remark", remark),
+                new SqlParameter("@Golds", golds)
+            };
+            return ExecuteNonQuery("Update ChargeSet set [View]=@View,[Remark]=@Remark,Golds=@Golds  where AutoID=@AutoID ", paras, CommandType.Text) > 0;
+        }
+        
         public bool DeleteAdvertSet(int autoid)
         {
             SqlParameter[] paras =

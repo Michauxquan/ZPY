@@ -20,7 +20,7 @@ namespace ProBusiness.UserAttrs
 
         public static List<UserReply> GetUserReplys(string guid, string userid, int type, int pageSize, int pageIndex, ref int totalCount, ref int pageCount)
         {
-            string tablename = "UserReply  a left join M_Users b  on a.Guid =b.UserID left join M_Users c  on a.FromReplyUserID =b.UserID ";
+            string tablename = "UserReply  a left join M_Users b  on a.Guid =b.UserID left join M_Users c  on a.CreateUserID =c.UserID ";
             string sqlwhere = " a.status<>9 ";
             if (!string.IsNullOrEmpty(guid))
             {
@@ -34,7 +34,7 @@ namespace ProBusiness.UserAttrs
             {
                 sqlwhere += " and a.CreateUserID='" + userid + "' ";
             }
-            DataTable dt = CommonBusiness.GetPagerData(tablename, "a.*,b.Name as UserName,c.Name as FromName ", sqlwhere, "a.AutoID ", pageSize, pageIndex, out totalCount, out pageCount);
+            DataTable dt = CommonBusiness.GetPagerData(tablename, "a.*,b.Name as UserName,b.Avatar as UserAvatar,c.Name as FromName,c.Avatar as FromAvatar ", sqlwhere, "a.AutoID ", pageSize, pageIndex, out totalCount, out pageCount);
             List<UserReply> list = new List<UserReply>();
             foreach (DataRow dr in dt.Rows)
             {
@@ -44,7 +44,17 @@ namespace ProBusiness.UserAttrs
             }
             return list; 
         }
-
+        public static UserReply GetReplyDetail(string replyid)
+        {
+            DataTable dt = UserReplyDAL.BaseProvider.GetReplyDetail(replyid);
+            UserReply model = null;
+            if (dt.Rows.Count == 1)
+            {
+                model = new UserReply();
+                model.FillData(dt.Rows[0]);
+            }
+            return model;
+        }
         #endregion
 
         #region 添加.删除
@@ -56,6 +66,11 @@ namespace ProBusiness.UserAttrs
         public static bool DeleteReply(string replyid)
         {
             bool bl = CommonBusiness.Update("UserReply", "Status", 9, "ReplyID='" + replyid + "'");
+            return bl;
+        }
+        public static bool UpdateReplyStatus(string replyid,int status)
+        {
+            bool bl = CommonBusiness.Update("UserReply", "Status", status, "ReplyID='" + replyid + "' and Status<>9");
             return bl;
         }
         #endregion 

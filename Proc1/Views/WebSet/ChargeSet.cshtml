@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "收费设置"; 
+}
+
+@section css{
+    <link href="/modules/plug/daterangepicker/daterangepicker.css" rel="stylesheet" />
+}
+@section scripts{
+    <script type="text/javascript">
+        seajs.use(["scripts/webset/chargeset"], function (obj) {
+            obj.initList();
+        });
+    </script>
+}
+
+<div class="header-box">
+    <span class="header-title left">广告列表</span> 
+    <div class="right mRight10">
+        <span data-name="添加设置" class="btn-add" >添加设置</span>
+    </div>
+</div>
+<div class="search-header"> 
+    <div class="left mRight5" id="orderStatus"></div>
+    <div class="left" title="创建时间">
+        <input type="text" id="iptCreateTime" placeholder="创建时间" class="ipt-date"  />
+    </div> 
+    <div class="right searth-module mRight20" data-text="关键字搜索..." data-width="160"> </div>
+</div>
+<div class="content-body">
+    <table class="table-list">
+        <tr class="tr-header" id="img-items">
+            <td class="tLeft">描述</td>
+            <td class="tLeft">页面方法</td>
+             <td class="tLeft">收费金币</td>
+            <td class="center">创建日期</td>
+            <td class="center">创建人</td>
+            <td class="center">操作</td>
+        </tr>
+    </table>
+    <div id="pager" class="mTop20"></div>
+    <div class="clear"></div>
+</div>  

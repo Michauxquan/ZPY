@@ -26,7 +26,20 @@
         }
         return format;
  }
-
+jQuery.fn.addFavorite = function (l, h) {
+    return this.click(function () {
+        var obj = $(this);
+        if ($.browser.msie) {
+            window.external.addFavorite(h, l);
+        } else if (jQuery.browser.mozilla || jQuery.browser.opera) {
+            obj.attr("rel", "sidebar");
+            obj.attr("title", l);
+            obj.attr("href", h);
+        } else {
+            alert("请使用Ctrl+D将本页加入收藏夹！");
+        }
+    });
+}; 
 
  /** 
   * @param {} btime 

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ChargeSet.cs" />
     <Compile Include="Common\City.cs" />
     <Compile Include="Common\LogEntity.cs" />
     <Compile Include="Common\Menu.cs" />

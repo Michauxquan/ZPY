@@ -1,0 +1,18 @@
+﻿{%
+	for(var i=0, j=$data.length; i < j; i++){
+	var item = $data[i];
+%}
+<tr class="list-item">
+    <td class="tLeft">{%=item.Remark%}</td>
+    <td class="tLeft">{%=item.View%}</td>
+    <td class="tLeft">{%=item.Golds.toFixed(0)%}</td>
+    <td class="center">{%=item.CreateTime.toDate("yyyy-MM-dd hh:mm:ss")%}</td>
+    <td class="center">{%=item.UserName%}</td>
+    <td class="center">
+        <div class="btn auditimg" data-id="{%=item.AutoID%}" data-view="{%=item.View%}"
+             data-remark="{%=item.Remark%}"  data-golds="{%=item.Golds%}">修改</div>
+        <div class="btn updimg" data-id="{%=item.AutoID%}" data-status="{%=item.Status%}">{%=(item.Status==0?"启用":"禁用")%}</div>
+        <div class="btn deleteimg" data-id="{%=item.AutoID%}">删除</div>
+    </td>
+</tr>
+{% } %}

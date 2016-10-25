@@ -22,7 +22,7 @@ namespace ProBusiness
             string sqlwhere = " a.status<>9 ";
             if (!string.IsNullOrEmpty(keyWords))
             {
-                sqlwhere += " and a.UserName like '%" + keyWords + "%' ";
+                sqlwhere += " and (b.Name like '%" + keyWords + "%' or a.Content like '%" + keyWords + "%')";
             }
             if (type > -1)
             {
@@ -58,7 +58,17 @@ namespace ProBusiness
             }
             return list;
         }
-
+       public static UserOrders GetUserOrderDetail(string ordercode)
+       {
+           DataTable dt = UserOrdersDAL.BaseProvider.GetUserOrderDetail(ordercode);
+           UserOrders model = null;
+           if (dt.Rows.Count == 1)
+           {
+               model = new UserOrders();
+               model.FillData(dt.Rows[0]);
+           }
+           return model;
+       }
         #endregion
 
         #region 添加.删除
@@ -71,11 +81,23 @@ namespace ProBusiness
        {
            return UserOrdersDAL.BaseProvider.CreateUserOrder(ordercode, paytype, spname, sku, content, totalfee, othercode, type, num, userID);
        }
-        public static bool DeleteReply(string ordercode)
+        public static bool DeleteOrder(string ordercode)
         {
             bool bl = CommonBusiness.Update("UserOrders", "Status", 9, "ordercode='" + ordercode + "'");
             return bl;
         }
-        #endregion 
+        public static bool BoutOrder(string ordercode)
+        {
+            bool bl = CommonBusiness.Update("UserOrders", "Status", 3, "ordercode='" + ordercode + "' and Status=0");
+            return bl;
+        }
+
+       public static bool OrderAuditting(string ordercode, string othercode,decimal payfee)
+       {
+           bool bl = UserOrdersDAL.BaseProvider.OrderAuditting(ordercode, othercode, payfee);
+           return bl;
+       }
+
+       #endregion 
     }
 }

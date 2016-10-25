@@ -28,8 +28,8 @@ namespace ProDAL
         }
         public bool CreateUserOrder(string ordercode, int paytype, string spname, string sku, string content, decimal totalfee, string othercode, int type, decimal num, string userID)
         {
-            string sql = @"INSERT INTO [UserOrders]([OrderCode],[SPName],[Sku],[Content],[CreateTime],[Status],[UserID],[PayType],[TotalFee],[OtherCode],[Type],[Num])
-                    VALUES (@OrderCode,@SPName,@Sku,@Content,getdate(), 0,@UserID, @PayType, @TotalFee, @OtherCode, @Type, @Num)";
+            string sql = @"INSERT INTO [UserOrders]([OrderCode],[SPName],[Sku],[Content],[CreateTime],[Status],[UserID],[PayType],[TotalFee],[OtherCode],[Type],[Num],[PayFee])
+                    VALUES (@OrderCode,@SPName,@Sku,@Content,getdate(), 0,@UserID, @PayType, @TotalFee, @OtherCode, @Type, @Num，0.00)";
             SqlParameter[] paras = { 
                                     new SqlParameter("@SPName",spname),
                                     new SqlParameter("@UserID",userID),
@@ -43,6 +43,26 @@ namespace ProDAL
                                     new SqlParameter("@OrderCode",ordercode),    
                                    };
             return ExecuteNonQuery(sql, paras, CommandType.Text) > 0; 
+        }
+
+        public DataTable GetUserOrderDetail(string ordercode)
+        {
+            SqlParameter[] paras = { 
+                                    new SqlParameter("@OrderCode",ordercode)
+                                   };
+
+            return GetDataTable("select * from UserOrders where OrderCode=@OrderCode", paras, CommandType.Text);
+        }
+
+
+        public bool OrderAuditting(string ordercode, string othercode, decimal payFee)
+        {
+            SqlParameter[] paras = { 
+                                    new SqlParameter("@OrderCode",ordercode),
+                                    new SqlParameter("@OtherCode",othercode),
+                                    new SqlParameter("@PayFee",payFee),    
+                                   };
+            return ExecuteNonQuery("M_OrderAuditting", paras, CommandType.StoredProcedure) > 0; 
         }
 
     }

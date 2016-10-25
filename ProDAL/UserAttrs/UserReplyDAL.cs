@@ -29,5 +29,13 @@ namespace ProDAL.UserAttrs
 
             return ExecuteNonQuery(@sql, paras, CommandType.Text) > 0;
         }
+        public DataTable GetReplyDetail(string replyid)
+        {
+            SqlParameter[] paras = { 
+                                    new SqlParameter("@ReplyID",replyid)
+                                   };
+
+            return GetDataTable("select * from UserReply where ReplyID=@ReplyID ", paras, CommandType.Text);
+        }
     }
 }

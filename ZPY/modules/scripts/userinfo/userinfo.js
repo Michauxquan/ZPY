@@ -511,10 +511,19 @@ function getReplyList(pageindex, type) {
             var html = '';
             for (var i = 0; i < data.items.length; i++) {
                 var item = data.items[i];
-                html += '<tr><td><a href="/User/UserMsg/' + item.CreateUserID + '" class="rname">' + item.UserName + '</a></td><td style="width: 400px;">' + item.Content.replace(/&lt/g, '<').replace(/&gt/g, '>').replace(/<br>/g, '\n').replace(/“/g, '').replace(/”/g, '') + '</td><td>' + convertdate(item.CreateTime, true) + '</td>' +
+                html += '<tr><td><a href="/User/UserMsg/' + (type == 1 ? item.GUID : item.CreateUserID) + '" class="rname">' +
+                    '<span style="width:42px;height:42px;border-radius: 21px;"><img style="vertical-align: middle;margin-right: 5px;border-radius: 21px;width:42px;height:42px;display:inline-block;" src="' + (type == 1 ? item.UserName : item.FromAvatar) + '" alt="头像"></span>' +
+                    '</span><span>' + (type == 1 ? item.UserName : item.FromAvatar) + '</span></a></td>' +
+                    '<td style="width: 400px;">' + item.Content.replace(/&lt/g, '<').replace(/&gt/g, '>').replace(/<br>/g, '\n').replace(/“/g, '').replace(/”/g, '') + ((type == 2 && item.Status == 0) ? "<span data-id='" + item.ReplyID + "' class='rname getconteinfo'>>>查看信息内容</span>" : "") + '</td>' +
+                    '<td>' + convertdate(item.CreateTime, true) + '</td>' +
                     '<td style="text-align:center;"><a href="javascript:void(0);" class="replycz" data-id="' + item.ReplyID + '">[删除]</a><a href="javascript:void(0);" data-uid="' + item.CreateUserID + '" data-fromuid="' + item.GUID + '" data-id="' + item.ReplyID + '" class="replycz" style="display:' + ($('.userreply .cur').data('value') == 2 ? "block;" : "none;") + '">[回复]</a></td></tr>';
             }
             $('#replylistthead').html(html);
+            $('#replylistthead .getconteinfo').click(function() {
+                var replyid = $(this).data('id');
+                var _this = $(this);
+                getconteinfo(replyid,_this);
+            });
             $('#replylistthead .replycz').click(function () {
                 var replyid = $(this).data('id');
                 if ($(this).html() == '[删除]') {
@@ -524,7 +533,7 @@ function getReplyList(pageindex, type) {
                 } else {
                     var xy = $(this).position(); 
                     $('#replycontent').val(''); 
-                    $('#replydialog').css({ left: xy.left-237, top: xy.top + 15 });
+                    $('#replydialog').css({ left: xy.left-262, top: xy.top + 25 });
                     $('#replydialog').fadeIn(500);
                     var userid = $(this).data('uid');
                     var fromuid = $(this).data('fromuid');
@@ -549,6 +558,16 @@ function getReplyList(pageindex, type) {
                     getReplyList(page, type);
                 }
             }); 
+        }
+    });
+}
+
+function getconteinfo(replyid,_this) {
+    $.post('/Help/GetReplyInfo', { replyid: replyid }, function (data) {
+        if (data.result) {
+            _this.parent().html(data.errorMsg);
+        } else {
+            alert(data.errorMsg);
         }
     });
 }

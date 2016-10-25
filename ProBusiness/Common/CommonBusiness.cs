@@ -10,7 +10,8 @@ using System.Reflection;
 using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO; 
+using System.IO;
+using ProDAL.Manage;
 
 namespace ProBusiness
 {
@@ -326,6 +327,11 @@ namespace ProBusiness
                     return encoders[j];  
             }  
             return null;  
+        }
+        public static bool UpdateUserAccount(decimal golds,string userid,int  type,string remark)
+        {
+            var result = M_UsersDAL.BaseProvider.UpdateUserAccount(userid, golds, type, remark);
+            return result;  
         } 
     }
 }
