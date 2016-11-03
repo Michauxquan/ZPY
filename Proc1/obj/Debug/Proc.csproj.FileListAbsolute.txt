@@ -64,3 +64,10 @@ D:\MichauxPro\ZPY\Proc1\bin\zh-Hans\System.Web.Providers.resources.dll
 D:\MichauxPro\ZPY\Proc1\obj\Debug\Proc.csprojResolveAssemblyReference.cache
 D:\MichauxPro\ZPY\Proc1\obj\Debug\Proc.dll
 D:\MichauxPro\ZPY\Proc1\obj\Debug\Proc.pdb
+D:\MichauxPro\ZPY\Proc1\bin\Proc.dll.config
+D:\MichauxPro\ZPY\Proc1\bin\Microsoft.Threading.Tasks.dll
+D:\MichauxPro\ZPY\Proc1\bin\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+D:\MichauxPro\ZPY\Proc1\bin\Microsoft.Threading.Tasks.Extensions.dll
+D:\MichauxPro\ZPY\Proc1\bin\Microsoft.Threading.Tasks.xml
+D:\MichauxPro\ZPY\Proc1\bin\Microsoft.Threading.Tasks.Extensions.xml
+D:\MichauxPro\ZPY\Proc1\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml

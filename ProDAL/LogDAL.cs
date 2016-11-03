@@ -31,7 +31,10 @@ namespace ProDAL
                                      new SqlParameter("@UserID" , userid),
                                      new SqlParameter("@OperateIP" , operateip)
                                    };
-            return Task.Run(() => { return ExecuteNonQuery(sqlText, paras, CommandType.Text) > 0; });
+            var task = new Task<bool>(() =>{ return ExecuteNonQuery(sqlText, paras, CommandType.Text)>0; });
+            task.Start();//异步执行
+            return task;
+            //return Task.Run(() => { return ExecuteNonQuery(sqlText, paras, CommandType.Text) > 0; });
         }
 
         public static Task<bool> AddOperateLog(string userid, string username, string leveid, string seeid, string seename, int type,string message, string operateip)
@@ -48,7 +51,10 @@ namespace ProDAL
                                      new SqlParameter("@Message" , message),
                                      new SqlParameter("@OperateIP" , operateip)
                                    };
-            return Task.Run(() => { return ExecuteNonQuery(sqlText, paras, CommandType.Text) > 0; });
+            var task = new Task<bool>(() => { return ExecuteNonQuery(sqlText, paras, CommandType.Text) > 0; });
+            task.Start();//异步执行
+            return task;
+            //return Task.Run(() => { return ExecuteNonQuery(sqlText, paras, CommandType.Text) > 0; });
         }
 
     }
