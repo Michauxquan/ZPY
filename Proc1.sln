@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProEnum", "ProEnum\ProEnum.csproj", "{B2F2671D-7F9B-4E3E-B5E1-FE8ACBF1976F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZPY", "ZPY\ZPY.csproj", "{BB3C794B-5A6A-494B-8E2B-A0662ACC3084}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6559E42C-832C-4AB3-8E7D-52D03AF86B5B} = {6559E42C-832C-4AB3-8E7D-52D03AF86B5B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProTools", "ProTools\ProTools.csproj", "{898A9502-A35E-4032-A90C-42708B2B9C82}"
 EndProject
