@@ -3,9 +3,9 @@
 .content .sidebar{float: left;width: 200px;}
 .content .con{float: left;width: 720px;height: 650px;padding-left: 35px;padding-top: 20px;}
 .content .sidebar ul{border:1px solid #eaeaea;border-bottom: none;}
-.content .sidebar ul li{text-align: center;height: 40px;line-height: 40px;border-bottom: 1px solid #eaeaea;}
-.content .sidebar ul li:hover{background: #36B0F3;color: white;cursor: pointer;}
-.content .sidebar ul li:first-child{background: #36B0F3;color: white;}
+.content .sidebar ul li{text-align: center;height: 40px;color: #666;line-height: 40px;border-bottom: 1px solid #eaeaea;}
+.content .sidebar ul li:hover{background: rgb(255, 129, 165);color: white;cursor: pointer;} 
+.content .sidebar ul li.hover{background:rgb(255, 129, 165);color: white;}
 
 .content .con .release1 p:first-child,.content .con .release2 p:first-child{color: red;line-height: 35px;margin-bottom: 20px;}
 .content .con .release1 p:not(:first-child),.content .con .release2 p:not(:first-child){margin-top: 20px;}
@@ -25,15 +25,17 @@
 .content .con .user-msg .detail p:nth-child(2),.content .con .whocame .detail p:nth-child(2),.content .con .myfocus .detail p:nth-child(2){line-height: 35px;}
 .content .con .user-msg .detail p:last-child,.content .con .whocame .detail p:last-child,.content .con .myfocus .detail p:last-child{line-height: 22px;}
 .content .con .user-msg .detail p:last-child select,.content .con .whocame .detail p:last-child select,.content .con .myfocus .detail p:last-child select{width: 170px;height: 30px;}
-.content .con .detail a{color: #f15481;}
+.content .con .detail a{font-weight: 200;}
 .content .con .detail .seecount{ padding-left: 10px;}
 .content .con .user-msg .actions,.content .con .whocame .whocame-con,.content .con .myfocus .myscan{margin-top: 5px;}
 .content .con .user-msg .actions h4,.content .con .whocame .whocame-con h4,.content .con .myfocus .myscan h4{line-height: 35px;}
 .content .con .user-msg .actions ul{margin-left: 15px;}
-.content .con .user-msg .actions ul li span{color: #f15481;margin: 0 5px;}
-.content .con .user-msg .actions ul li a{color: #f15481;margin: 0 5px;}
+.content .con .user-msg .actions ul li span{color: #FF74E8;font-weight: 200; margin: 0 5px;}
+.content .con .user-msg .actions ul li a{margin: 0 5px;font-weight: 200;}
 .content .con .user-msg .actions ul li small{margin-left: 50px;margin-bottom: 10px;display: inline-block;}
-
+.whocame-con>ul li a i{ padding-right: 2px;}
+.whocame-con>ul li a span{ color: #FF74E8;font-weight: 200; }
+.whocame-con>ul li a { color: #666;font-weight: 200; }
 .content .con .user-msg .page{font-size: 13px;margin-top: 50px;margin-left: -120px;}
 .content .con .user-msg .page a{width: 45px;border: 1px solid black;}
 

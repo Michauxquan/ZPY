@@ -8,6 +8,6 @@
 
 .like ul li{display: inline-block;}
 .like ul li img:hover{outline:1px solid #f15481;} 
-.rentGirlFr .right div.hire ul li{display: inline-block;width: 210px;height: 23px !important;line-height: 23px !important;}
-.rentGirlFr .right div.hire ul li:hover{ color: #007cc1;}
+.rentGirlFr .right div.hire ul li{ color: #f22bb4;display: inline-block;width: 210px;height: 23px !important;line-height: 23px !important;}
+.rentGirlFr .right div.hire ul li:hover{ color: #f15481;font-weight: bold;}
 .myscroll3{height: 300px;overflow: hidden;margin-top: 15px;}

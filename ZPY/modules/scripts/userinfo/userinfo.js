@@ -45,7 +45,7 @@ $(function() {
     $(".content .sidebar ul li").each(function () {
         var _this = $(this);
         _this.click(function () {
-            _this.css({ background: "#36B0F3", color: "white" }).siblings().css({ background: "white", color: "black" });
+            _this.addClass('hover').siblings().removeClass("hover");
             $('.navcontent').hide();
             $('.' + _this.data('value')).show();
             switch (_this.data('value')) {

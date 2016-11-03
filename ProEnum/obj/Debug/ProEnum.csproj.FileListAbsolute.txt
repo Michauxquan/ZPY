@@ -8,3 +8,9 @@ D:\MichauxPro\ZPY\ProEnum\bin\Debug\System.Runtime.dll
 D:\MichauxPro\ZPY\ProEnum\bin\Debug\System.Runtime.xml
 D:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.dll
 D:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.pdb
+G:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.dll
+G:\MichauxPro\ZPY\ProEnum\bin\Debug\ProEnum.pdb
+G:\MichauxPro\ZPY\ProEnum\bin\Debug\System.Runtime.dll
+G:\MichauxPro\ZPY\ProEnum\bin\Debug\System.Runtime.xml
+G:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.dll
+G:\MichauxPro\ZPY\ProEnum\obj\Debug\ProEnum.pdb
