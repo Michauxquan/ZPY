@@ -58,7 +58,7 @@
 
 .content .con .beVip h4:not(:first-child){margin-top: 30px;}
 .content .con .beVip h4:first-child+p{color: red;text-indent: 30px;font-size: 14px;margin-top: 10px;}
-.content .con .beVip h4:nth-child(3) span{color: black;font-weight: normal;}
+.content .con .beVip h4:nth-child(3) span{color: #444;font-weight: normal;}
 .content .con .beVip h4:nth-child(3) img{vertical-align: middle;margin: 0 5px;}
 .content .con .beVip .species{padding-left: 30px;}
 .content .con .beVip  label{line-height: 30px;}
@@ -94,7 +94,7 @@
 .userreply .replylist table{border-collapse: collapse;text-align: center;width: 100%;margin-top: 20px;margin-bottom: 20px;border-color: #ccc;}
 .userreply .replylist table th,.business .lease table tr{height: 30px;}
 .userreply .replylist table tr{color: #666;font-size: 14px;}
-.userreply .replylist table thead td{background: #eaeaea;color: black;font-size: 15px;line-height: 28px;height: 28px;} 
+.userreply .replylist table thead td{background: #eaeaea;color: #444;font-size: 15px;line-height: 28px;height: 28px;} 
 .userreply .replylist table tbody td{ line-height: 24px;min-height: 24px;}
 .userreply .replylist table .rname{ cursor: pointer;font-size: 14px;color: #FB03A9;font-weight: 400;}
 .userreply .replylist table tbody td a{ cursor: pointer;font-size: 12px;float: left;margin-left: 10px;color: #FB03A9;font-weight: bold;}
@@ -107,16 +107,16 @@
 .business .hirelist table{border-collapse: collapse;text-align: center;width: 100%;margin-top: 20px;margin-bottom: 20px;border-color: #ccc;}
 .business .hirelist table th,.business .lease table tr{height: 30px;}
 .business .hirelist table tr{color: #666;font-size: 14px;}
-.business .hirelist table thead td{background: #eaeaea;color: black;font-size: 15px;line-height: 28px;height: 28px;}
+.business .hirelist table thead td{background: #eaeaea;color: #444;font-size: 15px;line-height: 28px;height: 28px;}
 
 .business .lease table{border-collapse: collapse;text-align: center;width: 100%;margin-top: 20px;margin-bottom: 20px;border-color: #ccc;}
 .business .lease table th,.business .lease table tr{height: 30px;}
 .business .lease table tr{color: #666;font-size: 14px;}
-.business .lease table thead td{background: #eaeaea;color: black;font-size: 15px;}
+.business .lease table thead td{background: #eaeaea;color: #444;font-size: 15px;}
 
 .business .rent table{border-collapse: collapse;text-align: center;width: 100%;margin-top: 20px;margin-bottom: 20px;border-color: #ccc;}
 .business .rent table th,.business .rent table tr{height: 30px;}
 .business .rent table tr{color: #666;font-size: 14px;}
-.business .rent table thead td{background: #eaeaea;color: black;font-size: 15px;}
+.business .rent table thead td{background: #eaeaea;color: #444;font-size: 15px;}
 
 .business .rent,.business .lease{display: none;}

@@ -16,8 +16,8 @@
 .red{ color: red !important;}
 .recommend{margin-top: 50px;}
 .recommend h3,.rentGirlFr .left h3{display: inline-block;background: url(../images/bl.png);width: 226px;padding:10px 0 10px 20px;color: white;}
-.recommend>a,.rentGirlFr .left>a{float: right;line-height: 40px;color: black;}
-.recommend>a:visited,.rentGirlFr .left>a:visited{color: black;}
+.recommend>a,.rentGirlFr .left>a{float: right;line-height: 40px;color: #444;}
+.recommend>a:visited,.rentGirlFr .left>a:visited{color: #444;}
 .recommend>a:hover,.rentGirlFr .left>a:hover{color: #f15481;}
 .recommend ul{width: 100%;margin-top: 20px;}
 .recommend ul li{display: inline-block;width: 220px;height: 280px;border:1px solid #eaeaea;margin-left: 18px;position: relative;}

@@ -50,6 +50,7 @@ namespace ZPY.Controllers
             //    Response.End();
             //}
             ViewBag.UserID = id;
+            ViewBag.CurID = CurrentUser != null ? CurrentUser.UserID : "";
             return View();
         }
 

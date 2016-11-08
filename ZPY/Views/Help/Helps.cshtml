@@ -163,7 +163,7 @@
         new PCAS("province3", "city3", "area3");
         $(".content .sidebar ul li").each(function() {
             $(this).click(function() {
-                $(this).css({ background: "#36B0F3", color: "white" }).siblings().css({ background: "white", color: "black" });
+                $(this).css({ background: "#36B0F3", color: "white" }).siblings().css({ background: "white", color: "#444" });
                 switch ($(this).index()) {
                 case 0:
                     $(".cons .introduce").show().siblings().hide();

@@ -20,6 +20,7 @@
             <table class="imgtable"> </table>
         </div>
         <input type="text" hidden="hidden" style="display: none;" value="@ViewBag.UserID" id="UserID"/>
+          <input type="text" hidden="hidden" style="display: none;" value="@ViewBag.CurID" id="CurID"/>
     </div>
 </div>
 <div id="popup">
@@ -28,8 +29,8 @@
 <!--主体 结束 -->
 <!-- 分页-->
 <div class="imgPage"> </div>
-           
-<script type="text/javascript">
+
+<script type="text/javascript"> 
     $(function() {
         $('.group_list1').each(function(i, v) {
             $(v).click(function() {
@@ -37,12 +38,14 @@
                     $('.group_list1').removeClass('hover');
                     $(v).addClass('hover');
                     if ($(v).data('value') != "2") {
+                        $('#UserID').val('');
                         GetuserImg(1, $(v).data('value'));
                     }
                 }
             });
         });
-        GetAllImgByuserID(1, $('#UserID').val());
+        console.log(uid);
+        GetAllImgByuserID(1, $('#CurID').val());
     });
 
     function GetuserImg(pageIndex, sex) {
@@ -107,7 +110,7 @@
                 $(v).click();
             }
         });
-        $('#UserID').val(userid);
+        $('#UserID').val(userid); 
     }
 
     function GetAllImgByuserID(pageIndex, userid) {
@@ -131,7 +134,7 @@
                     '<h4><a class="a" href="javascript:void(0);" value=" 查看大图">查看大图</a></h4><br/>';
            
                 html += '<a class="a" href="/User/UserMsg/' + data.items[i].UserID + '" value=" 查看资料">查看资料</a><br />' +
-                     '</div></div></div></div></td>';
+                    '</div></div></div></div></td>';
             }            
             $('.imgtable').html(html); 
             $('.img-td').click(function () { 

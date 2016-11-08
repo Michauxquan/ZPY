@@ -1,9 +1,9 @@
 .advertisement{width: 960px;margin: 0 auto;margin-top:20px;}
 .like,.hire{margin-top: 20px!important;}
 .hire ul li{display: inline-block;width: 210px;height: 23px !important;line-height: 23px !important;}
-.hire ul li a{ color: #000;}
-.hire ul li a:hover{ color: #007cc1;}
-.hire ul li:hover{ color: #007cc1;}
+.hire ul li a{ color: #de45d9;}
+.hire ul li a:hover{ color: #F22B64;}
+.hire ul li:hover{ color: #F22B64;}
 .hire .myscroll3{height: 300px;overflow: hidden;margin-top: 15px;}
 
 .like ul li{display: inline-block;}
@@ -25,14 +25,15 @@
 .left .msgs>div p:last-child{margin-top: 5px;}
 .left .msgs>div p:last-child img{vertical-align: middle;margin-right: 10px;}
 .left .msgs>div ul.interact+p{line-height: 20px;}
-.left .msgs>div ul.interact+p a{color: red;}
-.left .msgs>div ul.interact+p a:active{color: red;}
+.left .msgs>div ul.interact+p a{color: #BA6DF5;}
+.left .msgs>div ul.interact+p a:active{color: #F22B64;}
 .left .msgs>div ul.interact li a{margin-right: 5px;}
 .left .intro{}
 .left .intro h4{width: 100%;background: #fafafa;height: 40px;line-height: 40px;color: #927273;text-indent: 15px;}
 .left .intro p{line-height: 40px;text-indent: 15px;}
 .left .intro ul{margin-left: 15px;}
 .left .intro ul li{font-size: 15px;}
-.left .intro ul li a{float: none;color: red;font-size: 15px;}
-.left .intro ul li a:visited{color: red;}
+.left .intro ul li a{float: none;color: #BA6DF5;font-size: 15px;}
+.left .intro ul li a:hover{color: #F22B64;}
+.left .intro ul li a:visited{color: #F22B64;}
 .left .intro ul li img{vertical-align: middle;margin-right: 20px;}

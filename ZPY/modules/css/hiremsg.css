@@ -4,6 +4,6 @@
 .hire-con table thead{line-height: 42px;}
 .hire-con table tbody tr{font-size: 14px;line-height: 50px;}
 .hire-con table tbody tr:nth-child(2n-1){background: #efefef;padding-top: 10px;}
-.hire-con table tbody tr td a:visited{color: black;}
+.hire-con table tbody tr td a:visited{color:#444;}
 .hire-con table tbody tr td a:hover{color: red;text-decoration: underline;}
 .hire-con .page{margin-left: 100px;}

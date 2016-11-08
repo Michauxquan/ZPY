@@ -31,7 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -231,6 +231,8 @@
     <Content Include="modules\images\img-noimg.png" />
     <Content Include="modules\images\loginBackground.png" />
     <Content Include="modules\images\loginMainBackground.jpg" />
+    <Content Include="modules\images\logo.ico" />
+    <Content Include="modules\images\logo.jpg" />
     <Content Include="modules\images\open.png" />
     <Content Include="modules\images\pull.png" />
     <Content Include="modules\plug\city.js" />

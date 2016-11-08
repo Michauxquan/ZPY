@@ -30,7 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -190,6 +190,7 @@
     <Content Include="modules\images\gua.png" />
     <Content Include="modules\images\head.png" />
     <Content Include="modules\images\jj.png" />
+    <Content Include="modules\images\logo.ico" />
     <Content Include="modules\images\logo.jpg" />
     <Content Include="modules\images\photo.jpg" />
     <Content Include="modules\images\photo1.jpg" />
@@ -230,6 +231,7 @@
     <Content Include="modules\images\weixin.png" />
     <Content Include="modules\images\xie.png" />
     <Content Include="modules\images\zh\cp_img_sc.png" />
+    <Content Include="modules\images\email.png" />
     <Content Include="modules\images\zh\zh0.gif" />
     <Content Include="modules\images\zh\zh1.gif" />
     <Content Include="modules\images\zh\zh10.gif" />
@@ -358,12 +360,6 @@
     <Content Include="Scripts\webuploader.html5only.min.js" />
     <Content Include="Scripts\yzm.js" />
     <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

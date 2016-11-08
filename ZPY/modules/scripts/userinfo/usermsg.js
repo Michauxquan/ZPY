@@ -1,4 +1,4 @@
-﻿//new PCAS("province3", "city3", "area3");
+﻿new PCAS("province3", "city3", "area3");
 var reg = /^[1-9]*[1-9][0-9]*$/; 
 $(function() {
     $('#focusit').click(function () { focususer(); });

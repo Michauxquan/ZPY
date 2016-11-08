@@ -1,14 +1,15 @@
-*{margin:0;padding:0;list-style:none;text-decoration:none;font-family:"微软雅黑";color: #796E6E;}
+*{margin:0;padding:0;list-style:none;text-decoration:none;font-family:"微软雅黑";color: #444;}
+/*color: #796E6E;*/
 h3{font-size: 18px;}
 .clear{height: 0;overflow: hidden;clear: both;}
 header,.process,.recommend,.select,.rentGirlFr{width: 960px;margin:0 auto;}
 header ul.log-reg{height: 18px;float: right;margin-top: 10px;}
 header ul.log-reg li{display: inline-block;padding:0 5px;max-width: 90px;}
 header ul.log-reg li:last-child{padding-right: 0;}
-header ul.log-reg li a:link,header ul.log-reg li a:visited{color: black;}
+header ul.log-reg li a:link,header ul.log-reg li a:visited{color: #333;}
 header ul.log-reg li a:hover{text-decoration: underline;color: #f15481;}
 .hide{ display: none !important;}
-header .siteExp{float: right;margin-top: -60px;margin-left: -60px;}
+header .siteExp{float: right;margin-top: -60px;display: inline-block;}
 header>a img{margin-top: 20px;}
 .navs{width: 100%;min-width: 960px;background: #f15481;height: 40px;line-height: 40px;font-size: 18px;}
 .navs ul{width: 960px;margin: 0 auto;height: 40px;}
@@ -22,7 +23,7 @@ footer{width: 100%;min-width: 960px;background: #eaeaea;padding-top: 20px;paddin
 footer .foot{width: 960px;margin: 0 auto;}
 footer .foot .friendLink p{margin-bottom: 7px;}
 footer .foot .friendLink ul li{display: inline-block;margin-right: 10px;}
-footer .foot .friendLink ul li a,footer .foot .bottomMsg p a{color: black;}
+footer .foot .friendLink ul li a,footer .foot .bottomMsg p a{color: #333;}
 footer .foot .friendLink ul li a:hover,footer .foot .bottomMsg p a:hover{text-decoration: underline;color: #f15481;}
 footer .foot .bottomMsg{margin-top: 15px;}
 footer .foot .bottomMsg p{text-align: center;line-height: 30px;}

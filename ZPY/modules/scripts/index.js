@@ -22,12 +22,13 @@ ObjetJS.GetRboy= function(type) {
         var html = "";
         for (var i = 0; i < data.items.length; i++) {
             var item = data.items[i];
-
-
             html += '<li><a href="/User/UserMsg/' + item.UserID + '"><img src="'+(item.Avatar != "" && item.Avatar != null ? item.Avatar : "/modules/images/photo1.jpg")+'" width="270px" height="200px"></a>' +
                 '<div><a href="/User/UserMsg/' + item.UserID + '">' + item.Name + '</a>&nbsp;(状态：<span>出租</span>)<br/><span>' + (item.Sex == 0 ? "帅哥" : "美女") + '</span>一枚&nbsp;<span>' + item.Age + '</span>岁' +
-                '&nbsp;' + item.Province +'&nbsp;'+ item.Jobs+ '<p class="desc" class="desc">' + item.MyService + '</p>' +
-                '<a href="/User/UserMsg/' + item.UserID + '">查看详细>></a></div><div class="clear"></div></li>';
+                '&nbsp;' + (item.Province==null?"":(item.Province+'&nbsp;'+ (item.Jobs==null?"":item.Jobs)))+ '<p class="desc" class="desc">' + item.MyService + '</p>' +
+                '<a href="/User/UserMsg/' + item.UserID + '"><img src="/modules/images/dianhua.png"></a>' +
+                '<a href="/User/UserMsg/' + item.UserID + '"><img src="/modules/images/email.png"></a>' +
+                '<a href="/User/UserMsg/' + item.UserID + '"><img src="/modules/images/qq.png"></a>' +
+                '</div><div class="clear"></div></li>';
         }
         if (type == 1) {
             $('#rGirlUl').html(html);
